@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.yogi.hoxy">
+
+	<select id="adminList" resultType="YHDto">
+		SELECT *
+		FROM MEMREQUEST
+		WHERE POWER = '0'
+	</select>
+	
+	<select id="loginInfo" parameterType="String" resultType="int">
+		SELECT WHO
+		FROM MEMREQUEST
+		WHERE ID = #{id} 
+	</select>
+	
+	<select id="listShop" resultType="sellerDto">
+		SELECT *
+		FROM SELLER 
+		WHERE POWER = '0'
+	</select>
+	
+	<delete id="listDel" parameterType="String">
+		DELETE FROM MEMREQUEST WHERE ID = #{id}
+	</delete>
+	
+	<update id="listUp" parameterType="YHDto">
+		UPDATE MEMREQUEST SET POWER='1' WHERE ID=#{id}
+	</update>
+	
+	<select id="listSel" parameterType="String" resultType="YHDto">
+		SELECT *
+		FROM MEMREQUEST
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="listSelShop" parameterType="String" resultType="sellerDto">
+		SELECT * 
+		FROM SELLER 
+		WHERE SHOPID = #{shopid}
+	</select>
+	
+	<update id="listUpShop" parameterType="sellerDto">
+		UPDATE SELLER SET POWER = '1' 
+		WHERE SHOPID = #{shopid} 
+	</update>
+	
+	<delete id="shopDel" parameterType="String">
+		DELETE FROM SELLER WHERE SHOPID = #{shopid}
+	</delete>
+	
+	<select id="shopList" resultType="sellerDto">
+		SELECT * FROM SELLER WHERE POWER = '1'	
+	</select>
+	
+	<select id="memberList" resultType="YHDto">
+		SELECT *
+		FROM MEMREQUEST
+		WHERE POWER = '1'
+	</select>
+	
+	<update id="memUpdate" parameterType="YHDto">
+		UPDATE MEMREQUEST 
+		SET NAME = #{name}, PWD = #{pwd}, TEL = #{tel}, EMAIL = #{email}, WHO = #{who}, POWER = #{power}, SHOPNAME = #{shopName}, SHOPADD = #{shopAdd}, LOCAL = #{local}, BUSINESSNUM = #{businessnum}, SHOPID = #{shopId} 
+		WHERE ID = #{id}
+	</update>
+	
+	<insert id="shopAdd" parameterType="sellerDto">
+		INSERT INTO SELLER
+		VALUES(#{id}, #{shoptel}, #{shopname}, #{shopadd}, #{local}, 
+		#{businessnum}, SELLER_SHOPID.NEXTVAL, '0')
+	</insert>
+	
+	<select id="login" parameterType="Map" resultType="String">
+		SELECT DECODE(COUNT(*),1,'true','false') AS RESULT 
+		FROM MEMREQUEST
+		WHERE ID = #{id} AND PWD = #{pwd} AND POWER = 1
+	</select>
+
+
+
+	
+	<select id="myShop" parameterType="String" resultType="sellerDto">
+		SELECT * FROM SELLER
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="myShopDetail" parameterType="Map" resultType="sellerDto">
+		SELECT * FROM SELLER  
+		WHERE ID = #{id} AND SHOPID = #{shopid}
+	</select>
+	
+	<update id="myShopUpdate" parameterType="sellerDto">
+		UPDATE SELLER SET SHOPTEL = #{shoptel}, SHOPNAME = #{shopname}, 
+		SHOPADD = #{shopadd}, LOCAL = #{local}, BUSINESSNUM = #{businessnum}
+		WHERE SHOPID = #{shopid}
+	</update>
+	
+	<delete id="myShopDelete" parameterType="String">
+		DELETE FROM SELLER WHERE SHOPID= #{shopid}
+	</delete>
+</mapper>
