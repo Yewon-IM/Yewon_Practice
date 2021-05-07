@@ -22,7 +22,11 @@
 				<td>상점 이름  <input type="text" name="shopname"></td>
 				<td>상점 전화번호 <input type="text" name="shoptel"></td>
 				<td>상점 주소 <input type="text" name="shopadd"></td>
-				<td>상점 지역 <input type="text" name="local"> </td>
+				<td>지역<select name="local">
+						<option value="강서구">강서구</option>
+						<option value="영등포구">영등포구</option>
+					</select>
+				</td>
 				<td>상점 사업자번호 <input type="text" name="businessnum"></td>
 			</tr>
 		</table>

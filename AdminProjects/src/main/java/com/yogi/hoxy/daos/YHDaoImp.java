@@ -105,4 +105,14 @@ public class YHDaoImp implements IYHDao{
 		int count = sqlSession.insert(namespace + "shopAdd", sdto);
 		return count > 0? true:false;
 	}
+	
+	public boolean shopUpdate(sellerDto sdto) {
+		int count = sqlSession.update(namespace + "shopUpdate", sdto);
+		return count > 0? true:false;
+	}
+	
+	public boolean shopDelete(String shopid) {
+		int count = sqlSession.delete(namespace + "shopDelete", shopid);
+		return count > 0? true:false;
+	}
 }

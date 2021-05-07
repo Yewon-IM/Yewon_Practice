@@ -105,5 +105,15 @@ public class YHService implements IYHService {
 		return yhDao.shopAdd(sdto);
 	}
 
+	@Override
+	public boolean shopUpdate(sellerDto sdto) {
+		return yhDao.shopUpdate(sdto);
+	}
+
+	@Override
+	public boolean shopDelete(String shopid) {
+		return yhDao.shopDelete(shopid);
+	}
+
 }
 	

@@ -50,7 +50,7 @@
 			<td width="50px"><%=sdto.getLocal() %></td>
 			<td width="50px"><%=sdto.getBusinessnum() %></td>
 			<td width="50px"><%=sdto.getShopid() %></td>
-			<td width="50px"><input type="submit" value="수정" formaction="shopUpdate.do?shopid=<%=sdto.getShopid() %>"></td>
+			<td width="50px"><input type="submit" value="수정" formaction="shopUpdateForm.do?id=<%=sdto.getId() %>&shopid=<%=sdto.getShopid() %>"></td>
 			<td width="30px"><input type="submit" value="삭제" formaction="shopDelete.do?shopid=<%=sdto.getShopid()%>"></td>
 		</tr>
 		<%	}		

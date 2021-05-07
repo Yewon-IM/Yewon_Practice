@@ -78,6 +78,17 @@
 		WHERE ID = #{id} AND PWD = #{pwd} AND POWER = 1
 	</select>
 
+	<update id="shopUpdate" parameterType="sellerDto">
+				UPDATE SELLER SET SHOPTEL = #{shoptel}, SHOPNAME = #{shopname}, 
+		SHOPADD = #{shopadd}, LOCAL = #{local}, BUSINESSNUM = #{businessnum}
+		WHERE SHOPID = #{shopid}
+	</update>
+
+	<delete id="shopDelete" parameterType="String">
+		DELETE FROM SELLER WHERE SHOPID= #{shopid}
+	</delete>
+
+
 
 
 	
@@ -93,11 +104,24 @@
 	
 	<update id="myShopUpdate" parameterType="sellerDto">
 		UPDATE SELLER SET SHOPTEL = #{shoptel}, SHOPNAME = #{shopname}, 
-		SHOPADD = #{shopadd}, LOCAL = #{local}, BUSINESSNUM = #{businessnum}
+		SHOPADD = #{shopadd}, LOCAL = #{local}, BUSINESSNUM = #{businessnum}, POWER = '0'
 		WHERE SHOPID = #{shopid}
 	</update>
 	
-	<delete id="myShopDelete" parameterType="String">
+	<update id="myShopDelete" parameterType="String">
+		DELETE FROM SELLER WHERE SHOPID= #{shopid}
+	</update>
+	
+	<delete id="myShopDelete1" parameterType="String">
 		DELETE FROM SELLER WHERE SHOPID= #{shopid}
 	</delete>
+	
+	
+	
+	
+	
+	<update id="myPageDel" parameterType="String">
+		UPDATE MEMREQUEST POWER = '0'
+		WHERE ID = #{id}
+	</update>
 </mapper>

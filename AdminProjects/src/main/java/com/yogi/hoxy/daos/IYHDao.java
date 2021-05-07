@@ -44,4 +44,8 @@ public interface IYHDao {
 	public List<sellerDto> shopList();
 	
 	public boolean shopAdd(sellerDto sdto);
+	
+	public boolean shopUpdate(sellerDto sdto);
+	
+	public boolean shopDelete(String shopid);
 }

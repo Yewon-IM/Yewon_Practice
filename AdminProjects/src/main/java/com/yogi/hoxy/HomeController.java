@@ -323,7 +323,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/adminMain.do", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
-		logger.info("", locale);
+		logger.info("메인", locale);
 		
 		return "main";
 	}
@@ -338,6 +338,47 @@ public class HomeController {
 		
 		return "redirect:.";
 	}
+	
+	@RequestMapping(value = "/shopUpdateForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String shopUpdateForm(Locale locale, Model model, @RequestParam("shopid") String shopid, @RequestParam("id") String id) {
+		logger.info("상점 수정 폼", locale);
+		
+		sellerDto sdto = yhService.myShopDetail(id, shopid);
+		model.addAttribute("sdto", sdto);
+		
+		return "admin/seller/shopUpdateForm";
+	}
+	
+	@RequestMapping(value = "/shopUpdate.do", method = RequestMethod.POST)
+	public String shopUpdate(Locale locale, Model model, sellerDto sdto) {
+		logger.info("상점 수정", locale);
+		
+		boolean isS = yhService.shopUpdate(sdto);
+		if(isS) {			
+			return "redirect:shopList.do";
+		} else {
+			return "error";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/shopDelete.do", method = RequestMethod.POST)
+	public String shopDelete(Locale locale, Model model, @RequestParam("shopid") String shopid){
+		logger.info("상점 정보 삭제", locale);
+			
+			boolean isS = yhService.shopDelete(shopid);
+			System.out.println("shopid");
+			
+			if(isS) {
+				return "redirect:shopList.do";
+			} else {
+				return "error";				
+			}
+	}
+	
+	
+	
+	
 	
 	
 	
