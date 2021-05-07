@@ -440,9 +440,7 @@ public class HomeController {
 	public String myShopAdd(Locale locale, Model model, sellerDto sdto){
 		logger.info("상점 추가", locale);
 		
-		boolean isS = yhService.shopAdd(new sellerDto(sdto.getId(), sdto.getShoptel(), 
-							sdto.getShopname(), sdto.getShopadd(), sdto.getLocal(), 
-							sdto.getBusinessnum()));
+		boolean isS = yhService.shopAdd(new sellerDto(sdto.getId(), sdto.getShoptel(), sdto.getShopname(), sdto.getShopadd(), sdto.getLocal(), sdto.getBusinessnum(), 0, null));
 		System.out.println("sdto : " + sdto);
 		System.out.println("isS : " + isS);
 		

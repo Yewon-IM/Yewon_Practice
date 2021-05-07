@@ -102,7 +102,7 @@ public class YHService implements IYHService {
 
 	@Override
 	public boolean shopAdd(sellerDto sdto) {
-		return false;
+		return yhDao.shopAdd(sdto);
 	}
 
 }

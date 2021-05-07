@@ -19,7 +19,7 @@
 <% List<sellerDto> list = (List<sellerDto>)request.getAttribute("list"); %>
 <body>
 	<table border="1">
-		<th colspan="6">내 상점 </th>
+		<th colspan="7">내 상점 </th>
 		<tr>
 			<td>상점 이름</td>
 			<td>상점 전화번호</td>
@@ -27,6 +27,7 @@
 			<td>상점 지역</td>
 			<td>상점 사업자번호</td>
 			<td>상점 고유번호</td>
+			<td>승인</td>
 		</tr>
 		<%
 		if(list == null){
@@ -43,6 +44,13 @@
 				<td><%= sdto.getLocal() %></td>
 				<td><%= sdto.getBusinessnum() %></td>
 				<td><%= sdto.getShopid() %></td>
+				<td><% if (sdto.getPower().equals("0")){
+					out.println("미승인");
+				} else if (sdto.getPower().equals("1")){
+					out.println("승인");
+				} 
+					%>
+				</td>
 			</tr>
 		<%}
 		}

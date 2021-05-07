@@ -14,9 +14,9 @@ public class sellerDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public sellerDto(String id, String shoptel, String shopname, String shopadd, String local, int businessnum) 
-	{
+	
+	public sellerDto(String id, String shoptel, String shopname, String shopadd, String local, int businessnum,
+			int shopid, String power) {
 		super();
 		this.id = id;
 		this.shoptel = shoptel;
@@ -24,9 +24,10 @@ public class sellerDto {
 		this.shopadd = shopadd;
 		this.local = local;
 		this.businessnum = businessnum;
-
+		this.shopid = shopid;
+		this.power = power;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
