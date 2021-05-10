@@ -179,7 +179,7 @@ Sibebar</a></li>
 <div class="form-head">
 <h4 class="title">회원정보 상세보기</h4>
 
-<form method="post" action="memUpdateForm.do">
+<form method="post">
 <div class="socila-login">
 </div>
 
@@ -245,7 +245,9 @@ Sibebar</a></li>
 </div>
 </div>
 <div class="button">
-<input type="submit" class="btn" value="수정하기">
+<input type="submit" class="btn" value="수정하기" formaction="memUpdateForm.do">
+<br>
+<input type="submit" class="btn" value="삭제하기" formaction="delete.do">
 </div>
 <p class="outer-link">회원리스트로<a href="memberList.do"> 돌아가기</a>
 </p>
@@ -425,7 +427,7 @@ App Store
  			<td width="40px">${dto.shopName}</td> 
  			<td width="40px">${dto.shopAdd}</td> 
  			<td width="40px">${dto.local}</td> 
- 			<td width="30px">${dto.businessnum}</td> 
+ 			<td width="30px">${dto.businessNum}</td> 
  			<td width="30px">${dto.shopId}</td>			 
 		</tr>
 		

@@ -11,7 +11,7 @@
 아이디 : <input type="text" name="user_id"><br>
 비밀번호 : <input type="text" name="user_pwd"><br>
 <input type="submit" value="로그인"><br>
-<a href="redirect:.">메인홈페이지</a>
+<a href=".">메인홈페이지</a>
 </form>
 </body>
 </html>

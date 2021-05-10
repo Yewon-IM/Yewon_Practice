@@ -19,15 +19,15 @@
 		<table border="1">
 			<th colspan="5">상점 추가 </th>
 			<tr>
-				<td>상점 이름  <input type="text" name="shopname"></td>
-				<td>상점 전화번호 <input type="text" name="shoptel"></td>
-				<td>상점 주소 <input type="text" name="shopadd"></td>
+				<td>상점 이름  <input type="text" name="shopName"></td>
+				<td>상점 전화번호 <input type="text" name="shopTel"></td>
+				<td>상점 주소 <input type="text" name="shopAdd"></td>
 				<td>지역<select name="local">
 						<option value="강서구">강서구</option>
 						<option value="영등포구">영등포구</option>
 					</select>
 				</td>
-				<td>상점 사업자번호 <input type="text" name="businessnum"></td>
+				<td>상점 사업자번호 <input type="text" name="businessNum"></td>
 			</tr>
 		</table>
 		<input type="hidden" name="id" value="${id}" />

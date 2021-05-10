@@ -28,16 +28,16 @@
 			<td>상점 고유번호</td>
 		</tr>							
 		<tr>
-			<td>${sdto.shopname }</td>
-			<td>${sdto.shoptel }</td>
-			<td>${sdto.shopadd }</td>
+			<td>${sdto.shopName }</td>
+			<td>${sdto.shopTel }</td>
+			<td>${sdto.shopAdd }</td>
 			<td>${sdto.local }</td>
-			<td>${sdto.businessnum }</td>
-			<td>${sdto.shopid }</td>
+			<td>${sdto.businessNum }</td>
+			<td>${sdto.shopId }</td>
 		</tr>
 		<tr>
-			<td colspan="3"><a href="myShopUpdateForm.do?shopid=${sdto.shopid }">수정</a></td>
-			<td colspan="3"><a href="myShopDelete.do?shopid=${sdto.shopid }">삭제</a></td>
+			<td colspan="3"><a href="myShopUpdateForm.do?shopId=${sdto.shopId }">수정</a></td>
+			<td colspan="3"><a href="myShopDelete.do?shopId=${sdto.shopId }">삭제</a></td>
 		</tr>			
 	</table>
 

@@ -246,7 +246,7 @@ Sibebar</a></li>
 
 <div class="form-group">
 <label>사업자번호</label>
-<input name="businessnum" type="text" value=${dto.businessnum }>
+<input name="businessnum" type="text" value=${dto.businessNum }>
 </div>
 
 <div class="form-group">

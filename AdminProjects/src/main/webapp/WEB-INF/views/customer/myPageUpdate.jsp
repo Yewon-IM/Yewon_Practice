@@ -40,7 +40,7 @@
 <input type="hidden" name="shopName" value=${dto.shopName }>
 <input type="hidden" name="shopAdd" value=${dto.shopAdd }>
 <input type="hidden" name="local" value=${dto.local }>
-<input type="hidden" name="businessnum" value=${dto.businessnum }>
+<input type="hidden" name="businessnum" value=${dto.businessNum }>
 <input type="hidden" name="shopId" value=${dto.shopId }>
 
 <input type="submit" value="수정하기" formaction="myPageUpdate.do?id=${dto.id }">

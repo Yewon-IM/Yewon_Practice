@@ -44,14 +44,14 @@
 		%>
 		<tr>
 			<td width="50px"><%=sdto.getId() %></td>
-			<td width="50px"><%=sdto.getShopname() %></td>
-			<td width="50px"><%=sdto.getShoptel() %></td>
-			<td width="50px"><%=sdto.getShopadd() %></td>
+			<td width="50px"><%=sdto.getShopName() %></td>
+			<td width="50px"><%=sdto.getShopTel() %></td>
+			<td width="50px"><%=sdto.getShopAdd() %></td>
 			<td width="50px"><%=sdto.getLocal() %></td>
-			<td width="50px"><%=sdto.getBusinessnum() %></td>
-			<td width="50px"><%=sdto.getShopid() %></td>
-			<td width="50px"><input type="submit" value="수정" formaction="shopUpdateForm.do?id=<%=sdto.getId() %>&shopid=<%=sdto.getShopid() %>"></td>
-			<td width="30px"><input type="submit" value="삭제" formaction="shopDelete.do?shopid=<%=sdto.getShopid()%>"></td>
+			<td width="50px"><%=sdto.getBusinessNum() %></td>
+			<td width="50px"><%=sdto.getShopId() %></td>
+			<td width="50px"><input type="submit" value="수정" formaction="shopUpdateForm.do?id=<%=sdto.getId() %>&shopId=<%=sdto.getShopId() %>"></td>
+			<td width="30px"><input type="submit" value="삭제" formaction="shopDelete.do?shopid=<%=sdto.getShopId()%>"></td>
 		</tr>
 		<%	}		
 		}

@@ -61,8 +61,8 @@ public class YHService implements IYHService {
 	}
 
 	@Override
-	public sellerDto myShopDetail(String id, String shopid) {
-		return yhDao.myShopDetail(id, shopid);
+	public sellerDto myShopDetail(String id, String shopId) {
+		return yhDao.myShopDetail(id, shopId);
 	}
 
 	@Override
@@ -71,8 +71,8 @@ public class YHService implements IYHService {
 	}
 
 	@Override
-	public boolean myShopDelete(String shopid) {
-		return yhDao.myShopDelete(shopid);
+	public boolean myShopDelete(String shopId) {
+		return yhDao.myShopDelete(shopId);
 	}
 
 	@Override
@@ -81,8 +81,8 @@ public class YHService implements IYHService {
 	}
 
 	@Override
-	public sellerDto listSelShop(String shopid) {
-		return yhDao.listSelShop(shopid);
+	public sellerDto listSelShop(String shopId) {
+		return yhDao.listSelShop(shopId);
 	}
 
 	@Override
@@ -91,8 +91,8 @@ public class YHService implements IYHService {
 	}
 
 	@Override
-	public boolean shopDel(String shopid) {
-		return yhDao.shopDel(shopid);
+	public boolean shopDel(String shopId) {
+		return yhDao.shopDel(shopId);
 	}
 
 	@Override
@@ -111,8 +111,33 @@ public class YHService implements IYHService {
 	}
 
 	@Override
-	public boolean shopDelete(String shopid) {
-		return yhDao.shopDelete(shopid);
+	public boolean shopDelete(String shopId) {
+		return yhDao.shopDelete(shopId);
+	}
+
+	@Override
+	public boolean myPageDel(String id) {
+		return yhDao.myPageDel(id);
+	}
+
+	@Override
+	public List<YHDto> delList() {
+		return yhDao.delList();
+	}
+
+	@Override
+	public boolean myShopCan(String shopId) {
+		return yhDao.myShopCan(shopId);
+	}
+
+	@Override
+	public List<sellerDto> delShopList() {
+		return yhDao.delShopList();
+	}
+
+	@Override
+	public boolean myPageCan(String id) {
+		return yhDao.myPageCan(id);
 	}
 
 }

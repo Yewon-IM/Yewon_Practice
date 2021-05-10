@@ -256,7 +256,7 @@ Sibebar</a></li>
 
 <div class="form-group">
 <label>사업자번호</label>
-<input name="businessnum" type="text" readonly value=${dto.businessnum } >
+<input name="businessnum" type="text" readonly value=${dto.businessNum } >
 </div>
 
 <div class="form-group">
@@ -451,7 +451,7 @@ App Store
  			<td width="40px">${dto.shopName}</td> 
  			<td width="40px">${dto.shopAdd}</td> 
  			<td width="40px">${dto.local}</td> 
- 			<td width="30px">${dto.businessnum}</td> 
+ 			<td width="30px">${dto.businessNum}</td> 
  			<td width="30px">${dto.shopId}</td>			 
 		</tr>
 		

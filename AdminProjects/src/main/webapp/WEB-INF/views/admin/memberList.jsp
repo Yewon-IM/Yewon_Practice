@@ -23,7 +23,7 @@
 
 <form method="post">
 	<table border="1">
-		<th colspan="8">회원 리스트</th>
+		<th colspan="9">회원 리스트</th>
 		<tr>
 			<td>아이디</td>
 			<td>이름</td>
@@ -32,16 +32,19 @@
 			<td>이메일</td>
 			<td>가입일</td>
 			<td>누구인가?</td>
+			<td>상태</td>
 			<td colspan="1">버튼</td>
 		</tr>
+		<tr>
 		<%
 		if(list == null){
 			%>
-			<tr><td colspan="6">회원이 없습니다 ㅠㅠ</td></tr>
+			<td colspan="9">회원이 없습니다 ㅠㅠ</td>
 			<%
 		}else {
 			for(YHDto dto : list){
 		%>
+		</tr>
 		<tr>
 			<td width="50px"><a href="memDetail.do?id=<%=dto.getId()%>"><%=dto.getId() %></a></td>
 			<td width="50px"><%=dto.getName() %></td>
@@ -58,6 +61,12 @@
 								}
 								%>
 								</td>
+			<td width="100px"><%if(dto.getDel().equals("0")){
+								out.println("정상 회원");
+							} else {
+								out.println("탈퇴신청한 회원");
+							} %>
+							</td>
 			<td width="30px"><input type="submit" value="삭제" formaction="delete.do?id=<%=dto.getId()%>"></td>
 		</tr>
 		<%	}		

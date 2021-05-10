@@ -38,16 +38,16 @@
 	<select id="listSelShop" parameterType="String" resultType="sellerDto">
 		SELECT * 
 		FROM SELLER 
-		WHERE SHOPID = #{shopid}
+		WHERE SHOPID = #{shopId}
 	</select>
 	
 	<update id="listUpShop" parameterType="sellerDto">
 		UPDATE SELLER SET POWER = '1' 
-		WHERE SHOPID = #{shopid} 
+		WHERE SHOPID = #{shopId} 
 	</update>
 	
 	<delete id="shopDel" parameterType="String">
-		DELETE FROM SELLER WHERE SHOPID = #{shopid}
+		DELETE FROM SELLER WHERE SHOPID = #{shopId}
 	</delete>
 	
 	<select id="shopList" resultType="sellerDto">
@@ -62,14 +62,14 @@
 	
 	<update id="memUpdate" parameterType="YHDto">
 		UPDATE MEMREQUEST 
-		SET NAME = #{name}, PWD = #{pwd}, TEL = #{tel}, EMAIL = #{email}, WHO = #{who}, POWER = #{power}, SHOPNAME = #{shopName}, SHOPADD = #{shopAdd}, LOCAL = #{local}, BUSINESSNUM = #{businessnum}, SHOPID = #{shopId} 
+		SET NAME = #{name}, PWD = #{pwd}, TEL = #{tel}, EMAIL = #{email}, WHO = #{who}, POWER = #{power}, SHOPNAME = #{shopName}, SHOPADD = #{shopAdd}, LOCAL = #{local}, BUSINESSNUM = #{businessNum}, SHOPID = #{shopId} 
 		WHERE ID = #{id}
 	</update>
 	
 	<insert id="shopAdd" parameterType="sellerDto">
 		INSERT INTO SELLER
-		VALUES(#{id}, #{shoptel}, #{shopname}, #{shopadd}, #{local}, 
-		#{businessnum}, SELLER_SHOPID.NEXTVAL, '0')
+		VALUES(#{id}, #{shopTel}, #{shopName}, #{shopAdd}, #{local}, 
+		#{businessNum}, SELLER_SHOPID.NEXTVAL, '0', '0')
 	</insert>
 	
 	<select id="login" parameterType="Map" resultType="String">
@@ -79,13 +79,13 @@
 	</select>
 
 	<update id="shopUpdate" parameterType="sellerDto">
-				UPDATE SELLER SET SHOPTEL = #{shoptel}, SHOPNAME = #{shopname}, 
-		SHOPADD = #{shopadd}, LOCAL = #{local}, BUSINESSNUM = #{businessnum}
-		WHERE SHOPID = #{shopid}
+				UPDATE SELLER SET SHOPTEL = #{shopTel}, SHOPNAME = #{shopName}, 
+		SHOPADD = #{shopAdd}, LOCAL = #{local}, BUSINESSNUM = #{businessNum}
+		WHERE SHOPID = #{shopId}
 	</update>
 
 	<delete id="shopDelete" parameterType="String">
-		DELETE FROM SELLER WHERE SHOPID= #{shopid}
+		DELETE FROM SELLER WHERE SHOPID= #{shopId}
 	</delete>
 
 
@@ -99,29 +99,42 @@
 	
 	<select id="myShopDetail" parameterType="Map" resultType="sellerDto">
 		SELECT * FROM SELLER  
-		WHERE ID = #{id} AND SHOPID = #{shopid}
+		WHERE ID = #{id} AND SHOPID = #{shopId}
 	</select>
 	
 	<update id="myShopUpdate" parameterType="sellerDto">
-		UPDATE SELLER SET SHOPTEL = #{shoptel}, SHOPNAME = #{shopname}, 
-		SHOPADD = #{shopadd}, LOCAL = #{local}, BUSINESSNUM = #{businessnum}, POWER = '0'
-		WHERE SHOPID = #{shopid}
+		UPDATE SELLER SET SHOPTEL = #{shopTel}, SHOPNAME = #{shopName}, 
+		SHOPADD = #{shopAdd}, LOCAL = #{local}, BUSINESSNUM = #{businessNum}, POWER = '0'
+		WHERE SHOPID = #{shopId}
 	</update>
 	
 	<update id="myShopDelete" parameterType="String">
-		DELETE FROM SELLER WHERE SHOPID= #{shopid}
+		UPDATE SELLER SET DEL = '1' WHERE SHOPID= #{shopId}
 	</update>
 	
-	<delete id="myShopDelete1" parameterType="String">
-		DELETE FROM SELLER WHERE SHOPID= #{shopid}
-	</delete>
+	<update id="myShopCan" parameterType="String">
+		UPDATE SELLER SET DEL = '0' WHERE SHOPID= #{shopId}
+	</update>
 	
 	
 	
 	
 	
 	<update id="myPageDel" parameterType="String">
-		UPDATE MEMREQUEST POWER = '0'
+		UPDATE MEMREQUEST SET DEL = '1'
 		WHERE ID = #{id}
 	</update>
+
+	<update id="myPageCan" parameterType="String">
+		UPDATE MEMREQUEST SET DEL = '0'
+		WHERE ID = #{id}
+	</update>
+	
+	<select id="delList" resultType="YHDto">
+		SELECT * FROM MEMREQUEST WHERE DEL = '1'
+	</select>
+	
+	<select id="delShopList" resultType="sellerDto">
+		SELECT * FROM SELLER WHERE DEL ='1'
+	</select>
 </mapper>

@@ -232,7 +232,7 @@ Sibebar</a></li>
 <input type="hidden" name="shopName" value=${dto.shopName }>
 <input type="hidden" name="shopAdd" value=${dto.shopAdd }>
 <input type="hidden" name="local" value=${dto.local }>
-<input type="hidden" name="businessnum" value=${dto.businessnum }>
+<input type="hidden" name="businessnum" value=${dto.businessNum }>
 <input type="hidden" name="shopId" value=${dto.shopId }>
 
 

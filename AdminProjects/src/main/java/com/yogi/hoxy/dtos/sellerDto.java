@@ -2,30 +2,32 @@ package com.yogi.hoxy.dtos;
 
 public class sellerDto {
 	private String id;
-	private String shoptel;
-	private String shopname;
-	private String shopadd;
+	private String shopTel;
+	private String shopName;
+	private String shopAdd;
 	private String local;
-	private int businessnum;
-	private int shopid;
+	private int businessNum;
+	private int shopId;
 	private String power;
+	private String del;
 	
 	public sellerDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public sellerDto(String id, String shoptel, String shopname, String shopadd, String local, int businessnum,
-			int shopid, String power) {
+
+	public sellerDto(String id, String shopTel, String shopName, String shopAdd, String local, int businessNum,
+			int shopId, String power, String del) {
 		super();
 		this.id = id;
-		this.shoptel = shoptel;
-		this.shopname = shopname;
-		this.shopadd = shopadd;
+		this.shopTel = shopTel;
+		this.shopName = shopName;
+		this.shopAdd = shopAdd;
 		this.local = local;
-		this.businessnum = businessnum;
-		this.shopid = shopid;
+		this.businessNum = businessNum;
+		this.shopId = shopId;
 		this.power = power;
+		this.del = del;
 	}
 
 	public String getId() {
@@ -36,28 +38,28 @@ public class sellerDto {
 		this.id = id;
 	}
 
-	public String getShoptel() {
-		return shoptel;
+	public String getShopTel() {
+		return shopTel;
 	}
 
-	public void setShoptel(String shoptel) {
-		this.shoptel = shoptel;
+	public void setShopTel(String shopTel) {
+		this.shopTel = shopTel;
 	}
 
-	public String getShopname() {
-		return shopname;
+	public String getShopName() {
+		return shopName;
 	}
 
-	public void setShopname(String shopname) {
-		this.shopname = shopname;
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
 	}
 
-	public String getShopadd() {
-		return shopadd;
+	public String getShopAdd() {
+		return shopAdd;
 	}
 
-	public void setShopadd(String shopadd) {
-		this.shopadd = shopadd;
+	public void setShopAdd(String shopAdd) {
+		this.shopAdd = shopAdd;
 	}
 
 	public String getLocal() {
@@ -68,20 +70,20 @@ public class sellerDto {
 		this.local = local;
 	}
 
-	public int getBusinessnum() {
-		return businessnum;
+	public int getBusinessNum() {
+		return businessNum;
 	}
 
-	public void setBusinessnum(int businessnum) {
-		this.businessnum = businessnum;
+	public void setBusinessNum(int businessNum) {
+		this.businessNum = businessNum;
 	}
 
-	public int getShopid() {
-		return shopid;
+	public int getShopId() {
+		return shopId;
 	}
 
-	public void setShopid(int shopid) {
-		this.shopid = shopid;
+	public void setShopId(int shopId) {
+		this.shopId = shopId;
 	}
 
 	public String getPower() {
@@ -92,10 +94,20 @@ public class sellerDto {
 		this.power = power;
 	}
 
+	public String getDel() {
+		return del;
+	}
+
+	public void setDel(String del) {
+		this.del = del;
+	}
+
 	@Override
 	public String toString() {
-		return "sellerDto [id=" + id + ", shoptel=" + shoptel + ", shopname=" + shopname + ", shopadd=" + shopadd
-				+ ", local=" + local + ", businessnum=" + businessnum + ", shopid=" + shopid + ", power=" + power + "]";
+		return "sellerDto [id=" + id + ", shopTel=" + shopTel + ", shopName=" + shopName + ", shopAdd=" + shopAdd
+				+ ", local=" + local + ", businessNum=" + businessNum + ", shopId=" + shopId + ", power=" + power
+				+ ", del=" + del + "]";
 	}
-	
+
+
 }

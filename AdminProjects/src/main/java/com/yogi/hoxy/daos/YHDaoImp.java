@@ -62,10 +62,10 @@ public class YHDaoImp implements IYHDao{
 		return sqlSession.selectList(namespace + "myShop", id);
 	}
 	
-	public sellerDto myShopDetail(String id, String shopid) {
+	public sellerDto myShopDetail(String id, String shopId) {
 		Map<String, String> map = new HashMap<>();
 		map.put("id", id);
-		map.put("shopid", shopid);
+		map.put("shopId", shopId);
 		return sqlSession.selectOne(namespace + "myShopDetail", map);
 	}
 	
@@ -74,8 +74,13 @@ public class YHDaoImp implements IYHDao{
 		return count > 0? true:false;
 	}
 	
-	public boolean myShopDelete(String shopid) {
-		int count = sqlSession.delete(namespace + "myShopDelete", shopid);
+	public boolean myShopDelete(String shopId) {
+		int count = sqlSession.update(namespace + "myShopDelete", shopId);
+		return count > 0? true:false;
+	}
+	
+	public boolean myShopCan(String shopId) {
+		int count = sqlSession.update(namespace + "myShopCan", shopId);
 		return count > 0? true:false;
 	}
 	
@@ -83,8 +88,8 @@ public class YHDaoImp implements IYHDao{
 		return sqlSession.selectList(namespace + "listShop");
 	}
 	
-	public sellerDto listSelShop (String shopid) {
-		return sqlSession.selectOne(namespace + "listSelShop", shopid);
+	public sellerDto listSelShop (String shopId) {
+		return sqlSession.selectOne(namespace + "listSelShop", shopId);
 	}
 	
 	public boolean listUpShop (sellerDto sdto) {
@@ -92,8 +97,8 @@ public class YHDaoImp implements IYHDao{
 		return count > 0? true:false;
 	}
 	
-	public boolean shopDel (String shopid) {
-		int count = sqlSession.delete(namespace + "shopDel", shopid);
+	public boolean shopDel (String shopId) {
+		int count = sqlSession.delete(namespace + "shopDel", shopId);
 		return count > 0? true:false;		
 	}
 	
@@ -111,8 +116,26 @@ public class YHDaoImp implements IYHDao{
 		return count > 0? true:false;
 	}
 	
-	public boolean shopDelete(String shopid) {
-		int count = sqlSession.delete(namespace + "shopDelete", shopid);
+	public boolean shopDelete(String shopId) {
+		int count = sqlSession.delete(namespace + "shopDelete", shopId);
+		return count > 0? true:false;
+	}
+	
+	public boolean myPageDel(String id) {
+		int count = sqlSession.update(namespace + "myPageDel", id);
+		return count > 0? true:false;
+	}
+	
+	public List<YHDto> delList(){
+		return sqlSession.selectList(namespace + "delList");
+	}
+	
+	public List<sellerDto> delShopList(){
+		return sqlSession.selectList(namespace + "delShopList");
+	}
+	
+	public boolean myPageCan(String id) {
+		int count = sqlSession.update(namespace + "myPageCan", id);
 		return count > 0? true:false;
 	}
 }

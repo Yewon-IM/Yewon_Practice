@@ -29,15 +29,19 @@
 	</tr>
 	<tr>
 		<td><input type="text" name="id" value="${sdto.id }" readonly></td>
-		<td><input type="text" name="shopname" value="${sdto.shopname }"></td>
-		<td><input type="text" name="shoptel" value="${sdto.shoptel }"></td>
-		<td><input type="text" name="shopadd"  value="${sdto.shopadd }"></td>
-		<td><input type="text" name="local" value="${sdto.local }"></td>
-		<td><input type="text" name="businessnum" value="${sdto.businessnum }"></td>
-		<td><input type="text" name="shopid" value="${sdto.shopid }" readonly></td>
+		<td><input type="text" name="shopName" value="${sdto.shopName }"></td>
+		<td><input type="text" name="shopTel" value="${sdto.shopTel }"></td>
+		<td><input type="text" name="shopAdd"  value="${sdto.shopAdd }"></td>
+		<td><select name="local">
+				<option value="강서구">강서구</option>
+				<option value="영등포구">영등포구</option>
+			</select>
+		</td>
+		<td><input type="text" name="businessNum" value="${sdto.businessNum }"></td>
+		<td><input type="text" name="shopId" value="${sdto.shopId }" readonly></td>
 	</tr>
 </table>
-<input type="submit" value="수정하기" formaction="shopUpdate.do?shopid=${sdto.shopid }">
+<input type="submit" value="수정하기" formaction="shopUpdate.do?shopId=${sdto.shopId }">
 </form>
 </body>
 </html>

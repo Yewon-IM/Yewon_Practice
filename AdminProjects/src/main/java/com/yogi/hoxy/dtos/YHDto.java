@@ -15,11 +15,12 @@ public class YHDto {
 	private String shopName;
 	private String shopAdd;
 	private String local;
-	private int businessnum;
+	private int businessNum;
 	private int shopId;
+	private String del;
 	
 	public YHDto(String id, String name, String pwd, String tel, String email, Date regDate, int who, String power,
-			String shopName, String shopAdd, String local, int businessnum, int shopId) {
+			String shopName, String shopAdd, String local, int businessNum, int shopId, String del) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -32,8 +33,9 @@ public class YHDto {
 		this.shopName = shopName;
 		this.shopAdd = shopAdd;
 		this.local = local;
-		this.businessnum = businessnum;
+		this.businessNum = businessNum;
 		this.shopId = shopId;
+		this.del = del;
 	}
 
 	public YHDto() {
@@ -129,12 +131,12 @@ public class YHDto {
 		this.local = local;
 	}
 
-	public int getBusinessnum() {
-		return businessnum;
+	public int getBusinessNum() {
+		return businessNum;
 	}
 
-	public void setBusinessnum(int businessnum) {
-		this.businessnum = businessnum;
+	public void setBusinessnum(int businessNum) {
+		this.businessNum = businessNum;
 	}
 
 	public int getShopId() {
@@ -145,12 +147,22 @@ public class YHDto {
 		this.shopId = shopId;
 	}
 
+	public String getDel() {
+		return del;
+	}
+	
+	public void setDel(String del) {
+		this.del = del;
+	}
+
 	@Override
 	public String toString() {
 		return "YHDto [id=" + id + ", name=" + name + ", pwd=" + pwd + ", tel=" + tel + ", email=" + email
 				+ ", regDate=" + regDate + ", who=" + who + ", power=" + power + ", shopName=" + shopName + ", shopAdd="
-				+ shopAdd + ", local=" + local + ", businessnum=" + businessnum + ", shopId=" + shopId + "]";
+				+ shopAdd + ", local=" + local + ", businessNum=" + businessNum + ", shopId=" + shopId + ", del=" + del
+				+ "]";
 	}
+	
 	
 	
 }

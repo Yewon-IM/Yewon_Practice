@@ -27,19 +27,19 @@ public interface IYHService {
 	
 	public List<sellerDto> myShop(String id);
 	
-	public sellerDto myShopDetail(String id, String shopid);
+	public sellerDto myShopDetail(String id, String shopId);
 	
 	public boolean myShopUpdate(sellerDto sdto);
 	
-	public boolean myShopDelete(String shopid);
+	public boolean myShopDelete(String shopId);
 	
 	public List<sellerDto> listShop();
 	
-	public sellerDto listSelShop (String shopid);
+	public sellerDto listSelShop (String shopId);
 	
 	public boolean listUpShop (sellerDto sdto);
 	
-	public boolean shopDel (String shopid);
+	public boolean shopDel (String shopId);
 	
 	public List<sellerDto> shopList();
 	
@@ -47,5 +47,15 @@ public interface IYHService {
 	
 	public boolean shopUpdate(sellerDto sdto);
 	
-	public boolean shopDelete(String shopid);
+	public boolean shopDelete(String shopId);
+	
+	public boolean myPageDel(String id);
+	
+	public List<YHDto> delList();
+	
+	public boolean myShopCan(String shopId);
+	
+	public List<sellerDto> delShopList();
+	
+	public boolean myPageCan(String id);
 }
