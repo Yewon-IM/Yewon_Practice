@@ -177,64 +177,67 @@ Sibebar</a></li>
 <div class="row">
 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
 <div class="form-head">
-<h4 class="title">회원정보 수정</h4>
+<h4 class="title">회원정보 상세보기</h4>
 
-<form id="member" method="post" action="Update.do">
+<form method="post">
 <div class="socila-login">
 </div>
 
 <div class="form-group">
 <label>아이디</label>
-<input name="id" type="text" value=${dto.id }>
+<input name="id" type="text" value=${dto.id } readonly>
 </div>
 
 <div class="form-group">
 <label>이름</label>
-<input name="name" type="text" value=${dto.name }>
+<input name="name" type="text" value=${dto.name } readonly>
 </div>
 
 <div class="form-group">
 <label>비밀번호</label>
-<input name="pwd" type="text" value=${dto.pwd }>
+<input name="pwd" type="text" value=${dto.pwd } readonly>
 </div>
 
 <div class="form-group">
 <label>전화번호</label>
-<input name="tel" type="text" value=${dto.tel }>
+<input name="tel" type="text" value=${dto.tel } readonly>
 </div>
 
 <div class="form-group">
 <label>이메일</label>
-<input name="email" type="email" value=${dto.email }>
+<input name="email" type="email" value=${dto.email } readonly>
 </div>
 
 <div class="form-group">
 <label>가입일</label>
-<input name="regDate" value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${dto.regDate }"/>' readonly>
+<input name="regDate" value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${dto.regDate }"/>' readonly >
 </div>
 
 <div class="form-group">
 <label>누구인가?</label>
-<select name="who" form="member">
-	<option value = 0 >관리자</option>
-	<option value = 1 >구매자</option>
-	<option value = 2 >판매자</option>
-</select>
+<input name="who" type="text" value=
+									<c:if test="${dto.who == 0}">
+										"관리자"
+									</c:if>
+									<c:if test="${dto.who == 1}">
+										"구매자"
+									</c:if>			
+									<c:if test="${dto.who == 2}">
+										"판매자"
+									</c:if>	 readonly>
 </div>
+
+
 <div class="form-group">
 <label>승인여부</label>
-<select name="power" form="member">
- 	<option value="0">승인 미완료</option> 
- 	<option value="1">승인 완료</option>
-</select>
+<input name="power" type="text" value=
+									<c:if test="${dto.power == 0 }">
+										"승인 미완료"
+									</c:if>
+									<c:if test="${dto.power == 1}">
+										"승인 완료"
+									</c:if> readonly>
 </div>
-
-<input type="hidden" name="shopName" value=${dto.shopName }>
-<input type="hidden" name="shopAdd" value=${dto.shopAdd }>
-<input type="hidden" name="local" value=${dto.local }>
-<input type="hidden" name="businessnum" value=${dto.businessNum }>
-<input type="hidden" name="shopId" value=${dto.shopId }>
-
 <div class="check-and-pass">
 <div class="row align-items-center">
 <div class="col-12">
@@ -242,13 +245,14 @@ Sibebar</a></li>
 </div>
 </div>
 <div class="button">
-<input type="submit" class="btn" value="수정하기">
+<input type="submit" class="btn" value="수정하기" formaction="memUpdateForm.do">
+</div>
+<div class="button">
+<input type="submit" class="btn" value="삭제하기" formaction="delete.do">
 </div>
 <p class="outer-link">회원리스트로<a href="memberList.do"> 돌아가기</a>
 </p>
 </form>
-
-
 
 </div>
 </div>
@@ -385,51 +389,51 @@ App Store
 <i class="lni lni-chevron-up"></i>
 </a>
 
-<!-- <form method="post"> -->
-<!-- 	<table border="1"> -->
-<!-- 		<th colspan="14">회원 세부정보</th> -->
-<!-- 		<tr> -->
-<!-- 			<td>아이디</td> -->
-<!-- 			<td>이름</td> -->
-<!-- 			<td>비밀번호</td> -->
-<!-- 			<td>전화번호</td> -->
-<!-- 			<td>이메일</td> -->
-<!-- 			<td>가입일</td> -->
-<!-- 			<td>누구인가?</td> -->
-<!--  			<td>승인여부</td>  -->
-<!--  			<td>가게이름</td>  -->
-<!--  			<td>가게주소</td>  -->
-<!--  			<td>지역</td>  -->
-<!--  			<td>사업자번호</td>  -->
-<!--  			<td>가게번호</td> -->
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<%-- 			<td width="50px"><a href="memUpdateForm.do?id=${dto.id }">${dto.id }</a></td> --%>
-<%-- 			<td width="50px">${dto.name}</td> --%>
-<%-- 			<td width="50px">${dto.pwd}</td> --%>
-<%-- 			<td width="50px">${dto.tel}</td> --%>
-<%-- 			<td width="50px">${dto.email}</td> --%>
-<%-- 			<td width="50px">${dto.regDate}</td> --%>
-<%-- 			<c:if test="${dto.who == 0}"> --%>
-<!-- 				<td width="50px">관리자</td> -->
-<%-- 			</c:if> --%>
-<%-- 			<c:if test="${dto.who == 1}"> --%>
-<!-- 				<td width="50px">판매자</td> -->
-<%-- 			</c:if>			 --%>
-<%-- 			<c:if test="${dto.who == 2}"> --%>
-<!-- 				<td width="50px">구매자</td> -->
-<%-- 			</c:if> --%>
+<form method="post">
+	<table border="1">
+		<th colspan="14">회원 세부정보</th>
+		<tr>
+			<td>아이디</td>
+			<td>이름</td>
+			<td>비밀번호</td>
+			<td>전화번호</td>
+			<td>이메일</td>
+			<td>가입일</td>
+			<td>누구인가?</td>
+ 			<td>승인여부</td> 
+ 			<td>가게이름</td> 
+ 			<td>가게주소</td> 
+ 			<td>지역</td> 
+ 			<td>사업자번호</td> 
+ 			<td>가게번호</td>
+		</tr>
+		<tr>
+			<td width="50px"><a href="memUpdateForm.do?id=${dto.id }">${dto.id }</a></td>
+			<td width="50px">${dto.name}</td>
+			<td width="50px">${dto.pwd}</td>
+			<td width="50px">${dto.tel}</td>
+			<td width="50px">${dto.email}</td>
+			<td width="50px">${dto.regDate}</td>
+			<c:if test="${dto.who == 0}">
+				<td width="50px">관리자</td>
+			</c:if>
+			<c:if test="${dto.who == 1}">
+				<td width="50px">판매자</td>
+			</c:if>			
+			<c:if test="${dto.who == 2}">
+				<td width="50px">구매자</td>
+			</c:if>
 							
-<%--  			<td width="40px">${dto.power}</td>  --%>
-<%--  			<td width="40px">${dto.shopName}</td>  --%>
-<%--  			<td width="40px">${dto.shopAdd}</td>  --%>
-<%--  			<td width="40px">${dto.local}</td>  --%>
-<%--  			<td width="30px">${dto.businessnum}</td>  --%>
-<%--  			<td width="30px">${dto.shopId}</td>			  --%>
-<!-- 		</tr> -->
+ 			<td width="40px">${dto.power}</td> 
+ 			<td width="40px">${dto.shopName}</td> 
+ 			<td width="40px">${dto.shopAdd}</td> 
+ 			<td width="40px">${dto.local}</td> 
+ 			<td width="30px">${dto.businessNum}</td> 
+ 			<td width="30px">${dto.shopId}</td>			 
+		</tr>
 		
-<!-- 	</table> -->
-<!-- </form> -->
+	</table>
+</form>
 <a href=".">메인 홈페이지</a>
 <a href="memberList.do">회원 관리페이지</a>	
 

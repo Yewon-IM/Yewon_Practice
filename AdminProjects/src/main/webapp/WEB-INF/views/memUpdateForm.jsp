@@ -185,7 +185,7 @@ Sibebar</a></li>
 
 <div class="form-group">
 <label>아이디</label>
-<input name="id" type="text" value=${dto.id }>
+<input name="id" type="text" value=${dto.id } readonly>
 </div>
 
 <div class="form-group">
@@ -216,16 +216,16 @@ Sibebar</a></li>
 <div class="form-group">
 <label>누구인가?</label>
 <select name="who" form="member">
-	<option value = 0 >관리자</option>
-	<option value = 1 >구매자</option>
-	<option value = 2 >판매자</option>
+	<option value= 0 ${dto.who == 0? "selected" : ""}>관리자</option>
+	<option value= 1 ${dto.who == 1? "selected" : ""}>구매자</option>
+	<option value= 2 ${dto.who == 2? "selected" : ""}>판매자</option> 
 </select>
 </div>
 <div class="form-group">
 <label>승인여부</label>
 <select name="power" form="member">
- 	<option value="0">승인 미완료</option> 
- 	<option value="1">승인 완료</option>
+	<option value= "0" ${dto.power == 0? "selected" : "" }>미승인</option>
+	<option value= "1" ${dto.power == 1? "selected" : "" }>승인</option>
 </select>
 </div>
 

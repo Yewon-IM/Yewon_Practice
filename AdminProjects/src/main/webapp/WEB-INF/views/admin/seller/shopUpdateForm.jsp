@@ -17,15 +17,17 @@
 <body>
 <form method="post">
 <table border="1">
-	<th colspan="7">상점 정보</th>
+	<th colspan="9">상점 정보</th>
 	<tr>
-		<td>아이디</td>
-		<td>상점 이름</td>
-		<td>상점 전화번호</td>
-		<td>상점 주소</td>
-		<td>상점 지역</td>
-		<td>상점 사업자번호</td>
-		<td>상점 고유번호</td>
+		<td width="40px">아이디</td>
+		<td width="40px">상점 이름</td>
+		<td width="40px">상점 전화번호</td>
+		<td width="40px">상점 주소</td>
+		<td width="40px">상점 지역</td>
+		<td width="40px">상점 사업자번호</td>
+		<td width="40px">상점 고유번호</td>
+		<td width="30px">권한</td>
+		<td width="30px">상태</td>
 	</tr>
 	<tr>
 		<td><input type="text" name="id" value="${sdto.id }" readonly></td>
@@ -39,6 +41,16 @@
 		</td>
 		<td><input type="text" name="businessNum" value="${sdto.businessNum }"></td>
 		<td><input type="text" name="shopId" value="${sdto.shopId }" readonly></td>
+		<td><select name="power">
+				<option value= 1 ${sdto.power == 1 ? "selected" : ""}>승인</option>
+				<option value= 0 ${sdto.power == 0 ? "selected" : ""}>미승인</option>
+			</select>
+		</td>
+		<td><select name="del">
+				<option value= 0 ${sdto.del == 0 ? "selected" : ""}>정상</option>
+				<option value= 1 ${sdto.del == 1 ? "selected" : ""}>삭제요청</option>
+			</select>
+		</td>
 	</tr>
 </table>
 <input type="submit" value="수정하기" formaction="shopUpdate.do?shopId=${sdto.shopId }">

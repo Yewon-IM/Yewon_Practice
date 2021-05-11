@@ -275,9 +275,9 @@ public class HomeController {
 		System.out.println("detail who : " + who);
 
 		if (who == 1) {
-			return "admin/customer/memDetail";
+			return "memDetail";
 		} else if (who == 2) {
-			return "admin/seller/memDetail";
+			return "memDetail";
 		} else if (who == 0) {
 			return "admin/memDetail";
 		} else {
@@ -297,9 +297,9 @@ public class HomeController {
 		System.out.println("detail who : " + who);
 
 		if (who == 1) {
-			return "admin/customer/memUpdateForm";
+			return "memUpdateForm";
 		} else if (who == 2) {
-			return "admin/seller/memUpdateForm";
+			return "memUpdateForm";
 		} else if (who == 0) {
 			return "admin/memUpdateForm";
 		} else {
@@ -311,9 +311,10 @@ public class HomeController {
 	public String Update(Locale locale, Model model, YHDto dto) {
 		logger.info("회원정보 수정하기", locale);
 
-		System.out.println("memUpdate dto : " + dto);
 		boolean isS = yhService.memUpdate(dto);
-
+		System.out.println("memUpdate dto : " + dto);
+		     
+		
 		if (isS) {
 			return "redirect:admin.do";
 		} else {

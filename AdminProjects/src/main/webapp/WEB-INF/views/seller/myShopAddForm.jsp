@@ -23,8 +23,10 @@
 				<td>상점 전화번호 <input type="text" name="shopTel"></td>
 				<td>상점 주소 <input type="text" name="shopAdd"></td>
 				<td>지역<select name="local">
-						<option value="강서구">강서구</option>
+						<option value="" selected disabled hidden>선택하세요</option>
+						<option value="강서구" >강서구</option>
 						<option value="영등포구">영등포구</option>
+						
 					</select>
 				</td>
 				<td>상점 사업자번호 <input type="text" name="businessNum"></td>
