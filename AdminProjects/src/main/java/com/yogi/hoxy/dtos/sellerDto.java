@@ -1,5 +1,7 @@
 package com.yogi.hoxy.dtos;
 
+import java.util.Date;
+
 public class sellerDto {
 	private String id;
 	private String shopTel;
@@ -8,6 +10,7 @@ public class sellerDto {
 	private String local;
 	private int businessNum;
 	private int shopId;
+	private Date openDate;
 	private String power;
 	private String del;
 	
@@ -17,7 +20,7 @@ public class sellerDto {
 	}
 
 	public sellerDto(String id, String shopTel, String shopName, String shopAdd, String local, int businessNum,
-			int shopId, String power, String del) {
+			int shopId, Date openDate, String power, String del) {
 		super();
 		this.id = id;
 		this.shopTel = shopTel;
@@ -26,6 +29,7 @@ public class sellerDto {
 		this.local = local;
 		this.businessNum = businessNum;
 		this.shopId = shopId;
+		this.openDate = openDate;
 		this.power = power;
 		this.del = del;
 	}
@@ -86,6 +90,14 @@ public class sellerDto {
 		this.shopId = shopId;
 	}
 
+	public Date getOpenDate() {
+		return openDate;
+	}
+
+	public void setOpenDate(Date openDate) {
+		this.openDate = openDate;
+	}
+
 	public String getPower() {
 		return power;
 	}
@@ -105,9 +117,8 @@ public class sellerDto {
 	@Override
 	public String toString() {
 		return "sellerDto [id=" + id + ", shopTel=" + shopTel + ", shopName=" + shopName + ", shopAdd=" + shopAdd
-				+ ", local=" + local + ", businessNum=" + businessNum + ", shopId=" + shopId + ", power=" + power
-				+ ", del=" + del + "]";
+				+ ", local=" + local + ", businessNum=" + businessNum + ", shopId=" + shopId + ", openDate=" + openDate
+				+ ", power=" + power + ", del=" + del + "]";
 	}
-
 
 }

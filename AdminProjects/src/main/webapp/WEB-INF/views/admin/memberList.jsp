@@ -1,5 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="com.yogi.hoxy.dtos.YHDto"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -51,10 +52,10 @@
 			<td width="50px"><%=dto.getPwd() %></td>
 			<td width="50px"><%=dto.getTel() %></td>
 			<td width="50px"><%=dto.getEmail() %></td>
-			<td width="50px"><%=dto.getRegDate() %></td>
+			<td width="100px"><fmt:formatDate pattern="yyyy-MM-dd" value="<%=dto.getRegDate() %>"/></td>
 			<td width="50px"><%if(dto.getWho() == 0){
 								out.println("관리자");
-								} else if(dto.getWho() == 1) {
+								} else if(dto.getWho() == 1) { 
 									out.println("구매자");
 								} else {
 									out.println("판매자");

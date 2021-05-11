@@ -2,6 +2,7 @@
 <%@page import="com.yogi.hoxy.dtos.sellerDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +21,12 @@
 <body>
 <form method="post">
 	<table border="1">
-		<th colspan="7">내 상점 </th>
+		<th colspan="8">내 상점 </th>
 		<tr>
 			<td>상점 이름</td>
 			<td>상점 전화번호</td>
 			<td>상점 지역</td>
+			<td>오픈 날짜</td>
 			<td>상점 고유번호</td>
 			<td>승인</td>
 			<td>상태</td>
@@ -33,7 +35,7 @@
 		<%
 		if(list == null){
 			%>
-			<tr><td colspan="7">상점이 없습니다</td></tr>
+			<tr><td colspan="8">상점이 없습니다</td></tr>
 			<% 
 		} else {
 			for(sellerDto sdto: list){ %>					
@@ -42,6 +44,7 @@
 				<td><a href="myShopDetail.do?id=<%=sdto.getId()%>&shopId=<%=sdto.getShopId()%>"><%= sdto.getShopName() %></a></td>
 				<td><%= sdto.getShopTel() %></td>
 				<td><%= sdto.getLocal() %></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="<%= sdto.getOpenDate() %>"/></td>
 				<td><%= sdto.getShopId() %></td>
 				<td><% if (sdto.getPower().equals("0")){
 					out.println("미승인");

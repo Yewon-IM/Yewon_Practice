@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
 		<td><input type="password" name="pwd" value="${dto.pwd }"></td>
 		<td><input type="text" name="tel"  value="${dto.tel }"></td>
 		<td><input type="email" name="email" value="${dto.email }"></td>
-		<td>${dto.regDate }</td>
+		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regDate }" /></td>
 	</tr>
 </table>
 <input type="hidden" name="power" value=${dto.power }>

@@ -532,7 +532,7 @@ public class HomeController {
 		logger.info("상점 추가", locale);
 
 		boolean isS = yhService.shopAdd(new sellerDto(sdto.getId(), sdto.getShopTel(), sdto.getShopName(),
-				sdto.getShopAdd(), sdto.getLocal(), sdto.getBusinessNum(), 0, null, null));
+				sdto.getShopAdd(), sdto.getLocal(), sdto.getBusinessNum(), 0, null ,null, null));
 		System.out.println("sdto : " + sdto);
 		System.out.println("isS : " + isS);
 
@@ -573,7 +573,7 @@ public class HomeController {
 		YHDto dto = yhService.listSel(id);
 		model.addAttribute("dto", dto);
 
-		return "customer/myPageUpdate";
+		return "myPageUpdate";
 	}
 
 	@RequestMapping(value = "/myPageUpdate.do", method = { RequestMethod.GET, RequestMethod.POST })
