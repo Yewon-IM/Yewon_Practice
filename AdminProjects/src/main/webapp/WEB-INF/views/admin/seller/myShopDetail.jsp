@@ -34,13 +34,9 @@
 			<td>${sdto.local }</td>
 			<td>${sdto.businessNum }</td>
 			<td>${sdto.shopId }</td>
-		</tr>
-		<tr>
-			<td colspan="3"><a href="myShopUpdateForm.do?id=${sdto.id}&shopId=${sdto.shopId }">수정</a></td>
-			<td colspan="3"><a href="myShopDelete.do?id=${sdto.id}&shopId=${sdto.shopId }">삭제</a></td>
-		</tr>			
+		</tr>		
 	</table>
-
-<a href=".">메인 홈페이지</a>
+<a href="shop.do?id=${sdto.id }">뒷 페이지</a>
+<a href="admin.do">관리자 페이지</a>
 </body>
 </html>

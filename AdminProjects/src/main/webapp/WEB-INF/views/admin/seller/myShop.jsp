@@ -20,7 +20,7 @@
 <body>
 <form method="post">
 	<table border="1">
-		<th colspan="7">내 상점 </th>
+		<th colspan="7">상점 </th>
 		<tr>
 			<td>상점 이름</td>
 			<td>상점 전화번호</td>
@@ -28,7 +28,6 @@
 			<td>상점 고유번호</td>
 			<td>승인</td>
 			<td>상태</td>
-			<td>버튼</td>
 		</tr>
 		<%
 		if(list == null){
@@ -39,7 +38,7 @@
 			for(sellerDto sdto: list){ %>					
 			
 			<tr>
-				<td><a href="myShopDetail.do?id=<%=sdto.getId()%>&shopId=<%=sdto.getShopId()%>"><%= sdto.getShopName() %></a></td>
+				<td><a href="shopDetail.do?id=<%=sdto.getId() %>&shopId=<%=sdto.getShopId()%>"><%=sdto.getShopName() %></a></td>
 				<td><%= sdto.getShopTel() %></td>
 				<td><%= sdto.getLocal() %></td>
 				<td><%= sdto.getShopId() %></td>
@@ -56,21 +55,12 @@
 						out.println("삭제예정");
 					} %>
 				</td>
-				<td>
-				<%if(sdto.getDel().equals("1")) {
-					%><input type='submit' value='삭제취소' formaction='myShopCan.do?shopId=<%=sdto.getShopId()%>'>
-				<% } else {
-					%><input type='submit' value='삭제요청하기' formaction='myShopDelete.do?shopId=<%=sdto.getShopId()%>'>
-				<% }
-				%>
-				</td>
 			</tr>
 		<%}
 		}
 		%>
 	</table>
 	</form>
-<a href=".">메인 홈페이지</a>
-<a href="myShopAddForm.do">상점 추가하기</a></body>
+<a href="admin.do">관리자 페이지</a>
 </body>
 </html>

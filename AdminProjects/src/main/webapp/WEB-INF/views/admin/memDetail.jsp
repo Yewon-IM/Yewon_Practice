@@ -246,7 +246,8 @@ Sibebar</a></li>
 </div>
 <div class="button">
 <input type="submit" class="btn" value="수정하기" formaction="memUpdateForm.do">
-<input type="submit" class="btn" value="삭제하기" formaction="delete.do?id=${dto.id }">
+<br>
+<input type="submit" class="btn" value="삭제하기" formaction="delete.do">
 </div>
 <p class="outer-link">회원리스트로<a href="memberList.do"> 돌아가기</a>
 </p>
@@ -426,7 +427,7 @@ App Store
  			<td width="40px">${dto.shopName}</td> 
  			<td width="40px">${dto.shopAdd}</td> 
  			<td width="40px">${dto.local}</td> 
- 			<td width="30px">${dto.businessnum}</td> 
+ 			<td width="30px">${dto.businessNum}</td> 
  			<td width="30px">${dto.shopId}</td>			 
 		</tr>
 		

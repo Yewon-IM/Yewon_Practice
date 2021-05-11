@@ -23,7 +23,7 @@
 
 <form method="post">
 	<table border="1">
-		<th colspan="9">상점 리스트</th>
+		<th colspan="10">상점 리스트</th>
 		<tr>
 			<td>아이디</td>
 			<td>상점 이름</td>
@@ -32,13 +32,12 @@
 			<td>상점 지역</td>
 			<td>상점 사업자번호</td>
 			<td>상점 고유번호</td>
+			<td>상태</td>
 			<td colspan="2">버튼</td>
 		</tr>
 		<%
 		if(sList == null){
-			%>
-			<tr><td colspan="9">상점이 없습니다 ㅠㅠ</td></tr>
-			<%
+			out.println("<tr><td colspan='10'>상점이 없습니다 ㅠㅠ</td></tr>");
 		}else {
 			for(sellerDto sdto : sList){
 		%>
@@ -50,8 +49,16 @@
 			<td width="50px"><%=sdto.getLocal() %></td>
 			<td width="50px"><%=sdto.getBusinessNum() %></td>
 			<td width="50px"><%=sdto.getShopId() %></td>
+			<td width="50px"><% if(sdto.getDel().equals("0")){
+							out.println("정상 운영");
+							} else {
+								out.println("삭제 요청");
+							}
+							%>
+			</td>
+			
 			<td width="50px"><input type="submit" value="수정" formaction="shopUpdateForm.do?id=<%=sdto.getId() %>&shopId=<%=sdto.getShopId() %>"></td>
-			<td width="30px"><input type="submit" value="삭제" formaction="shopDelete.do?shopid=<%=sdto.getShopId()%>"></td>
+			<td width="30px"><input type="submit" value="삭제" formaction="shopDelete.do?shopId=<%=sdto.getShopId()%>"></td>
 		</tr>
 		<%	}		
 		}

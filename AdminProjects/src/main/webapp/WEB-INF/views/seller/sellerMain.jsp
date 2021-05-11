@@ -11,7 +11,7 @@
 <body>
 <h1>안녕하세요 <%=name %>님 (판매자)<br>
 메인 홈페이지입니다.</h1>
-<a href="myShop.do">내 상점 보기</a>
+<a href="myShop.do?id=${dto.id }">내 상점 보기</a>
 <a href="myPage.do">마이페이지</a>
 <a href="logout.do">로그아웃</a>
 </body>

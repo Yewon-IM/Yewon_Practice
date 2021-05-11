@@ -179,7 +179,7 @@ Sibebar</a></li>
 <div class="form-head">
 <h4 class="title">회원정보 상세보기</h4>
 
-<form method="post" action="memUpdateForm.do">
+<form method="post">
 <div class="socila-login">
 </div>
 
@@ -238,32 +238,6 @@ Sibebar</a></li>
 										"승인 완료"
 									</c:if> readonly>
 </div>
-
-<div class="form-group">
-<label>가게이름</label>
-<input name="shopName" type="text" readonly value=${dto.shopName } >
-</div>
-
-<div class="form-group">
-<label>가게주소</label>
-<input name="shopAdd" type="text" readonly value=${dto.shopAdd }>
-</div>
-
-<div class="form-group">
-<label>지역</label>
-<input name="local" type="text" readonly value=${dto.local }>
-</div>
-
-<div class="form-group">
-<label>사업자번호</label>
-<input name="businessnum" type="text" readonly value=${dto.businessNum } >
-</div>
-
-<div class="form-group">
-<label>가게번호</label>
-<input name="shopId" type="text" readonly value=${dto.shopId } >
-</div>
-
 <div class="check-and-pass">
 <div class="row align-items-center">
 <div class="col-12">
@@ -271,7 +245,9 @@ Sibebar</a></li>
 </div>
 </div>
 <div class="button">
-<input type="submit" class="btn" value="수정하기">
+<input type="submit" class="btn" value="수정하기" formaction="memUpdateForm.do">
+<br>
+<input type="submit" class="btn" value="삭제하기" formaction="delete.do">
 </div>
 <p class="outer-link">회원리스트로<a href="memberList.do"> 돌아가기</a>
 </p>

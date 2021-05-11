@@ -163,11 +163,10 @@ public class HomeController {
 		logger.info("회원관리 페이지입니다.", locale);
 
 		HttpSession session = request.getSession();
+		int who = (int) session.getAttribute("who");
+		System.out.println("who : " + who);
 
-		int whoo = (int) session.getAttribute("who");
-		System.out.println("who : " + whoo);
-
-		if (whoo == 0) {
+		if (who == 0) {
 			List<YHDto> list = yhService.memberList();
 			model.addAttribute("list", list);
 			System.out.println(list);
@@ -184,11 +183,10 @@ public class HomeController {
 		logger.info("회원관리 페이지입니다.", locale);
 
 		HttpSession session = request.getSession();
+		int who = (int) session.getAttribute("who");
+		System.out.println("who : " + who);
 
-		int whoo = (int) session.getAttribute("who");
-		System.out.println("who : " + whoo);
-
-		if (whoo == 0) {
+		if (who == 0) {
 			List<sellerDto> sList = yhService.shopList();
 			model.addAttribute("sList", sList);
 			System.out.println(sList);
@@ -317,7 +315,7 @@ public class HomeController {
 		boolean isS = yhService.memUpdate(dto);
 
 		if (isS) {
-			return "redirect:memberList.do";
+			return "redirect:admin.do";
 		} else {
 			model.addAttribute("msg", "회원수정 오류입니다");
 			return "error";
@@ -368,14 +366,24 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/shopDelete.do", method = RequestMethod.POST)
-	public String shopDelete(Locale locale, Model model, @RequestParam("shopId") String shopId) {
+	public String shopDelete(HttpServletRequest request, Locale locale, Model model, 
+			@RequestParam("shopId") String shopId) {
 		logger.info("상점 정보 삭제", locale);
 
+		HttpSession session = request.getSession();
+		int who = (int) session.getAttribute("who");
+		
 		boolean isS = yhService.shopDelete(shopId);
 		System.out.println("shopId");
 
 		if (isS) {
-			return "redirect:shopList.do";
+			if(who == 0) {
+				return "redirect:admin.do";
+			} else if (who == 2) {
+				return "redirect:shopList.do";				
+			} else {
+				return "error";
+			}
 		} else {
 			return "error";
 		}
@@ -391,44 +399,66 @@ public class HomeController {
 		int who = (int) session.getAttribute("who");
 		System.out.println("who : " + who);
 
+		String user_id = (String) session.getAttribute("user_id");
+		System.out.println("id : " + user_id);
+		
+		List<sellerDto> list = yhService.myShop(user_id);
+		model.addAttribute("list", list);
+		
 		if (who == 2) {
-			String id = (String) session.getAttribute("user_id");
-			System.out.println("id : " + id);
+			return "seller/myShop";
+		} else {			
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value = "/shop.do", method = RequestMethod.GET)
+	public String shop(HttpServletRequest request, Locale locale, Model model, @RequestParam("id") String id) {
+		logger.info("내 상점 보기", locale);
 
+		HttpSession session = request.getSession();
+		int who = (int) session.getAttribute("who");
+		System.out.println("who : " + who);
+
+		
+		if (who == 0){
 			List<sellerDto> list = yhService.myShop(id);
 			model.addAttribute("list", list);
-
-			return "seller/myShop";
-		} else {
-
+			
+			return "admin/seller/myShop";
+		}else {			
 			return "error";
 		}
 	}
 
 	@RequestMapping(value = "/myShopDetail.do", method = RequestMethod.GET)
-	public String myShopDetail(HttpServletRequest request, Locale locale, Model model,
-			@RequestParam Map<String, String> info, String shopId) {
+	public String myShopDetail(Locale locale, Model model, @RequestParam Map<String, String> info, 
+			@RequestParam("shopId") String shopId, @RequestParam("id") String id) {
 		logger.info("내 상점 정보보기", locale);
-
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("user_id");
-		System.out.println("id : " + id + " shopId : " + shopId);
-
+		
 		sellerDto sdto = yhService.myShopDetail(id, shopId);
 		model.addAttribute("sdto", sdto);
 		return "seller/myShopDetail";
 	}
+	
+	@RequestMapping(value = "/shopDetail.do", method = RequestMethod.GET)
+	public String shopDetail(Locale locale, Model model, @RequestParam Map<String, String> info, 
+			@RequestParam("shopId") String shopId, @RequestParam("id") String id) {
+		logger.info("내 상점 정보보기", locale);
+		
+		sellerDto sdto = yhService.myShopDetail(id, shopId);
+		model.addAttribute("sdto", sdto);
+		return "admin/seller/myShopDetail";
+	}
 
 	@RequestMapping(value = "/myShopUpdateForm.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myShopUpdateForm(HttpServletRequest request, @RequestParam("shopId") String shopId, Locale locale,
-			Model model) {
+	public String myShopUpdateForm(HttpServletRequest request, @RequestParam("id") String id,
+			@RequestParam("shopId") String shopId, Locale locale, Model model) {
 		logger.info("상점 정보 수정 폼", locale);
-
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("user_id");
-		System.out.println("id : " + id);
-		System.out.println("shopId : " + shopId);
-
+		
+		HttpSession session = request.getSession();		
+		int who = (int) session.getAttribute("who");
+		
 		sellerDto sdto = yhService.myShopDetail(id, shopId);
 		model.addAttribute("sdto", sdto);
 		System.out.println("sdto : " + sdto);
@@ -437,20 +467,27 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/myShopUpdate.do", method = RequestMethod.POST)
-	public String myShopUpdate(Locale locale, Model model, sellerDto sdto) {
+	public String myShopUpdate(HttpServletRequest request, Locale locale, Model model, sellerDto sdto) {
 		logger.info("상점 정보 수정", locale);
-
+		
+		HttpSession session = request.getSession();		
+		int who = (int) session.getAttribute("who");
+		
 		boolean isS = yhService.myShopUpdate(sdto);
 		System.out.println("sdto : " + sdto);
 		System.out.println("isS : " + isS);
+		
 		if (isS) {
-			return "redirect:myShop.do";
-		} else {
-			return "error";
+			if(who == 2) {				
+				return "redirect:myShop.do";
+			} else if(who == 0) {
+				return "redirect:shopList.do";
+			}
 		}
+		return "error";
 	}
 
-	@RequestMapping(value = "/myShopDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/myShopDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myShopDelete(Locale locale, Model model, @RequestParam("shopId") String shopId) {
 		logger.info("상점 정보 삭제", locale);
 

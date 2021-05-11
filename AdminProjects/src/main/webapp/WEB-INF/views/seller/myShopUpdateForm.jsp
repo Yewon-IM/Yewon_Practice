@@ -17,7 +17,7 @@
 <body>
 <form method="post">
 <table border="1">
-	<th colspan="6">회원정보</th>
+	<th colspan="6">상점 정보</th>
 	<tr>
 		<td>상점 이름</td>
 		<td>상점 전화번호</td>

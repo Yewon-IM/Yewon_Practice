@@ -34,7 +34,7 @@
 		%>
 		<tr>
 		<%-- <a href="detail.do?id=<%=dto.getId() %>"> --%>
-			<td width="50px"><%=dto.getId() %></td>
+			<td width="50px"><a href="memDetail.do?id=<%=dto.getId()%>"><%=dto.getId() %></a> 	</td>
 			<td width="50px"><%=dto.getName() %></td>
 			<td width="50px"><%if(dto.getWho() == 0){
 								out.println("관리자");
@@ -71,7 +71,7 @@
 			for(sellerDto sdto : sList){
 		%>
 		<tr>
-			<td width="50px"><%=sdto.getId() %></td>
+			<td width="50px"><a href="shop.do?id=<%=sdto.getId()%>"><%=sdto.getId() %></a></td>
 			<td width="50px"><%=sdto.getShopName() %></td>
 			<td width="50px"><%=sdto.getShopAdd() %></td>
 			<td width="30px"><%=sdto.getPower() %></td>
@@ -137,8 +137,8 @@
 			for(sellerDto sdto : shopList){
 		%>
 		<tr>
-			<td width="50px"><%=sdto.getId() %></td>
-			<td width="50px"><%=sdto.getShopName() %></td>
+			<td width="50px"><a href="shop.do?id=<%=sdto.getId()%>"><%=sdto.getId() %></a></td>
+			<td width="50px"><a href="shopDetail.do?id=<%=sdto.getId()%>&shopId=<%=sdto.getShopId()%>"><%=sdto.getShopName() %></a></td>
 			<td width="50px"><%=sdto.getShopAdd() %></td>
 			<td width="30px"><%=sdto.getPower() %></td>
 			<td width="30px"><input type="submit" value="승인" formaction="deleteShop.do?shopId=<%=sdto.getShopId() %>"></td>

@@ -229,30 +229,11 @@ Sibebar</a></li>
 </select>
 </div>
 
-<div class="form-group">
-<label>가게이름</label>
-<input name="shopName" type="text" value=${dto.shopName }>
-</div>
-
-<div class="form-group">
-<label>가게주소</label>
-<input name="shopAdd" type="text" value=${dto.shopAdd }>
-</div>
-
-<div class="form-group">
-<label>지역</label>
-<input name="local" type="text" value=${dto.local }>
-</div>
-
-<div class="form-group">
-<label>사업자번호</label>
-<input name="businessnum" type="text" value=${dto.businessNum }>
-</div>
-
-<div class="form-group">
-<label>가게번호</label>
-<input name="shopId" type="text" value=${dto.shopId }>
-</div>
+<input type="hidden" name="shopName" value=${dto.shopName }>
+<input type="hidden" name="shopAdd" value=${dto.shopAdd }>
+<input type="hidden" name="local" value=${dto.local }>
+<input type="hidden" name="businessnum" value=${dto.businessNum }>
+<input type="hidden" name="shopId" value=${dto.shopId }>
 
 <div class="check-and-pass">
 <div class="row align-items-center">
