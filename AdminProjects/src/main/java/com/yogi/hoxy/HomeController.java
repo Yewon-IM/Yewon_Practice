@@ -41,32 +41,33 @@ public class HomeController {
 	public String home(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 		System.out.println("mainPage session : " + session);
 		
-		 Object who = session.getAttribute("who");
+		Object who = session.getAttribute("who");
+		System.out.println("who메인페이지 : " + who );
 		
 		if (who != null) {
 
 			String name = (String) session.getAttribute("name");
 			session.setAttribute("name", name);
 
-			System.out.println("메인홈페이지 : " + who);
 			YHDto dto = (YHDto) session.getAttribute("dto");
 			model.addAttribute("dto", dto);
 
-			if (who == "0") {
+			if ((int)who == 0) {
 				return "admin/adminMain";
-			} else if (who == "1") {
+			} else if ((int)who == 1) {
 				return "customer/customerMain";
-			} else if (who == "2") {
+			} else if ((int)who == 2) {
 				return "seller/sellerMain";
 			} else {
 				return "error";
 			}
-
-		} else {
+		} else if(who == null){
 			return "home";
+		} else {
+			return "error";
 		}
 	}
 
@@ -74,7 +75,6 @@ public class HomeController {
 	public String loginDo(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model,
 			@RequestParam Map<String, String> login) throws ServletException, IOException {
 		logger.info("로그인하기", locale);
-
 		
 		String id = request.getParameter("user_id");
 		String pwd = request.getParameter("user_pwd");
@@ -108,7 +108,6 @@ public class HomeController {
 
 		} else {
 			System.out.println("세션 안생김ㅠㅠ");
-
 			return "error";
 		}
 
@@ -128,16 +127,13 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/admin.do", method = RequestMethod.GET)
-	public String admin(HttpServletRequest request, Locale locale, Model model) throws IOException, ServletException {
+	public String admin(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("관리자 페이지입니다.", locale);
 
-		HttpSession session = request.getSession(false);
-
-		if (session == null) {
-			// 세션이 없는 상태.. 로그인으로 보냄..
-			return "redirect:login.do";
-
-		}
+		HttpSession session = request.getSession();
+		String name = (String) session.getAttribute("name");
+		model.addAttribute("name",name);
+		
 		List<YHDto> list = yhService.adminList();
 		model.addAttribute("list", list);
 
@@ -311,7 +307,7 @@ public class HomeController {
 		     
 		
 		if (isS) {
-			return "redirect:admin.do";
+			return "redirect:memberList.do";
 		} else {
 			model.addAttribute("msg", "회원수정 오류입니다");
 			return "error";

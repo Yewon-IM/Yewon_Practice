@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" 
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
@@ -48,7 +47,7 @@
 <div class="col-lg-12">
 <div class="nav-inner">
 <nav class="navbar navbar-expand-lg">
-<a class="navbar-brand" href="index.html">
+<a class="navbar-brand" href=".">
 <img src="assets/images/logo/logo.svg" alt="Logo">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
