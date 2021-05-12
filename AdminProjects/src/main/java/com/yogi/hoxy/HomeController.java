@@ -43,9 +43,11 @@ public class HomeController {
 
 		HttpSession session = request.getSession(false);
 		System.out.println("mainPage session : " + session);
-		if (session != null) {
+		
+		 Object who = session.getAttribute("who");
+		
+		if (who != null) {
 
-			int who = (int) session.getAttribute("who");
 			String name = (String) session.getAttribute("name");
 			session.setAttribute("name", name);
 
@@ -53,29 +55,19 @@ public class HomeController {
 			YHDto dto = (YHDto) session.getAttribute("dto");
 			model.addAttribute("dto", dto);
 
-			if (who == 0) {
+			if (who == "0") {
 				return "admin/adminMain";
-			} else if (who == 1) {
+			} else if (who == "1") {
 				return "customer/customerMain";
-			} else if (who == 2) {
+			} else if (who == "2") {
 				return "seller/sellerMain";
 			} else {
 				return "error";
 			}
 
-		} else if (session == null) {
-
-			Date date = new Date();
-			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-			String formattedDate = dateFormat.format(date);
-
-			model.addAttribute("serverTime", formattedDate);
-
+		} else {
 			return "home";
-
 		}
-		return null;
 	}
 
 	@RequestMapping(value = "/loginDo.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -83,6 +75,7 @@ public class HomeController {
 			@RequestParam Map<String, String> login) throws ServletException, IOException {
 		logger.info("로그인하기", locale);
 
+		
 		String id = request.getParameter("user_id");
 		String pwd = request.getParameter("user_pwd");
 
@@ -90,8 +83,7 @@ public class HomeController {
 		System.out.println("result : " + result);
 
 		if (result.equals("true")) {
-			HttpSession session = request.getSession();
-
+			HttpSession session = request.getSession();	
 			session.setAttribute("isLogon", true);
 			session.setAttribute("user_id", id);
 
@@ -126,9 +118,12 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
+	public String login(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("로그인", locale);
-
+		
+		HttpSession session = request.getSession(false);
+		System.out.println("login.do : " + session);
+		
 		return "login";
 	}
 
