@@ -94,7 +94,8 @@
 
 	
 	<select id="myShop" parameterType="String" resultType="sellerDto">
-		SELECT * FROM SELLER
+		SELECT * 
+		FROM SELLER
 		WHERE ID = #{id}
 	</select>
 	
@@ -103,6 +104,7 @@
 		WHERE ID = #{id} AND SHOPID = #{shopId}
 	</select>
 	
+	<!-- 사용자가 수정하면 관리자 허락이 필요함 -->
 	<update id="myShopUpdate" parameterType="sellerDto">
 		UPDATE SELLER SET SHOPTEL = #{shopTel}, SHOPNAME = #{shopName}, 
 		SHOPADD = #{shopAdd}, LOCAL = #{local}, BUSINESSNUM = #{businessNum}, POWER = '0'
