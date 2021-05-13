@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.yogi.hoxy.dtos.YHDto;
-import com.yogi.hoxy.dtos.sellerDto;
-import com.yogi.hoxy.service.IYHService;
+import com.yogi.hoxy.dtos.MemberDto;
+import com.yogi.hoxy.dtos.ShopDto;
+import com.yogi.hoxy.service.IYogiService;
 
 /**
  * Handles requests for the application home page.
@@ -35,7 +35,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
-	private IYHService yhService;
+	private IYogiService yoService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, Locale locale, Model model) {
@@ -44,7 +44,7 @@ public class HomeController {
 		HttpSession session = request.getSession();
 		System.out.println("mainPage session : " + session);
 		
-		Object who = session.getAttribute("who");
+		String who = (String) session.getAttribute("who");
 		System.out.println("who메인페이지 : " + who );
 		
 		if (who != null) {
@@ -52,14 +52,14 @@ public class HomeController {
 			String name = (String) session.getAttribute("name");
 			session.setAttribute("name", name);
 
-			YHDto dto = (YHDto) session.getAttribute("dto");
+			MemberDto dto = (MemberDto) session.getAttribute("dto");
 			model.addAttribute("dto", dto);
 
-			if ((int)who == 0) {
+			if (who.equals("0")) {
 				return "admin/adminMain";
-			} else if ((int)who == 1) {
+			} else if (who.equals("1")) {
 				return "customer/customerMain";
-			} else if ((int)who == 2) {
+			} else if (who.equals("2")) {
 				return "seller/sellerMain";
 			} else {
 				return "error";
@@ -79,7 +79,7 @@ public class HomeController {
 		String id = request.getParameter("user_id");
 		String pwd = request.getParameter("user_pwd");
 
-		String result = yhService.login(id, pwd);
+		String result = yoService.login(id, pwd);
 		System.out.println("result : " + result);
 
 		if (result.equals("true")) {
@@ -87,7 +87,7 @@ public class HomeController {
 			session.setAttribute("isLogon", true);
 			session.setAttribute("user_id", id);
 
-			YHDto dto = yhService.listSel(id);
+			MemberDto dto = yoService.listSel(id);
 			System.out.println("dto : " + dto);
 
 			request.setAttribute("dto", dto);
@@ -97,11 +97,11 @@ public class HomeController {
 			System.out.println("name : " + dto.getName());
 			System.out.println("세선 생겼어요 : " + session);
 
-			if (dto.getWho() == 0) {
+			if (dto.getWho().equals("0")) {
 				return "admin/adminMain";
-			} else if (dto.getWho() == 1) {
+			} else if (dto.getWho().equals("1")) {
 				return "customer/customerMain";
-			} else if (dto.getWho() == 2) {
+			} else if (dto.getWho().equals("2")) {
 				return "seller/sellerMain";
 			}
 			return "main";
@@ -110,10 +110,6 @@ public class HomeController {
 			System.out.println("세션 안생김ㅠㅠ");
 			return "error";
 		}
-
-		// int who = yhService.loginInfo(login.get("id"), login.get("name"));
-		// session.setAttribute("who", who);
-
 	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
@@ -134,19 +130,47 @@ public class HomeController {
 		String name = (String) session.getAttribute("name");
 		model.addAttribute("name",name);
 		
-		List<YHDto> list = yhService.adminList();
+		List<MemberDto> list = yoService.adminList();
 		model.addAttribute("list", list);
 
-		List<sellerDto> sList = yhService.listShop();
+		List<ShopDto> sList = yoService.listShop();
 		model.addAttribute("sList", sList);
 		
-		List<YHDto> dList = yhService.delList();
+		List<MemberDto> dList = yoService.delList();
 		model.addAttribute("dList", dList);
 		
-		List<sellerDto> shopList = yhService.delShopList();
+		List<ShopDto> shopList = yoService.delShopList();
 		model.addAttribute("shopList", shopList);
 		
 		return "admin/admin";
+	}
+	
+	@RequestMapping(value = "/newMemberList.do", method = RequestMethod.GET)
+	public String newMemberList(HttpServletRequest request, Locale locale, Model model) {
+		logger.info("신규가입 회원 승인", locale);
+
+		HttpSession session = request.getSession();
+		String name = (String) session.getAttribute("name");
+		model.addAttribute("name",name);
+		
+		List<MemberDto> list = yoService.adminList();
+		model.addAttribute("list", list);
+		
+		return "admin/newMemberList";
+	}
+	
+	@RequestMapping(value = "/delMemberList.do", method = RequestMethod.GET)
+	public String delMemberList(HttpServletRequest request, Locale locale, Model model) {
+		logger.info("탈퇴회원", locale);
+
+		HttpSession session = request.getSession();
+		String name = (String) session.getAttribute("name");
+		model.addAttribute("name",name);
+		
+		List<MemberDto> list = yoService.adminList();
+		model.addAttribute("list", list);
+		
+		return "admin/delMemberList";
 	}
 
 	@RequestMapping(value = "/memberList.do", method = RequestMethod.GET)
@@ -154,11 +178,11 @@ public class HomeController {
 		logger.info("회원관리 페이지입니다.", locale);
 
 		HttpSession session = request.getSession();
-		int who = (int) session.getAttribute("who");
+		String who = (String) session.getAttribute("who");
 		System.out.println("who : " + who);
 
-		if (who == 0) {
-			List<YHDto> list = yhService.memberList();
+		if (who.equals("0")) {
+			List<MemberDto> list = yoService.memberList();
 			model.addAttribute("list", list);
 			System.out.println(list);
 			return "admin/memberList";
@@ -174,11 +198,11 @@ public class HomeController {
 		logger.info("회원관리 페이지입니다.", locale);
 
 		HttpSession session = request.getSession();
-		int who = (int) session.getAttribute("who");
+		String who = (String) session.getAttribute("who");
 		System.out.println("who : " + who);
 
-		if (who == 0) {
-			List<sellerDto> sList = yhService.shopList();
+		if (who.equals("0")) {
+			List<ShopDto> sList = yoService.shopList();
 			model.addAttribute("sList", sList);
 			System.out.println(sList);
 			return "admin/shopList";
@@ -189,16 +213,16 @@ public class HomeController {
 
 	}
 
-	@RequestMapping(value = "/admit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admit.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String admit(Locale locale, Model model, String id) {
 		logger.info("승인입니다.", locale);
 
-		YHDto dto = yhService.listSel(id);
+		MemberDto dto = yoService.listSel(id);
 
-		boolean isS = yhService.listUp(dto);
+		boolean isS = yoService.listUp(dto);
 
 		if (isS) {
-			return "redirect:admin.do";
+			return "redirect:newMemberList.do";
 		} else {
 			model.addAttribute("msg", "권한수정 오류입니다.");
 			return "error";
@@ -210,10 +234,10 @@ public class HomeController {
 		logger.info("상점 승인입니다.", locale);
 
 		System.out.println("shopId : " + shopId);
-		sellerDto sdto = yhService.listSelShop(shopId);
+		ShopDto sdto = yoService.listSelShop(shopId);
 		System.out.println("sdto : " + sdto);
 
-		boolean isS = yhService.listUpShop(sdto);
+		boolean isS = yoService.listUpShop(sdto);
 
 		if (isS) {
 			return "redirect:admin.do";
@@ -223,15 +247,15 @@ public class HomeController {
 		}
 	}
 
-	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(Locale locale, Model model, String id) {
 		logger.info("거절입니다.", locale);
 
 		System.out.println("id : " + id);
-		boolean isS = yhService.listDel(id);
+		boolean isS = yoService.listDel(id);
 
 		if (isS) {
-			return "redirect:admin.do";
+			return "redirect:newMemberList.do";
 		} else {
 			model.addAttribute("msg", "권한신청 삭제 오류입니다.");
 			return "error";
@@ -243,7 +267,7 @@ public class HomeController {
 		logger.info("거절입니다.", locale);
 
 		System.out.println("shopId : " + shopId);
-		boolean isS = yhService.shopDel(shopId);
+		boolean isS = yoService.shopDel(shopId);
 
 		if (isS) {
 			return "redirect:admin.do";
@@ -259,18 +283,33 @@ public class HomeController {
 
 		System.out.println("detailid :" + id);
 
-		YHDto dto = yhService.listSel(id);
+		MemberDto dto = yoService.listSel(id);
 		model.addAttribute("dto", dto);
 
-		int who = yhService.loginInfo(id);
+		String who = yoService.loginInfo(id);
 		System.out.println("detail who : " + who);
 
-		if (who == 1) {
+		if (!who.isEmpty()) {
 			return "memDetail";
-		} else if (who == 2) {
-			return "memDetail";
-		} else if (who == 0) {
-			return "admin/memDetail";
+		}  else {
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value = "/newMemberDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String newMemberDetail(Locale locale, Model model, String id) {
+		logger.info("회원정보 보기", locale);
+
+		System.out.println("detailid :" + id);
+
+		MemberDto dto = yoService.listSel(id);
+		model.addAttribute("dto", dto);
+
+		String who = yoService.loginInfo(id);
+		System.out.println("detail who : " + who);
+
+		if (!who.isEmpty()) {
+			return "admin/newMemberDetail";
 		} else {
 			return "error";
 		}
@@ -280,32 +319,28 @@ public class HomeController {
 	public String memUpdateForm(Locale locale, Model model, @RequestParam("id") String id) {
 		logger.info("회원정보 수정폼", locale);
 
-		YHDto dto = yhService.listSel(id);
+		MemberDto dto = yoService.listSel(id);
 		model.addAttribute("dto", dto);
 		System.out.println("updateForm dto : " + dto);
 
-		int who = yhService.loginInfo(id);
+		String who = yoService.loginInfo(id);
 		System.out.println("detail who : " + who);
-
-		if (who == 1) {
+		
+		
+		if (!who.isEmpty()) {
 			return "memUpdateForm";
-		} else if (who == 2) {
-			return "memUpdateForm";
-		} else if (who == 0) {
-			return "admin/memUpdateForm";
-		} else {
+		}  else {
 			return "error";
 		}
 	}
 
 	@RequestMapping(value = "/Update.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String Update(Locale locale, Model model, YHDto dto) {
+	public String Update(Locale locale, Model model, MemberDto dto) {
 		logger.info("회원정보 수정하기", locale);
 
-		boolean isS = yhService.memUpdate(dto);
+		boolean isS = yoService.memUpdate(dto);
 		System.out.println("memUpdate dto : " + dto);
 		     
-		
 		if (isS) {
 			return "redirect:memberList.do";
 		} else {
@@ -338,17 +373,18 @@ public class HomeController {
 			@RequestParam("id") String id) {
 		logger.info("상점 수정 폼", locale);
 
-		sellerDto sdto = yhService.myShopDetail(id, shopId);
+		ShopDto sdto = yoService.myShopDetail(id, shopId);
 		model.addAttribute("sdto", sdto);
 
 		return "admin/seller/shopUpdateForm";
 	}
 
 	@RequestMapping(value = "/shopUpdate.do", method = RequestMethod.POST)
-	public String shopUpdate(Locale locale, Model model, sellerDto sdto) {
+	public String shopUpdate(Locale locale, Model model, ShopDto sdto) {
 		logger.info("상점 수정", locale);
 
-		boolean isS = yhService.shopUpdate(sdto);
+		boolean isS = yoService.shopUpdate(sdto);
+		
 		if (isS) {
 			return "redirect:shopList.do";
 		} else {
@@ -363,15 +399,15 @@ public class HomeController {
 		logger.info("상점 정보 삭제", locale);
 
 		HttpSession session = request.getSession();
-		int who = (int) session.getAttribute("who");
+		String who = (String) session.getAttribute("who");
 		
-		boolean isS = yhService.shopDelete(shopId);
+		boolean isS = yoService.shopDelete(shopId);
 		System.out.println("shopId");
 
 		if (isS) {
-			if(who == 0) {
+			if(who.equals("0")) {
 				return "redirect:admin.do";
-			} else if (who == 2) {
+			} else if (who.equals("2")) {
 				return "redirect:shopList.do";				
 			} else {
 				return "error";
@@ -388,16 +424,16 @@ public class HomeController {
 		logger.info("내 상점 보기", locale);
 
 		HttpSession session = request.getSession();
-		int who = (int) session.getAttribute("who");
+		String who = (String) session.getAttribute("who");
 		System.out.println("who : " + who);
 
 		String user_id = (String) session.getAttribute("user_id");
 		System.out.println("id : " + user_id);
 		
-		List<sellerDto> list = yhService.myShop(user_id);
+		List<ShopDto> list = yoService.myShop(user_id);
 		model.addAttribute("list", list);
 		
-		if (who == 2) {
+		if (who.equals("2")) {
 			return "seller/myShop";
 		} else {			
 			return "error";
@@ -409,12 +445,12 @@ public class HomeController {
 		logger.info("내 상점 보기", locale);
 
 		HttpSession session = request.getSession();
-		int who = (int) session.getAttribute("who");
+		String who = (String) session.getAttribute("who");
 		System.out.println("who : " + who);
 
 		
-		if (who == 0){
-			List<sellerDto> list = yhService.myShop(id);
+		if (who.equals("0")){
+			List<ShopDto> list = yoService.myShop(id);
 			model.addAttribute("list", list);
 			
 			return "admin/seller/myShop";
@@ -428,7 +464,7 @@ public class HomeController {
 			@RequestParam("shopId") String shopId, @RequestParam("id") String id) {
 		logger.info("내 상점 정보보기", locale);
 		
-		sellerDto sdto = yhService.myShopDetail(id, shopId);
+		ShopDto sdto = yoService.myShopDetail(id, shopId);
 		model.addAttribute("sdto", sdto);
 		return "seller/myShopDetail";
 	}
@@ -438,7 +474,7 @@ public class HomeController {
 			@RequestParam("shopId") String shopId, @RequestParam("id") String id) {
 		logger.info("내 상점 정보보기", locale);
 		
-		sellerDto sdto = yhService.myShopDetail(id, shopId);
+		ShopDto sdto = yoService.myShopDetail(id, shopId);
 		model.addAttribute("sdto", sdto);
 		return "admin/seller/myShopDetail";
 	}
@@ -449,9 +485,9 @@ public class HomeController {
 		logger.info("상점 정보 수정 폼", locale);
 		
 		HttpSession session = request.getSession();		
-		int who = (int) session.getAttribute("who");
+		String who = (String) session.getAttribute("who");
 		
-		sellerDto sdto = yhService.myShopDetail(id, shopId);
+		ShopDto sdto = yoService.myShopDetail(id, shopId);
 		model.addAttribute("sdto", sdto);
 		System.out.println("sdto : " + sdto);
 
@@ -459,20 +495,20 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/myShopUpdate.do", method = RequestMethod.POST)
-	public String myShopUpdate(HttpServletRequest request, Locale locale, Model model, sellerDto sdto) {
+	public String myShopUpdate(HttpServletRequest request, Locale locale, Model model, ShopDto sdto) {
 		logger.info("상점 정보 수정", locale);
 		
 		HttpSession session = request.getSession();		
-		int who = (int) session.getAttribute("who");
+		String who = (String) session.getAttribute("who");
 		
-		boolean isS = yhService.myShopUpdate(sdto);
+		boolean isS = yoService.myShopUpdate(sdto);
 		System.out.println("sdto : " + sdto);
 		System.out.println("isS : " + isS);
 		
 		if (isS) {
-			if(who == 2) {				
+			if(who.equals("2")) {				
 				return "redirect:myShop.do";
-			} else if(who == 0) {
+			} else if(who.equals("0")) {
 				return "redirect:shopList.do";
 			}
 		}
@@ -483,7 +519,7 @@ public class HomeController {
 	public String myShopDelete(Locale locale, Model model, @RequestParam("shopId") String shopId) {
 		logger.info("상점 정보 삭제", locale);
 
-		boolean isS = yhService.myShopDelete(shopId);
+		boolean isS = yoService.myShopDelete(shopId);
 		System.out.println(shopId + isS);
 
 		if (isS) {
@@ -497,7 +533,7 @@ public class HomeController {
 	public String myShopCan(Locale locale, Model model, @RequestParam("shopId") String shopId) {
 		logger.info("상점 정보 삭제취소", locale);
 
-		boolean isS = yhService.myShopCan(shopId);
+		boolean isS = yoService.myShopCan(shopId);
 		System.out.println(shopId + isS);
 
 		if (isS) {
@@ -520,11 +556,12 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/myShopAdd.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myShopAdd(Locale locale, Model model, sellerDto sdto) {
+	public String myShopAdd(Locale locale, Model model, ShopDto sdto) {
 		logger.info("상점 추가", locale);
 
-		boolean isS = yhService.shopAdd(new sellerDto(sdto.getId(), sdto.getShopTel(), sdto.getShopName(),
-				sdto.getShopAdd(), sdto.getLocal(), sdto.getBusinessNum(), 0, null ,null, null));
+		boolean isS = yoService.shopAdd(new ShopDto(sdto.getId(), sdto.getShopId(), sdto.getShopName(), sdto.getShopOdd(),
+				sdto.getShopAdd(), sdto.getShopDetailAdd(), sdto.getShopTel(), sdto.getLocal(), sdto.getBusinessNum(), null, "0", "0"));
+		
 		System.out.println("sdto : " + sdto);
 		System.out.println("isS : " + isS);
 
@@ -545,12 +582,12 @@ public class HomeController {
 		String id = (String) session.getAttribute("user_id");
 		System.out.println("id : " + id);
 		
-		YHDto dto = yhService.listSel(id);
+		MemberDto dto = yoService.listSel(id);
 		model.addAttribute("dto", dto);
 		
-		if(dto.getWho() == 1) {
+		if(dto.getWho().equals("1")) {
 			return "customer/myPage";			
-		} else if(dto.getWho() == 2 ) {
+		} else if(dto.getWho().equals("2") ) {
 			return "seller/myPage";
 		} else {
 			model.addAttribute("msg", "마이페이지 오류");
@@ -562,18 +599,19 @@ public class HomeController {
 	public String myPageUpdateForm(@RequestParam("id") String id, Locale locale, Model model) {
 		logger.info("회원 정보 수정 폼", locale);
 
-		YHDto dto = yhService.listSel(id);
+		MemberDto dto = yoService.listSel(id);
 		model.addAttribute("dto", dto);
 
 		return "myPageUpdate";
 	}
 
 	@RequestMapping(value = "/myPageUpdate.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPageUpdate(HttpServletRequest request, @RequestParam("id") String id, Locale locale, Model model, YHDto dto) {
+	public String myPageUpdate(HttpServletRequest request, @RequestParam("id") String id, Locale locale, Model model, MemberDto dto) {
 		logger.info("회원 정보 수정하기", locale);
 		
-		boolean isS = yhService.memUpdate(dto);
-
+		System.out.println("dto : " + dto);
+		boolean isS = yoService.memUpdate(dto);
+		
 		if (isS) {
 			HttpSession session = request.getSession(false);
 			session.invalidate();
@@ -587,7 +625,7 @@ public class HomeController {
 	public String myPageDelete(HttpServletRequest request, Locale locale, Model model, @RequestParam("id") String id) {
 		logger.info("회원탈퇴", locale);
 
-		boolean isS = yhService.myPageDel(id);
+		boolean isS = yoService.myPageDel(id);
 		System.out.println("id");
 
 		if (isS) {
@@ -603,17 +641,17 @@ public class HomeController {
 	public String myPageCan(HttpServletRequest request, Locale locale, Model model, @RequestParam("id") String id) {
 		logger.info("회원탈퇴 취소", locale);
 
-		boolean isS = yhService.myPageCan(id);
+		boolean isS = yoService.myPageCan(id);
 		System.out.println("id");
 		HttpSession session = request.getSession();
-		int who = (int) session.getAttribute("who");
+		String who = (String) session.getAttribute("who");
 		
 		if (isS) {
-			if (who == 0) {
+			if (who.equals("0")) {
 				return "admin/adminMain";
-			} else if (who == 1) {
+			} else if (who.equals("1")) {
 				return "customer/customerMain";
-			} else if (who == 2) {
+			} else if (who.equals("2")) {
 				return "seller/sellerMain";
 			} else {
 				return "error";

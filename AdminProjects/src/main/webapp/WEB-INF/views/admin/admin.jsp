@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
-<%@page import="com.yogi.hoxy.dtos.YHDto"%>
-<%@page import="com.yogi.hoxy.dtos.sellerDto"%>
+<%@page import="com.yogi.hoxy.dtos.MemberDto"%>
+<%@page import="com.yogi.hoxy.dtos.ShopDto"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,10 +12,10 @@
 <title>관리자 리스트</title>
 </head>
 <%
-	List<YHDto> list = (List<YHDto>) request.getAttribute("list");
-	List<sellerDto> sList = (List<sellerDto>) request.getAttribute("sList");
-	List<YHDto> dList = (List<YHDto>) request.getAttribute("dList");
-	List<sellerDto> shopList = (List<sellerDto>) request.getAttribute("shopList");
+	List<MemberDto> list = (List<MemberDto>) request.getAttribute("list");
+	List<ShopDto> sList = (List<ShopDto>) request.getAttribute("sList");
+	List<MemberDto> dList = (List<MemberDto>) request.getAttribute("dList");
+	List<ShopDto> shopList = (List<ShopDto>) request.getAttribute("shopList");
 %>
 <body>
 	<form method="post">
@@ -32,15 +32,15 @@
 		if(list == null || list.size() == 0){
 			out.println("<tr><td colspan='6'>들어온 승인이 없습니다 ㅎㅎ</td></tr>");
 		}else {
-			for(YHDto dto : list){
+			for(MemberDto dto : list){
 		%>
 		<tr>
 		<%-- <a href="detail.do?id=<%=dto.getId() %>"> --%>
 			<td width="50px"><a href="memDetail.do?id=<%=dto.getId()%>"><%=dto.getId() %></a> 	</td>
 			<td width="50px"><%=dto.getName() %></td>
-			<td width="50px"><%if(dto.getWho() == 0){
+			<td width="50px"><%if(dto.getWho().equals("0")){
 								out.println("관리자");
-								} else if(dto.getWho() == 1) {
+								} else if(dto.getWho().equals("1")) {
 									out.println("구매자");
 								} else {
 									out.println("판매자");
@@ -70,7 +70,7 @@
 		if(sList == null || sList.size() == 0){
 			out.println("<tr><td colspan='6'>들어온 승인이 없습니다 ㅎㅎ</td></tr>");
 		}else {
-			for(sellerDto sdto : sList){
+			for(ShopDto sdto : sList){
 		%>
 		<tr>
 			<td width="50px"><a href="shop.do?id=<%=sdto.getId()%>"><%=sdto.getId() %></a></td>
@@ -99,15 +99,15 @@
 		if(dList == null || dList.size() == 0){
 			out.println("<tr><td colspan='6'>들어온 삭제회원이 없습니다 ㅎㅎ</td></tr>");
 		}else {
-			for(YHDto dto : dList){
+			for(MemberDto dto : dList){
 		%>
 		<tr>
 		<%-- <a href="detail.do?id=<%=dto.getId() %>"> --%>
 			<td width="50px"><a href="memDetail.do?id=<%=dto.getId()%>"><%=dto.getId() %></a></td>
 			<td width="50px"><%=dto.getName() %></td>
-			<td width="50px"><%if(dto.getWho() == 0){
+			<td width="50px"><%if(dto.getWho().equals("0")){
 								out.println("관리자");
-								} else if(dto.getWho() == 1) {
+								} else if(dto.getWho().equals("1")) {
 									out.println("구매자");
 								} else {
 									out.println("판매자");
@@ -136,7 +136,7 @@
 		if(shopList == null || shopList.size() == 0){
 			out.println("<tr><td colspan='6'>들어온 삭제요청이 없습니다 ㅎㅎ</td></tr>");
 		}else {
-			for(sellerDto sdto : shopList){
+			for(ShopDto sdto : shopList){
 		%>
 		<tr>
 			<td width="50px"><a href="shop.do?id=<%=sdto.getId()%>"><%=sdto.getId() %></a></td>

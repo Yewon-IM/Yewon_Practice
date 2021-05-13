@@ -4,9 +4,10 @@
 <!-- 	DB 접속정보 파일 설정 -->
 	
 <!-- 	변수설정 -->
-	<typeAliases>
-		<typeAlias type="com.yogi.hoxy.dtos.YHDto" alias="YHDto"/>
-		<typeAlias type="com.yogi.hoxy.dtos.sellerDto" alias="sellerDto"/>
+	<typeAliases>		
+		<typeAlias type="com.yogi.hoxy.dtos.MemberDto" alias="MemberDto"/>
+		<typeAlias type="com.yogi.hoxy.dtos.ShopDto" alias="ShopDto"/>
+		<typeAlias type="com.yogi.hoxy.dtos.ProductDto" alias="ProductDto"/>
 	</typeAliases>
 	
 <!-- 	DB접속 정보 셋팅 -->

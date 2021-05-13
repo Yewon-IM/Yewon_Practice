@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.yogi.hoxy.dtos.sellerDto"%>
+<%@page import="com.yogi.hoxy.dtos.ShopDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
 	}
 </style>
 </head>
-<% List<sellerDto> list = (List<sellerDto>)request.getAttribute("list"); %>
+<% List<ShopDto> list = (List<ShopDto>)request.getAttribute("list"); %>
 <body>
 <form method="post">
 	<table border="1">
@@ -35,10 +35,10 @@
 			<tr><td colspan="7">상점이 없습니다</td></tr>
 			<% 
 		} else {
-			for(sellerDto sdto: list){ %>					
+			for(ShopDto sdto: list){ %>					
 			
 			<tr>
-				<td><a href="shopDetail.do?id=<%=sdto.getId() %>&shopId=<%=sdto.getShopId()%>"><%=sdto.getShopName() %></a></td>
+				<td><a href="shopDetail.do?id=<%=sdto.getId()%>&shopId=<%=sdto.getShopId()%>"><%=sdto.getShopName() %></a></td>
 				<td><%= sdto.getShopTel() %></td>
 				<td><%= sdto.getLocal() %></td>
 				<td><%= sdto.getShopId() %></td>

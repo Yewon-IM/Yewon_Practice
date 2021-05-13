@@ -11,19 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class YHDaoImp implements IYHDao{
+public class YogiDaoImp implements IYogiDao{
 	
 	private String namespace = "com.yogi.hoxy.";
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public List<YHDto> adminList(){
+	public List<MemberDto> adminList(){
 		return sqlSession.selectList(namespace + "adminList");
 	}
 	
-	public int loginInfo(String id) {
-
+	public String loginInfo(String id) {
 		return sqlSession.selectOne(namespace + "loginInfo", id);
 	}
 	
@@ -32,21 +31,21 @@ public class YHDaoImp implements IYHDao{
 		return count > 0? true:false;
 	}
 	
-	public boolean listUp(YHDto dto) {
+	public boolean listUp(MemberDto dto) {
 		int count = sqlSession.update(namespace + "listUp", dto);
 		return count > 0? true:false;
 	}
 	
-	public YHDto listSel(String id) {
-		YHDto dto = sqlSession.selectOne(namespace + "listSel", id);
+	public MemberDto listSel(String id) {
+		MemberDto dto = sqlSession.selectOne(namespace + "listSel", id);
 		return dto;
 	}
 	
-	public List<YHDto> memberList(){
+	public List<MemberDto> memberList(){
 		return sqlSession.selectList(namespace + "memberList");
 	}
 	
-	public boolean memUpdate(YHDto dto) {
+	public boolean memUpdate(MemberDto dto) {
 		int count = sqlSession.update(namespace + "memUpdate", dto);
 		return count > 0? true:false;
 	}
@@ -58,18 +57,18 @@ public class YHDaoImp implements IYHDao{
 		return sqlSession.selectOne(namespace + "login", map);
 	}
 	
-	public List<sellerDto> myShop(String id) {
+	public List<ShopDto> myShop(String id) {
 		return sqlSession.selectList(namespace + "myShop", id);
 	}
 	
-	public sellerDto myShopDetail(String id, String shopId) {
+	public ShopDto myShopDetail(String id, String shopId) {
 		Map<String, String> map = new HashMap<>();
 		map.put("id", id);
 		map.put("shopId", shopId);
 		return sqlSession.selectOne(namespace + "myShopDetail", map);
 	}
 	
-	public boolean myShopUpdate(sellerDto sdto) {
+	public boolean myShopUpdate(ShopDto sdto) {
 		int count = sqlSession.update(namespace + "myShopUpdate", sdto);
 		return count > 0? true:false;
 	}
@@ -84,15 +83,15 @@ public class YHDaoImp implements IYHDao{
 		return count > 0? true:false;
 	}
 	
-	public List<sellerDto> listShop(){
+	public List<ShopDto> listShop(){
 		return sqlSession.selectList(namespace + "listShop");
 	}
 	
-	public sellerDto listSelShop (String shopId) {
+	public ShopDto listSelShop (String shopId) {
 		return sqlSession.selectOne(namespace + "listSelShop", shopId);
 	}
 	
-	public boolean listUpShop (sellerDto sdto) {
+	public boolean listUpShop (ShopDto sdto) {
 		int count = sqlSession.update(namespace + "listUpShop", sdto);
 		return count > 0? true:false;
 	}
@@ -102,16 +101,16 @@ public class YHDaoImp implements IYHDao{
 		return count > 0? true:false;		
 	}
 	
-	public List<sellerDto> shopList(){
+	public List<ShopDto> shopList(){
 		return sqlSession.selectList(namespace + "shopList");
 	}
 	
-	public boolean shopAdd(sellerDto sdto) {
+	public boolean shopAdd(ShopDto sdto) {
 		int count = sqlSession.insert(namespace + "shopAdd", sdto);
 		return count > 0? true:false;
 	}
 	
-	public boolean shopUpdate(sellerDto sdto) {
+	public boolean shopUpdate(ShopDto sdto) {
 		int count = sqlSession.update(namespace + "shopUpdate", sdto);
 		return count > 0? true:false;
 	}
@@ -126,11 +125,11 @@ public class YHDaoImp implements IYHDao{
 		return count > 0? true:false;
 	}
 	
-	public List<YHDto> delList(){
+	public List<MemberDto> delList(){
 		return sqlSession.selectList(namespace + "delList");
 	}
 	
-	public List<sellerDto> delShopList(){
+	public List<ShopDto> delShopList(){
 		return sqlSession.selectList(namespace + "delShopList");
 	}
 	

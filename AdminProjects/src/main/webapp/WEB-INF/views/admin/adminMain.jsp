@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.yogi.hoxy.dtos.YHDto"%>
+<%@page import="com.yogi.hoxy.dtos.MemberDto"%>
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -123,9 +123,9 @@
 <li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">회원관리</a>
 <ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="admin.do">회원 승인</a></li>
+<li class="nav-item"><a href="newMemberList.do">회원 승인</a></li>
 <li class="nav-item"><a href="memberList.do">회원리스트</a></li>
-<li class="nav-item"><a href="admin.do">탈퇴 회원</a></li>
+<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 </ul>

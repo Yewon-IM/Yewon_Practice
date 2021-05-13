@@ -3,120 +3,121 @@
 	
 <mapper namespace="com.yogi.hoxy">
 
-	<select id="adminList" resultType="YHDto">
+	<select id="adminList" resultType="MemberDto">
 		SELECT *
-		FROM MEMREQUEST
+		FROM MEMBER
 		WHERE POWER = '0'
 	</select>
 	
-	<select id="loginInfo" parameterType="String" resultType="int">
+	<select id="loginInfo" parameterType="String" resultType="String">
 		SELECT WHO
-		FROM MEMREQUEST
+		FROM MEMBER
 		WHERE ID = #{id} 
 	</select>
 	
-	<select id="listShop" resultType="sellerDto">
+	<select id="listShop" resultType="ShopDto">
 		SELECT *
-		FROM SELLER 
+		FROM SHOP 
 		WHERE POWER = '0'
 	</select>
 	
 	<delete id="listDel" parameterType="String">
-		DELETE FROM MEMREQUEST WHERE ID = #{id}
+		DELETE FROM MEMBER WHERE ID = #{id}
 	</delete>
 	
-	<update id="listUp" parameterType="YHDto">
-		UPDATE MEMREQUEST SET POWER='1' WHERE ID=#{id}
+	<update id="listUp" parameterType="MemberDto">
+		UPDATE MEMBER SET POWER='1' WHERE ID=#{id}
 	</update>
 	
-	<select id="listSel" parameterType="String" resultType="YHDto">
+	<select id="listSel" parameterType="String" resultType="MemberDto">
 		SELECT *
-		FROM MEMREQUEST
+		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
 	
-	<select id="listSelShop" parameterType="String" resultType="sellerDto">
+	<select id="listSelShop" parameterType="String" resultType="ShopDto">
 		SELECT * 
-		FROM SELLER 
+		FROM SHOP 
 		WHERE SHOPID = #{shopId}
 	</select>
 	
-	<update id="listUpShop" parameterType="sellerDto">
-		UPDATE SELLER SET POWER = '1' 
+	<update id="listUpShop" parameterType="ShopDto">
+		UPDATE SHOP SET POWER = '1' 
 		WHERE SHOPID = #{shopId} 
 	</update>
 	
 	<delete id="shopDel" parameterType="String">
-		DELETE FROM SELLER WHERE SHOPID = #{shopId}
+		DELETE FROM SHOP WHERE SHOPID = #{shopId}
 	</delete>
 	
-	<select id="shopList" resultType="sellerDto">
-		SELECT * FROM SELLER WHERE POWER = '1'	
+	<select id="shopList" resultType="ShopDto">
+		SELECT * FROM SHOP WHERE POWER = '1'	
 	</select>
 	
-	<select id="memberList" resultType="YHDto">
+	<select id="memberList" resultType="MemberDto">
 		SELECT *
-		FROM MEMREQUEST
+		FROM MEMBER
 		WHERE POWER = '1'
 	</select>
 	
-	<update id="memUpdate" parameterType="YHDto">
-		UPDATE MEMREQUEST 
-		SET NAME = #{name}, PWD = #{pwd}, TEL = #{tel}, EMAIL = #{email}, WHO = #{who}, POWER = #{power}
-		WHERE ID = #{id}
+	<update id="memUpdate" parameterType="MemberDto">
+		UPDATE "MEMBER" 
+		SET PWD= #{pwd}, NAME= #{name}, EMAIL= #{email}, TEL= #{tel}, LOCAL= #{local}, OADD= #{oAdd}, "ADD"= #{add}, DETAILADD= #{detailAdd}, WHO= #{who}, POWER= #{power} , DEL= #{del}
+		WHERE ID = #{id}		
 	</update>
 	
-	<insert id="shopAdd" parameterType="sellerDto">
-		INSERT INTO SELLER
-		VALUES(#{id}, #{shopTel}, #{shopName}, #{shopAdd}, #{local}, 
-		#{businessNum}, SELLER_SHOPID.NEXTVAL, SYSDATE, '0', '0')
+	<insert id="shopAdd" parameterType="ShopDto">
+		INSERT INTO SHOP 
+		(SHOPID, ID, SHOPNAME, SHOPODD, SHOPADD, SHOPDETAILADD, SHOPTEL, LOCAL, BUSINESSNUM, OPENDATE, POWER, DEL) 
+		VALUES(SHOP_SHOPID.NEXTVAL, #{id}, #{shopName}, #{shopOdd}, #{shopAdd}, #{shopDetailAdd}, #{shopTel}, #{local}, #{businessNum}, SYSDATE, '0', '0')
 	</insert>
 	
 	<select id="login" parameterType="Map" resultType="String">
 		SELECT DECODE(COUNT(*),1,'true','false') AS RESULT 
-		FROM MEMREQUEST
+		FROM MEMBER
 		WHERE ID = #{id} AND PWD = #{pwd} AND POWER = 1
 	</select>
 
-	<update id="shopUpdate" parameterType="sellerDto">
-		UPDATE SELLER SET SHOPTEL = #{shopTel}, SHOPNAME = #{shopName}, 
-		SHOPADD = #{shopAdd}, LOCAL = #{local}, BUSINESSNUM = #{businessNum},
-		POWER = #{power}, DEL = #{del}
-		WHERE SHOPID = #{shopId}
+	<update id="shopUpdate" parameterType="ShopDto">
+		UPDATE SHOP SET SHOPNAME= #{shopName}, SHOPODD= #{shopOdd}, SHOPADD= #{shopAdd}, 
+		SHOPDETAILADD= #{shopDetailAdd}, SHOPTEL= #{shopTel}, LOCAL= #{local}, BUSINESSNUM= #{businessNum}, 
+		POWER= #{power} 
+		WHERE SHOPID= #{shopId}
 	</update>
 
 	<delete id="shopDelete" parameterType="String">
-		DELETE FROM SELLER WHERE SHOPID= #{shopId}
+		DELETE FROM SHOP WHERE SHOPID= #{shopId}
 	</delete>
 
 
 
 
 	
-	<select id="myShop" parameterType="String" resultType="sellerDto">
+	<select id="myShop" parameterType="String" resultType="ShopDto">
 		SELECT * 
-		FROM SELLER
+		FROM SHOP
 		WHERE ID = #{id}
 	</select>
 	
-	<select id="myShopDetail" parameterType="Map" resultType="sellerDto">
-		SELECT * FROM SELLER  
+	<select id="myShopDetail" parameterType="Map" resultType="ShopDto">
+		SELECT * FROM SHOP  
 		WHERE ID = #{id} AND SHOPID = #{shopId}
 	</select>
 	
-	<!-- 사용자가 수정하면 관리자 허락이 필요함 -->
-	<update id="myShopUpdate" parameterType="sellerDto">
-		UPDATE SELLER SET SHOPTEL = #{shopTel}, SHOPNAME = #{shopName}, 
-		SHOPADD = #{shopAdd}, LOCAL = #{local}, BUSINESSNUM = #{businessNum}, POWER = '0'
-		WHERE SHOPID = #{shopId}
+	<!-- 사용자가 수정하면 관리자 허락이 필요함  상점이 대기 상태로 들어감-->
+	<update id="myShopUpdate" parameterType="ShopDto">
+		UPDATE SHOP SET SHOPNAME= #{shopName}, SHOPODD= #{shopOdd}, SHOPADD= #{shopAdd}, 
+		SHOPDETAILADD= #{shopDetailAdd}, SHOPTEL= #{shopTel}, LOCAL= #{local}, BUSINESSNUM= #{businessNum}, 
+		POWER= '2' 
+		WHERE SHOPID= #{shopId}
 	</update>
 	
 	<update id="myShopDelete" parameterType="String">
-		UPDATE SELLER SET DEL = '1' WHERE SHOPID= #{shopId}
+		UPDATE SHOP SET DEL = '1' WHERE SHOPID= #{shopId}
 	</update>
 	
 	<update id="myShopCan" parameterType="String">
-		UPDATE SELLER SET DEL = '0' WHERE SHOPID= #{shopId}
+		UPDATE SHOP SET DEL = '0' WHERE SHOPID= #{shopId}
 	</update>
 	
 	
@@ -124,20 +125,20 @@
 	
 	
 	<update id="myPageDel" parameterType="String">
-		UPDATE MEMREQUEST SET DEL = '1'
+		UPDATE MEMBER SET DEL = '1'
 		WHERE ID = #{id}
 	</update>
 
 	<update id="myPageCan" parameterType="String">
-		UPDATE MEMREQUEST SET DEL = '0'
+		UPDATE MEMBER SET DEL = '0'
 		WHERE ID = #{id}
 	</update>
 	
-	<select id="delList" resultType="YHDto">
-		SELECT * FROM MEMREQUEST WHERE DEL = '1'
+	<select id="delList" resultType="MemberDto">
+		SELECT * FROM MEMBER WHERE DEL = '1'
 	</select>
 	
-	<select id="delShopList" resultType="sellerDto">
-		SELECT * FROM SELLER WHERE DEL ='1'
+	<select id="delShopList" resultType="ShopDto">
+		SELECT * FROM SHOP WHERE DEL ='1'
 	</select>
 </mapper>

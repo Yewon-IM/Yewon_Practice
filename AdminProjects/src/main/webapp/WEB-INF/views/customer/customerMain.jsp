@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.yogi.hoxy.dtos.YHDto"%>
+<%@page import="com.yogi.hoxy.dtos.MemberDto"%>
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.yogi.hoxy.dtos.YHDto"%>
+<%@page import="com.yogi.hoxy.dtos.MemberDto"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,7 +7,7 @@
 <html class="no-js" lang="zxx">
 <head>
 <%
-	List<YHDto> list = (List<YHDto>) request.getAttribute("list");
+	List<MemberDto> list = (List<MemberDto>) request.getAttribute("list");
 %>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -127,10 +127,10 @@
 <li class="nav-item">
 <a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">회원관리</a>
 <ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="admin.do">회원승인</a>
+<li class="nav-item"><a href="newMemberList.do">신규회원</a>
 </li>
 <li class="active nav-item"><a href="memberList.do">회원리스트</a></li>
-<li class="nav-item"><a href="admin.do">탈퇴 회원</a></li>
+<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 </ul>
@@ -191,15 +191,15 @@
 </li>
 <li><a href="my-items.html"><i class="lni lni-bolt-alt"></i> My Ads</a></li>
 <li><a href="favourite-items.html"><i class="lni lni-heart"></i> Favourite ads</a></li>
-<li><a href="admin.do"><i class="lni lni-circle-plus"></i>회원승인</a></li>
+<li><a href="newMemberList.do"><i class="lni lni-circle-plus"></i>신규회원</a></li>
 <li><a class="active" href="admin.do"><i class="lni lni-bookmark"></i>
 회원리스트</a></li>
-<li><a href="admin.do"><i class="lni lni-envelope"></i>탈퇴회원</a></li>
+<li><a href="delMemberList.do"><i class="lni lni-envelope"></i>탈퇴회원</a></li>
 <li><a href="delete-account.html"><i class="lni lni-trash"></i> Close account</a></li>
 <li><a href="invoice.html"><i class="lni lni-printer"></i> Invoice</a></li>
 </ul>
 <div class="button">
-<a class="btn" href="javascript:void(0)">Logout</a>
+<a href="logout.do" class="btn" href="javascript:void(0)">Logout</a>
 </div>
 </div>
 </div>
@@ -239,12 +239,12 @@
 <div class="single-item-list">
 <div class="row align-items-center">
 <%
-	if(list == null){
+	if(list == null || list.size() == 0){
 		%>
 		<p>회원이 없습니다 ㅠㅠ</p>
 		<%
 	}else {
-		for(YHDto dto : list){
+		for(MemberDto dto : list){
 %>
 <div class="col-lg-2 col-md-2 col-12">
 <p><%=dto.getId() %></p>
@@ -256,9 +256,9 @@
 <p><fmt:formatDate pattern="yyyy-MM-dd" value="<%=dto.getRegDate() %>"/></p>
 </div>
 <div class="col-lg-2 col-md-2 col-12">
-<p><%if(dto.getWho() == 0){
+<p><%if(dto.getWho().equals("0")){
 		out.println("관리자");
-	} else if(dto.getWho() == 1) { 
+	} else if(dto.getWho().equals("1")) { 
 		out.println("구매자");
 	} else {
 		out.println("판매자");
@@ -472,7 +472,7 @@ App Store
 			<td colspan="9">회원이 없습니다 ㅠㅠ</td>
 			<%
 		}else {
-			for(YHDto dto : list){
+			for(MemberDto dto : list){
 		%>
 		</tr>
 		<tr>
@@ -482,9 +482,9 @@ App Store
 			<td width="50px"><%=dto.getTel() %></td>
 			<td width="50px"><%=dto.getEmail() %></td>
 			<td width="100px"><fmt:formatDate pattern="yyyy-MM-dd" value="<%=dto.getRegDate() %>"/></td>
-			<td width="50px"><%if(dto.getWho() == 0){
+			<td width="50px"><%if(dto.getWho().equals("0")){
 								out.println("관리자");
-								} else if(dto.getWho() == 1) { 
+								} else if(dto.getWho().equals("1")) { 
 									out.println("구매자");
 								} else {
 									out.println("판매자");

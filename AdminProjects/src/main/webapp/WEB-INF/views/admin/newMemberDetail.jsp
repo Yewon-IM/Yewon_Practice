@@ -189,18 +189,13 @@ Sibebar</a></li>
 </div>
 
 <div class="form-group">
-<label>비밀번호</label>
-<input name="pwd" type="text" value=${dto.pwd } readonly>
-</div>
-
-<div class="form-group">
 <label>이름</label>
 <input name="name" type="text" value=${dto.name } readonly>
 </div>
 
 <div class="form-group">
-<label>이메일</label>
-<input name="email" type="email" value=${dto.email } readonly>
+<label>비밀번호</label>
+<input name="pwd" type="text" value=${dto.pwd } readonly>
 </div>
 
 <div class="form-group">
@@ -209,23 +204,8 @@ Sibebar</a></li>
 </div>
 
 <div class="form-group">
-<label>지역</label>
-<input name="local" value = "${dto.local }" readonly>
-</div>
-
-<div class="form-group">
-<label>우편번호</label>
-<input name="oAdd" value = "${dto.oAdd }" readonly>
-</div>
-
-<div class="form-group">
-<label>주소</label>
-<input name="add" value = "${dto.add }" readonly>
-</div>
-
-<div class="form-group">
-<label>상세주소</label>
-<input name="detailAdd" value = "${dto.detailAdd }" readonly>
+<label>이메일</label>
+<input name="email" type="email" value=${dto.email } readonly>
 </div>
 
 <div class="form-group">
@@ -240,10 +220,10 @@ Sibebar</a></li>
 										"관리자"
 									</c:if>
 									<c:if test="${dto.who == 1}">
-										"구매자"
+										"판매자"
 									</c:if>			
 									<c:if test="${dto.who == 2}">
-										"판매자"
+										"구매자"
 									</c:if>	 readonly>
 </div>
 
@@ -264,13 +244,7 @@ Sibebar</a></li>
 </div>
 </div>
 </div>
-<div class="button">
-<input type="submit" class="btn" value="수정하기" formaction="memUpdateForm.do">
-</div>
-<div class="button">
-<input type="submit" class="btn" value="삭제하기" formaction="delete.do">
-</div>
-<p class="outer-link">회원리스트로<a href="memberList.do"> 돌아가기</a>
+<p class="outer-link">신규회원리스트<a href="newMemberList.do"> 돌아가기</a>
 </p>
 </form>
 
@@ -279,6 +253,34 @@ Sibebar</a></li>
 </div>
 </div>
 </section>
+
+
+<div class="newsletter section">
+<div class="container">
+<div class="inner-content">
+<div class="row align-items-center">
+<div class="col-lg-6 col-md-6 col-12">
+<div class="title">
+<i class="lni lni-alarm"></i>
+<h2>Newsletter</h2>
+<p>We don't send spam so don't worry.</p>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-12">
+<div class="form">
+<form action="#" method="get" target="_blank" class="newsletter-form">
+<input name="EMAIL" placeholder="Your email address" type="email">
+<div class="button">
+<button class="btn">Subscribe<span class="dir-part"></span></button>
+</div>
+</form>
+</div>
+ </div>
+</div>
+</div>
+</div>
+</div>
+
 
 <footer class="footer">
 
@@ -380,8 +382,6 @@ App Store
 <a href="#" class="scroll-top btn-hover">
 <i class="lni lni-chevron-up"></i>
 </a>
-<a href=".">메인 홈페이지</a>
-<a href="memberList.do">회원 관리페이지</a>	
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>

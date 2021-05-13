@@ -18,11 +18,13 @@
 <body>
 <form method="post">
 <table border="1">
-	<th colspan="6">상점 정보</th>
+	<th colspan="8">상점 정보</th>
 	<tr>
 		<td>상점 이름</td>
 		<td>상점 전화번호</td>
+		<td>상점 우편번호</td>
 		<td>상점 주소</td>
+		<td>상점 상세주소</td>
 		<td>상점 지역</td>
 		<td>상점 사업자번호</td>
 	</tr>
@@ -30,6 +32,8 @@
 		<td><input type="text" name="shopName" value="${sdto.shopName }"></td>
 		<td><input type="text" name="shopTel" value="${sdto.shopTel }"></td>
 		<td><input type="text" name="shopAdd"  value="${sdto.shopAdd }"></td>
+		<td><input type="text" name="shopOdd"  value="${sdto.shopOdd }"></td>
+		<td><input type="text" name="shopDetailAdd"  value="${sdto.shopDetailAdd }"></td>
 		<td><select name="local">
 						<option ${sdto.local == "강남구"? "selected" : "" }>강남구</option>
 						<option ${sdto.local == "강동구"? "selected" : "" }>강동구</option>

@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.yogi.hoxy.dtos.YHDto"%>
+<%@page import="com.yogi.hoxy.dtos.MemberDto"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -189,13 +189,18 @@ Sibebar</a></li>
 </div>
 
 <div class="form-group">
+<label>비밀번호</label>
+<input name="pwd" type="text" value=${dto.pwd }>
+</div>
+
+<div class="form-group">
 <label>이름</label>
 <input name="name" type="text" value=${dto.name }>
 </div>
 
 <div class="form-group">
-<label>비밀번호</label>
-<input name="pwd" type="text" value=${dto.pwd }>
+<label>이메일</label>
+<input name="email" type="email" value=${dto.email }>
 </div>
 
 <div class="form-group">
@@ -204,8 +209,23 @@ Sibebar</a></li>
 </div>
 
 <div class="form-group">
-<label>이메일</label>
-<input name="email" type="email" value=${dto.email }>
+<label>지역</label>
+<input name="local" value = "${dto.local }" >
+</div>
+
+<div class="form-group">
+<label>우편번호</label>
+<input name="oAdd" value = "${dto.oAdd }" >
+</div>
+
+<div class="form-group">
+<label>주소</label>
+<input name="add" value = "${dto.add }" >
+</div>
+
+<div class="form-group">
+<label>상세주소</label>
+<input name="detailAdd" value = "${dto.detailAdd }" >
 </div>
 
 <div class="form-group">
@@ -229,12 +249,13 @@ Sibebar</a></li>
 </select>
 </div>
 
-<input type="hidden" name="shopName" value=${dto.shopName }>
-<input type="hidden" name="shopAdd" value=${dto.shopAdd }>
-<input type="hidden" name="local" value=${dto.local }>
-<input type="hidden" name="businessnum" value=${dto.businessNum }>
-<input type="hidden" name="shopId" value=${dto.shopId }>
-
+<div class="form-group">
+<label>삭제요청</label>
+<select name="del" form="member">
+	<option value= "0" ${dto.del == 0? "selected" : "" }>정상</option>
+	<option value= "1" ${dto.del == 1? "selected" : "" }>삭제요청</option>
+</select>
+</div>
 
 <div class="check-and-pass">
 <div class="row align-items-center">

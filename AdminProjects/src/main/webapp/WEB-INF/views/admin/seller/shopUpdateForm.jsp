@@ -17,12 +17,14 @@
 <body>
 <form method="post">
 <table border="1">
-	<th colspan="9">상점 정보</th>
+	<th colspan="11">상점 정보</th>
 	<tr>
 		<td width="40px">아이디</td>
 		<td width="40px">상점 이름</td>
+		<td width="40px">상점 우편번호</td>
 		<td width="40px">상점 전화번호</td>
 		<td width="40px">상점 주소</td>
+		<td width="40px">상점 상세주소</td>
 		<td width="40px">상점 지역</td>
 		<td width="40px">상점 사업자번호</td>
 		<td width="40px">상점 고유번호</td>
@@ -33,7 +35,9 @@
 		<td><input type="text" name="id" value="${sdto.id }" readonly></td>
 		<td><input type="text" name="shopName" value="${sdto.shopName }"></td>
 		<td><input type="text" name="shopTel" value="${sdto.shopTel }"></td>
+		<td><input type="text" name="shopOdd" value="${sdto.shopOdd}"></td>
 		<td><input type="text" name="shopAdd"  value="${sdto.shopAdd }"></td>
+		<td><input type="text" name="shopDetailAdd"  value="${sdto.shopDetailAdd }"></td>
 		<td><select name="local">
 						<option ${sdto.local == "강남구"? "selected" : "" }>강남구</option>
 						<option ${sdto.local == "강동구"? "selected" : "" }>강동구</option>
@@ -63,7 +67,7 @@
 			</select>
 		</td>
 		<td><input type="text" name="businessNum" value="${sdto.businessNum }"></td>
-		<td><input type="text" name="shopId" value="${sdto.shopId }" readonly></td>
+		<td><input type="text" value="${sdto.shopId }" readonly></td>
 		<td><select name="power">
 				<option value= 1 ${sdto.power == 1 ? "selected" : ""}>승인</option>
 				<option value= 0 ${sdto.power == 0 ? "selected" : ""}>미승인</option>

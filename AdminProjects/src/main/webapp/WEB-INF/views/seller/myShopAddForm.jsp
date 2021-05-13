@@ -17,11 +17,13 @@
 <body>
 	<form method="post" id="shop">
 		<table border="1">
-			<th colspan="5">상점 추가 </th>
+			<th colspan="7">상점 추가 </th>
 			<tr>
 				<td>상점 이름  <input type="text" name="shopName"></td>
-				<td>상점 전화번호 <input type="text" name="shopTel"></td>
+				<td>상점 우편번호 <input type="text" name="shopOdd"></td>
 				<td>상점 주소 <input type="text" name="shopAdd"></td>
+				<td>상점 자세한 주소 <input type="text" name="shopDetailAdd"></td>
+				<td>상점 전화번호 <input type="text" name="shopTel"></td>
 				<td>지역<select name="local">
 						<option value="강남구">강남구</option>
 						<option value="강동구">강동구</option>

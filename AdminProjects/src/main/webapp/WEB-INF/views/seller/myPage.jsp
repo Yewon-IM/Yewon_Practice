@@ -24,13 +24,17 @@
 <body>
 <form method="post">
 <table border="1">
-	<th colspan="6">회원정보</th>
+	<th colspan="10">회원정보</th>
 	<tr>
 		<td>아아디</td>
 		<td>이름</td>
 		<td>비밀번호</td>
 		<td>전화번호</td>
 		<td>이메일</td>
+		<td>지역</td>
+		<td>우편번호</td>
+		<td>주소</td>
+		<td>상세주소</td>
 		<td>가입일</td>
 	</tr>
 	<tr>
@@ -39,16 +43,14 @@
 		<td>${dto.pwd }</td>
 		<td>${dto.tel }</td>
 		<td>${dto.email }</td>
+		<td>${dto.local }</td>
+		<td>${dto.oAdd }</td>
+		<td>${dto.add }</td>
+		<td>${dto.detailAdd }</td>
 		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regDate }" /></td>
 	</tr>
 	<tr>
-		<td colspan="6">
-			<input type="hidden" name="shopName" value=${dto.shopName }>
-			<input type="hidden" name="shopAdd" value=${dto.shopAdd }>
-			<input type="hidden" name="local" value=${dto.local }>
-			<input type="hidden" name="businessnum" value=${dto.businessNum }>
-			<input type="hidden" name="shopId" value=${dto.shopId }>
-			
+		<td colspan="10">
 		<c:if test="${'1' eq dto.del }">
 			<input type="submit" value="회원 탈퇴 취소" formaction='myPageCan.do?id=${dto.id }'>
 		</c:if>

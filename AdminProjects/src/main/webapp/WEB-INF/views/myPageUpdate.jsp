@@ -25,6 +25,10 @@
 		<td>비밀번호</td>
 		<td>전화번호</td>
 		<td>이메일</td>
+		<td>지역</td>
+		<td>우편번호</td>
+		<td>주소</td>
+		<td>상세주소</td>
 		<td>가입일</td>
 	</tr>
 	<tr>
@@ -33,16 +37,16 @@
 		<td><input type="password" name="pwd" value="${dto.pwd }"></td>
 		<td><input type="text" name="tel"  value="${dto.tel }"></td>
 		<td><input type="email" name="email" value="${dto.email }"></td>
+		<td><input type="text" name="local" value="${dto.local }"></td>
+		<td><input type="text" name="oAdd" value="${dto.oAdd }"></td>
+		<td><input type="text" name="add" value="${dto.add }"></td>
+		<td><input type="text" name="detailAdd" value="${dto.detailAdd }"></td>
 		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regDate }" /></td>
 	</tr>
 </table>
 <input type="hidden" name="power" value=${dto.power }>
 <input type="hidden" name="who" value=${dto.who }>
-<input type="hidden" name="shopName" value=${dto.shopName }>
-<input type="hidden" name="shopAdd" value=${dto.shopAdd }>
-<input type="hidden" name="local" value=${dto.local }>
-<input type="hidden" name="businessnum" value=${dto.businessNum }>
-<input type="hidden" name="shopId" value=${dto.shopId }>
+<input type="hidden" name="del" value=${dto.del }>
 
 <input type="submit" value="수정하기" formaction="myPageUpdate.do?id=${dto.id }">
 </form>

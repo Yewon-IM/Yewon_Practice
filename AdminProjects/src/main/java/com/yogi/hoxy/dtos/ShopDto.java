@@ -2,33 +2,38 @@ package com.yogi.hoxy.dtos;
 
 import java.util.Date;
 
-public class sellerDto {
+public class ShopDto {
+	
 	private String id;
-	private String shopTel;
+	private String shopId;
 	private String shopName;
+	private String shopOdd;
 	private String shopAdd;
+	private String shopDetailAdd;
+	private String shopTel;
 	private String local;
-	private int businessNum;
-	private int shopId;
+	private String businessNum;
 	private Date openDate;
 	private String power;
 	private String del;
 	
-	public sellerDto() {
+	public ShopDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public sellerDto(String id, String shopTel, String shopName, String shopAdd, String local, int businessNum,
-			int shopId, Date openDate, String power, String del) {
+	public ShopDto(String id, String shopId, String shopName, String shopOdd, String shopAdd, String shopDetailAdd,
+			String shopTel, String local, String businessNum, Date openDate, String power, String del) {
 		super();
 		this.id = id;
-		this.shopTel = shopTel;
+		this.shopId = shopId;
 		this.shopName = shopName;
+		this.shopOdd = shopOdd;
 		this.shopAdd = shopAdd;
+		this.shopDetailAdd = shopDetailAdd;
+		this.shopTel = shopTel;
 		this.local = local;
 		this.businessNum = businessNum;
-		this.shopId = shopId;
 		this.openDate = openDate;
 		this.power = power;
 		this.del = del;
@@ -42,12 +47,12 @@ public class sellerDto {
 		this.id = id;
 	}
 
-	public String getShopTel() {
-		return shopTel;
+	public String getShopId() {
+		return shopId;
 	}
 
-	public void setShopTel(String shopTel) {
-		this.shopTel = shopTel;
+	public void setShopId(String shopId) {
+		this.shopId = shopId;
 	}
 
 	public String getShopName() {
@@ -58,12 +63,36 @@ public class sellerDto {
 		this.shopName = shopName;
 	}
 
+	public String getShopOdd() {
+		return shopOdd;
+	}
+
+	public void setShopOdd(String shopOdd) {
+		this.shopOdd = shopOdd;
+	}
+
 	public String getShopAdd() {
 		return shopAdd;
 	}
 
 	public void setShopAdd(String shopAdd) {
 		this.shopAdd = shopAdd;
+	}
+
+	public String getShopDetailAdd() {
+		return shopDetailAdd;
+	}
+
+	public void setShopDetailAdd(String shopDetailAdd) {
+		this.shopDetailAdd = shopDetailAdd;
+	}
+
+	public String getShopTel() {
+		return shopTel;
+	}
+
+	public void setShopTel(String shopTel) {
+		this.shopTel = shopTel;
 	}
 
 	public String getLocal() {
@@ -74,20 +103,12 @@ public class sellerDto {
 		this.local = local;
 	}
 
-	public int getBusinessNum() {
+	public String getBusinessNum() {
 		return businessNum;
 	}
 
-	public void setBusinessNum(int businessNum) {
+	public void setBusinessNum(String businessNum) {
 		this.businessNum = businessNum;
-	}
-
-	public int getShopId() {
-		return shopId;
-	}
-
-	public void setShopId(int shopId) {
-		this.shopId = shopId;
 	}
 
 	public Date getOpenDate() {
@@ -116,9 +137,10 @@ public class sellerDto {
 
 	@Override
 	public String toString() {
-		return "sellerDto [id=" + id + ", shopTel=" + shopTel + ", shopName=" + shopName + ", shopAdd=" + shopAdd
-				+ ", local=" + local + ", businessNum=" + businessNum + ", shopId=" + shopId + ", openDate=" + openDate
-				+ ", power=" + power + ", del=" + del + "]";
+		return "ShopDto [id=" + id + ", shopId=" + shopId + ", shopName=" + shopName + ", shopOdd=" + shopOdd
+				+ ", shopAdd=" + shopAdd + ", shopDetailAdd=" + shopDetailAdd + ", shopTel=" + shopTel + ", local="
+				+ local + ", businessNum=" + businessNum + ", openDate=" + openDate + ", power=" + power + ", del="
+				+ del + "]";
 	}
 
 }

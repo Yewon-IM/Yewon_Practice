@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.yogi.hoxy.dtos.YHDto"%>
+<%@page import="com.yogi.hoxy.dtos.MemberDto"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

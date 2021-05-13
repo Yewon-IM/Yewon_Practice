@@ -43,12 +43,6 @@
 	</tr>
 	<tr>
 		<td colspan="6">
-			<input type="hidden" name="shopName" value=${dto.shopName }>
-			<input type="hidden" name="shopAdd" value=${dto.shopAdd }>
-			<input type="hidden" name="local" value=${dto.local }>
-			<input type="hidden" name="businessnum" value=${dto.businessNum }>
-			<input type="hidden" name="shopId" value=${dto.shopId }>
-		
 		<c:if test="${'1' eq dto.del }">
 			<input type="submit" value="회원 탈퇴 취소" formaction='myPageCan.do?id=${dto.id }'>
 		</c:if>
