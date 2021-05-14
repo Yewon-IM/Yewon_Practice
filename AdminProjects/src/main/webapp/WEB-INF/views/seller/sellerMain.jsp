@@ -83,8 +83,8 @@
 <li class="single-block">
 <ul>
 <li class="mega-menu-title">상점</li>
-<li class="nav-item"><a href="myShop.do?id=${dto.id }">내 상점 보기</a></li>
-<li class="nav-item"><a href=".">고객문의함</a></li>
+<li class="nav-item"><a href="myShop.do">내 상점 보기</a></li>
+<li class="nav-item"><a href="myShopAddForm.do">상점 추가</a></li>
 <li class="nav-item"><a href=".">재고요청</a></li>
 <li class="nav-item"><a href=".">상점 달력</a></li>
 </ul>
@@ -94,21 +94,13 @@
 <li class="mega-menu-title">마이페이지</li>
 <li class="nav-item"><a href="myPage.do">마이페이지</a>
 </li>
-<li class="nav-item"><a href=".">문의하기</a>
+<li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a>
 </li>
 <li class="nav-item"><a href=".">가나다</a></li>
-<li class="nav-item"><a href=".">롸뫄봐</a>
+<li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">회원관리</a>
-<ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="newMemberList.do">회원 승인</a></li>
-<li class="nav-item"><a href="memberList.do">회원리스트</a></li>
-<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 </ul>
@@ -116,7 +108,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p><%= name %> 판매자</p>
+<p><%=name %> 판매자</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>

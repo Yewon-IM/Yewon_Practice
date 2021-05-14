@@ -54,7 +54,8 @@ public class HomeController {
 
 			MemberDto dto = (MemberDto) session.getAttribute("dto");
 			model.addAttribute("dto", dto);
-
+			System.out.println("dto : " + dto);
+			
 			if (who.equals("0")) {
 				return "admin/adminMain";
 			} else if (who.equals("1")) {
@@ -88,11 +89,10 @@ public class HomeController {
 			session.setAttribute("user_id", id);
 
 			MemberDto dto = yoService.listSel(id);
-			System.out.println("dto : " + dto);
-
-			request.setAttribute("dto", dto);
+			
 			session.setAttribute("who", dto.getWho());
 			session.setAttribute("name", dto.getName());
+			session.setAttribute("id", dto.getId());
 			System.out.println("who : " + dto.getWho());
 			System.out.println("name : " + dto.getName());
 			System.out.println("세선 생겼어요 : " + session);
@@ -167,8 +167,8 @@ public class HomeController {
 		String name = (String) session.getAttribute("name");
 		model.addAttribute("name",name);
 		
-		List<MemberDto> list = yoService.adminList();
-		model.addAttribute("list", list);
+		List<MemberDto> dList = yoService.delList();
+		model.addAttribute("dList", dList);
 		
 		return "admin/delMemberList";
 	}
@@ -180,7 +180,7 @@ public class HomeController {
 		HttpSession session = request.getSession();
 		String who = (String) session.getAttribute("who");
 		System.out.println("who : " + who);
-
+		
 		if (who.equals("0")) {
 			List<MemberDto> list = yoService.memberList();
 			model.addAttribute("list", list);
@@ -487,6 +487,7 @@ public class HomeController {
 		HttpSession session = request.getSession();		
 		String who = (String) session.getAttribute("who");
 		
+		System.out.println(id + shopId);
 		ShopDto sdto = yoService.myShopDetail(id, shopId);
 		model.addAttribute("sdto", sdto);
 		System.out.println("sdto : " + sdto);
@@ -529,7 +530,7 @@ public class HomeController {
 		}
 	}
 	
-	@RequestMapping(value = "/myShopCan.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/myShopCan.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myShopCan(Locale locale, Model model, @RequestParam("shopId") String shopId) {
 		logger.info("상점 정보 삭제취소", locale);
 
@@ -579,7 +580,7 @@ public class HomeController {
 		logger.info("마이페이지", locale);
 
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("user_id");
+		String id = (String) session.getAttribute("id");
 		System.out.println("id : " + id);
 		
 		MemberDto dto = yoService.listSel(id);
@@ -595,41 +596,40 @@ public class HomeController {
 		}
 	}
 
-	@RequestMapping(value = "/myPageUpdateForm.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPageUpdateForm(@RequestParam("id") String id, Locale locale, Model model) {
+	@RequestMapping(value = "/myPageUpdateForm.do", method = RequestMethod.GET)
+	public String myPageUpdateForm(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("회원 정보 수정 폼", locale);
-
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println("id : " + id);
+		
 		MemberDto dto = yoService.listSel(id);
 		model.addAttribute("dto", dto);
 
-		return "myPageUpdate";
+		if(dto.getWho().equals("1")) {
+			return "customer/myPageUpdateForm";			
+		} else if(dto.getWho().equals("2") ) {
+			return "seller/myPageUpdateForm";
+		} else {
+			model.addAttribute("msg", "마이페이지 오류");
+			return "error";
+		}
 	}
 
-	@RequestMapping(value = "/myPageUpdate.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPageUpdate(HttpServletRequest request, @RequestParam("id") String id, Locale locale, Model model, MemberDto dto) {
+	@RequestMapping(value = "/myPageUpdate.do", method = RequestMethod.POST)
+	public String myPageUpdate(HttpServletRequest request, Locale locale, Model model, MemberDto dto) {
 		logger.info("회원 정보 수정하기", locale);
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println("id : " + id);
 		
 		System.out.println("dto : " + dto);
 		boolean isS = yoService.memUpdate(dto);
 		
 		if (isS) {
-			HttpSession session = request.getSession(false);
-			session.invalidate();
-			return "redirect:.";
-		} else {
-			return "error";
-		}
-	}
-
-	@RequestMapping(value = "/myPageDelete.do", method = RequestMethod.POST)
-	public String myPageDelete(HttpServletRequest request, Locale locale, Model model, @RequestParam("id") String id) {
-		logger.info("회원탈퇴", locale);
-
-		boolean isS = yoService.myPageDel(id);
-		System.out.println("id");
-
-		if (isS) {
-			HttpSession session = request.getSession(false);
+			session = request.getSession(false);
 			session.invalidate();
 			return "redirect:.";
 		} else {
@@ -637,18 +637,60 @@ public class HomeController {
 		}
 	}
 	
-	@RequestMapping(value = "/myPageCan.do", method = RequestMethod.POST)
+	
+	@RequestMapping(value = "/myPageDelete.do", method = RequestMethod.GET)
+	public String myPageDelete(HttpServletRequest request, Locale locale, Model model) {
+		logger.info("회원탈퇴폼", locale);
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println("id : " + id);
+		
+		MemberDto dto = yoService.listSel(id);
+		System.out.println("dto : " + dto);
+		
+		if(dto.getWho().equals("1")) {
+			return "customer/myPageDelete";			
+		} else if(dto.getWho().equals("2") ) {
+			return "seller/myPageDelete";
+		} else {
+			model.addAttribute("msg", "마이페이지 오류");
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value = "/myPageDeleteDo.do", method = RequestMethod.POST)
+	public String myPageDeleteDo(HttpServletRequest request, Locale locale, Model model) {
+		logger.info("회원탈퇴", locale);
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println("id : " + id);
+		
+		boolean isS = yoService.myPageDel(id);
+		System.out.println("id");
+
+		if (isS) {
+			session = request.getSession(false);
+			session.invalidate();
+			return "redirect:.";
+		} else {
+			return "error";
+		}
+	}	
+	
+	@RequestMapping(value = "/myPageCan.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPageCan(HttpServletRequest request, Locale locale, Model model, @RequestParam("id") String id) {
 		logger.info("회원탈퇴 취소", locale);
 
-		boolean isS = yoService.myPageCan(id);
-		System.out.println("id");
 		HttpSession session = request.getSession();
 		String who = (String) session.getAttribute("who");
 		
+		boolean isS = yoService.myPageCan(id);
+		System.out.println("id :" + id);
 		if (isS) {
 			if (who.equals("0")) {
-				return "admin/adminMain";
+				return "redirect:delMemberList.do";
 			} else if (who.equals("1")) {
 				return "customer/customerMain";
 			} else if (who.equals("2")) {

@@ -1,13 +1,19 @@
-<%@page import="java.util.List"%>
-<%@page import="com.yogi.hoxy.dtos.ShopDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="zxx">
 <head>
-<meta charset="UTF-8">
-<title>내 상점 보기</title>
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>회원탈퇴</title>
+<% String name = (String) session.getAttribute("name"); %>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+
+
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
@@ -18,8 +24,25 @@
 <link rel="stylesheet" href="resources/css/glightbox.min.css" />
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
-<% List<ShopDto> list = (List<ShopDto>)request.getAttribute("list"); %>
 <body>
+<!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+<div class="preloader">
+<div class="preloader-inner">
+<div class="preloader-icon">
+<span></span>
+<span></span>
+</div>
+</div>
+</div>
+
+
 <header class="header navbar-area">
 <div class="container">
 <div class="row align-items-center">
@@ -37,15 +60,15 @@
 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 <ul id="nav" class="navbar-nav ms-auto">
 <li class="nav-item">
-<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
 <ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href="index.html">Home Default</a></li>
-<li class="nav-item active"><a href="index2.html">Home Version 2</a></li>
-<li class="nav-item"><a href="index3.html">Home Version 3</a></li>
+<li class="nav-item"><a href=".">Home Default</a></li>
+<li class="nav-item"><a href=".">Home Version 2</a></li>
+<li class="nav-item"><a href=".">Home Version 3</a></li>
 </ul>
 </li>
- <li class="nav-item">
-<a href="category.html" aria-label="Toggle navigation">Categories</a>
+<li class="nav-item">
+ <a href="category.html" aria-label="Toggle navigation">Categories</a>
 </li>
 <li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>
@@ -61,7 +84,7 @@
 <li class="single-block">
 <ul>
 <li class="mega-menu-title">상점</li>
-<li class="nav-item"><a href="myShop.do?id=">내 상점 보기</a></li>
+<li class="nav-item"><a href="myShop.do">내 상점 보기</a></li>
 <li class="nav-item"><a href="myShopAddForm.do">상점 추가</a></li>
 <li class="nav-item"><a href=".">재고요청</a></li>
 <li class="nav-item"><a href=".">상점 달력</a></li>
@@ -72,7 +95,7 @@
 <li class="mega-menu-title">마이페이지</li>
 <li class="nav-item"><a href="myPage.do">마이페이지</a>
 </li>
-<li class="nav-item"><a href=".">문의하기</a>
+<li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a>
 </li>
 <li class="nav-item"><a href=".">가나다</a></li>
 <li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a>
@@ -82,11 +105,13 @@
 </ul>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">회원관리</a>
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Blog</a>
 <ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="newMemberList.do">회원 승인</a></li>
-<li class="nav-item"><a href="memberList.do">회원리스트</a></li>
-<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
+<li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
+</li>
+<li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
+<li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
+Sibebar</a></li>
 </ul>
 </li>
 </ul>
@@ -94,10 +119,10 @@
 <div class="login-button">
 <ul>
 <li>
-<p>홍길동 판매자</p>
+<p><%= name %></p>
 </li>
 <li>
-<a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>
+<a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
 </li>
 </ul>
 </div>
@@ -107,109 +132,78 @@
 </div> 
 </div> 
 </header>
-<a href=".">메인 홈페이지</a>
-<section class="testimonials section">
+
+
+<div class="breadcrumbs">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-6 col-md-6 col-12">
+<div class="breadcrumbs-content">
+<h1 class="page-title">회원탈퇴</h1>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-12">
+<ul class="breadcrumb-nav">
+<li><a href=".">Home</a></li>
+<li>회원탈퇴</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<section class="dashboard section">
 <div class="container">
 <div class="row">
+<div class="col-lg-3 col-md-4 col-12">
+
+<div class="dashboard-sidebar">
+<div class="user-image">
+<img src="assets/images/dashboard/user-image.jpg" alt="#">
+<h3>Steve Aldridge
+<span><a href="javascript:void(0)">${name }</a></span>
+</h3>
+</div>
+<div class="dashboard-menu">
+<ul>
+<li><a href="myPage.do"><i class="lni lni-dashboard"></i> 마이페이지</a></li>
+<li><a href="myPageUpdateForm.do"><i class="lni lni-pencil-alt"></i>정보 수정</a></li>
+<li><a href="my-items.html"><i class="lni lni-bolt-alt"></i> My Ads</a></li>
+<li><a href="favourite-items.html"><i class="lni lni-heart"></i> Favourite ads</a></li>
+<li><a href="post-item.html"><i class="lni lni-circle-plus"></i> Post An Ad</a></li>
+<li><a href="bookmarked-items.html"><i class="lni lni-bookmark"></i> Bookmarked</a></li>
+<li><a href="messages.html"><i class="lni lni-envelope"></i> Messages</a></li>
+<li><a href="delete-account.html"><i class="lni lni-trash"></i> Close account</a></li>
+<li><a class="active" href="myPageDelete.do"><i class="lni lni-printer"></i> 회원탈퇴</a></li>
+</ul>
+<div class="button">
+<a class="btn" href="logout.do">Logout</a>
+</div>
+</div>
+</div>
+
+</div>
+<div class="col-lg-9 col-md-8 col-12">
+<div class="main-content">
+
+<div class="dashboard-block mt-0 profile-settings-block">
+<h3 class="block-title">회원탈퇴</h3>
+<form method="post" action="myPageDeleteDo.do">
+<h1>정말로 탈퇴 하시겠습니까?</h1>
 <div class="col-12">
-<div class="section-title align-center gray-bg">
-<h2 class="wow fadeInUp" data-wow-delay=".4s">내 상점</h2>
+<div class="form-group button mb-0">
+<button type="submit" class="btn">탈퇴하기</button>
 </div>
 </div>
-</div>			
-<div class="row testimonial-slider">
-<%
-	if(list == null){
-		%>
-<section class="how-works section">
-<div class="container">
-<div class="row">
-<div class="col-12">
-<div class="section-title">
-<h2 class="wow fadeInUp" data-wow-delay=".4s">상점 추가하기</h2>
-<p class="wow fadeInUp" data-wow-delay=".6s">설명설명</p>
+</form>
 </div>
+
 </div>
-</div>
-<div class="col-12">
-<div class="single-work wow fadeInUp" data-wow-delay=".4s">
-<a href="myShopAddForm.do"><img src="resources/image/newShop.png" alt="admit"></a>
 </div>
 </div>
 </div>
 </section>
-
-		<% } else {
-			for(ShopDto sdto: list){ %>	
-			<div class="col-lg-4 col-md-6 col-12">
-			<div class="single-testimonial">
-			<div class="quote-icon">
-			<i class="lni lni-quotation"></i>
-			</div>
-			<div class="author">
-			<a href="myShopDetail.do?shopId=<%=sdto.getShopId()%>&id=<%=sdto.getId()%>"><img src="assets/images/testimonial/testi1.jpg" alt="#"></a>
-			<h4 class="name">
-			<%= sdto.getShopName() %>
-			<span class="deg"><% if (sdto.getPower().equals("0")){ 
- 					out.println("미승인");
- 				} else if (sdto.getPower().equals("1")){
- 					out.println("승인");
- 				} 
- 					%></span>
-			</h4>
-			</div>
-			<div class="text">
-			<p>전화번호 : <%= sdto.getShopTel() %></p>
-			<p>지역 : <%= sdto.getLocal() %></p>
-			<p>가입날짜 : <fmt:formatDate pattern="yyyy-MM-dd" value="<%= sdto.getOpenDate() %>"/></p>
-			<p>상점번호 : <%= sdto.getShopId() %></p>
-			<p>상태 : <% if (sdto.getDel().equals("0")){ 
- 					out.println("정상");
- 					} else {
- 						out.println("삭제예정");
- 					} %></p>
- 			<p><%if(sdto.getDel().equals("1")) { 
- 					%><input type='submit' value='삭제취소' formaction='myShopCan.do?shopId=<%=sdto.getShopId()%>'> 
- 						<a href="myShopCan.do?shopId=<%=sdto.getShopId()%>">삭제취소</a>
- 				<% } else { 
- 					%><input type='submit' value='삭제요청하기' formaction='myShopDelete.do?shopId=<%=sdto.getShopId()%>'> 
- 					<a href="myShopDelete.do?shopId=<%=sdto.getShopId()%>">삭제요청</a>
- 				<% } 
- 				%></p>
-			</div>
-			</div>
-			</div>
-	<% }%>
-<% }%>
-</div>
-</div>
-</section>
-
-
-
-
-<section class="how-works section">
-<div class="container">
-<div class="row">
-<div class="col-12">
-<div class="section-title">
-<h2 class="wow fadeInUp" data-wow-delay=".4s">상점 추가하기</h2>
-<p class="wow fadeInUp" data-wow-delay=".6s">설명설명</p>
-</div>
-</div>
-</div>
-<div class="col-12">
-<div class="single-work wow fadeInUp" data-wow-delay=".4s">
-<a href="myShopAddForm.do"><img src="resources/image/newShop.png" alt="admit"></a>
-</div>
-</div>
-</div>
-</section>
-
-
-
-
-
 
 
 <footer class="footer">
@@ -286,7 +280,7 @@ App Store
 <h3>Contact</h3>
 <ul>
 <li>23 New Design Str, Lorem Upsum 10<br> Hudson Yards, USA</li>
-<li>Tel. +(123) 1800-567-8990 <br> Mail. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fd8e888d8d928f89bd9e919c8e8e949a8f94998ed39e9290">[email&#160;protected]</a></li>
+<li>Tel. +(123) 1800-567-8990 <br> Mail. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f4878184849b8680b497989587879d93869d9087da979b99">[email&#160;protected]</a></li>
 </ul>
 </div>
 
@@ -327,55 +321,15 @@ App Store
 </footer>
 
 
-
+<a href="#" class="scroll-top btn-hover">
+<i class="lni lni-chevron-up"></i>
+</a>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/tiny-slider.js"></script>
 <script src="resources/js/glightbox.min.js"></script>
-<script src="resources/js/count-up.min.js"></script>
 <script src="resources/js/main.js"></script>
-<script type="text/javascript">
-        //========= testimonial 
-        tns({
-            container: '.testimonial-slider',
-            items: 3,
-            slideBy: 'page',
-            autoplay: false,
-            mouseDrag: true,
-            gutter: 0,
-            nav: true,
-            controls: false,
-            controlsText: ['<i class="lni lni-arrow-left"></i>', '<i class="lni lni-arrow-right"></i>'],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                540: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 2,
-                },
-                1170: {
-                    items: 2,
-                }
-            }
-        });
-
-        //====== counter up 
-        var cu = new counterUp({
-            start: 0,
-            duration: 2000,
-            intvalues: true,
-            interval: 100,
-            append: " ",
-        });
-        cu.start();
-    </script>
 </body>
 </html>

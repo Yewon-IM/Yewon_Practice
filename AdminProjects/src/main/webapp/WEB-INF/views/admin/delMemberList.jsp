@@ -268,7 +268,7 @@
 </div>
 <div class="col-lg-2 col-md-2 col-12 align-center">
 <ul class="action-btn">
-<li><a href="admit.do?id=<%=dto.getId()%>"><img src="resources/image/checked.png" alt="admit"></a></li> <!-- admit -->
+<li><a href="myPageCan.do?id=<%=dto.getId()%>"><img src="resources/image/checked.png" alt="admit"></a></li> <!-- admit -->
 <li><a href="delete.do?id=<%=dto.getId()%>"><img src="resources/image/delete.png" alt="delete"></a></li> <!-- delete -->
 <li><a href="newMemberDetail.do?id=<%=dto.getId()%>"><img src="resources/image/search.png" alt="detail"></a></li> <!-- detail -->
 </ul>
