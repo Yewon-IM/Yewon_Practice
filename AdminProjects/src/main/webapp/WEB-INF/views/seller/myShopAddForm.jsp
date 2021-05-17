@@ -7,7 +7,6 @@
 <title>내 상점 보기</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="resources/css/LineIcons.2.0.css" />
 <link rel="stylesheet" href="resources/css/animate.css" />
@@ -58,7 +57,7 @@
 <ul>
 <li class="mega-menu-title">상점</li>
 <li class="nav-item"><a href="myShop.do">내 상점 보기</a></li>
-<li class="nav-item"><a href="myShopAddForm.do">상점 추가</a></li>
+<li class=" active nav-item"><a href="myShopAddForm.do">상점 추가</a></li>
 <li class="nav-item"><a href=".">재고요청</a></li>
 <li class="nav-item"><a href=".">상점 달력</a></li>
 </ul>
@@ -90,7 +89,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p>홍길동 판매자</p>
+<p>${name } 판매자</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>

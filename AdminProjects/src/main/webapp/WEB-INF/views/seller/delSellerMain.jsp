@@ -10,8 +10,6 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-
-
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
@@ -77,26 +75,11 @@
 </ul>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">내 상점</a>
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">마이페이지</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
 <ul>
-<li class="mega-menu-title">상점</li>
-<li class="nav-item"><a href="myShop.do">내 상점 보기</a></li>
-<li class="nav-item"><a href="myShopAddForm.do">상점 추가</a></li>
-<li class="nav-item"><a href=".">재고요청</a></li>
-<li class="nav-item"><a href=".">상점 달력</a></li>
-</ul>
-</li>
-<li class="single-block">
-<ul>
-<li class="mega-menu-title">마이페이지</li>
-<li class="nav-item"><a href="myPage.do">마이페이지</a>
-</li>
-<li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a>
-</li>
-<li class="nav-item"><a href=".">가나다</a></li>
-<li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a>
+<li class="nav-item"><a href="cancelDelete.do">회원탈퇴 상태보기</a>
 </li>
 </ul>
 </li>
@@ -107,7 +90,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p>${name } 판매자</p>
+<p>${name } 탈퇴판매자</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>
@@ -343,7 +326,6 @@ Ipsum available, but the majority have suffered alteration in some form.</p>
 </div>
 </div>
 </div>
-
 </section>
 
 

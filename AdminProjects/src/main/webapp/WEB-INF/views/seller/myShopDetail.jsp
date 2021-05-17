@@ -93,7 +93,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p>홍길동 판매자</p>
+<p>${name } 판매자</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>

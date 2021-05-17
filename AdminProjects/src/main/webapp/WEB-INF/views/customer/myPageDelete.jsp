@@ -8,7 +8,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>회원탈퇴</title>
-<% String name = (String) session.getAttribute("name"); %>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -109,7 +108,7 @@ Sibebar</a></li>
 <div class="login-button">
 <ul>
 <li>
-<p><%= name %> 고객님</p>
+<p>${name } 고객님</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>

@@ -8,9 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>내 상점 보기</title>
+<% List<ShopDto> list = (List<ShopDto>)request.getAttribute("list"); %>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="resources/css/LineIcons.2.0.css" />
 <link rel="stylesheet" href="resources/css/animate.css" />
@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="resources/css/glightbox.min.css" />
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
-<% List<ShopDto> list = (List<ShopDto>)request.getAttribute("list"); %>
 <body>
 <header class="header navbar-area">
 <div class="container">
@@ -37,7 +36,7 @@
 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 <ul id="nav" class="navbar-nav ms-auto">
 <li class="nav-item">
-<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
 <ul class="sub-menu collapse" id="submenu-1-1">
 <li class="nav-item"><a href="index.html">Home Default</a></li>
 <li class="nav-item active"><a href="index2.html">Home Version 2</a></li>
@@ -56,12 +55,12 @@
 </ul>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">내 상점</a>
+<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">내 상점</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
 <ul>
 <li class="mega-menu-title">상점</li>
-<li class="nav-item"><a href="myShop.do?id=">내 상점 보기</a></li>
+<li class=" active nav-item"><a href="myShop.do?id=">내 상점 보기</a></li>
 <li class="nav-item"><a href="myShopAddForm.do">상점 추가</a></li>
 <li class="nav-item"><a href=".">재고요청</a></li>
 <li class="nav-item"><a href=".">상점 달력</a></li>
@@ -94,7 +93,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p>홍길동 판매자</p>
+<p>${name } 판매자</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>
@@ -154,7 +153,9 @@
  					out.println("미승인");
  				} else if (sdto.getPower().equals("1")){
  					out.println("승인");
- 				} 
+ 				} else if (sdto.getPower().equals("2")){
+ 					out.println("영업중지");
+ 				}
  					%></span>
 			</h4>
 			</div>

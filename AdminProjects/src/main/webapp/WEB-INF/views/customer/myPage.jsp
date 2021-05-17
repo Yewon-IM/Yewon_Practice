@@ -8,7 +8,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>마이페이지</title>
-<% String name = (String) session.getAttribute("name"); %>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -109,7 +108,7 @@ Sibebar</a></li>
 <div class="login-button">
 <ul>
 <li>
-<p><%= name %></p>
+<p>${name } 고객님</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
@@ -152,14 +151,14 @@ Sibebar</a></li>
 <div class="user-image">
 <img src="assets/images/dashboard/user-image.jpg" alt="#">
 <h3>Steve Aldridge
-<span><a href="javascript:void(0)"><%=name %></a></span>
+<span><a href="javascript:void(0)">${name }</a></span>
 </h3>
 </div>
 <div class="dashboard-menu">
 <ul>
 <li><a class="active" href="dashboard.html"><i class="lni lni-dashboard"></i>
 마이페이지</a></li>
-<li><a href="myPageUpdateForm.do?id=${dto.id}"><i class="lni lni-pencil-alt"></i> 내 정보 수정</a>
+<li><a href="myPageUpdateForm.do"><i class="lni lni-pencil-alt"></i>정보 수정</a>
 </li>
 <li><a href="my-items.html"><i class="lni lni-bolt-alt"></i> My Ads</a></li>
 <li><a href="favourite-items.html"><i class="lni lni-heart"></i> Favourite ads</a></li>

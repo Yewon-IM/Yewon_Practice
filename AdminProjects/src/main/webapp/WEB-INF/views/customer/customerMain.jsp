@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>고객 메인 홈페이지</title>
-<% String name = (String) session.getAttribute("name"); %>
 <% MemberDto dto = (MemberDto) session.getAttribute("dto"); %>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -107,7 +106,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p><%=name %> 고객님</p>
+<p>${name } 고객님</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>

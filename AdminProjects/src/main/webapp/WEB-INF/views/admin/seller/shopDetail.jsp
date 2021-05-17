@@ -1,18 +1,14 @@
+<%@page import="java.util.List"%>
+<%@page import="com.yogi.hoxy.dtos.ShopDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
-<%@page import="java.util.List"%>
-<%@page import="com.yogi.hoxy.dtos.MemberDto"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Bookmarked - ClassiGrids Classified Ads and Listing Website Template</title>
-<% 	List<MemberDto> list = (List<MemberDto>) request.getAttribute("list");  %>
-<meta http-equiv="x-ua-compatible" content="ie=edge" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+<title>내 상점 정보보기</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
@@ -24,24 +20,6 @@
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
 <body>
-<!--[if lte IE 9]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-        your experience and security.
-      </p>
-    <![endif]-->
-
-<div class="preloader">
-<div class="preloader-inner">
-<div class="preloader-icon">
-<span></span>
-<span></span>
-</div>
-</div>
-</div>
-
-
 <header class="header navbar-area">
 <div class="container">
 <div class="row align-items-center">
@@ -62,12 +40,12 @@
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
 <ul class="sub-menu collapse" id="submenu-1-1">
 <li class="nav-item"><a href="index.html">Home Default</a></li>
-<li class="nav-item"><a href="index2.html">Home Version 2</a></li>
+<li class="nav-item active"><a href="index2.html">Home Version 2</a></li>
 <li class="nav-item"><a href="index3.html">Home Version 3</a></li>
 </ul>
 </li>
-<li class="nav-item">
- <a href="category.html" aria-label="Toggle navigation">Categories</a>
+ <li class="nav-item">
+<a href="category.html" aria-label="Toggle navigation">Categories</a>
 </li>
 <li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>
@@ -78,24 +56,37 @@
 </ul>
 </li>
 <li class="nav-item">
-<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">관리자페이지</a>
+<a class="active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">내 상점</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
 <ul>
-<li class="mega-menu-title">회원</li>
-<li class=" active nav-item"><a href="newMemberList.do">신규회원</a></li>
-<li class="nav-item"><a href="memberList.do">회원 리스트</a></li>
-<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
+<li class="mega-menu-title">상점</li>
+<li class=" active nav-item"><a href="myShop.do">내 상점 보기</a></li>
+<li class="nav-item"><a href="myShopAddForm.do">상점 추가</a></li>
+<li class="nav-item"><a href=".">재고요청</a></li>
+<li class="nav-item"><a href=".">상점 달력</a></li>
 </ul>
 </li>
 <li class="single-block">
 <ul>
-<li class="mega-menu-title">상점</li>
-<li class="nav-item"><a href="newShopList.do">상점 승인</a></li>
-<li class="nav-item"><a href="shopList.do">상점 리스트</a></li>
-<li class="nav-item"><a href="delMemberList.do">상점 삭제</a></li>
+<li class="mega-menu-title">마이페이지</li>
+<li class="nav-item"><a href="myPage.do">마이페이지</a>
+</li>
+<li class="nav-item"><a href=".">문의하기</a>
+</li>
+<li class="nav-item"><a href=".">가나다</a></li>
+<li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a>
+</li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="nav-item">
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">회원관리</a>
+<ul class="sub-menu collapse" id="submenu-1-5">
+<li class="nav-item"><a href="newMemberList.do">회원 승인</a></li>
+<li class="nav-item"><a href="memberList.do">회원리스트</a></li>
+<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 </ul>
@@ -117,156 +108,146 @@
 </div> 
 </header>
 
-
 <div class="breadcrumbs">
 <div class="container">
 <div class="row align-items-center">
 <div class="col-lg-6 col-md-6 col-12">
 <div class="breadcrumbs-content">
-<h1 class="page-title">신규회원</h1>
+<h1 class="page-title">상점 정보보기</h1>
 </div>
 </div>
 <div class="col-lg-6 col-md-6 col-12">
 <ul class="breadcrumb-nav">
 <li><a href=".">Home</a></li>
-<li>신규회원</li>
+<li>상점 정보보기</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-
-
+		
 <section class="dashboard section">
 <div class="container">
 <div class="row">
-<div class="col-lg-3 col-md-12 col-12">
 
- <div class="dashboard-sidebar">
-<div class="user-image">
-<img src="assets/images/dashboard/user-image.jpg" alt="#">
-<h3>Steve Aldridge
-<span><a href="javascript:void(0)">${name }</a></span>
-</h3>
-</div>
-<div class="dashboard-menu">
-<ul>
-<li><a href="dashboard.html"><i class="lni lni-dashboard"></i> Dashboard</a></li>
-<li><a href="newShopList.do"><i class="lni lni-pencil-alt"></i>신규상점</a></li>
-<li><a href="shopList.do"><i class="lni lni-bolt-alt"></i>상점 리스트</a></li>
-<li><a href="delShopList.do"><i class="lni lni-heart"></i>삭제요청한 상점</a></li>
-<li><a class="active" href="newMemberList.do"><i class="lni lni-circle-plus"></i>신규회원</a></li>
-<li><a href="memberList.do"><i class="lni lni-bookmark"></i>회원리스트</a></li>
-<li><a href="delMemberList.do"><i class="lni lni-envelope"></i>탈퇴회원</a></li>
-<li><a href="delete-account.html"><i class="lni lni-trash"></i> Close account</a></li>
-<li><a href="invoice.html"><i class="lni lni-printer"></i> Invoice</a></li>
-</ul>
-<div class="button">
-<a class="btn" href="javascript:void(0)">Logout</a>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-9 col-md-12 col-12">
+<div class="col-12">
 <div class="main-content">
-<div class="dashboard-block mt-0">
-<h3 class="block-title">신규회원</h3>
 
-<div class="my-items">
-
-<div class="item-list-title">
-<div class="row align-items-center">
-<div class="col-lg-2 col-md-2 col-12">
-<p>아이디</p>
+<div class="dashboard-block mt-0 profile-settings-block">
+<h3 class="block-title">상점 정보보기</h3>
+<div class="inner-block">
+<div class="image">
+<img src="assets/images/dashboard/user-image.jpg" alt="#">
 </div>
-<div class="col-lg-2 col-md-2 col-12">
-<p>이름</p>
-</div>
-<div class="col-lg-2 col-md-2 col-12">
-<p>가입일</p>
-</div>
-<div class="col-lg-2 col-md-2 col-12">
-<p>지역</p>
-</div>
-<div class="col-lg-2 col-md-2 col-12">
-<p>누구</p>
-</div>
-<div class="col-lg-2 col-md-2 col-12 align-right">
-<p align="center">버튼</p>
+<form class="profile-setting-form" method="post">
+<div class="row">
+<div class="col-12">
+<div class="form-group upload-image">
+<label>Profile Image*</label>
+<!-- <input name="profile-image" type="file" placeholder="Upload Image"> -->
 </div>
 </div>
-</div>
-
-
-<div class="single-item-list">
-<div class="row align-items-center">
-<%
-	if(list == null || list.size() == 0){
-		%>
-		<p align="center">신규회원이 없습니다.</p>
-		<%
-	}else {
-		for(MemberDto dto : list){
-%>
-<div class="col-lg-2 col-md-2 col-12">
-<p><%=dto.getId() %></p>
-</div>
-<div class="col-lg-2 col-md-2 col-12">
-<p><%=dto.getName() %></p>
-</div>
-<div class="col-lg-2 col-md-2 col-12">
-<p><fmt:formatDate pattern="yyyy-MM-dd" value="<%=dto.getRegDate() %>"/></p>
-</div>
-<div class="col-lg-2 col-md-2 col-12">
-<p><%=dto.getLocal() %></p>
-</div>	
-<div class="col-lg-2 col-md-2 col-12">
-<p><%if(dto.getWho().equals("0")){
-		out.println("관리자");
-	} else if(dto.getWho().equals("1")) { 
-		out.println("구매자");
-	} else {
-		out.println("판매자");
-	}
-	%></p>
-</div>
-<div class="col-lg-2 col-md-2 col-12 align-center">
-<ul class="action-btn">
-<li><a href="admit.do?id=<%=dto.getId()%>"><img src="resources/image/checked.png" alt="admit"></a></li> <!-- admit -->
-<li><a href="delete.do?id=<%=dto.getId()%>"><img src="resources/image/delete.png" alt="delete"></a></li> <!-- delete -->
-<li><a href="newMemberDetail.do?id=<%=dto.getId()%>"><img src="resources/image/search.png" alt="detail"></a></li> <!-- detail -->
-</ul>
-</div>
-		<%	}		
-		}
-		%>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+<label>아이디</label>
+<input type="text" value="${sdto.id }" readonly>
 </div>
 </div>
-
-
-
-
-
-
-<div class="pagination left">
-<ul class="pagination-list">
-<li class="active"><a href="javascript:void(0)">1</a></li>
-<li><a href="javascript:void(0)">2</a></li>
-<li><a href="javascript:void(0)">3</a></li>
-<li><a href="javascript:void(0)">4</a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
-</ul>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+<label>상점 이름</label>
+<input name="shopName" type="text" value="${sdto.shopName }" readonly>
 </div>
-
 </div>
-
+<div class="col-lg-6 col-12">
+<div class="form-group">
+<label>상점 번호</label>
+<input name="shopTel" type="text" value="${sdto.shopTel }" readonly>
+</div>
+</div>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+<label>우편번호</label>
+<input name="shopOdd" type="text" value="${sdto.shopOdd }" readonly>
+</div>
+</div>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+ <label>지역</label>
+<input name="local" type="text" value="${sdto.local }" readonly> 
+</div>
+</div>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+<label>상점 주소</label>
+<input name="shopAdd" type="text" value="${sdto.shopAdd }" readonly>
+</div>
+</div>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+ <label>상점 자세한 주소</label>
+<input name="shopDetailAdd" type="text" value="${sdto.shopDetailAdd }" readonly>
+</div>
+</div>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+ <label>사업자번호</label>
+<input name="businessNum" type="text" value="${sdto.businessNum }" readonly>
+</div>
+</div>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+ <label>오픈날짜</label>
+<input name="openDate" type="text" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${sdto.openDate }"/>" readonly>
+</div>
+</div>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+ <label>상점번호</label>
+<input type="text" value="${sdto.shopId }" readonly>
+</div>
+</div>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+<label>권한</label>
+<input name="power" type="text" value=
+									<c:if test="${sdto.power == 0 }">
+										"승인 미완료"
+									</c:if>
+									<c:if test="${sdto.power == 1}">
+										"승인 완료"
+									</c:if> readonly>
+</div>
+</div><div class="col-lg-6 col-12">
+<div class="form-group">
+ <label>삭제여부</label>
+<input name="del" type="text" value=
+									<c:if test="${sdto.del == 0 }">
+										"정상"
+									</c:if>
+									<c:if test="${sdto.del == 1}">
+										"삭제요청"
+									</c:if> readonly>
+</div>
+</div>
+<div class="col-12">
+<div class="form-group button mb-0">
+<button type="submit" class="btn" formaction="shopUpdateForm.do?id=${sdto.id}&shopId=${sdto.shopId }">수정 폼</button>
+<button type="submit" class="btn" formaction="shopDelete.do?shopId=${sdto.shopId }">삭제하기</button>
+</div>
+</div>
+</div>
+</form>
+</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </section>
+
+
+
 
 <footer class="footer">
 
@@ -342,7 +323,7 @@ App Store
 <h3>Contact</h3>
 <ul>
 <li>23 New Design Str, Lorem Upsum 10<br> Hudson Yards, USA</li>
-<li>Tel. +(123) 1800-567-8990 <br> Mail. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="85f6f0f5f5eaf7f1c5e6e9e4f6f6ece2f7ece1f6abe6eae8">[email&#160;protected]</a></li>
+<li>Tel. +(123) 1800-567-8990 <br> Mail. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fd8e888d8d928f89bd9e919c8e8e949a8f94998ed39e9290">[email&#160;protected]</a></li>
 </ul>
 </div>
 
@@ -379,59 +360,58 @@ App Store
 </div>
 </div>
 </div>
-
 </footer>
 
 
-<a href="#" class="scroll-top btn-hover">
-<i class="lni lni-chevron-up"></i>
-</a>
+
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/tiny-slider.js"></script>
 <script src="resources/js/glightbox.min.js"></script>
+<script src="resources/js/count-up.min.js"></script>
 <script src="resources/js/main.js"></script>
-</body>
-</html>
-	<form method="post">
-	<table border="1">
-		<th colspan="6">회원가입 승인 리스트</th>
-		<tr>
-			<td width="50px">아이디</td>
-			<td width="60px">이름</td>
-			<td width="60px">상태</td>
-			<td width="40px">권한</td>
-			<td colspan="2">버튼</td>
-		</tr> 
-		<%
-		if(list == null || list.size() == 0){
-			out.println("<tr><td colspan='6'>들어온 승인이 없습니다 ㅎㅎ</td></tr>");
-		}else {
-			for(MemberDto dto : list){
-		%>
-		<tr>
-		<%-- <a href="detail.do?id=<%=dto.getId() %>"> --%>
-			<td width="50px"><a href="memDetail.do?id=<%=dto.getId()%>"><%=dto.getId() %></a> 	</td>
-			<td width="50px"><%=dto.getName() %></td>
-			<td width="50px"><%if(dto.getWho().equals("0")){
-								out.println("관리자");
-								} else if(dto.getWho().equals("1")) {
-									out.println("구매자");
-								} else {
-									out.println("판매자");
-								}
-								%>
-								</td>
-			<td width="30px"><%=dto.getPower() %></td>
-			<td width="30px"><input type="submit" value="승인" formaction="admit.do?id=<%=dto.getId()%>"></td>
-			<td width="30px"><input type="submit" value="삭제" formaction="delete.do?id=<%=dto.getId()%>"></td>
-		</tr>
-		<%	}		
-		}
-		%>			
-	</table>
-	</form>
+<script type="text/javascript">
+        //========= testimonial 
+        tns({
+            container: '.testimonial-slider',
+            items: 3,
+            slideBy: 'page',
+            autoplay: false,
+            mouseDrag: true,
+            gutter: 0,
+            nav: true,
+            controls: false,
+            controlsText: ['<i class="lni lni-arrow-left"></i>', '<i class="lni lni-arrow-right"></i>'],
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                540: {
+                    items: 1,
+                },
+                768: {
+                    items: 2,
+                },
+                992: {
+                    items: 2,
+                },
+                1170: {
+                    items: 2,
+                }
+            }
+        });
+
+        //====== counter up 
+        var cu = new counterUp({
+            start: 0,
+            duration: 2000,
+            intvalues: true,
+            interval: 100,
+            append: " ",
+        });
+        cu.start();
+    </script>
 </body>
 </html>

@@ -14,8 +14,6 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-
-
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
@@ -81,55 +79,24 @@
 </ul>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Pages</a>
+<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">관리자페이지</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
 <ul>
-<li class="mega-menu-title">Essential Pages</li>
-<li class="nav-item"><a href="about-us.html">About Us</a></li>
-<li class="nav-item"><a href="item-details.html">Ads Details</a></li>
-<li class="nav-item"><a href="post-item.html">Ads Post</a></li>
-<li class="nav-item"><a href="pricing.html">Pricing Table</a></li>
-<li class="nav-item"><a href="registration.html">Sign Up</a></li>
-<li class="nav-item"><a href="login.html">Sign In</a></li>
-<li class="nav-item"><a href="contact.html">Contact Us</a></li>
-<li class="nav-item"><a href="faq.html">FAQ</a></li>
-<li class="nav-item"><a href="404.html">Error Page</a></li>
-<li class="nav-item"><a href="mail-success.html">Mail Success</a>
-</li>
-<li class="nav-item"><a href="coming-soon.html">Comming Soon</a>
-</li>
+<li class="mega-menu-title">회원</li>
+<li class="nav-item"><a href="newMemberList.do">신규회원</a></li>
+<li class="nav-item"><a href="memberList.do">회원 리스트</a></li>
+<li class=" active nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 <li class="single-block">
 <ul>
-<li class="mega-menu-title">Dashboard</li>
-<li class="nav-item"><a href="dashboard.html">Account Overview</a>
-</li>
-<li class="nav-item"><a href="profile-settings.html">My Profile</a>
-</li>
-<li class="nav-item"><a href="my-items.html">My Ads</a></li>
-<li class="nav-item"><a href="favourite-items.html">Favorite Ads</a>
-</li>
-<li class="nav-item"><a href="post-item.html">Ad post</a></li>
-<li class="nav-item active"><a href="bookmarked-items.html">Bookmarked Ad</a>
-</li>
-<li class="nav-item"><a href="messages.html">Messages</a></li>
-<li class="nav-item"><a href="delete-account.html">Close account</a>
-</li>
-<li class="nav-item"><a href="invoice.html">Invoice</a></li>
+<li class="mega-menu-title">상점</li>
+<li class="nav-item"><a href="newMemberList.do">상점 승인</a></li>
+<li class="nav-item"><a href="shopList.do">상점 리스트</a></li>
+<li class="nav-item"><a href="delShopList.do">상점 삭제</a></li>
 </ul>
 </li>
-</ul>
-</li>
-
-<li class="nav-item">
-<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">회원관리</a>
-<ul class="sub-menu collapse" id="submenu-1-5">
-<li class=" nav-item"><a href="newMemberList.do">신규회원</a>
-</li>
-<li class="nav-item"><a href="memberList.do">회원리스트</a></li>
-<li class="active nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 </ul>
@@ -186,13 +153,12 @@
 <div class="dashboard-menu">
 <ul>
 <li><a href="dashboard.html"><i class="lni lni-dashboard"></i> Dashboard</a></li>
-<li><a href="profile-settings.html"><i class="lni lni-pencil-alt"></i> Edit Profile</a>
-</li>
-<li><a href="my-items.html"><i class="lni lni-bolt-alt"></i> My Ads</a></li>
-<li><a href="favourite-items.html"><i class="lni lni-heart"></i> Favourite ads</a></li>
+<li><a href="newShopList.do"><i class="lni lni-pencil-alt"></i>신규상점</a></li>
+<li><a href="shopList.do"><i class="lni lni-bolt-alt"></i>상점 리스트</a></li>
+<li><a href="delShopList.do"><i class="lni lni-heart"></i>삭제요청한 상점</a></li>
 <li><a href="newMemberList.do"><i class="lni lni-circle-plus"></i>신규회원</a></li>
 <li><a href="memberList.do"><i class="lni lni-bookmark"></i>회원리스트</a></li>
-<li><a class="active" href="admin.do"><i class="lni lni-envelope"></i>탈퇴회원</a></li>
+<li><a class="active" href="delMemberList.do"><i class="lni lni-envelope"></i>탈퇴회원</a></li>
 <li><a href="delete-account.html"><i class="lni lni-trash"></i> Close account</a></li>
 <li><a href="invoice.html"><i class="lni lni-printer"></i> Invoice</a></li>
 </ul>

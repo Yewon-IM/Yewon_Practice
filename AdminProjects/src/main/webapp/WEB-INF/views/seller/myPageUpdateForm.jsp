@@ -11,8 +11,6 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-
-
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
@@ -94,7 +92,7 @@
 <li class="mega-menu-title">마이페이지</li>
 <li class="nav-item"><a href="myPage.do">마이페이지</a>
 </li>
-<li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a>
+<li class=" active nav-item"><a href="myPageUpdateForm.do">정보수정</a>
 </li>
 <li class="nav-item"><a href=".">가나다</a></li>
 <li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a>
@@ -118,7 +116,7 @@ Sibebar</a></li>
 <div class="login-button">
 <ul>
 <li>
-<p>${dto.name } </p>
+<p>${name } 판매자</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
@@ -162,7 +160,7 @@ Sibebar</a></li>
 <div class="user-image">
 <img src="assets/images/dashboard/user-image.jpg" alt="#">
 <h3>Steve Aldridge
-<span><a href="javascript:void(0)">${dto.name }</a></span>
+<span><a href="javascript:void(0)">${name }</a></span>
 </h3>
 </div>
 <div class="dashboard-menu">
@@ -241,7 +239,33 @@ Sibebar</a></li>
 <div class="col-lg-6 col-12">
 <div class="form-group">
 <label>지역</label>
-<input name="local" type="text" value="${dto.local }" placeholder="지역">
+<select name="local" >
+						<option ${dto.local == "강남구"? "selected" : "" }>강남구</option>
+						<option ${dto.local == "강동구"? "selected" : "" }>강동구</option>
+						<option ${dto.local == "강북구"? "selected" : "" }>강북구</option>
+						<option ${dto.local == "강서구"? "selected" : "" }>강서구</option>	
+						<option ${dto.local == "관악구"? "selected" : "" }>관악구</option>
+						<option ${dto.local == "광진구"? "selected" : "" }>광진구</option>
+						<option ${dto.local == "구로구"? "selected" : "" }>구로구</option>
+						<option ${dto.local == "금천구"? "selected" : "" }>금천구</option>
+						<option ${dto.local == "노원구"? "selected" : "" }>노원구</option>
+						<option ${dto.local == "도봉구"? "selected" : "" }>도봉구</option>
+						<option ${dto.local == "동대문구"? "selected" : "" }>동대문구</option>
+						<option ${dto.local == "동작구"? "selected" : "" }>동작구</option>											
+						<option ${dto.local == "마포구"? "selected" : "" }>마포구</option>
+						<option ${dto.local == "서대문구"? "selected" : "" }>서대문구</option>
+						<option ${dto.local == "서초구"? "selected" : "" }>서초구</option>
+						<option ${dto.local == "성동구"? "selected" : "" }>성동구</option>	
+						<option ${dto.local == "성북구"? "selected" : "" }>성북구</option>
+						<option ${dto.local == "송파구"? "selected" : "" }>송파구</option>
+						<option ${dto.local == "양천구"? "selected" : "" }>양천구</option>
+						<option ${dto.local == "영등포구"? "selected" : "" }>영등포구</option>
+						<option ${dto.local == "용산구"? "selected" : "" }>용산구</option>
+						<option ${dto.local == "은평구"? "selected" : "" }>은평구</option>
+						<option ${dto.local == "종로구"? "selected" : "" }>종로구</option>
+						<option ${dto.local == "중구"? "selected" : "" }>중구</option>	
+						<option ${dto.local == "중랑구"? "selected" : "" }>중랑구</option>
+</select> 
 </div>
 </div>
 <div class="col-lg-6 col-12">

@@ -13,8 +13,6 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="resources/images/favicon.svg" />
-
-
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
@@ -136,10 +134,10 @@ Sibebar</a></li>
 <div class="login-button">
 <ul>
 <li>
-<a href="login.do"><i class="lni lni-enter"></i>로그인</a>
+<p> ${name } </p>
 </li>
 <li>
-<a href="registration.html"><i class="lni lni-user"></i> Register</a>
+<a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>
 </li>
 </ul>
 </div>
@@ -244,7 +242,7 @@ Sibebar</a></li>
 </div>
 </div>
 </div>
-<p class="outer-link">신규회원리스트<a href="newMemberList.do"> 돌아가기</a>
+<p class="outer-link"><a href="newMemberList.do"> 돌아가기</a>
 </p>
 </form>
 

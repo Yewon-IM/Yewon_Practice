@@ -8,7 +8,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>마이페이지</title>
-<% String name = (String) session.getAttribute("name"); %>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -93,7 +92,7 @@
 <li class="single-block">
 <ul>
 <li class="mega-menu-title">마이페이지</li>
-<li class="nav-item"><a href="myPage.do">마이페이지</a>
+<li class=" active nav-item"><a href="myPage.do">마이페이지</a>
 </li>
 <li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a>
 </li>
@@ -119,7 +118,7 @@ Sibebar</a></li>
 <div class="login-button">
 <ul>
 <li>
-<p><%= name %></p>
+<p>${name } 판매자</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
@@ -162,7 +161,7 @@ Sibebar</a></li>
 <div class="user-image">
 <img src="assets/images/dashboard/user-image.jpg" alt="#">
 <h3>Steve Aldridge
-<span><a href="javascript:void(0)"><%=name %></a></span>
+<span><a href="javascript:void(0)">${name }</a></span>
 </h3>
 </div>
 <div class="dashboard-menu">

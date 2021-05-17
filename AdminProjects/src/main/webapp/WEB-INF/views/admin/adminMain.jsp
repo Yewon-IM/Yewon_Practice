@@ -8,12 +8,9 @@
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>관리자 메인 홈페이지</title>
-<% String name = (String) session.getAttribute("name"); %>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-
-
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
@@ -92,19 +89,11 @@
 <li class="single-block">
 <ul>
 <li class="mega-menu-title">상점</li>
-<li class="nav-item"><a href="newMemberList.do">상점 승인</a></li>
-<li class="nav-item"><a href="memberList.do">상점 리스트</a></li>
-<li class="nav-item"><a href="delMemberList.do">상점 삭제</a></li>
+<li class="nav-item"><a href="newShopList.do">상점 승인</a></li>
+<li class="nav-item"><a href="shopList.do">상점 리스트</a></li>
+<li class="nav-item"><a href="delShopList.do">상점 삭제</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">회원관리</a>
-<ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="newMemberList.do">회원 승인</a></li>
-<li class="nav-item"><a href="memberList.do">회원리스트</a></li>
-<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 </ul>
@@ -112,7 +101,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p><%= name %> 관리자</p>
+<p>${name } </p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>

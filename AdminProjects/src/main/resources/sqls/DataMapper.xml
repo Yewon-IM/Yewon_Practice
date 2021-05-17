@@ -49,9 +49,9 @@
 	<delete id="shopDel" parameterType="String">
 		DELETE FROM SHOP WHERE SHOPID = #{shopId}
 	</delete>
-	
+	 
 	<select id="shopList" resultType="ShopDto">
-		SELECT * FROM SHOP WHERE POWER = '1'	
+		SELECT * FROM SHOP WHERE POWER >= '1' AND DEL = '0'	
 	</select>
 	
 	<select id="memberList" resultType="MemberDto">
@@ -81,7 +81,7 @@
 	<update id="shopUpdate" parameterType="ShopDto">
 		UPDATE SHOP SET SHOPNAME= #{shopName}, SHOPODD= #{shopOdd}, SHOPADD= #{shopAdd}, 
 		SHOPDETAILADD= #{shopDetailAdd}, SHOPTEL= #{shopTel}, LOCAL= #{local}, BUSINESSNUM= #{businessNum}, 
-		POWER= #{power} 
+		POWER= #{power} , DEL= #{del}
 		WHERE SHOPID= #{shopId}
 	</update>
 
