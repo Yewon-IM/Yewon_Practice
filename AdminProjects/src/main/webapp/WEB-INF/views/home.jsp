@@ -140,9 +140,6 @@ Sibebar</a></li>
 </li>
 </ul>
 </div>
-<div class="button header-button">
-<a href="post-item.html" class="btn">Post an Ad</a>
-</div>
 </nav> 
 </div>
 </div>
@@ -230,9 +227,8 @@ the majority.</p>
 <div class="row">
 <div class="col-12">
 <div class="section-title">
-<h2 class="wow fadeInUp" data-wow-delay=".4s">Explore by Category</h2>
- <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
-Ipsum available, but the majority have suffered alteration in some form.</p>
+<h2 class="wow fadeInUp" data-wow-delay=".4s">카테고리</h2>
+ <p class="wow fadeInUp" data-wow-delay=".6s">여기서 고르세요</p>
 </div>
 </div>
 </div>
