@@ -43,20 +43,16 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		HttpSession session = request.getSession();
-		System.out.println("mainPage session : " + session);
 		
 		String who = (String) session.getAttribute("who");
 		String del = (String) session.getAttribute("del");		
-		System.out.println("who메인페이지 : " + who );
 		
 		if (who != null) {
 
 			String name = (String) session.getAttribute("name");
 			session.setAttribute("name", name);
-
 			MemberDto dto = (MemberDto) session.getAttribute("dto");
 			model.addAttribute("dto", dto);
-			System.out.println("dto : " + dto);
 			
 			if (who.equals("0")) {
 				return "admin/adminMain";
@@ -87,7 +83,6 @@ public class HomeController {
 		String pwd = request.getParameter("user_pwd");
 
 		String result = yoService.login(id, pwd);
-		System.out.println("result : " + result);
 
 		if (result.equals("true")) {
 			HttpSession session = request.getSession();	
@@ -100,7 +95,6 @@ public class HomeController {
 			session.setAttribute("name", dto.getName());
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("del", dto.getDel());
-			System.out.println("세선 생겼어요 : " + session);
 
 			if (dto.getWho().equals("0")) {
 				return "admin/adminMain";
@@ -123,11 +117,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String login(HttpServletRequest request, Locale locale, Model model) {
+	public String login(Locale locale, Model model) {
 		logger.info("로그인", locale);
-		
-		HttpSession session = request.getSession(false);
-		System.out.println("login.do : " + session);
 		
 		return "login";
 	}
@@ -137,7 +128,6 @@ public class HomeController {
 		logger.info("로그아웃", locale);
 
 		HttpSession session = request.getSession(false);
-		System.out.println("logoutServlet : " + session);
 		session.invalidate();
 
 		return "redirect:.";
@@ -221,7 +211,6 @@ public class HomeController {
 		if (who.equals("0")) {
 			List<MemberDto> list = yoService.memberList();
 			model.addAttribute("list", list);
-			System.out.println(list);
 			return "admin/memberList";
 		} else {
 			model.addAttribute("msg", "관리자만 가능합니다.");
@@ -240,7 +229,6 @@ public class HomeController {
 		if (who.equals("0")) {
 			List<ShopDto> sList = yoService.shopList();
 			model.addAttribute("sList", sList);
-			System.out.println(sList);
 			return "admin/shopList";
 		} else {
 			model.addAttribute("msg", "관리자만 가능합니다.");
