@@ -104,7 +104,6 @@
 		WHERE ID = #{id} AND SHOPID = #{shopId}
 	</select>
 	
-	<!-- 사용자가 수정하면 관리자 허락이 필요함  상점이 대기 상태로 들어감-->
 	<update id="myShopUpdate" parameterType="ShopDto">
 		UPDATE SHOP SET SHOPNAME= #{shopName}, SHOPODD= #{shopOdd}, SHOPADD= #{shopAdd}, 
 		SHOPDETAILADD= #{shopDetailAdd}, SHOPTEL= #{shopTel}, LOCAL= #{local}, BUSINESSNUM= #{businessNum}, 
@@ -141,4 +140,31 @@
 	<select id="delShopList" resultType="ShopDto">
 		SELECT * FROM SHOP WHERE DEL ='1'
 	</select>
+	
+	
+	
+	
+	
+	<select id="bookList" parameterType="String" resultType="BookDto">
+		SELECT * 
+		FROM BOOK 
+		WHERE ID=#{id} 
+		ORDER BY REGDATE
+	</select>
+	
+	<delete id="bookMuldel" parameterType="Map">
+		DELETE FROM BOOK WHERE SEQ IN 
+		<foreach collection="seqs" item="seq" open="(" close=")" separator="," >
+			#{seq}
+		</foreach>
+	</delete>
+	
+	<select id="bookCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
+		FROM BOOK 
+		WHERE ID = #{id} 
+	</select>
+	
+	
+	
 </mapper>

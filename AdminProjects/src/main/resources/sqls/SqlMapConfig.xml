@@ -8,6 +8,7 @@
 		<typeAlias type="com.yogi.hoxy.dtos.MemberDto" alias="MemberDto"/>
 		<typeAlias type="com.yogi.hoxy.dtos.ShopDto" alias="ShopDto"/>
 		<typeAlias type="com.yogi.hoxy.dtos.ProductDto" alias="ProductDto"/>
+		<typeAlias type="com.yogi.hoxy.dtos.BookDto" alias="BookDto"/>
 	</typeAliases>
 	
 <!-- 	DB접속 정보 셋팅 -->

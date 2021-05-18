@@ -137,4 +137,11 @@ public class YogiDaoImp implements IYogiDao{
 		int count = sqlSession.update(namespace + "myPageCan", id);
 		return count > 0? true:false;
 	}
+	
+	
+	
+	
+	public List<BookDto> bookList(String id){
+		return sqlSession.selectList(namespace + "bookList", id);
+	}
 }

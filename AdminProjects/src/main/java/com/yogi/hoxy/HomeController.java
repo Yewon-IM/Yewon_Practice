@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
 import com.yogi.hoxy.dtos.ShopDto;
 import com.yogi.hoxy.service.IYogiService;
@@ -764,4 +765,36 @@ public class HomeController {
 			return "error";
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/bookList.do", method = RequestMethod.GET)
+	public String bookList(HttpServletRequest request, Locale locale, Model model) {
+		logger.info("예약리스트", locale);
+
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("user_id");
+		model.addAttribute("id", id);
+		
+		List<BookDto> bList = yoService.bookList(id);
+		model.addAttribute("bList", bList);
+		
+		return "bookingList/bookingList";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -70,9 +70,9 @@
 <a href="category.html" aria-label="Toggle navigation">Categories</a>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">내 상품</a>
 <ul class="sub-menu collapse" id="submenu-1-3">
-<li class="nav-item"><a href="item-listing-grid.html">Ad Grid</a></li>
+<li class="nav-item"><a href="bookList.do">내가 찜한 상품</a></li>
 <li class="nav-item"><a href="item-listing-list.html">Ad Listing</a></li>
 <li class="nav-item"><a href="item-details.html">Ad Details</a></li>
 </ul>

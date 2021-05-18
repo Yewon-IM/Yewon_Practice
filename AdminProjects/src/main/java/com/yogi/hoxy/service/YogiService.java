@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yogi.hoxy.daos.IYogiDao;
+import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
 import com.yogi.hoxy.dtos.ShopDto;
 
@@ -138,6 +139,15 @@ public class YogiService implements IYogiService {
 	@Override
 	public boolean myPageCan(String id) {
 		return yogiDao.myPageCan(id);
+	}
+
+	
+	
+	
+	
+	@Override
+	public List<BookDto> bookList(String id) {
+		return yogiDao.bookList(id);
 	}
 
 }

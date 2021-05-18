@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
 import com.yogi.hoxy.dtos.ShopDto;
 
@@ -58,4 +59,9 @@ public interface IYogiDao {
 	public List<ShopDto> delShopList();
 	
 	public boolean myPageCan(String id);
+	
+	
+	
+	
+	public List<BookDto> bookList(String id);
 }
