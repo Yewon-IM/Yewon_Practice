@@ -1,11 +1,18 @@
 package com.yogi.hoxy.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yogi.hoxy.daos.IYogiDao;
+import com.yogi.hoxy.daos.YogiDaoImp;
 import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
 import com.yogi.hoxy.dtos.MemberShoppingDto;
@@ -47,9 +54,37 @@ public class YogiService implements IYogiService {
 		return yogiDao.memberList();
 	}
 
+//	@Override
+//	public boolean memUpdate(MemberDto dto) {
+//		return yogiDao.memUpdate(dto);
+//	}
+	
 	@Override
-	public boolean memUpdate(MemberDto dto) {
-		return yogiDao.memUpdate(dto);
+	public boolean memUpdate(HttpServletRequest request) {
+		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request;	
+		
+		MultipartFile multiFile = multi.getFile("profileImg");
+		
+		String path = request.getSession().getServletContext().getRealPath("upload");
+		
+		File f = new File(path+ "/" + multiFile);
+		boolean isS = false;
+		
+		try {
+			multiFile.transferTo(f); //파일객체에 저장된 경로대로 업로드가 실행됨.
+			//파일정보를 DB에 저장하기
+			//isS = YogiDaoImp.memUpdate(new MemberDto(id, pwd, name, email, tel, local, oAdd, add, detailAdd, regDate, who, power, del, profileImg));
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return isS;
 	}
 
 	@Override

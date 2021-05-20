@@ -62,6 +62,13 @@
 	
 	<update id="memUpdate" parameterType="MemberDto">
 		UPDATE "MEMBER" 
+		SET PWD= #{pwd}, NAME= #{name}, EMAIL= #{email}, TEL= #{tel}, LOCAL= #{local}, OADD= #{oAdd}, "ADD"= #{add}, DETAILADD= #{detailAdd}, WHO= #{who}, POWER= #{power} , DEL= #{del}, PROFILEIMG= #{profileImg}
+		WHERE ID = #{id}		
+	</update>
+	
+	
+	<update id="memUpdate1real" parameterType="MemberDto">
+		UPDATE "MEMBER" 
 		SET PWD= #{pwd}, NAME= #{name}, EMAIL= #{email}, TEL= #{tel}, LOCAL= #{local}, OADD= #{oAdd}, "ADD"= #{add}, DETAILADD= #{detailAdd}, WHO= #{who}, POWER= #{power} , DEL= #{del}
 		WHERE ID = #{id}		
 	</update>
@@ -140,6 +147,15 @@
 	<select id="delShopList" resultType="ShopDto">
 		SELECT * FROM SHOP WHERE DEL ='1'
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

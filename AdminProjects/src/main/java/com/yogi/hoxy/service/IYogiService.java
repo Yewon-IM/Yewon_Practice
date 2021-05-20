@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
 import com.yogi.hoxy.dtos.MemberShoppingDto;
@@ -23,7 +25,12 @@ public interface IYogiService {
 	
 	public List<MemberDto> memberList();
 	
-	public boolean memUpdate(MemberDto dto);
+	//public boolean memUpdate(MemberDto dto);
+	
+	public boolean memUpdate(HttpServletRequest request);
+	
+	
+	
 	
 	public String login(String id, String pwd);
 	

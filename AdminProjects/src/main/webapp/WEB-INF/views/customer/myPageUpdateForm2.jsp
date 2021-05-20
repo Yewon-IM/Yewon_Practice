@@ -8,23 +8,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>마이페이지 수정하기</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$('#profileImg').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-</script>
 <% String name = (String) session.getAttribute("name"); %>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+
+
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
@@ -192,17 +181,16 @@ Sibebar</a></li>
 <div class="dashboard-block mt-0 profile-settings-block">
 <h3 class="block-title">정보 수정</h3>
 <div class="inner-block">
-<form class="profile-setting-form" method="post" enctype="multipart/form-date">
+<div class="image">
+<img src="assets/images/dashboard/user-image.jpg" alt="#">
+</div>
+
+<form class="profile-setting-form" method="post">
 <div class="row">
-<div class="col-lg-6 col-12">
+<div class="col-lg-12 col-12">
 <div class="form-group upload-image">
-<label>프로필 사진</label>
-<input type="file" name="profileImg" onchange ="readURL(this);" />
-</div>
-</div>
-<div class="col-lg-6 col-12">
-<div class="form-group">
-<img id ="profileImg" src="#" width=100 height=100 />
+<label>Profile Image*</label>
+<input name="profile-image" type="file" placeholder="Upload Image">
 </div>
 </div>
 <div class="col-lg-6 col-12">
@@ -444,5 +432,42 @@ App Store
 <script src="resources/js/tiny-slider.js"></script>
 <script src="resources/js/glightbox.min.js"></script>
 <script src="resources/js/main.js"></script>
+</body>
+</html>
+
+<form method="post">
+<table border="1">
+	<th colspan="6">회원정보</th>
+	<tr>
+		<td>아아디</td>
+		<td>이름</td>
+		<td>비밀번호</td>
+		<td>전화번호</td>
+		<td>이메일</td>
+		<td>지역</td>
+		<td>우편번호</td>
+		<td>주소</td>
+		<td>상세주소</td>
+		<td>가입일</td>
+	</tr>
+	<tr>
+		<td>${dto.id }</td>
+		<td><input type="text" name="name" value="${dto.name }"></td>
+		<td><input type="password" name="pwd" value="${dto.pwd }"></td>
+		<td><input type="text" name="tel"  value="${dto.tel }"></td>
+		<td><input type="email" name="email" value="${dto.email }"></td>
+		<td><input type="text" name="local" value="${dto.local }"></td>
+		<td><input type="text" name="oAdd" value="${dto.oAdd }"></td>
+		<td><input type="text" name="add" value="${dto.add }"></td>
+		<td><input type="text" name="detailAdd" value="${dto.detailAdd }"></td>
+		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regDate }" /></td>
+	</tr>
+</table>
+<input type="hidden" name="power" value=${dto.power }>
+<input type="hidden" name="who" value=${dto.who }>
+<input type="hidden" name="del" value=${dto.del }>
+
+<input type="submit" value="수정하기" formaction="myPageUpdate.do?id=${dto.id }">
+</form>
 </body>
 </html>

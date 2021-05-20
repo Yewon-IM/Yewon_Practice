@@ -1,5 +1,6 @@
 package com.yogi.hoxy;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -22,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
@@ -691,6 +693,7 @@ public class HomeController {
 		logger.info("회원 정보 수정하기", locale);
 		
 		HttpSession session = request.getSession();
+		//String path="C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
 		
 		boolean isS = yoService.memUpdate(dto);
 		

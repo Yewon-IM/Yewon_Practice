@@ -17,6 +17,7 @@ public class MemberDto {
 	private String who;
 	private String power;
 	private String del;
+	private String profileImg;
 	
 	public MemberDto() {
 		super();
@@ -24,7 +25,7 @@ public class MemberDto {
 	}
 
 	public MemberDto(String id, String pwd, String name, String email, String tel, String local, String oAdd,
-			String add, String detailAdd, Date regDate, String who, String power, String del) {
+			String add, String detailAdd, Date regDate, String who, String power, String del, String profileImg) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -39,6 +40,7 @@ public class MemberDto {
 		this.who = who;
 		this.power = power;
 		this.del = del;
+		this.profileImg = profileImg;
 	}
 
 	public String getId() {
@@ -97,11 +99,11 @@ public class MemberDto {
 		this.oAdd = oAdd;
 	}
 
-	public String getadd() {
+	public String getAdd() {
 		return add;
 	}
 
-	public void setadd(String add) {
+	public void setAdd(String add) {
 		this.add = add;
 	}
 
@@ -145,12 +147,21 @@ public class MemberDto {
 		this.del = del;
 	}
 
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", tel=" + tel
 				+ ", local=" + local + ", oAdd=" + oAdd + ", add=" + add + ", detailAdd=" + detailAdd + ", regDate="
-				+ regDate + ", who=" + who + ", power=" + power + ", del=" + del + "]";
+				+ regDate + ", who=" + who + ", power=" + power + ", del=" + del + ", profileImg=" + profileImg + "]";
 	}
+
 
 
 }
