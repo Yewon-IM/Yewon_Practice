@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.yogi.hoxy">
-
+	
 	<select id="adminList" resultType="MemberDto">
 		SELECT *
 		FROM MEMBER
@@ -145,26 +145,45 @@
 	
 	
 	
-	<select id="bookList" parameterType="String" resultType="BookDto">
-		SELECT * 
-		FROM BOOK 
-		WHERE ID=#{id} 
-		ORDER BY REGDATE
+	
+	
+	
+	
+	
+	<resultMap type="com.yogi.hoxy.dtos.ProductDto" id="ProductDto">
+		<result property="product_seq" column="product_seq" />
+		<result property="shopId" column="shopId" />
+		<result property="id" column="id" />
+		<result property="productName" column="productName" />
+		<result property="content" column="content" />
+		<result property="price" column="price" />
+		<result property="stock" column="stock" />
+		<result property="img_Url" column="img_Url" />
+		<result property="writeDate" column="writeDate" />
+		<result property="category" column="category" />
+		<result property="like" column="like" />
+	</resultMap>
+	
+	<resultMap type="com.yogi.hoxy.dtos.MemberShoppingDto" id="MemberShoppingDtoMap">
+		<result property="id" column="id"/>
+		<result property="like" column="like"/>
+		<result property="product_seq" column="product_seq"/>
+		<collection property="productDto" resultMap="ProductDto"/>
+	</resultMap>
+	
+	
+	
+	<select id="likeList" parameterType="String" resultMap="MemberShoppingDtoMap">
+		SELECT m.PRODUCT_SEQ , p.SHOPID , p.PRODUCTNAME , p.PRICE , p.STOCK , p.IMG_URL , p.CATEGORY
+		FROM MEMBERSHOPPING m JOIN PRODUCT p ON m.PRODUCT_SEQ = p.PRODUCT_SEQ 
+		WHERE m.ID= #{id} AND m."LIKE" = '1'
+		ORDER BY p.WRITEDATE ASC
 	</select>
 	
-	<delete id="bookMuldel" parameterType="Map">
-		DELETE FROM BOOK WHERE SEQ IN 
-		<foreach collection="seqs" item="seq" open="(" close=")" separator="," >
-			#{seq}
-		</foreach>
-	</delete>
-	
-	<select id="bookCount" parameterType="String" resultType="int">
-		SELECT COUNT(*) 
-		FROM BOOK 
-		WHERE ID = #{id} 
-	</select>
-	
+	<update id="likeCancel" parameterType="Map">
+		UPDATE MEMBERSHOPPING SET "LIKE"= '0' 
+		WHERE PRODUCT_SEQ= #{product_seq} AND ID= #{id}
+	</update>
 	
 	
 </mapper>

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
+import com.yogi.hoxy.dtos.MemberShoppingDto;
 import com.yogi.hoxy.dtos.ShopDto;
 
 public interface IYogiDao {
@@ -64,4 +65,8 @@ public interface IYogiDao {
 	
 	
 	public List<BookDto> bookList(String id);
+	
+	public List<MemberShoppingDto> likeList(String id);
+	
+	public boolean likeCancel(String id, String product_seq);
 }

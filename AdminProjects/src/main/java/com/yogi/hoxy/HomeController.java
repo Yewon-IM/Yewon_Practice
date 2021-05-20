@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
+import com.yogi.hoxy.dtos.MemberShoppingDto;
 import com.yogi.hoxy.dtos.ShopDto;
 import com.yogi.hoxy.service.IYogiService;
 
@@ -651,6 +652,9 @@ public class HomeController {
 		model.addAttribute("dto", dto);
 		
 		if(dto.getDel().equals("0") && dto.getWho().equals("1")) {
+			List<MemberShoppingDto> msList = yoService.likeList(id);
+			model.addAttribute("msList", msList);
+			System.out.println(msList);
 			return "customer/myPage";			
 		} else if(dto.getDel().equals("1") && dto.getWho().equals("1")) {
 			return "customer/delMyPage";
@@ -772,29 +776,29 @@ public class HomeController {
 	
 	
 	
-	
-	
-	
-	@RequestMapping(value = "/bookList.do", method = RequestMethod.GET)
-	public String bookList(HttpServletRequest request, Locale locale, Model model) {
-		logger.info("예약리스트", locale);
 
+	
+	@RequestMapping(value = "/deleteLikeList.do", method = RequestMethod.GET)
+	public String deleteLikeList(HttpServletRequest request, Locale locale, Model model, @RequestParam("product_seq") String product_seq) {
+		logger.info("찜 삭제", locale);
+		
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("user_id");
-		model.addAttribute("id", id);
+		String id = (String) session.getAttribute("id");
+		String who = (String) session.getAttribute("who");	
 		
-		List<BookDto> bList = yoService.bookList(id);
-		model.addAttribute("bList", bList);
+		boolean isS = yoService.likeCancel(id, product_seq);
+		System.out.println(id + product_seq + isS);
 		
-		return "bookingList/bookingList";
+		if(who.equals("1")) {
+			if(isS) {
+				return "redirect:myPage.do";
+			}
+		} else {
+			model.addAttribute("msg", "권한 오류입니다.");
+			return "error";
+		}
+		model.addAttribute("msg", "찜 삭제 오류입니다.");
+		return "error";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

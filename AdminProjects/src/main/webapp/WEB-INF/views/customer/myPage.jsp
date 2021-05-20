@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.yogi.hoxy.dtos.MemberShoppingDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -5,6 +7,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
+<% List<MemberShoppingDto> msList = (List<MemberShoppingDto>) request.getAttribute("msList"); %>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>마이페이지</title>
@@ -272,47 +275,51 @@ Sibebar</a></li>
 </div>
 
 </div>
-<div class="col-lg-6 col-md-12 col-12">
 
+
+
+
+
+
+<div class="col-lg-6 col-md-12 col-12">
 <div class="recent-items dashboard-block">
 <h3 class="block-title">찜한 상품</h3>
+<%
+	if(msList == null || msList.size() == 0){
+		%>
+		<span>찜한 상품이 없습니다.
+		<a href=""> 찜하러 가쉴? </a></span>
+		<%
+	}else {
+		for(MemberShoppingDto msdto : msList){
+%>
 <ul>
 <li>
 <div class="image">
-<a href="javascript:void(0)"><img src="assets/images/dashboard/recent-items/item1.jpg" alt="#"></a>
+<a href="."><img src="assets/images/dashboard/recent-items/item1.jpg" alt="#"></a>
 </div>
-<a href="javascript:void(0)" class="title">iPhone 11 Pro Max</a>
-<span class="time">12 Minutes Ago</span>
-<span class="remove"><a href="javascript:void(0)"><i class="lni lni-close"></i></a></span>
-</li>
-<li>
-<div class="image">
-<a href="javascript:void(0)"><img src="assets/images/dashboard/recent-items/item2.jpg" alt="#"></a>
-</div>
-<a href="javascript:void(0)" class="title">Polaris 600 Assault 144</a>
-<span class="time">5 days Ago</span>
-<span class="remove"><a href="javascript:void(0)"><i class="lni lni-close"></i></a></span>
-</li>
-<li>
-<div class="image">
-<a href="javascript:void(0)"><img src="assets/images/dashboard/recent-items/item3.jpg" alt="#"></a>
-</div>
-<a href="javascript:void(0)" class="title">Brand New Bagpack</a>
-<span class="time">1 week Ago</span>
-<span class="remove"><a href="javascript:void(0)"><i class="lni lni-close"></i></a></span>
-</li>
-<li>
-<div class="image">
-<a href="javascript:void(0)"><img src="assets/images/dashboard/recent-items/item4.jpg" alt="#"></a>
-</div>
-<a href="javascript:void(0)" class="title">Honda Civic VTi 2023</a>
-<span class="time">3 week Ago</span>
-<span class="remove"><a href="javascript:void(0)"><i class="lni lni-close"></i></a></span>
+<span class="time">카테고리 : <%=msdto.getProductDto().getCategory() %></span>
+<span class="time">제품이름 : <%=msdto.getProductDto().getProductName() %></span>
+<span class="time">가격 : <%=msdto.getProductDto().getPrice() %></span>
+<span class="time">재고 : <%=msdto.getProductDto().getStock() %></span>
+<span class="remove"><a href="deleteLikeList.do?product_seq=<%=msdto.getProduct_seq() %>"><img src="resources/image/delete.png"></a></span>
 </li>
 </ul>
+		<%	}		
+		}
+		%>
+</div>
 </div>
 
-</div>
+
+
+
+
+
+
+
+
+
 </div>
 </div>
 </div>
@@ -446,59 +453,5 @@ App Store
 <script src="resources/js/tiny-slider.js"></script>
 <script src="resources/js/glightbox.min.js"></script>
 <script src="resources/js/main.js"></script>
-</body>
-</html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>마이페이지</title>
-<style type = "text/css">
-	table{
-		width:80%;
-		margin:auto;
-		height: 100px;
-		text-align: center;
-	}
-</style>
-<script type="text/javascript">
-	function updateForm(id) {
-		location.href="myPageUpdateForm.do?id="+id;
-	}
-</script>
-</head>
-<body>
-<form method="post">
-<table border="1">
-	<th colspan="6">회원정보</th>
-	<tr>
-		<td>아아디</td>
-		<td>이름</td>
-		<td>비밀번호</td>
-		<td>전화번호</td>
-		<td>이메일</td>
-		<td>가입일</td>
-	</tr>
-	<tr>
-		<td>${dto.id }</td>
-		<td>${dto.name }</td>
-		<td>${dto.pwd }</td>
-		<td>${dto.tel }</td>
-		<td>${dto.email }</td>
-		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regDate }" /></td>
-	</tr>
-	<tr>
-		<td colspan="6">
-		<c:if test="${'1' eq dto.del }">
-			<input type="submit" value="회원 탈퇴 취소" formaction='myPageCan.do?id=${dto.id }'>
-		</c:if>
-		<c:if test="${'0' eq dto.del}">			
-			<input type='submit' value='수정' formaction='myPageUpdateForm.do?id=${dto.id}'>
-			<input type='submit' value='삭제' formaction='myPageDelete.do?id=${dto.id}'>
-		</c:if>	
-		</td>
-	</tr>
-</table>
-</form>
-<a href=".">메인페이지</a>
 </body>
 </html>

@@ -144,4 +144,16 @@ public class YogiDaoImp implements IYogiDao{
 	public List<BookDto> bookList(String id){
 		return sqlSession.selectList(namespace + "bookList", id);
 	}
+	
+	public List<MemberShoppingDto> likeList(String id){
+		return sqlSession.selectList(namespace + "likeList", id);
+	}
+	
+	public boolean likeCancel(String id, String product_seq) {
+		Map<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("product_seq", product_seq);
+		int count = sqlSession.update(namespace + "likeCancel", map);
+		return count > 0? true:false;
+	}
 }

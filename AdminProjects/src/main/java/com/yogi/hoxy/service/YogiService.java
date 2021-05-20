@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.yogi.hoxy.daos.IYogiDao;
 import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
+import com.yogi.hoxy.dtos.MemberShoppingDto;
 import com.yogi.hoxy.dtos.ShopDto;
 
 @Service
@@ -148,6 +149,16 @@ public class YogiService implements IYogiService {
 	@Override
 	public List<BookDto> bookList(String id) {
 		return yogiDao.bookList(id);
+	}
+
+	@Override
+	public List<MemberShoppingDto> likeList(String id) {
+		return yogiDao.likeList(id);
+	}
+
+	@Override
+	public boolean likeCancel(String id, String product_seq) {
+		return yogiDao.likeCancel(id, product_seq);
 	}
 
 }
