@@ -58,19 +58,15 @@ public class YogiService implements IYogiService {
 	public boolean memUpdate(HttpServletRequest request) {
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request;	
 		
-		String profileImg = multi.getParameter("profileImg");		
-		
+		MultipartFile multiFile = multi.getFile("profileImg");	
+		String profileImg = multiFile.getOriginalFilename();
 		if(profileImg != null) {
-			MultipartFile multiFile = multi.getFile("profileImg");
 			
-			profileImg = multiFile.getOriginalFilename();
-			
-			String path = "C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/member";
+			String path = "C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
 			
 			//String path = request.getSession().getServletContext().getRealPath("upload");
 			
 			File f = new File(path+ "/" + profileImg);
-			
 			boolean isS = false;
 			
 			String id = multi.getParameter("id");
@@ -84,9 +80,7 @@ public class YogiService implements IYogiService {
 			String detailAdd = multi.getParameter("detailAdd");
 			String who = multi.getParameter("who");
 			String power = multi.getParameter("power");
-			String del = multi.getParameter("del");
-			
-		
+			String del = multi.getParameter("del");	
 		
 		try {
 			multiFile.transferTo(f); //파일객체에 저장된 경로대로 업로드가 실행됨.

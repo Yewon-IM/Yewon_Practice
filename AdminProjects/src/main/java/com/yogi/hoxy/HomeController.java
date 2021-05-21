@@ -700,9 +700,7 @@ public class HomeController {
 		boolean isS = yoService.memUpdate(request);
 		
 		if (isS) {
-			session = request.getSession(false);
-			session.invalidate();
-			return "redirect:.";
+			return "redirect:myPage.do";
 		} else {
 			model.addAttribute("msg", "정보수정오류입니다.");
 			return "error";
