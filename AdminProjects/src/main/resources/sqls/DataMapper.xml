@@ -62,7 +62,10 @@
 	
 	<update id="memUpdate" parameterType="MemberDto">
 		UPDATE "MEMBER" 
-		SET PWD= #{pwd}, NAME= #{name}, EMAIL= #{email}, TEL= #{tel}, LOCAL= #{local}, OADD= #{oAdd}, "ADD"= #{add}, DETAILADD= #{detailAdd}, WHO= #{who}, POWER= #{power} , DEL= #{del}, PROFILEIMG= #{profileImg}
+		SET PWD= #{pwd}, NAME= #{name}, EMAIL= #{email}, TEL= #{tel}, LOCAL= #{local}, OADD= #{oAdd}, "ADD"= #{add}, DETAILADD= #{detailAdd}, WHO= #{who}, POWER= #{power}, DEL= #{del}
+		<if test="profileImg != null"> <!-- 다이나믹쿼리 -->
+			, PROFILEIMG= #{profileImg}
+		</if>
 		WHERE ID = #{id}		
 	</update>
 	
@@ -89,6 +92,9 @@
 		UPDATE SHOP SET SHOPNAME= #{shopName}, SHOPODD= #{shopOdd}, SHOPADD= #{shopAdd}, 
 		SHOPDETAILADD= #{shopDetailAdd}, SHOPTEL= #{shopTel}, LOCAL= #{local}, BUSINESSNUM= #{businessNum}, 
 		POWER= #{power} , DEL= #{del}
+		<if test="shopImg != null">
+		, SHOPIMG= #{shopImg}		
+		</if>
 		WHERE SHOPID= #{shopId}
 	</update>
 
@@ -107,7 +113,8 @@
 	</select>
 	
 	<select id="myShopDetail" parameterType="Map" resultType="ShopDto">
-		SELECT * FROM SHOP  
+		SELECT * 
+		FROM SHOP  
 		WHERE ID = #{id} AND SHOPID = #{shopId}
 	</select>
 	

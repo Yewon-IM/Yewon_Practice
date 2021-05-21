@@ -25,12 +25,7 @@ public interface IYogiService {
 	
 	public List<MemberDto> memberList();
 	
-	//public boolean memUpdate(MemberDto dto);
-	
 	public boolean memUpdate(HttpServletRequest request);
-	
-	
-	
 	
 	public String login(String id, String pwd);
 	
@@ -38,7 +33,7 @@ public interface IYogiService {
 	
 	public ShopDto myShopDetail(String id, String shopId);
 	
-	public boolean myShopUpdate(ShopDto sdto);
+	public boolean myShopUpdate(HttpServletRequest request);
 	
 	public boolean myShopDelete(String shopId);
 	

@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.yogi.hoxy.dtos.BookDto;
@@ -99,7 +100,8 @@ public class HomeController {
 			session.setAttribute("name", dto.getName());
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("del", dto.getDel());
-
+			session.setAttribute("profileImg", dto.getProfileImg());
+			
 			if (dto.getWho().equals("0")) {
 				return "admin/adminMain";
 			} else if (dto.getDel().equals("0") && dto.getWho().equals("1")) {
@@ -353,8 +355,9 @@ public class HomeController {
 		
 		if(who.equals("0")) {
 			MemberDto dto = yoService.listSel(id);
-			model.addAttribute("dto", dto);	
-			return"memUpdateForm";
+			model.addAttribute("dto", dto);
+			System.out.println(dto);
+			return"admin/memUpdateForm";
 		} else {
 			model.addAttribute("msg", "관리자만 가능합니다.");
 			return "error";	
@@ -369,7 +372,7 @@ public class HomeController {
 		String who = (String) session.getAttribute("who");
 		
 		if(who.equals("0")) {
-			boolean isS = yoService.memUpdate(dto);
+			boolean isS = yoService.memUpdate(request);
 			if (isS) {
 				return "redirect:memberList.do";
 			} else {
@@ -539,19 +542,19 @@ public class HomeController {
 		
 		ShopDto sdto = yoService.myShopDetail(id, shopId);
 		model.addAttribute("sdto", sdto);
-
+		
 		return "seller/myShopUpdateForm";
 	}
-
+	
 	@RequestMapping(value = "/myShopUpdate.do", method = RequestMethod.POST)
-	public String myShopUpdate(HttpServletRequest request, Locale locale, Model model, ShopDto sdto) {
+	public String myShopUpdate(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("상점 정보 수정", locale);
 		
 		HttpSession session = request.getSession();		
 		String who = (String) session.getAttribute("who");
 		
-		boolean isS = yoService.myShopUpdate(sdto);
-
+		boolean isS = yoService.myShopUpdate(request);
+		System.out.println(request);
 		if (isS) {
 			if(who.equals("2")) {				
 				return "redirect:myShop.do";
@@ -559,6 +562,7 @@ public class HomeController {
 				return "redirect:shopList.do";
 			}
 		}
+		model.addAttribute("msg", "상점 정보수정 오류입니다.");
 		return "error";
 	}
 
@@ -612,7 +616,7 @@ public class HomeController {
 		logger.info("상점 추가", locale);
 
 		boolean isS = yoService.shopAdd(new ShopDto(sdto.getId(), sdto.getShopId(), sdto.getShopName(), sdto.getShopOdd(),
-				sdto.getShopAdd(), sdto.getShopDetailAdd(), sdto.getShopTel(), sdto.getLocal(), sdto.getBusinessNum(), null, "0", "0"));
+				sdto.getShopAdd(), sdto.getShopDetailAdd(), sdto.getShopTel(), sdto.getLocal(), sdto.getBusinessNum(), null, "0", "0", sdto.getShopImg()));
 
 		if (isS) {
 			return "redirect:myShop.do";
@@ -656,7 +660,6 @@ public class HomeController {
 		if(dto.getDel().equals("0") && dto.getWho().equals("1")) {
 			List<MemberShoppingDto> msList = yoService.likeList(id);
 			model.addAttribute("msList", msList);
-			System.out.println(msList);
 			return "customer/myPage";			
 		} else if(dto.getDel().equals("1") && dto.getWho().equals("1")) {
 			return "customer/delMyPage";
@@ -689,19 +692,19 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/myPageUpdate.do", method = RequestMethod.POST)
-	public String myPageUpdate(HttpServletRequest request, Locale locale, Model model, MemberDto dto) {
+	public String myPageUpdate(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("회원 정보 수정하기", locale);
 		
 		HttpSession session = request.getSession();
-		//String path="C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
 		
-		boolean isS = yoService.memUpdate(dto);
+		boolean isS = yoService.memUpdate(request);
 		
 		if (isS) {
 			session = request.getSession(false);
 			session.invalidate();
 			return "redirect:.";
 		} else {
+			model.addAttribute("msg", "정보수정오류입니다.");
 			return "error";
 		}
 	}

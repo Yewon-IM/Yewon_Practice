@@ -70,14 +70,6 @@
  <a href="category.html" aria-label="Toggle navigation">Categories</a>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>
-<ul class="sub-menu collapse" id="submenu-1-3">
-<li class="nav-item"><a href="item-listing-grid.html">Ad Grid</a></li>
-<li class="nav-item"><a href="item-listing-list.html">Ad Listing</a></li>
-<li class="nav-item"><a href="item-details.html">Ad Details</a></li>
-</ul>
-</li>
-<li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">내 상점</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
@@ -96,21 +88,10 @@
 </li>
 <li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a>
 </li>
-<li class="nav-item"><a href=".">가나다</a></li>
 <li class=" active nav-item"><a href="myPageDelete.do">회원탈퇴</a>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-<ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
-</li>
-<li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
-<li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
-Sibebar</a></li>
 </ul>
 </li>
 </ul>
@@ -118,7 +99,7 @@ Sibebar</a></li>
 <div class="login-button">
 <ul>
 <li>
-<p>${name } 판매자</p>
+<p>${name }</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
@@ -159,21 +140,13 @@ Sibebar</a></li>
 
 <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="assets/images/dashboard/user-image.jpg" alt="#">
-<h3>Steve Aldridge
-<span><a href="javascript:void(0)">${name }</a></span>
-</h3>
+<img src="upload/${profileImg }" alt="#">
+<span>${name }</span>
 </div>
 <div class="dashboard-menu">
 <ul>
 <li><a href="myPage.do"><i class="lni lni-dashboard"></i> 마이페이지</a></li>
 <li><a href="myPageUpdateForm.do"><i class="lni lni-pencil-alt"></i>정보 수정</a></li>
-<li><a href="my-items.html"><i class="lni lni-bolt-alt"></i> My Ads</a></li>
-<li><a href="favourite-items.html"><i class="lni lni-heart"></i> Favourite ads</a></li>
-<li><a href="post-item.html"><i class="lni lni-circle-plus"></i> Post An Ad</a></li>
-<li><a href="bookmarked-items.html"><i class="lni lni-bookmark"></i> Bookmarked</a></li>
-<li><a href="messages.html"><i class="lni lni-envelope"></i> Messages</a></li>
-<li><a href="delete-account.html"><i class="lni lni-trash"></i> Close account</a></li>
 <li><a class="active" href="myPageDelete.do"><i class="lni lni-printer"></i> 회원탈퇴</a></li>
 </ul>
 <div class="button">

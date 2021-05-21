@@ -50,8 +50,8 @@
 <div class="col-lg-12">
 <div class="nav-inner">
 <nav class="navbar navbar-expand-lg">
-<a class="navbar-brand" href="index.html">
-<img src="resources/images/logo/logo.svg" alt="Logo">
+<a class="navbar-brand" href=".">
+<img src="assets/images/logo/logo.svg" alt="Logo">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="toggler-icon"></span>
@@ -72,63 +72,24 @@
  <a href="category.html" aria-label="Toggle navigation">Categories</a>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>
-<ul class="sub-menu collapse" id="submenu-1-3">
-<li class="nav-item"><a href="item-listing-grid.html">Ad Grid</a></li>
-<li class="nav-item"><a href="item-listing-list.html">Ad Listing</a></li>
-<li class="nav-item"><a href="item-details.html">Ad Details</a></li>
-</ul>
-</li>
-<li class="nav-item">
-<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Pages</a>
+<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">관리자페이지</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
 <ul>
-<li class="mega-menu-title">Essential Pages</li>
-<li class="nav-item"><a href="about-us.html">About Us</a></li>
-<li class="nav-item"><a href="item-details.html">Ads Details</a></li>
-<li class="nav-item"><a href="post-item.html">Ads Post</a></li>
-<li class="nav-item"><a href="pricing.html">Pricing Table</a></li>
-<li class="nav-item active"><a href="registration.html">Sign Up</a></li>
-<li class="nav-item"><a href="login.html">Sign In</a></li>
-<li class="nav-item"><a href="contact.html">Contact Us</a></li>
-<li class="nav-item"><a href="faq.html">FAQ</a></li>
-<li class="nav-item"><a href="404.html">Error Page</a></li>
-<li class="nav-item"><a href="mail-success.html">Mail Success</a>
-</li>
-<li class="nav-item"><a href="coming-soon.html">Comming Soon</a>
-</li>
+<li class="mega-menu-title">회원</li>
+<li class="nav-item"><a href="newMemberList.do">신규회원</a></li>
+<li class="nav-item"><a href="memberList.do">회원 리스트</a></li>
+<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 <li class="single-block">
 <ul>
-<li class="mega-menu-title">Dashboard</li>
-<li class="nav-item"><a href="dashboard.html">Account Overview</a>
-</li>
-<li class="nav-item"><a href="profile-settings.html">My Profile</a>
-</li>
-<li class="nav-item"><a href="my-items.html">My Ads</a></li>
- <li class="nav-item"><a href="favourite-items.html">Favorite Ads</a>
-</li>
-<li class="nav-item"><a href="post-item.html">Ad post</a></li>
-<li class="nav-item"><a href="bookmarked-items.html">Bookmarked Ad</a>
-</li>
-<li class="nav-item"><a href="messages.html">Messages</a></li>
-<li class="nav-item"><a href="delete-account.html">Close account</a>
-</li>
-<li class="nav-item"><a href="invoice.html">Invoice</a></li>
+<li class="mega-menu-title">상점</li>
+<li class="nav-item"><a href="newShopList.do">상점 승인</a></li>
+<li class="nav-item"><a href="memberList.do">상점 리스트</a></li>
+<li class=" active nav-item"><a href="delShopList.do">상점 삭제</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-<ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
-</li>
-<li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
-<li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
-Sibebar</a></li>
 </ul>
 </li>
 </ul>
@@ -136,15 +97,12 @@ Sibebar</a></li>
 <div class="login-button">
 <ul>
 <li>
-<a href="login.do"><i class="lni lni-enter"></i>로그인</a>
+<p>${name }</p>
 </li>
 <li>
-<a href="registration.html"><i class="lni lni-user"></i> Register</a>
+<a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>
 </li>
 </ul>
-</div>
-<div class="button header-button">
-<a href="post-item.html" class="btn">Post an Ad</a>
 </div>
 </nav> 
 </div>
@@ -184,6 +142,10 @@ Sibebar</a></li>
 </div>
 
 <div class="form-group">
+<label>프로필 사진</label>
+<img src="upload/${dto.profileImg}" alt="profileImg" width=100 height=100 />
+</div>
+<div class="form-group">
 <label>아이디</label>
 <input name="id" type="text" value=${dto.id } readonly>
 </div>
@@ -210,7 +172,33 @@ Sibebar</a></li>
 
 <div class="form-group">
 <label>지역</label>
-<input name="local" value = "${dto.local }" >
+<select name="local">
+						<option value="강남구" ${dto.local == "강남구"? "selected" : "" }>강남구</option>
+						<option value="강동구" ${dto.local == "강동구"? "selected" : "" }>강동구</option>
+						<option value="강북구" ${dto.local == "강북구"? "selected" : "" }>강북구</option>
+						<option value="강서구" ${dto.local == "강서구"? "selected" : "" }>강서구</option>	
+						<option value="관악구" ${dto.local == "관악구"? "selected" : "" }>관악구</option>
+						<option value="광진구" ${dto.local == "광진구"? "selected" : "" }>광진구</option>
+						<option value="구로구" ${dto.local == "구로구"? "selected" : "" }>구로구</option>
+						<option value="금천구" ${dto.local == "금천구"? "selected" : "" }>금천구</option>
+						<option value="금천구" ${dto.local == "노원구"? "selected" : "" }>노원구</option>
+						<option value="도봉구" ${dto.local == "도봉구"? "selected" : "" }>도봉구</option>
+						<option value="동대문구" ${dto.local == "동대문구"? "selected" : "" }>동대문구</option>
+						<option value="동작구" ${dto.local == "동작구"? "selected" : "" }>동작구</option>											
+						<option value="마포구" ${dto.local == "마포구"? "selected" : "" }>마포구</option>
+						<option value="서대문구" ${dto.local == "서대문구"? "selected" : "" }>서대문구</option>
+						<option value="서초구" ${dto.local == "서초구"? "selected" : "" }>서초구</option>
+						<option value="성동구" ${dto.local == "성동구"? "selected" : "" }>성동구</option>	
+						<option value="성북구" ${dto.local == "성북구"? "selected" : "" }>성북구</option>
+						<option value="송파구" ${dto.local == "송파구"? "selected" : "" }>송파구</option>
+						<option value="양천구" ${dto.local == "양천구"? "selected" : "" }>양천구</option>
+						<option value="영등포구" ${dto.local == "영등포구"? "selected" : "" }>영등포구</option>
+						<option value="용산구" ${dto.local == "용산구"? "selected" : "" }>용산구</option>
+						<option value="은평구" ${dto.local == "은평구"? "selected" : "" }>은평구</option>
+						<option value="종로구" ${dto.local == "종로구"? "selected" : "" }>종로구</option>
+						<option value="중구" ${dto.local == "중구"? "selected" : "" }>중구</option>	
+						<option value="중랑구" ${dto.local == "중랑구"? "selected" : "" }>중랑구</option>
+</select> 
 </div>
 
 <div class="form-group">
@@ -406,54 +394,6 @@ App Store
 <a href="#" class="scroll-top btn-hover">
 <i class="lni lni-chevron-up"></i>
 </a>
-
-<!-- <form method="post"> -->
-<!-- 	<table border="1"> -->
-<!-- 		<th colspan="14">회원 세부정보</th> -->
-<!-- 		<tr> -->
-<!-- 			<td>아이디</td> -->
-<!-- 			<td>이름</td> -->
-<!-- 			<td>비밀번호</td> -->
-<!-- 			<td>전화번호</td> -->
-<!-- 			<td>이메일</td> -->
-<!-- 			<td>가입일</td> -->
-<!-- 			<td>누구인가?</td> -->
-<!--  			<td>승인여부</td>  -->
-<!--  			<td>가게이름</td>  -->
-<!--  			<td>가게주소</td>  -->
-<!--  			<td>지역</td>  -->
-<!--  			<td>사업자번호</td>  -->
-<!--  			<td>가게번호</td> -->
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<%-- 			<td width="50px"><a href="memUpdateForm.do?id=${dto.id }">${dto.id }</a></td> --%>
-<%-- 			<td width="50px">${dto.name}</td> --%>
-<%-- 			<td width="50px">${dto.pwd}</td> --%>
-<%-- 			<td width="50px">${dto.tel}</td> --%>
-<%-- 			<td width="50px">${dto.email}</td> --%>
-<%-- 			<td width="50px">${dto.regDate}</td> --%>
-<%-- 			<c:if test="${dto.who == 0}"> --%>
-<!-- 				<td width="50px">관리자</td> -->
-<%-- 			</c:if> --%>
-<%-- 			<c:if test="${dto.who == 1}"> --%>
-<!-- 				<td width="50px">판매자</td> -->
-<%-- 			</c:if>			 --%>
-<%-- 			<c:if test="${dto.who == 2}"> --%>
-<!-- 				<td width="50px">구매자</td> -->
-<%-- 			</c:if> --%>
-							
-<%--  			<td width="40px">${dto.power}</td>  --%>
-<%--  			<td width="40px">${dto.shopName}</td>  --%>
-<%--  			<td width="40px">${dto.shopAdd}</td>  --%>
-<%--  			<td width="40px">${dto.local}</td>  --%>
-<%--  			<td width="30px">${dto.businessnum}</td>  --%>
-<%--  			<td width="30px">${dto.shopId}</td>			  --%>
-<!-- 		</tr> -->
-		
-<!-- 	</table> -->
-<!-- </form> -->
-<a href=".">메인 홈페이지</a>
-<a href="memberList.do">회원 관리페이지</a>	
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>

@@ -69,14 +69,6 @@
 <a href="category.html" aria-label="Toggle navigation">Categories</a>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>
-<ul class="sub-menu collapse" id="submenu-1-3">
-<li class="nav-item"><a href="item-listing-grid.html">Ad Grid</a></li>
-<li class="nav-item"><a href="item-listing-list.html">Ad Listing</a></li>
-<li class="nav-item"><a href="item-details.html">Ad Details</a></li>
-</ul>
-</li>
-<li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">내 상점</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
@@ -107,7 +99,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p>${name } 판매자</p>
+<p>${name }</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>

@@ -65,21 +65,13 @@
 <li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
 <ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href="index.html">Home Default</a></li>
+<li class="nav-item"><a href=".">Home Default</a></li>
 <li class="nav-item"><a href="index2.html">Home Version 2</a></li>
 <li class="nav-item"><a href="index3.html">Home Version 3</a></li>
 </ul>
 </li>
 <li class="nav-item">
  <a href="category.html" aria-label="Toggle navigation">Categories</a>
-</li>
-<li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>
-<ul class="sub-menu collapse" id="submenu-1-3">
-<li class="nav-item"><a href="item-listing-grid.html">Ad Grid</a></li>
-<li class="nav-item"><a href="item-listing-list.html">Ad Listing</a></li>
-<li class="nav-item"><a href="item-details.html">Ad Details</a></li>
-</ul>
 </li>
 <li class="nav-item">
 <a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">관리자페이지</a>
@@ -148,22 +140,18 @@
 
  <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="assets/images/dashboard/user-image.jpg" alt="#">
-<h3>Steve Aldridge
-<span><a href="javascript:void(0)">${name }</a></span>
-</h3>
+<img src="resources/image/admin.png" alt="#">
+<span>${name }</span>
 </div>
 <div class="dashboard-menu">
 <ul>
-<li><a href="dashboard.html"><i class="lni lni-dashboard"></i> Dashboard</a></li>
-<li><a class="active" href="newShopList.do"><i class="lni lni-pencil-alt"></i>신규상점</a></li>
-<li><a href="shopList.do"><i class="lni lni-bolt-alt"></i>상점 리스트</a></li>
-<li><a href="delShopList.do"><i class="lni lni-heart"></i>삭제요청한 상점</a></li>
 <li><a href="newMemberList.do"><i class="lni lni-circle-plus"></i>신규회원</a></li>
 <li><a href="memberList.do"><i class="lni lni-bookmark"></i>회원리스트</a></li>
 <li><a href="delMemberList.do"><i class="lni lni-envelope"></i>탈퇴회원</a></li>
-<li><a href="delete-account.html"><i class="lni lni-trash"></i> Close account</a></li>
-<li><a href="invoice.html"><i class="lni lni-printer"></i> Invoice</a></li>
+<li><a class="active" href="newShopList.do"><i class="lni lni-pencil-alt"></i>신규상점</a></li>
+<li><a href="shopList.do"><i class="lni lni-bolt-alt"></i>상점 리스트</a></li>
+<li><a href="delShopList.do"><i class="lni lni-heart"></i>삭제요청한 상점</a></li>
+<li><a href="error"><i class="lni lni-trash"></i>퇴사</a></li>
 </ul>
 <div class="button">
 <a class="btn" href="javascript:void(0)">Logout</a>

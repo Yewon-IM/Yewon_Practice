@@ -71,14 +71,6 @@
  <a href="category.html" aria-label="Toggle navigation">Categories</a>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>
-<ul class="sub-menu collapse" id="submenu-1-3">
-<li class="nav-item"><a href="item-listing-grid.html">Ad Grid</a></li>
-<li class="nav-item"><a href="item-listing-list.html">Ad Listing</a></li>
-<li class="nav-item"><a href="item-details.html">Ad Details</a></li>
-</ul>
-</li>
-<li class="nav-item">
 <a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">마이페이지</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
@@ -87,16 +79,6 @@
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-<ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
-</li>
-<li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
-<li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
-Sibebar</a></li>
 </ul>
 </li>
 </ul>
@@ -145,10 +127,9 @@ Sibebar</a></li>
 
 <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="assets/images/dashboard/user-image.jpg" alt="#">
-<h3>Steve Aldridge
-<span><a href="javascript:void(0)">${name }</a></span>
-</h3>
+<img src="upload/${profileImg }" alt="#">
+<span>${name }</span>
+
 </div>
 <div class="dashboard-menu">
 <ul>

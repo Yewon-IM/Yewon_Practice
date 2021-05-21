@@ -53,27 +53,45 @@ public class YogiService implements IYogiService {
 	public List<MemberDto> memberList() {
 		return yogiDao.memberList();
 	}
-
-//	@Override
-//	public boolean memUpdate(MemberDto dto) {
-//		return yogiDao.memUpdate(dto);
-//	}
 	
 	@Override
 	public boolean memUpdate(HttpServletRequest request) {
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request;	
 		
-		MultipartFile multiFile = multi.getFile("profileImg");
+		String profileImg = multi.getParameter("profileImg");		
 		
-		String path = request.getSession().getServletContext().getRealPath("upload");
+		if(profileImg != null) {
+			MultipartFile multiFile = multi.getFile("profileImg");
+			
+			profileImg = multiFile.getOriginalFilename();
+			
+			String path = "C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/member";
+			
+			//String path = request.getSession().getServletContext().getRealPath("upload");
+			
+			File f = new File(path+ "/" + profileImg);
+			
+			boolean isS = false;
+			
+			String id = multi.getParameter("id");
+			String pwd = multi.getParameter("pwd");
+			String name = multi.getParameter("name");
+			String email = multi.getParameter("email");
+			String tel = multi.getParameter("tel");
+			String local = multi.getParameter("local");
+			String oAdd = multi.getParameter("oAdd");
+			String add = multi.getParameter("add");
+			String detailAdd = multi.getParameter("detailAdd");
+			String who = multi.getParameter("who");
+			String power = multi.getParameter("power");
+			String del = multi.getParameter("del");
+			
 		
-		File f = new File(path+ "/" + multiFile);
-		boolean isS = false;
 		
 		try {
 			multiFile.transferTo(f); //파일객체에 저장된 경로대로 업로드가 실행됨.
 			//파일정보를 DB에 저장하기
-			//isS = YogiDaoImp.memUpdate(new MemberDto(id, pwd, name, email, tel, local, oAdd, add, detailAdd, regDate, who, power, del, profileImg));
+			isS = yogiDao.memUpdate(new MemberDto(id, pwd, name, email, tel, local, oAdd, add, detailAdd, null, who, power, del, profileImg));
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,10 +100,120 @@ public class YogiService implements IYogiService {
 			e.printStackTrace();
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
+		} 
 		
 		return isS;
+		
+		} else {
+			
+			boolean isS = false;
+			
+			String id = multi.getParameter("id");
+			String pwd = multi.getParameter("pwd");
+			String name = multi.getParameter("name");
+			String email = multi.getParameter("email");
+			String tel = multi.getParameter("tel");
+			String local = multi.getParameter("local");
+			String oAdd = multi.getParameter("oAdd");
+			String add = multi.getParameter("add");
+			String detailAdd = multi.getParameter("detailAdd");
+			String who = multi.getParameter("who");
+			String power = multi.getParameter("power");
+			String del = multi.getParameter("del");
+			
+			try {
+				//파일정보를 DB에 저장하기
+				isS = yogiDao.memUpdate(new MemberDto(id, pwd, name, email, tel, local, oAdd, add, detailAdd, null, who, power, del, null));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+				
+			return isS;
+		}
+		
 	}
+	
+	@Override
+	public boolean myShopUpdate(HttpServletRequest request) {
+		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request;	
+		
+		String shopImg = multi.getParameter("shopImg");		
+		
+		if(shopImg != null) {
+			MultipartFile multiFile = multi.getFile("shopImg");
+			
+			shopImg = multiFile.getOriginalFilename();
+			
+			String path = "C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/shop";
+				
+			//String path = request.getSession().getServletContext().getRealPath("upload");
+			
+			File f = new File(path+ "/" + shopImg);
+			
+			boolean isS = false;
+		
+			
+			String id = multi.getParameter("id");
+			String shopId = multi.getParameter("shopId");
+			String shopName = multi.getParameter("shopName");
+			String shopOdd = multi.getParameter("shopOdd");
+			String shopAdd = multi.getParameter("shopAdd");
+			String shopDetailAdd = multi.getParameter("shopDetailAdd");
+			String shopTel = multi.getParameter("shopTel");
+			String local = multi.getParameter("local");
+			String businessNum = multi.getParameter("businessNum");
+			String power = multi.getParameter("power");
+			String del = multi.getParameter("del");
+			
+		try {
+			multiFile.transferTo(f); //파일객체에 저장된 경로대로 업로드가 실행됨.
+			//파일정보를 DB에 저장하기
+			isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, shopImg));
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} 
+		
+		return isS;
+		
+		} else {
+			
+			boolean isS = false;
+			
+			String id = multi.getParameter("id");
+			String shopId = multi.getParameter("shopId");
+			String shopName = multi.getParameter("shopName");
+			String shopOdd = multi.getParameter("shopOdd");
+			String shopAdd = multi.getParameter("shopAdd");
+			String shopDetailAdd = multi.getParameter("shopDetailAdd");
+			String shopTel = multi.getParameter("shopTel");
+			String local = multi.getParameter("local");
+			String businessNum = multi.getParameter("businessNum");
+			String power = multi.getParameter("power");
+			String del = multi.getParameter("del");
+			
+			try {
+				//파일정보를 DB에 저장하기
+				isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, null));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+				
+			return isS;
+		}
+	}
+	
 
 	@Override
 	public String login(String id, String pwd) {
@@ -100,11 +228,6 @@ public class YogiService implements IYogiService {
 	@Override
 	public ShopDto myShopDetail(String id, String shopId) {
 		return yogiDao.myShopDetail(id, shopId);
-	}
-
-	@Override
-	public boolean myShopUpdate(ShopDto sdto) {
-		return yogiDao.myShopUpdate(sdto);
 	}
 
 	@Override
@@ -177,10 +300,6 @@ public class YogiService implements IYogiService {
 		return yogiDao.myPageCan(id);
 	}
 
-	
-	
-	
-	
 	@Override
 	public List<BookDto> bookList(String id) {
 		return yogiDao.bookList(id);

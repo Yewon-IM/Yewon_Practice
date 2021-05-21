@@ -16,6 +16,7 @@ public class ShopDto {
 	private Date openDate;
 	private String power;
 	private String del;
+	private String shopImg;
 	
 	public ShopDto() {
 		super();
@@ -23,7 +24,7 @@ public class ShopDto {
 	}
 
 	public ShopDto(String id, String shopId, String shopName, String shopOdd, String shopAdd, String shopDetailAdd,
-			String shopTel, String local, String businessNum, Date openDate, String power, String del) {
+			String shopTel, String local, String businessNum, Date openDate, String power, String del, String shopImg) {
 		super();
 		this.id = id;
 		this.shopId = shopId;
@@ -37,6 +38,7 @@ public class ShopDto {
 		this.openDate = openDate;
 		this.power = power;
 		this.del = del;
+		this.shopImg = shopImg;
 	}
 
 	public String getId() {
@@ -135,12 +137,19 @@ public class ShopDto {
 		this.del = del;
 	}
 
+	public String getShopImg() {
+		return shopImg;
+	}
+
+	public void setShopImg(String shopImg) {
+		this.shopImg = shopImg;
+	}
+
 	@Override
 	public String toString() {
 		return "ShopDto [id=" + id + ", shopId=" + shopId + ", shopName=" + shopName + ", shopOdd=" + shopOdd
 				+ ", shopAdd=" + shopAdd + ", shopDetailAdd=" + shopDetailAdd + ", shopTel=" + shopTel + ", local="
 				+ local + ", businessNum=" + businessNum + ", openDate=" + openDate + ", power=" + power + ", del="
-				+ del + "]";
+				+ del + ", shopImg=" + shopImg + "]";
 	}
-
 }

@@ -8,6 +8,19 @@
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>마이페이지 수정하기</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#profileImg').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+</script>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -68,14 +81,6 @@
  <a href="category.html" aria-label="Toggle navigation">Categories</a>
 </li>
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>
-<ul class="sub-menu collapse" id="submenu-1-3">
-<li class="nav-item"><a href="item-listing-grid.html">Ad Grid</a></li>
-<li class="nav-item"><a href="item-listing-list.html">Ad Listing</a></li>
-<li class="nav-item"><a href="item-details.html">Ad Details</a></li>
-</ul>
-</li>
-<li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">내 상점</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
@@ -94,21 +99,10 @@
 </li>
 <li class=" active nav-item"><a href="myPageUpdateForm.do">정보수정</a>
 </li>
-<li class="nav-item"><a href=".">가나다</a></li>
 <li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-<ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
-</li>
-<li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
-<li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
-Sibebar</a></li>
 </ul>
 </li>
 </ul>
@@ -116,7 +110,7 @@ Sibebar</a></li>
 <div class="login-button">
 <ul>
 <li>
-<p>${name } 판매자</p>
+<p>${name }</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
@@ -158,21 +152,13 @@ Sibebar</a></li>
 
 <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="assets/images/dashboard/user-image.jpg" alt="#">
-<h3>Steve Aldridge
-<span><a href="javascript:void(0)">${name }</a></span>
-</h3>
+<img src="upload/member/${dto.profileImg }" alt="#">
+<span>${name }</span>
 </div>
 <div class="dashboard-menu">
 <ul>
 <li><a href="myPage.do"><i class="lni lni-dashboard"></i> 마이페이지</a></li>
 <li><a class="active" href="myPageUpdateForm.do"><i class="lni lni-pencil-alt"></i>정보 수정</a></li>
-<li><a href="my-items.html"><i class="lni lni-bolt-alt"></i> My Ads</a></li>
-<li><a href="favourite-items.html"><i class="lni lni-heart"></i> Favourite ads</a></li>
-<li><a href="post-item.html"><i class="lni lni-circle-plus"></i> Post An Ad</a></li>
-<li><a href="bookmarked-items.html"><i class="lni lni-bookmark"></i> Bookmarked</a></li>
-<li><a href="messages.html"><i class="lni lni-envelope"></i> Messages</a></li>
-<li><a href="delete-account.html"><i class="lni lni-trash"></i> Close account</a></li>
 <li><a href="myPageDelete.do"><i class="lni lni-printer"></i> 회원탈퇴</a></li>
 </ul>
 <div class="button">
@@ -188,16 +174,17 @@ Sibebar</a></li>
 <div class="dashboard-block mt-0 profile-settings-block">
 <h3 class="block-title">정보 수정</h3>
 <div class="inner-block">
-<div class="image">
-<img src="assets/images/dashboard/user-image.jpg" alt="#">
-</div>
-
-<form class="profile-setting-form" method="post">
+<form class="profile-setting-form" method="post" action="myPageUpdate.do" enctype="multipart/form-data">
 <div class="row">
-<div class="col-lg-12 col-12">
+<div class="col-lg-6 col-12">
 <div class="form-group upload-image">
-<label>Profile Image*</label>
-<input name="profile-image" type="file" placeholder="Upload Image">
+<label>프로필 사진</label>
+<input type="file" name="profileImg" onchange ="readURL(this);" />
+</div>
+</div>
+<div class="col-lg-6 col-12">
+<div class="form-group">
+<img id ="profileImg" src="upload/member/${dto.profileImg }" width=100 height=100 />
 </div>
 </div>
 <div class="col-lg-6 col-12">
@@ -240,31 +227,31 @@ Sibebar</a></li>
 <div class="form-group">
 <label>지역</label>
 <select name="local" >
-						<option ${dto.local == "강남구"? "selected" : "" }>강남구</option>
-						<option ${dto.local == "강동구"? "selected" : "" }>강동구</option>
-						<option ${dto.local == "강북구"? "selected" : "" }>강북구</option>
-						<option ${dto.local == "강서구"? "selected" : "" }>강서구</option>	
-						<option ${dto.local == "관악구"? "selected" : "" }>관악구</option>
-						<option ${dto.local == "광진구"? "selected" : "" }>광진구</option>
-						<option ${dto.local == "구로구"? "selected" : "" }>구로구</option>
-						<option ${dto.local == "금천구"? "selected" : "" }>금천구</option>
-						<option ${dto.local == "노원구"? "selected" : "" }>노원구</option>
-						<option ${dto.local == "도봉구"? "selected" : "" }>도봉구</option>
-						<option ${dto.local == "동대문구"? "selected" : "" }>동대문구</option>
-						<option ${dto.local == "동작구"? "selected" : "" }>동작구</option>											
-						<option ${dto.local == "마포구"? "selected" : "" }>마포구</option>
-						<option ${dto.local == "서대문구"? "selected" : "" }>서대문구</option>
-						<option ${dto.local == "서초구"? "selected" : "" }>서초구</option>
-						<option ${dto.local == "성동구"? "selected" : "" }>성동구</option>	
-						<option ${dto.local == "성북구"? "selected" : "" }>성북구</option>
-						<option ${dto.local == "송파구"? "selected" : "" }>송파구</option>
-						<option ${dto.local == "양천구"? "selected" : "" }>양천구</option>
-						<option ${dto.local == "영등포구"? "selected" : "" }>영등포구</option>
-						<option ${dto.local == "용산구"? "selected" : "" }>용산구</option>
-						<option ${dto.local == "은평구"? "selected" : "" }>은평구</option>
-						<option ${dto.local == "종로구"? "selected" : "" }>종로구</option>
-						<option ${dto.local == "중구"? "selected" : "" }>중구</option>	
-						<option ${dto.local == "중랑구"? "selected" : "" }>중랑구</option>
+						<option value="강남구" ${dto.local == "강남구"? "selected" : "" }>강남구</option>
+						<option value="강동구" ${dto.local == "강동구"? "selected" : "" }>강동구</option>
+						<option value="강북구" ${dto.local == "강북구"? "selected" : "" }>강북구</option>
+						<option value="강서구" ${dto.local == "강서구"? "selected" : "" }>강서구</option>	
+						<option value="관악구" ${dto.local == "관악구"? "selected" : "" }>관악구</option>
+						<option value="광진구" ${dto.local == "광진구"? "selected" : "" }>광진구</option>
+						<option value="구로구" ${dto.local == "구로구"? "selected" : "" }>구로구</option>
+						<option value="금천구" ${dto.local == "금천구"? "selected" : "" }>금천구</option>
+						<option value="노원구" ${dto.local == "노원구"? "selected" : "" }>노원구</option>
+						<option value="도봉구" ${dto.local == "도봉구"? "selected" : "" }>도봉구</option>
+						<option value="동대문구" ${dto.local == "동대문구"? "selected" : "" }>동대문구</option>
+						<option value="동작구" ${dto.local == "동작구"? "selected" : "" }>동작구</option>											
+						<option value="마포구" ${dto.local == "마포구"? "selected" : "" }>마포구</option>
+						<option value="서대문구" ${dto.local == "서대문구"? "selected" : "" }>서대문구</option>
+						<option value="서초구" ${dto.local == "서초구"? "selected" : "" }>서초구</option>
+						<option value="성동구" ${dto.local == "성동구"? "selected" : "" }>성동구</option>	
+						<option value="성북구" ${dto.local == "성북구"? "selected" : "" }>성북구</option>
+						<option value="송파구" ${dto.local == "송파구"? "selected" : "" }>송파구</option>
+						<option value="양천구" ${dto.local == "양천구"? "selected" : "" }>양천구</option>
+						<option value="영등포구" ${dto.local == "영등포구"? "selected" : "" }>영등포구</option>
+						<option value="용산구" ${dto.local == "용산구"? "selected" : "" }>용산구</option>
+						<option value="은평구" ${dto.local == "은평구"? "selected" : "" }>은평구</option>
+						<option value="종로구" ${dto.local == "종로구"? "selected" : "" }>종로구</option>
+						<option value="중구" ${dto.local == "중구"? "selected" : "" }>중구</option>	
+						<option value="중랑구" ${dto.local == "중랑구"? "selected" : "" }>중랑구</option>
 </select> 
 </div>
 </div>
