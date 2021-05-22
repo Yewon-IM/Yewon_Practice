@@ -136,7 +136,7 @@ public class YogiService implements IYogiService {
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request;	
 		
 		MultipartFile multiFile = multi.getFile("shopImg");
-		String shopImg = multi.getParameter("shopImg");		
+		String shopImg = multiFile.getOriginalFilename();
 		System.out.println(shopImg);
 		
 		if(shopImg != null) {
