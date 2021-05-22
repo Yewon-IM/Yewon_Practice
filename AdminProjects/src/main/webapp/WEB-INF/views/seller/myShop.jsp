@@ -138,7 +138,7 @@
 			<i class="lni lni-quotation"></i>
 			</div>
 			<div class="author">
-			<a href="myShopDetail.do?shopId=<%=sdto.getShopId()%>&id=<%=sdto.getId()%>"><img src="assets/images/testimonial/testi1.jpg" alt="#"></a>
+			<a href="myShopDetail.do?shopId=<%=sdto.getShopId()%>&id=<%=sdto.getId()%>"><img src="upload/${sdto.getShopImg }" alt="#"></a>
 			<h4 class="name">
 			<%= sdto.getShopName() %>
 			<span class="deg"><% if (sdto.getPower().equals("0")){ 

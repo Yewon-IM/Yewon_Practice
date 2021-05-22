@@ -140,7 +140,7 @@
 
 <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="member/${profileImg }" alt="#">
+<img src="upload/${profileImg }" alt="#">
 <span>${name }</span>
 </div>
 <div class="dashboard-menu">

@@ -235,7 +235,7 @@
 
 <div class="col-12">
 <div class="form-group button mb-0">
-<button type="submit" class="btn" formaction="myShopUpdate.do" >수정하기</button>
+<button type="submit" class="btn">수정하기</button>
 <button type="submit" class="btn" formaction="myShopDelete.do?id=${sdto.id}&shopId=${sdto.shopId }" >돌아가기</button>
 </div>
 </div>

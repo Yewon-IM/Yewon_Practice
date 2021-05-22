@@ -554,7 +554,6 @@ public class HomeController {
 		String who = (String) session.getAttribute("who");
 		
 		boolean isS = yoService.myShopUpdate(request);
-		System.out.println(request);
 		if (isS) {
 			if(who.equals("2")) {				
 				return "redirect:myShop.do";

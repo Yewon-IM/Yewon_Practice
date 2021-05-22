@@ -120,8 +120,10 @@
 	
 	<update id="myShopUpdate" parameterType="ShopDto">
 		UPDATE SHOP SET SHOPNAME= #{shopName}, SHOPODD= #{shopOdd}, SHOPADD= #{shopAdd}, 
-		SHOPDETAILADD= #{shopDetailAdd}, SHOPTEL= #{shopTel}, LOCAL= #{local}, BUSINESSNUM= #{businessNum}, 
-		POWER= '2' 
+		SHOPDETAILADD= #{shopDetailAdd}, SHOPTEL= #{shopTel}, LOCAL= #{local}, BUSINESSNUM= #{businessNum}
+		<if test="shopImg != null">
+		, SHOPIMG= #{shopImg}		
+		</if>
 		WHERE SHOPID= #{shopId}
 	</update>
 	

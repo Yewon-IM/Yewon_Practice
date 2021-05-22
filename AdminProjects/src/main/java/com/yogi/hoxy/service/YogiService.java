@@ -60,6 +60,7 @@ public class YogiService implements IYogiService {
 		
 		MultipartFile multiFile = multi.getFile("profileImg");	
 		String profileImg = multiFile.getOriginalFilename();
+		
 		if(profileImg != null) {
 			
 			String path = "C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
@@ -134,14 +135,13 @@ public class YogiService implements IYogiService {
 	public boolean myShopUpdate(HttpServletRequest request) {
 		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request;	
 		
+		MultipartFile multiFile = multi.getFile("shopImg");
 		String shopImg = multi.getParameter("shopImg");		
+		System.out.println(shopImg);
 		
 		if(shopImg != null) {
-			MultipartFile multiFile = multi.getFile("shopImg");
 			
-			shopImg = multiFile.getOriginalFilename();
-			
-			String path = "C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/shop";
+			String path = "C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
 				
 			//String path = request.getSession().getServletContext().getRealPath("upload");
 			

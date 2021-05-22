@@ -152,7 +152,7 @@
 
 <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="upload/member/${dto.profileImg }" alt="#">
+<img src="upload/${profileImg }" alt="#">
 <span>${name }</span>
 </div>
 <div class="dashboard-menu">
@@ -184,7 +184,7 @@
 </div>
 <div class="col-lg-6 col-12">
 <div class="form-group">
-<img id ="profileImg" src="upload/member/${dto.profileImg }" width=100 height=100 />
+<img id ="profileImg" src="upload/	${dto.profileImg }" width=100 height=100 />
 </div>
 </div>
 <div class="col-lg-6 col-12">
