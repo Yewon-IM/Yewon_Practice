@@ -19,7 +19,6 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-
 </script>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -286,7 +285,7 @@
 
 <div class="col-12">
 <div class="form-group button mb-0">
-<button type="submit" class="btn" formaction="myPageUpdate.do?id=${dto.id }">수정하기</button>
+<button type="submit" class="btn">수정하기</button>
 </div>
 </div>
 </div>

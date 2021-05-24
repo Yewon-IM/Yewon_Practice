@@ -196,8 +196,6 @@
 		<collection property="productDto" resultMap="ProductDto"/>
 	</resultMap>
 	
-	
-	
 	<select id="likeList" parameterType="String" resultMap="MemberShoppingDtoMap">
 		SELECT m.PRODUCT_SEQ , p.SHOPID , p.PRODUCTNAME , p.PRICE , p.STOCK , p.IMG_URL , p.CATEGORY
 		FROM MEMBERSHOPPING m JOIN PRODUCT p ON m.PRODUCT_SEQ = p.PRODUCT_SEQ 
@@ -214,4 +212,11 @@
 		INSERT INTO PRODUCT (PRODUCT_SEQ, SHOPID, ID, PRODUCTNAME, CONTENT, PRICE, STOCK, IMG_URL, WRITEDATE, CATEGORY, "LIKE") 
 		VALUES(PRODUCT_SEQ.NEXTVAL, #{shopId}, #{id}, #{productName}, #{content}, #{price}, #{stock}, #{img_Url}, sysdate, #{category}, '0')
 	</insert>
+	
+<!-- 		SELECT p.PRODUCT_SEQ , p.PRODUCTNAME , p.CONTENT , p.PRICE , p.STOCK , p.IMG_URL , p.CATEGORY , p."LIKE" , s.SHOPNAME , s."LOCAL"  -->
+<!-- 	<select id="search" parameterType="String" resultMap="ProductDtoMap"> -->
+<!-- 		SELECT *  -->
+<!-- 		FROM PRODUCT p , SHOP s -->
+<!-- 		WHERE p.SHOPID = s.SHOPID AND CATEGORY = #{category} -->
+<!--	</select> -->
 </mapper>

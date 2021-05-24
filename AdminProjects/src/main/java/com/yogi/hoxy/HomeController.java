@@ -845,4 +845,22 @@ public class HomeController {
 			return "error";
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
+	public String search(HttpServletRequest request, Locale locale, Model model) {
+		logger.info("검색", locale);
+		
+		
+		
+		return "search";
+	}
 }
