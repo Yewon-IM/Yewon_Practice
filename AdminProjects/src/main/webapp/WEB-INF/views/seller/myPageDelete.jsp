@@ -99,7 +99,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p>${name }</p>
+<p>${dto.name }</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
@@ -140,8 +140,8 @@
 
 <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="upload/${profileImg }" alt="#">
-<span>${name }</span>
+<img src="upload/${dto.profileImg }" alt="#">
+<span>${dto.name }</span>
 </div>
 <div class="dashboard-menu">
 <ul>

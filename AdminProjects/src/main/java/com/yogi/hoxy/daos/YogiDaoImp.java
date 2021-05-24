@@ -156,4 +156,9 @@ public class YogiDaoImp implements IYogiDao{
 		int count = sqlSession.update(namespace + "likeCancel", map);
 		return count > 0? true:false;
 	}
+	
+	public boolean addProduct(ProductDto dto) {
+		int count = sqlSession.insert(namespace + "addProduct", dto);
+		return count > 0? true:false;
+	}
 }

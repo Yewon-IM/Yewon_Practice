@@ -136,7 +136,9 @@
 <h4 class="title">회원정보 상세보기</h4>
 
 <form method="post">
-<div class="socila-login">
+<div class="form-group">
+<label>상점 이미지</label>
+<img id="profileImg" src="upload/${dto.profileImg }" width=100 height=100 />
 </div>
 
 <div class="form-group">

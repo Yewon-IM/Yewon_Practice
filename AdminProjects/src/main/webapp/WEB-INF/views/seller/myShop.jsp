@@ -129,13 +129,12 @@
 </div>
 </div>
 </section>
-
 		<% } else {
 			for(ShopDto sdto: list){ %>	
 			<div class="col-lg-4 col-md-6 col-12">
 			<div class="single-testimonial">
 			<div class="quote-icon">
-			<i class="lni lni-quotation"></i>
+			<a href="addProduct.do?shopId=<%=sdto.getShopId()%>"><img src="resources/image/product.png" alt="상품보기"/></a>
 			</div>
 			<div class="author">
 			<a href="myShopDetail.do?shopId=<%=sdto.getShopId()%>&id=<%=sdto.getId()%>"><img id="shopImg" src="upload/<%=sdto.getShopImg()%>" alt="#" /></a>
@@ -162,10 +161,10 @@
  						out.println("삭제예정");
  					} %></p>
  			<p><%if(sdto.getDel().equals("1")) { 
- 					%><input type='submit' value='삭제취소' formaction='myShopCan.do?shopId=<%=sdto.getShopId()%>'> 
- 						<a href="myShopCan.do?shopId=<%=sdto.getShopId()%>">삭제취소</a>
+ 					%>
+ 					<a href="myShopCan.do?shopId=<%=sdto.getShopId()%>">삭제취소</a>
  				<% } else { 
- 					%><input type='submit' value='삭제요청하기' formaction='myShopDelete.do?shopId=<%=sdto.getShopId()%>'> 
+ 					%>
  					<a href="myShopDelete.do?shopId=<%=sdto.getShopId()%>">삭제요청</a>
  				<% } 
  				%></p>

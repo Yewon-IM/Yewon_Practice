@@ -21,7 +21,6 @@
 	}
 
 </script>
-<% String name = (String) session.getAttribute("name"); %>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -102,7 +101,7 @@
 <div class="login-button">
 <ul>
 <li>
-<p>${name } 고객님</p>
+<p>${dto.name } 고객님</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
@@ -144,8 +143,8 @@
 
 <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="upload/${profileImg }" alt="#">
-<span>${name }</span>
+<img src="upload/${dto.profileImg }" alt="#">
+<span>${dto.name }</span>
 </div>
 <div class="dashboard-menu">
 <ul>

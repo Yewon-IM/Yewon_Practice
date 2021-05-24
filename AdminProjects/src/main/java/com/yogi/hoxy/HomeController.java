@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartRequest;
 import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
 import com.yogi.hoxy.dtos.MemberShoppingDto;
+import com.yogi.hoxy.dtos.ProductDto;
 import com.yogi.hoxy.dtos.ShopDto;
 import com.yogi.hoxy.service.IYogiService;
 
@@ -469,7 +470,7 @@ public class HomeController {
 	@RequestMapping(value = "/newShopDetail.do", method = RequestMethod.GET)
 	public String newShopDetail(HttpServletRequest request, Locale locale, Model model, @RequestParam Map<String, String> info, 
 			@RequestParam("shopId") String shopId, @RequestParam("id") String id) {
-		logger.info("상점 정보보기", locale);
+		logger.info("신규상점 정보보기", locale);
 		
 		HttpSession session = request.getSession();	
 		String who = (String) session.getAttribute("who");		
@@ -616,7 +617,6 @@ public class HomeController {
 
 		boolean isS = yoService.shopAdd(new ShopDto(sdto.getId(), sdto.getShopId(), sdto.getShopName(), sdto.getShopOdd(),
 				sdto.getShopAdd(), sdto.getShopDetailAdd(), sdto.getShopTel(), sdto.getLocal(), sdto.getBusinessNum(), null, "0", "0", sdto.getShopImg()));
-
 		if (isS) {
 			return "redirect:myShop.do";
 		} else {
@@ -714,6 +714,7 @@ public class HomeController {
 		String id = (String) session.getAttribute("id");
 		
 		MemberDto dto = yoService.listSel(id);
+		model.addAttribute("dto", dto);
 		
 		if(dto.getWho().equals("1")) {
 			return "customer/myPageDelete";			
@@ -790,7 +791,6 @@ public class HomeController {
 		String who = (String) session.getAttribute("who");	
 		
 		boolean isS = yoService.likeCancel(id, product_seq);
-		System.out.println(id + product_seq + isS);
 		
 		if(who.equals("1")) {
 			if(isS) {
@@ -804,4 +804,45 @@ public class HomeController {
 		return "error";
 	}
 	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/addProduct.do", method = RequestMethod.GET)
+	public String addProduct(HttpServletRequest request, Locale locale, Model model, @RequestParam("shopId") String shopId) {
+		logger.info("상품 추가 폼", locale);
+		
+		HttpSession session = request.getSession();
+		String who = (String) session.getAttribute("who");
+		String id = (String) session.getAttribute("id");
+		session.setAttribute("shopId", shopId);
+		
+		MemberDto dto = yoService.listSel(id);
+		model.addAttribute("dto", dto);
+		
+		
+		if(who.equals("2")) {
+			return "seller/addProduct";
+		}
+		model.addAttribute("msg", "권한 오류입니다.");
+		return "error";
+	}
+	
+	@RequestMapping(value = "/addProductDo.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String addProductDo(HttpServletRequest request, Locale locale, Model model, ProductDto dto) {
+		logger.info("상품 추가", locale);
+		
+		HttpSession session = request.getSession();
+		String shopId = (String) session.getAttribute("shopId");
+		
+		boolean isS = yoService.addProduct(new ProductDto(dto.getProduct_seq(), shopId, dto.getId(), dto.getProductName(), 
+				dto.getContent(), dto.getPrice(), dto.getStock(), dto.getImg_Url(), null, dto.getCategory(), 0));
+		
+		if (isS) {
+			return "redirect:myShop.do";
+		} else {
+			return "error";
+		}
+	}
 }

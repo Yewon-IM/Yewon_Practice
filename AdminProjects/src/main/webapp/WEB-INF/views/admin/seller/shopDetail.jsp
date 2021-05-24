@@ -136,15 +136,12 @@
 <div class="dashboard-block mt-0 profile-settings-block">
 <h3 class="block-title">상점 정보보기</h3>
 <div class="inner-block">
-<div class="image">
-<img src="assets/images/dashboard/user-image.jpg" alt="#">
-</div>
 <form class="profile-setting-form" method="post">
 <div class="row">
 <div class="col-12">
 <div class="form-group upload-image">
-<label>Profile Image*</label>
-<!-- <input name="profile-image" type="file" placeholder="Upload Image"> -->
+<label>상점 이미지</label>
+<img id="shopImg" src="upload/${sdto.shopImg }" width=100 height=100 />
 </div>
 </div>
 <div class="col-lg-6 col-12">

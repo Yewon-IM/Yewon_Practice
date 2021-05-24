@@ -16,6 +16,7 @@ import com.yogi.hoxy.daos.YogiDaoImp;
 import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
 import com.yogi.hoxy.dtos.MemberShoppingDto;
+import com.yogi.hoxy.dtos.ProductDto;
 import com.yogi.hoxy.dtos.ShopDto;
 
 @Service
@@ -60,14 +61,44 @@ public class YogiService implements IYogiService {
 		
 		MultipartFile multiFile = multi.getFile("profileImg");	
 		String profileImg = multiFile.getOriginalFilename();
+		System.out.println("프로필이미지" +profileImg);
 		
-		if(profileImg != null) {
+		if(profileImg == null || profileImg == "") {
 			
-			String path = "C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
+			boolean isS = false;
+			
+			String id = multi.getParameter("id");
+			String pwd = multi.getParameter("pwd");
+			String name = multi.getParameter("name");
+			String email = multi.getParameter("email");
+			String tel = multi.getParameter("tel");
+			String local = multi.getParameter("local");
+			String oAdd = multi.getParameter("oAdd");
+			String add = multi.getParameter("add");
+			String detailAdd = multi.getParameter("detailAdd");
+			String who = multi.getParameter("who");
+			String power = multi.getParameter("power");
+			String del = multi.getParameter("del");
+			
+			try {
+				//파일정보를 DB에 저장하기
+				isS = yogiDao.memUpdate(new MemberDto(id, pwd, name, email, tel, local, oAdd, add, detailAdd, null, who, power, del, null));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+			return isS;	
+			
+		} else {
+		
+			String path = "C:/Users/HKEDU/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
 			
 			//String path = request.getSession().getServletContext().getRealPath("upload");
 			
 			File f = new File(path+ "/" + profileImg);
+			System.out.println(f);
 			boolean isS = false;
 			
 			String id = multi.getParameter("id");
@@ -99,36 +130,7 @@ public class YogiService implements IYogiService {
 		
 		return isS;
 		
-		} else {
-			
-			boolean isS = false;
-			
-			String id = multi.getParameter("id");
-			String pwd = multi.getParameter("pwd");
-			String name = multi.getParameter("name");
-			String email = multi.getParameter("email");
-			String tel = multi.getParameter("tel");
-			String local = multi.getParameter("local");
-			String oAdd = multi.getParameter("oAdd");
-			String add = multi.getParameter("add");
-			String detailAdd = multi.getParameter("detailAdd");
-			String who = multi.getParameter("who");
-			String power = multi.getParameter("power");
-			String del = multi.getParameter("del");
-			
-			try {
-				//파일정보를 DB에 저장하기
-				isS = yogiDao.memUpdate(new MemberDto(id, pwd, name, email, tel, local, oAdd, add, detailAdd, null, who, power, del, null));
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch(Exception e) {
-				e.printStackTrace();
-			} 
-				
-			return isS;
 		}
-		
 	}
 	
 	@Override
@@ -141,7 +143,7 @@ public class YogiService implements IYogiService {
 		
 		if(shopImg != null) {
 			
-			String path = "C:/Users/user/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
+			String path = "C:/Users/HKEDU/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
 				
 			//String path = request.getSession().getServletContext().getRealPath("upload");
 			
@@ -307,6 +309,11 @@ public class YogiService implements IYogiService {
 	@Override
 	public boolean likeCancel(String id, String product_seq) {
 		return yogiDao.likeCancel(id, product_seq);
+	}
+
+	@Override
+	public boolean addProduct(ProductDto dto) {
+		return yogiDao.addProduct(dto);
 	}
 
 }

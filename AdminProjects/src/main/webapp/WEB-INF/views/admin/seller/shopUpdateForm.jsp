@@ -6,6 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>내 상점 수정하기</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#shopImg').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" />
@@ -133,15 +146,11 @@
 <div class="dashboard-block mt-0 profile-settings-block">
 <h3 class="block-title">상점 수정하기</h3>
 <div class="inner-block">
-<div class="image">
-<img src="assets/images/dashboard/user-image.jpg" alt="#">
-</div>
 <form class="profile-setting-form" method="post" id="shop">
 <div class="row">
-<div class="col-12">
-<div class="form-group upload-image">
-<label>Profile Image*</label>
-<!-- <input name="profile-image" type="file" placeholder="Upload Image"> -->
+<div class="col-lg-12 col-12">
+<div class="form-group">
+<img id="shopImg" src="upload/${sdto.shopImg }" width=100 height=100 />
 </div>
 </div>
 <div class="col-lg-6 col-12">

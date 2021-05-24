@@ -78,8 +78,8 @@
 	
 	<insert id="shopAdd" parameterType="ShopDto">
 		INSERT INTO SHOP 
-		(SHOPID, ID, SHOPNAME, SHOPODD, SHOPADD, SHOPDETAILADD, SHOPTEL, LOCAL, BUSINESSNUM, OPENDATE, POWER, DEL) 
-		VALUES(SHOP_SHOPID.NEXTVAL, #{id}, #{shopName}, #{shopOdd}, #{shopAdd}, #{shopDetailAdd}, #{shopTel}, #{local}, #{businessNum}, SYSDATE, '0', '0')
+		(SHOPID, ID, SHOPNAME, SHOPODD, SHOPADD, SHOPDETAILADD, SHOPTEL, LOCAL, BUSINESSNUM, OPENDATE, POWER, DEL, SHOPIMG) 
+		VALUES(SHOP_SHOPID.NEXTVAL, #{id}, #{shopName}, #{shopOdd}, #{shopAdd}, #{shopDetailAdd}, #{shopTel}, #{local}, #{businessNum}, SYSDATE, '0', '0', #{shopImg})
 	</insert>
 	
 	<select id="login" parameterType="Map" resultType="String">
@@ -210,5 +210,8 @@
 		WHERE PRODUCT_SEQ= #{product_seq} AND ID= #{id}
 	</update>
 	
-	
+	<insert id="addProduct" parameterType="ProductDto">
+		INSERT INTO PRODUCT (PRODUCT_SEQ, SHOPID, ID, PRODUCTNAME, CONTENT, PRICE, STOCK, IMG_URL, WRITEDATE, CATEGORY, "LIKE") 
+		VALUES(PRODUCT_SEQ.NEXTVAL, #{shopId}, #{id}, #{productName}, #{content}, #{price}, #{stock}, #{img_Url}, sysdate, #{category}, '0')
+	</insert>
 </mapper>

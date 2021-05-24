@@ -9,7 +9,20 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>Registration - ClassiGrids Classified Ads and Listing Website Template</title>
+<title>회원정보 수정</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#shopImg').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+</script>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="resources/images/favicon.svg" />
@@ -136,11 +149,7 @@
 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
 <div class="form-head">
 <h4 class="title">회원정보 수정</h4>
-
 <form id="member" method="post" action="Update.do">
-<div class="socila-login">
-</div>
-
 <div class="form-group">
 <label>프로필 사진</label>
 <img src="upload/${dto.profileImg}" alt="profileImg" width=100 height=100 />
