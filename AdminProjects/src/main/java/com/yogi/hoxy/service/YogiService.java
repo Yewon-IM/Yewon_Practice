@@ -167,7 +167,7 @@ public class YogiService implements IYogiService {
 		try {
 			multiFile.transferTo(f); //파일객체에 저장된 경로대로 업로드가 실행됨.
 			//파일정보를 DB에 저장하기
-			isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, shopImg));
+			isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, shopImg, null));
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -198,7 +198,7 @@ public class YogiService implements IYogiService {
 			
 			try {
 				//파일정보를 DB에 저장하기
-				isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, null));
+				isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, null, null));
 			} catch (IllegalStateException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -314,6 +314,11 @@ public class YogiService implements IYogiService {
 	@Override
 	public boolean addProduct(ProductDto dto) {
 		return yogiDao.addProduct(dto);
+	}
+
+	@Override
+	public List<ShopDto> search(String category) {
+		return yogiDao.search(category);
 	}
 
 }

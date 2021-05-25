@@ -17,6 +17,7 @@ public class ShopDto {
 	private String power;
 	private String del;
 	private String shopImg;
+	private ProductDto productDto;
 	
 	public ShopDto() {
 		super();
@@ -24,7 +25,8 @@ public class ShopDto {
 	}
 
 	public ShopDto(String id, String shopId, String shopName, String shopOdd, String shopAdd, String shopDetailAdd,
-			String shopTel, String local, String businessNum, Date openDate, String power, String del, String shopImg) {
+			String shopTel, String local, String businessNum, Date openDate, String power, String del, String shopImg,
+			ProductDto productDto) {
 		super();
 		this.id = id;
 		this.shopId = shopId;
@@ -39,6 +41,7 @@ public class ShopDto {
 		this.power = power;
 		this.del = del;
 		this.shopImg = shopImg;
+		this.productDto = productDto;
 	}
 
 	public String getId() {
@@ -145,11 +148,21 @@ public class ShopDto {
 		this.shopImg = shopImg;
 	}
 
+	public ProductDto getProductDto() {
+		return productDto;
+	}
+
+	public void setProductDto(ProductDto productDto) {
+		this.productDto = productDto;
+	}
+
 	@Override
 	public String toString() {
 		return "ShopDto [id=" + id + ", shopId=" + shopId + ", shopName=" + shopName + ", shopOdd=" + shopOdd
 				+ ", shopAdd=" + shopAdd + ", shopDetailAdd=" + shopDetailAdd + ", shopTel=" + shopTel + ", local="
 				+ local + ", businessNum=" + businessNum + ", openDate=" + openDate + ", power=" + power + ", del="
-				+ del + ", shopImg=" + shopImg + "]";
+				+ del + ", shopImg=" + shopImg + ", productDto=" + productDto + "]";
 	}
+
+	
 }

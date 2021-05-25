@@ -74,4 +74,6 @@ public interface IYogiService {
 	public boolean likeCancel(String id, String product_seq);
 	
 	public boolean addProduct(ProductDto dto);
+	
+	public List<ShopDto> search(String category);
 }

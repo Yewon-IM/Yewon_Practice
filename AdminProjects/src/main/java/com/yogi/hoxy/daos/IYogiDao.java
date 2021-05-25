@@ -72,4 +72,6 @@ public interface IYogiDao {
 	public boolean likeCancel(String id, String product_seq);
 	
 	public boolean addProduct(ProductDto dto);
+	
+	public List<ShopDto> search(String category);
 }

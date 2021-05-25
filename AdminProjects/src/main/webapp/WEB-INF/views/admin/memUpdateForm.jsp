@@ -16,7 +16,7 @@
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function (e) {
-				$('#shopImg').attr('src', e.target.result);
+				$('#profileImg').attr('src', e.target.result);
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
@@ -149,10 +149,15 @@
 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
 <div class="form-head">
 <h4 class="title">회원정보 수정</h4>
-<form id="member" method="post" action="Update.do">
+<form method="post" action="Update.do" enctype="multipart/form-data">
 <div class="form-group">
 <label>프로필 사진</label>
-<img src="upload/${dto.profileImg}" alt="profileImg" width=100 height=100 />
+<input type="file" name="profileImg" onchange ="readURL(this);">
+</div>
+
+<div class="form-group">
+<label>사진</label>
+<img id="profileImg" src="upload/${dto.profileImg }" width=100 height=100 />
 </div>
 <div class="form-group">
 <label>아이디</label>
@@ -161,7 +166,7 @@
 
 <div class="form-group">
 <label>비밀번호</label>
-<input name="pwd" type="text" value=${dto.pwd }>
+<input name="pwd" type="password" value=${dto.pwd }>
 </div>
 
 <div class="form-group">
@@ -212,35 +217,35 @@
 
 <div class="form-group">
 <label>우편번호</label>
-<input name="oAdd" value = "${dto.oAdd }" >
+<input name="oAdd" type="text" value = "${dto.oAdd }" >
 </div>
 
 <div class="form-group">
 <label>주소</label>
-<input name="add" value = "${dto.add }" >
+<input name="add" type="text" value = "${dto.add }" >
 </div>
 
 <div class="form-group">
 <label>상세주소</label>
-<input name="detailAdd" value = "${dto.detailAdd }" >
+<input name="detailAdd" type="text" value = "${dto.detailAdd }" >
 </div>
 
 <div class="form-group">
 <label>가입일</label>
-<input name="regDate" value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${dto.regDate }"/>' readonly>
+<input value="<fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regDate }" />" readonly>
 </div>
 
 <div class="form-group">
 <label>누구인가?</label>
-<select name="who" form="member">
-	<option value= 0 ${dto.who == 0? "selected" : ""}>관리자</option>
-	<option value= 1 ${dto.who == 1? "selected" : ""}>구매자</option>
-	<option value= 2 ${dto.who == 2? "selected" : ""}>판매자</option> 
+<select name="who">
+	<option value= "0" ${dto.who == 0? "selected" : ""}>관리자</option>
+	<option value= "1" ${dto.who == 1? "selected" : ""}>구매자</option>
+	<option value= "2" ${dto.who == 2? "selected" : ""}>판매자</option> 
 </select>
 </div>
 <div class="form-group">
 <label>승인여부</label>
-<select name="power" form="member">
+<select name="power">
 	<option value= "0" ${dto.power == 0? "selected" : "" }>미승인</option>
 	<option value= "1" ${dto.power == 1? "selected" : "" }>승인</option>
 </select>
@@ -248,7 +253,7 @@
 
 <div class="form-group">
 <label>삭제요청</label>
-<select name="del" form="member">
+<select name="del">
 	<option value= "0" ${dto.del == 0? "selected" : "" }>정상</option>
 	<option value= "1" ${dto.del == 1? "selected" : "" }>삭제요청</option>
 </select>

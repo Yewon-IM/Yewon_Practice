@@ -176,6 +176,7 @@
 	
 	
 	<resultMap type="com.yogi.hoxy.dtos.ProductDto" id="ProductDto">
+		<id property="product_seq" column="product_seq"/>
 		<result property="product_seq" column="product_seq" />
 		<result property="shopId" column="shopId" />
 		<result property="id" column="id" />
@@ -214,9 +215,29 @@
 	</insert>
 	
 <!-- 		SELECT p.PRODUCT_SEQ , p.PRODUCTNAME , p.CONTENT , p.PRICE , p.STOCK , p.IMG_URL , p.CATEGORY , p."LIKE" , s.SHOPNAME , s."LOCAL"  -->
-<!-- 	<select id="search" parameterType="String" resultMap="ProductDtoMap"> -->
-<!-- 		SELECT *  -->
-<!-- 		FROM PRODUCT p , SHOP s -->
-<!-- 		WHERE p.SHOPID = s.SHOPID AND CATEGORY = #{category} -->
-<!--	</select> -->
+	
+	
+	
+	<resultMap type="com.yogi.hoxy.dtos.ShopDto" id="ShopDtoMap">
+		<result property="id" column="id" />
+		<result property="shopId" column="shopId" />
+		<result property="shopName" column="shopName" />
+		<result property="shopOdd" column="shopOdd" />
+		<result property="shopAdd" column="shopAdd" />
+		<result property="shopDetailAdd" column="shopDetailAdd" />
+		<result property="shopTel" column="shopTel" />
+		<result property="local" column="local" />
+		<result property="businessNum" column="businessNum" />
+		<result property="openDate" column="openDate" />
+		<result property="power" column="power" />
+		<result property="del" column="del" />
+		<result property="shopImg" column="shopImg" />
+		<collection property="productDto" resultMap="ProductDto" />
+	</resultMap>
+	
+	<select id="search" parameterType="String" resultMap="ShopDtoMap">
+		SELECT *
+		FROM PRODUCT p JOIN SHOP s ON p.SHOPID = s.SHOPID
+		WHERE p.CATEGORY = #{category} 
+	</select>
 </mapper>

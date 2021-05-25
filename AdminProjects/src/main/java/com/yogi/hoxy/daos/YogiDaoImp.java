@@ -161,4 +161,8 @@ public class YogiDaoImp implements IYogiDao{
 		int count = sqlSession.insert(namespace + "addProduct", dto);
 		return count > 0? true:false;
 	}
+	
+	public List<ShopDto> search(String category){
+		return sqlSession.selectList(namespace + "search", category);
+	}
 }

@@ -366,7 +366,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/Update.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String Update(HttpServletRequest request, Locale locale, Model model, MemberDto dto) {
+	public String Update(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("회원정보 수정하기", locale);
 		
 		HttpSession session = request.getSession();		
@@ -616,7 +616,7 @@ public class HomeController {
 		logger.info("상점 추가", locale);
 
 		boolean isS = yoService.shopAdd(new ShopDto(sdto.getId(), sdto.getShopId(), sdto.getShopName(), sdto.getShopOdd(),
-				sdto.getShopAdd(), sdto.getShopDetailAdd(), sdto.getShopTel(), sdto.getLocal(), sdto.getBusinessNum(), null, "0", "0", sdto.getShopImg()));
+				sdto.getShopAdd(), sdto.getShopDetailAdd(), sdto.getShopTel(), sdto.getLocal(), sdto.getBusinessNum(), null, "0", "0", sdto.getShopImg(), null));
 		if (isS) {
 			return "redirect:myShop.do";
 		} else {
@@ -855,12 +855,14 @@ public class HomeController {
 	
 	
 	
-	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
-	public String search(HttpServletRequest request, Locale locale, Model model) {
+	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
+	public String search(HttpServletRequest request, Locale locale, Model model, String category) {
 		logger.info("검색", locale);
 		
-		
-		
+		List<ShopDto> sList = yoService.search(category);
+		model.addAttribute("sList", sList);
+		System.out.println(sList);
 		return "search";
 	}
+	
 }

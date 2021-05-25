@@ -194,6 +194,7 @@ Or Search For Property, Jobs And More.</p>
 <option value="강동구">강동구</option>
 <option value="강북구">강북구</option>
 <option value="강서구">강서구</option>
+<option value="성북구">성북구</option>
 </select>
 </div>
 </div>
@@ -1015,7 +1016,8 @@ App Store
 <i class="lni lni-chevron-up"></i>
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="resources/js/bootstrap.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/tiny-slider.js"></script>
 <script src="resources/js/glightbox.min.js"></script>
@@ -1062,26 +1064,5 @@ App Store
         });
         cu.start();
     </script>
-</body>
-</html>
-
-
-
-
-
-
-
-<html>
-<head>
-	<title>메인 홈페이지</title>
-</head>
-<body>
-<h1>
-	Hello world! 메인 홈페이지입니다  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-
-<a href="login.do">로그인</a>
 </body>
 </html>
