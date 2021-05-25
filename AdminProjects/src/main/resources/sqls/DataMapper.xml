@@ -57,7 +57,7 @@
 	<select id="memberList" resultType="MemberDto">
 		SELECT *
 		FROM MEMBER
-		WHERE POWER = '1'
+		WHERE POWER != '0'
 	</select>
 	
 	<update id="memUpdate" parameterType="MemberDto">
@@ -85,7 +85,7 @@
 	<select id="login" parameterType="Map" resultType="String">
 		SELECT DECODE(COUNT(*),1,'true','false') AS RESULT 
 		FROM MEMBER
-		WHERE ID = #{id} AND PWD = #{pwd} AND POWER = 1
+		WHERE ID = #{id} AND PWD = #{pwd}
 	</select>
 
 	<update id="shopUpdate" parameterType="ShopDto">

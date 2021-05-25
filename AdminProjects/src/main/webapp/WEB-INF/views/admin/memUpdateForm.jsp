@@ -248,6 +248,7 @@
 <select name="power">
 	<option value= "0" ${dto.power == 0? "selected" : "" }>미승인</option>
 	<option value= "1" ${dto.power == 1? "selected" : "" }>승인</option>
+	<option value= "2" ${dto.power == 2? "selected" : "" }>정지</option>
 </select>
 </div>
 

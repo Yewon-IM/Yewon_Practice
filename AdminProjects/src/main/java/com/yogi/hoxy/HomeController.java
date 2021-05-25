@@ -55,7 +55,6 @@ public class HomeController {
 		String del = (String) session.getAttribute("del");		
 		
 		if (who != null) {
-
 			String name = (String) session.getAttribute("name");
 			session.setAttribute("name", name);
 			MemberDto dto = (MemberDto) session.getAttribute("dto");
@@ -74,10 +73,8 @@ public class HomeController {
 			} else {
 				return "error";
 			}
-		} else if(who == null){
-			return "home";
 		} else {
-			return "error";
+			return "home";			
 		}
 	}
 
@@ -103,8 +100,15 @@ public class HomeController {
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("del", dto.getDel());
 			session.setAttribute("profileImg", dto.getProfileImg());
+			session.setAttribute("power", dto.getPower());
 			
-			if (dto.getWho().equals("0")) {
+			if(dto.getPower().equals("2")) {
+				return "ban";
+			} else if(dto.getPower().equals("0")){
+				model.addAttribute("msg", "미승인 아이디입니다.");
+				model.addAttribute("url", "logout.do");
+				return "alert";
+			} else if (dto.getWho().equals("0")) {
 				return "admin/adminMain";
 			} else if (dto.getDel().equals("0") && dto.getWho().equals("1")) {
 				return "customer/customerMain";
@@ -114,14 +118,11 @@ public class HomeController {
 				return "seller/sellerMain";
 			} else if(dto.getDel().equals("1") && dto.getWho().equals("2")) {
 				return "seller/delSellerMain";
-			}
-			return "main";
-
-		} else {
-			model.addAttribute("msg", "아이디 또는 비밀번호가 틀립니다.");
-			model.addAttribute("url", "login.do");
-			return "alert";
+			} 					
 		}
+		model.addAttribute("msg", "아이디 또는 비밀번호가 틀립니다.");
+		model.addAttribute("url", "login.do");
+		return "alert";	
 	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)

@@ -217,11 +217,13 @@
 	%></p>
 </div>
 <div class="col-lg-2 col-md-2 col-12">
-<p><%if(dto.getDel().equals("0")){
+<p><%if(dto.getPower().equals("2")){
+		out.println("정지회원");
+	} else if(dto.getDel().equals("0")){
 		out.println("정상 회원");
-	} else {
+	} else if(dto.getDel().equals("1")){
 		out.println("탈퇴신청한 회원");
-	} %></p>
+	}%></p>
 </div>
 	
 <div class="col-lg-2 col-md-2 col-12 align-center">
