@@ -141,46 +141,7 @@ public class YogiService implements IYogiService {
 		String shopImg = multiFile.getOriginalFilename();
 		System.out.println(shopImg);
 		
-		if(shopImg != null) {
-			
-			String path = "C:/Users/HKEDU/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
-				
-			//String path = request.getSession().getServletContext().getRealPath("upload");
-			
-			File f = new File(path+ "/" + shopImg);
-			
-			boolean isS = false;
-		
-			
-			String id = multi.getParameter("id");
-			String shopId = multi.getParameter("shopId");
-			String shopName = multi.getParameter("shopName");
-			String shopOdd = multi.getParameter("shopOdd");
-			String shopAdd = multi.getParameter("shopAdd");
-			String shopDetailAdd = multi.getParameter("shopDetailAdd");
-			String shopTel = multi.getParameter("shopTel");
-			String local = multi.getParameter("local");
-			String businessNum = multi.getParameter("businessNum");
-			String power = multi.getParameter("power");
-			String del = multi.getParameter("del");
-			
-		try {
-			multiFile.transferTo(f); //파일객체에 저장된 경로대로 업로드가 실행됨.
-			//파일정보를 DB에 저장하기
-			isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, shopImg, null));
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch(Exception e) {
-			e.printStackTrace();
-		} 
-		
-		return isS;
-		
-		} else {
+		if(shopImg == null || shopImg == "") {
 			
 			boolean isS = false;
 			
@@ -198,7 +159,7 @@ public class YogiService implements IYogiService {
 			
 			try {
 				//파일정보를 DB에 저장하기
-				isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, null, null));
+				isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, null));
 			} catch (IllegalStateException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -206,6 +167,44 @@ public class YogiService implements IYogiService {
 				e.printStackTrace();
 			} 
 				
+			return isS;
+		} else {
+			
+			String path = "C:/Users/HKEDU/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
+			
+			//String path = request.getSession().getServletContext().getRealPath("upload");
+			
+			File f = new File(path+ "/" + shopImg);
+			
+			boolean isS = false;
+			
+			
+			String id = multi.getParameter("id");
+			String shopId = multi.getParameter("shopId");
+			String shopName = multi.getParameter("shopName");
+			String shopOdd = multi.getParameter("shopOdd");
+			String shopAdd = multi.getParameter("shopAdd");
+			String shopDetailAdd = multi.getParameter("shopDetailAdd");
+			String shopTel = multi.getParameter("shopTel");
+			String local = multi.getParameter("local");
+			String businessNum = multi.getParameter("businessNum");
+			String power = multi.getParameter("power");
+			String del = multi.getParameter("del");
+			
+			try {
+				multiFile.transferTo(f); //파일객체에 저장된 경로대로 업로드가 실행됨.
+				//파일정보를 DB에 저장하기
+				isS = yogiDao.myShopUpdate(new ShopDto(id, shopId, shopName, shopOdd, shopAdd, shopDetailAdd, shopTel, local, businessNum, null, power, del, shopImg));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+			
 			return isS;
 		}
 	}
@@ -317,8 +316,8 @@ public class YogiService implements IYogiService {
 	}
 
 	@Override
-	public List<ShopDto> search(String category) {
-		return yogiDao.search(category);
+	public List<ProductDto> search(String category, String local, String keyword) {
+		return yogiDao.search(category, local, keyword);
 	}
 
 }

@@ -189,7 +189,7 @@
 <div class="col-lg-6 col-12">
 <div class="form-group">
 <label>아이디</label>
-<input type="text" value="${dto.id }" placeholder="아이디" readonly>
+<input name="id" type="text" value="${dto.id }" placeholder="아이디" readonly>
 </div>
 </div>
 <div class="col-lg-6 col-12">

@@ -15,6 +15,7 @@ public class ProductDto {
 	private Date writeDate;
 	private String category;
 	private int like;
+	private ShopDto shopDto;
 	
 	public ProductDto() {
 		super();
@@ -22,7 +23,7 @@ public class ProductDto {
 	}
 
 	public ProductDto(int product_seq, String shopId, String id, String productName, String content, int price,
-			String stock, String img_Url, Date writeDate, String category, int like) {
+			String stock, String img_Url, Date writeDate, String category, int like, ShopDto shopDto) {
 		super();
 		this.product_seq = product_seq;
 		this.shopId = shopId;
@@ -35,6 +36,7 @@ public class ProductDto {
 		this.writeDate = writeDate;
 		this.category = category;
 		this.like = like;
+		this.shopDto = shopDto;
 	}
 
 	public int getProduct_seq() {
@@ -125,11 +127,21 @@ public class ProductDto {
 		this.like = like;
 	}
 
+	public ShopDto getShopDto() {
+		return shopDto;
+	}
+
+	public void setShopDto(ShopDto shopDto) {
+		this.shopDto = shopDto;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductDto [product_seq=" + product_seq + ", shopId=" + shopId + ", id=" + id + ", productName="
 				+ productName + ", content=" + content + ", price=" + price + ", stock=" + stock + ", img_Url="
-				+ img_Url + ", writeDate=" + writeDate + ", category=" + category + ", like=" + like + "]";
+				+ img_Url + ", writeDate=" + writeDate + ", category=" + category + ", like=" + like + ", shopDto="
+				+ shopDto + "]";
 	}
+	
 
 }

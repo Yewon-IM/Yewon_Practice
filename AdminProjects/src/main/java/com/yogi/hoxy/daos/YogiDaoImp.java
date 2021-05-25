@@ -162,7 +162,11 @@ public class YogiDaoImp implements IYogiDao{
 		return count > 0? true:false;
 	}
 	
-	public List<ShopDto> search(String category){
-		return sqlSession.selectList(namespace + "search", category);
+	public List<ProductDto> search(String category, String local, String keyword){
+		Map<String, String> map = new HashMap<>();
+		map.put("category", category);
+		map.put("local", local);
+		map.put("keyword", keyword);
+		return sqlSession.selectList(namespace + "search", map);
 	}
 }

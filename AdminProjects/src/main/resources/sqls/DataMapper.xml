@@ -176,7 +176,6 @@
 	
 	
 	<resultMap type="com.yogi.hoxy.dtos.ProductDto" id="ProductDto">
-		<id property="product_seq" column="product_seq"/>
 		<result property="product_seq" column="product_seq" />
 		<result property="shopId" column="shopId" />
 		<result property="id" column="id" />
@@ -218,12 +217,27 @@
 	
 	
 	
-	<resultMap type="com.yogi.hoxy.dtos.ShopDto" id="ShopDtoMap">
+	<resultMap type="com.yogi.hoxy.dtos.ProductDto" id="ProductDtoMap">
+		<id property="product_seq" column="product_seq"/>
+		<result property="product_seq" column="product_seq" />
+		<result property="shopId" column="shopId" />
+		<result property="id" column="id" />
+		<result property="productName" column="productName" />
+		<result property="content" column="content" />
+		<result property="price" column="price" />
+		<result property="stock" column="stock" />
+		<result property="img_Url" column="img_Url" />
+		<result property="writeDate" column="writeDate" />
+		<result property="category" column="category" />
+		<result property="like" column="like" />
+		<collection property="shopDto" resultMap="ShopDto" />
+	</resultMap>
+	
+	<resultMap type="com.yogi.hoxy.dtos.ShopDto" id="ShopDto">
 		<result property="id" column="id" />
 		<result property="shopId" column="shopId" />
 		<result property="shopName" column="shopName" />
 		<result property="shopOdd" column="shopOdd" />
-		<result property="shopAdd" column="shopAdd" />
 		<result property="shopDetailAdd" column="shopDetailAdd" />
 		<result property="shopTel" column="shopTel" />
 		<result property="local" column="local" />
@@ -232,12 +246,17 @@
 		<result property="power" column="power" />
 		<result property="del" column="del" />
 		<result property="shopImg" column="shopImg" />
-		<collection property="productDto" resultMap="ProductDto" />
 	</resultMap>
 	
-	<select id="search" parameterType="String" resultMap="ShopDtoMap">
+	<select id="search" parameterType="Map" resultMap="ProductDtoMap">
 		SELECT *
-		FROM PRODUCT p JOIN SHOP s ON p.SHOPID = s.SHOPID
-		WHERE p.CATEGORY = #{category} 
+		FROM PRODUCT p , SHOP s
+		WHERE p.SHOPID = s.SHOPID AND p.CATEGORY = #{category} 
+		<if test="local != null"> <!-- 다이나믹쿼리 -->
+		AND UPPER(LOCAL)LIKE '%' || #{local} || '%'
+		</if>
+		<if test="keyword != null"> <!-- 다이나믹쿼리 -->
+		AND UPPER(PRODUCTNAME)LIKE '%' || #{keyword} || '%'
+		</if>
 	</select>
 </mapper>

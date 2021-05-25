@@ -73,5 +73,5 @@ public interface IYogiDao {
 	
 	public boolean addProduct(ProductDto dto);
 	
-	public List<ShopDto> search(String category);
+	public List<ProductDto> search(String category, String local, String keyword);
 }

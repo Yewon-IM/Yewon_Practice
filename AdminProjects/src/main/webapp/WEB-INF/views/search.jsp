@@ -1,12 +1,12 @@
 <%@page import="java.util.List"%>
-<%@page import="com.yogi.hoxy.dtos.ShopDto"%>
+<%@page import="com.yogi.hoxy.dtos.ProductDto"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
-<% List<ShopDto> sList = (List<ShopDto>) request.getAttribute("sList"); %>
+<% List<ProductDto> sList = (List<ProductDto>) request.getAttribute("sList"); %>
 	<table border="1">
 		<th colspan="9">상품 리스트</th>
 		<tr>
@@ -26,20 +26,20 @@
 		if(sList == null || sList.size() == 0){
 			%><td colspan="9">관련상품이 없습니다.</td><%
 		}else {
-			for(ShopDto dto : sList){
+			for(ProductDto dto : sList){
 		%>
 		</tr>
 		<tr>
-			<td width="50px"><%=dto.getProductDto().getProduct_seq()%></td>
+			<td width="50px"><%=dto.getProduct_seq()%></td>
 			<td width="50px"><%=dto.getShopId()%></td>
-			<td width="50px"><%=dto.getProductDto().getProductName()%></td>
-			<td width="50px"><%=dto.getProductDto().getContent()%></td>
-			<td width="50px"><%=dto.getProductDto().getPrice()%></td>
-			<td width="50px"><%=dto.getProductDto().getStock()%></td>
-			<td width="50px"><%=dto.getProductDto().getImg_Url() %></td>
-			<td width="50px"><%=dto.getProductDto().getLike()%></td>
-			<td width="50px"><%=dto.getShopName()%></td>
-			<td width="50px"><%=dto.getLocal()%></td>
+			<td width="50px"><%=dto.getProductName()%></td>
+			<td width="50px"><%=dto.getContent()%></td>
+			<td width="50px"><%=dto.getPrice()%></td>
+			<td width="50px"><%=dto.getStock()%></td>
+			<td width="50px"><%=dto.getImg_Url() %></td>
+			<td width="50px"><%=dto.getLike()%></td>
+			<td width="50px"><%=dto.getShopDto().getShopName()%></td>
+			<td width="50px"><%=dto.getShopDto().getLocal()%></td>
 		</tr>
 		<%	}		
 		}

@@ -32,6 +32,7 @@ import com.yogi.hoxy.dtos.MemberShoppingDto;
 import com.yogi.hoxy.dtos.ProductDto;
 import com.yogi.hoxy.dtos.ShopDto;
 import com.yogi.hoxy.service.IYogiService;
+import com.yogi.hoxy.service.YogiService;
 
 /**
  * Handles requests for the application home page.
@@ -616,7 +617,7 @@ public class HomeController {
 		logger.info("상점 추가", locale);
 
 		boolean isS = yoService.shopAdd(new ShopDto(sdto.getId(), sdto.getShopId(), sdto.getShopName(), sdto.getShopOdd(),
-				sdto.getShopAdd(), sdto.getShopDetailAdd(), sdto.getShopTel(), sdto.getLocal(), sdto.getBusinessNum(), null, "0", "0", sdto.getShopImg(), null));
+				sdto.getShopAdd(), sdto.getShopDetailAdd(), sdto.getShopTel(), sdto.getLocal(), sdto.getBusinessNum(), null, "0", "0", sdto.getShopImg()));
 		if (isS) {
 			return "redirect:myShop.do";
 		} else {
@@ -820,10 +821,12 @@ public class HomeController {
 		
 		MemberDto dto = yoService.listSel(id);
 		model.addAttribute("dto", dto);
-		
+		ShopDto sdto = yoService.myShopDetail(id, shopId);
 		
 		if(who.equals("2")) {
-			return "seller/addProduct";
+			if(sdto.getPower().equals("1")) {
+				return "seller/addProduct";				
+			}
 		}
 		model.addAttribute("msg", "권한 오류입니다.");
 		return "error";
@@ -837,13 +840,14 @@ public class HomeController {
 		String shopId = (String) session.getAttribute("shopId");
 		
 		boolean isS = yoService.addProduct(new ProductDto(dto.getProduct_seq(), shopId, dto.getId(), dto.getProductName(), 
-				dto.getContent(), dto.getPrice(), dto.getStock(), dto.getImg_Url(), null, dto.getCategory(), 0));
+				dto.getContent(), dto.getPrice(), dto.getStock(), dto.getImg_Url(), null, dto.getCategory(), 0, null));
 		
 		if (isS) {
-			return "redirect:myShop.do";
-		} else {
+			return "redirect:myShop.do";				
+			}
+			model.addAttribute("msg", "권한오류입니다.");
 			return "error";
-		}
+		
 	}
 	
 	
@@ -856,10 +860,12 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
-	public String search(HttpServletRequest request, Locale locale, Model model, String category) {
+	public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword) {
 		logger.info("검색", locale);
 		
-		List<ShopDto> sList = yoService.search(category);
+		System.out.println(category + local + keyword);
+		
+		List<ProductDto> sList = yoService.search(category, local, keyword);
 		model.addAttribute("sList", sList);
 		System.out.println(sList);
 		return "search";

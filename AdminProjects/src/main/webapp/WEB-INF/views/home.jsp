@@ -168,18 +168,12 @@ Or Search For Property, Jobs And More.</p>
 <h3 class="heading-title">여서 검색혀</h3>
 <p class="sub-heding-text">골라</p>
 <div class="row">
-<!-- <div class="col-12 "> -->
-<!-- <div class="search-input"> -->
-<!-- <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label> -->
-<!-- <input type="text" name="keyword" id="keyword" placeholder="Product keyword"> -->
-<!-- </div> -->
-<!-- </div> -->
 <div class="col-12">
 <div class="search-input">
 <label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
-<select name="category" id="category">
-<option value="none" selected disabled>카테고리</option>
-<option value="식품">식품</option>
+<select name="category" id="category" required>
+<option value="">카테고리</option>
+<option value="과자">과자</option>
 <option value="유아">유아</option>
 <option value="악세서리">악세서리</option>
 </select>
@@ -187,15 +181,23 @@ Or Search For Property, Jobs And More.</p>
 </div>
 <div class="col-12">
 <div class="search-input">
-<label for="location"><i class="lni lni-map-marker theme-color"></i></label>
-<select name="location" id="location">
-<option value="none" selected disabled>지역</option>
+<label for="local"><i class="lni lni-map-marker theme-color"></i></label>
+<select name="local" id="local" required>
+<option value="구" >지역</option>
 <option value="강남구">강남구</option>
 <option value="강동구">강동구</option>
 <option value="강북구">강북구</option>
 <option value="강서구">강서구</option>
 <option value="성북구">성북구</option>
+<option value="관악구">관악구</option>
+<option value="도봉구">도봉구</option>
 </select>
+</div>
+</div>
+<div class="col-12 ">
+<div class="search-input">
+<label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
+<input type="text" name="keyword" id="keyword" placeholder="Product keyword">
 </div>
 </div>
 <div class="col-12">
