@@ -132,7 +132,7 @@
 <div class="col-12">
 <div class="form-group upload-image">
 <label>상점 이미지</label>
-<img id="shopImg" src="upload/${sdto.shopImg }" width=100 height=100 />
+<img id="shopImg" src="upload/shop/${sdto.shopImg }" width=100 height=100 />
 </div>
 </div>
 <div class="col-lg-6 col-12">

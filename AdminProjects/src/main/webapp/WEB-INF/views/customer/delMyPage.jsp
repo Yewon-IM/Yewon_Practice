@@ -128,7 +128,7 @@
 
 <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="upload/${profileImg }" alt="#">
+<img src="upload/member/${profileImg }" alt="#">
 <span>${name }</span>
 </div>
 <div class="dashboard-menu">

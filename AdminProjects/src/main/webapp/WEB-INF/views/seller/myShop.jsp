@@ -137,7 +137,7 @@
 			<a href="addProduct.do?shopId=<%=sdto.getShopId()%>"><img src="resources/image/product.png" alt="상품보기"/></a>
 			</div>
 			<div class="author">
-			<a href="myShopDetail.do?shopId=<%=sdto.getShopId()%>&id=<%=sdto.getId()%>"><img id="shopImg" src="upload/<%=sdto.getShopImg()%>" alt="#" /></a>
+			<a href="myShopDetail.do?shopId=<%=sdto.getShopId()%>&id=<%=sdto.getId()%>"><img id="shopImg" src="upload/shop/<%=sdto.getShopImg()%>" alt="#" /></a>
 			<h4 class="name">
 			<%= sdto.getShopName() %>
 			<span class="deg"><% if (sdto.getPower().equals("0")){ 

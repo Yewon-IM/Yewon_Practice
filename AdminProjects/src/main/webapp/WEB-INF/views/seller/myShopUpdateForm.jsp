@@ -149,7 +149,7 @@
 </div>
 <div class="col-lg-6 col-12">
 <div class="form-group">
-<img id="shopImg" src="upload/${sdto.shopImg }" width=100 height=100 />
+<img id="shopImg" src="upload/shop/${sdto.shopImg }" width=100 height=100 />
 </div>
 </div>
 <div class="col-lg-6 col-12">

@@ -93,7 +93,7 @@ public class YogiService implements IYogiService {
 			
 		} else {
 		
-			String path = "C:/Users/HKEDU/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
+			String path = "C:/Users/HKEDU/git/Yewon_Practice/AdminProjects/src/main/webapp/upload/member";
 			
 			//String path = request.getSession().getServletContext().getRealPath("upload");
 			
@@ -170,7 +170,7 @@ public class YogiService implements IYogiService {
 			return isS;
 		} else {
 			
-			String path = "C:/Users/HKEDU/git/Yewon_Practice/AdminProjects/src/main/webapp/upload";
+			String path = "C:/Users/HKEDU/git/Yewon_Practice/AdminProjects/src/main/webapp/upload/shop";
 			
 			//String path = request.getSession().getServletContext().getRealPath("upload");
 			

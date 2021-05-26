@@ -134,7 +134,7 @@
 
 <div class="dashboard-sidebar">
 <div class="user-image">
-<img src="upload/${dto.profileImg }" alt="#">
+<img src="upload/member/${dto.profileImg }" alt="#">
 <span>${dto.name }</span>
 
 </div>
