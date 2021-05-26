@@ -270,4 +270,9 @@
 		WHERE p.SHOPID = s.SHOPID
 	</select>
 	
+	
+	<select id="myProductList" parameterType="String" resultType="ProductDto">
+		SELECT * FROM PRODUCT WHERE SHOPID = #{shopId}
+	</select>
+	
 </mapper>

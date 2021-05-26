@@ -175,5 +175,8 @@ public class YogiDaoImp implements IYogiDao{
 	public List<ProductDto> productList(){
 		return sqlSession.selectList(namespace + "productList");
 	}
-
+	
+	public List<ProductDto> myProductList(String shopId){
+		return sqlSession.selectList(namespace + "myProductList", shopId);
+	}
 }

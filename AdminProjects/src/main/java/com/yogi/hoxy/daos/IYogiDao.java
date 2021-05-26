@@ -78,4 +78,6 @@ public interface IYogiDao {
 	public List<ProductDto> search(String category, String local, String keyword);
 	
 	public List<ProductDto> productList();
+	
+	public List<ProductDto> myProductList(String shopId);
 }

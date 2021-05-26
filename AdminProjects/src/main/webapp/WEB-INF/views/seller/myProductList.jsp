@@ -140,9 +140,9 @@
 
 <div class="single-widget search">
 <h3>상품 검색하기</h3>
-<form method="post" action="search.do">
+<form>
 <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요...">
-<button type="submit"><i class="lni lni-search-alt"></i></button>
+<button type="submit" onClick="se()"><i class="lni lni-search-alt"></i></button>
 </form>
 </div>
 
@@ -256,10 +256,10 @@ int stock = Integer.parseInt(dto.getStock());
 <a href="item-details.html"><%=dto.getProductName() %></a>
 </h3>
 <p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-</i><%=dto.getShopDto().getLocal() %></a></p>
+<!-- </i><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>  -->
 <ul class="info">
 <li class="price"><%=dto.getPrice() %></li>
-<li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
+<li class="like"><a href="javascript:void(0)"><%=dto.getLike()%>♥<i class="lni lni-heart"></i></a>
 </li>
 </ul>
 </div>

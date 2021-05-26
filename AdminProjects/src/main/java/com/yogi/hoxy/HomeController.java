@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -23,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
 
@@ -858,25 +860,42 @@ public class HomeController {
 	
 	
 	
-	
-	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/search.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword) {
 		logger.info("검색", locale);
-				
-		List<ProductDto> sList = yoService.search(category, local, keyword);
-		model.addAttribute("sList", sList);
-		System.out.println(sList);
+		
+		if(category == null) {
+			List<ProductDto> list = yoService.productList();
+			model.addAttribute("list", list);
+			
+			return "search";
+		} 
+		List<ProductDto> list = yoService.search(category, local, keyword);
+		model.addAttribute("list", list);
 		
 		return "search";
 	}
 	
-	@RequestMapping(value = "/productList.do", method = RequestMethod.GET)
-	public String productList(Locale locale, Model model) {
-		logger.info("상품 페이지", locale);
+	@RequestMapping(value = "/myProductList.do", method = RequestMethod.GET)
+	public String myProductList(HttpServletRequest request, Locale locale, Model model, @RequestParam("shopId") String shopId) {
+		logger.info("상점 물품 리스트", locale);
 		
-		List<ProductDto> list = yoService.productList();
+		List<ProductDto> list = yoService.myProductList(shopId);
 		model.addAttribute("list", list);
-		
-		return "productList";
+		return "seller/myProductList";
 	}
+	
+	@ResponseBody	
+	@RequestMapping(value = "/ch.do", method = RequestMethod.POST)
+	public Map<String, List<ProductDto>> ch(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword) {
+		logger.info("검색", locale);
+		
+		List<ProductDto> list = yoService.search(category, local, keyword);
+		model.addAttribute("list", list);
+		Map<String, List<ProductDto>> map = new HashMap<String, List<ProductDto>>();
+		map.put("list", list);
+		
+		return map;
+	}
+	
 }

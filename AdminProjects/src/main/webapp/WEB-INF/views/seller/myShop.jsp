@@ -134,7 +134,8 @@
 			<div class="col-lg-4 col-md-6 col-12">
 			<div class="single-testimonial">
 			<div class="quote-icon">
-			<a href="addProduct.do?shopId=<%=sdto.getShopId()%>"><img src="resources/image/product.png" alt="상품보기"/></a>
+			<a href="myProductList.do?shopId=<%=sdto.getShopId()%>"><img src="resources/image/product.png" alt="상품보기"/></a>
+			<!-- <a href="addProduct.do?shopId=<%=sdto.getShopId()%>"><img src="resources/image/product.png" alt="상품보기"/></a> -->
 			</div>
 			<div class="author">
 			<a href="myShopDetail.do?shopId=<%=sdto.getShopId()%>&id=<%=sdto.getId()%>"><img id="shopImg" src="upload/shop/<%=sdto.getShopImg()%>" alt="#" /></a>

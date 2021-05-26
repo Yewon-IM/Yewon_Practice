@@ -388,5 +388,10 @@ public class YogiService implements IYogiService {
 		return yogiDao.productList();
 	}
 
+	@Override
+	public List<ProductDto> myProductList(String shopId) {
+		return yogiDao.myProductList(shopId);
+	}
+
 }
 	
