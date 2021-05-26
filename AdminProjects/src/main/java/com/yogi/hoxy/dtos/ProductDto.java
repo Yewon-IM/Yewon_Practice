@@ -38,6 +38,22 @@ public class ProductDto {
 		this.like = like;
 		this.shopDto = shopDto;
 	}
+	
+	public ProductDto(int product_seq, String shopId, String id, String productName, String content, int price,
+			String stock, String img_Url, Date writeDate, String category, int like) {
+		super();
+		this.product_seq = product_seq;
+		this.shopId = shopId;
+		this.id = id;
+		this.productName = productName;
+		this.content = content;
+		this.price = price;
+		this.stock = stock;
+		this.img_Url = img_Url;
+		this.writeDate = writeDate;
+		this.category = category;
+		this.like = like;
+	}
 
 	public int getProduct_seq() {
 		return product_seq;

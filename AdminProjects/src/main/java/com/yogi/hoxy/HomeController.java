@@ -834,24 +834,23 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/addProductDo.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addProductDo(HttpServletRequest request, Locale locale, Model model, ProductDto dto) {
+	public String addProductDo(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("상품 추가", locale);
 		
 		HttpSession session = request.getSession();
-		String shopId = (String) session.getAttribute("shopId");
+		String who = (String) session.getAttribute("who");
 		
-		boolean isS = yoService.addProduct(new ProductDto(dto.getProduct_seq(), shopId, dto.getId(), dto.getProductName(), 
-				dto.getContent(), dto.getPrice(), dto.getStock(), dto.getImg_Url(), null, dto.getCategory(), 0, null));
+		boolean isS = yoService.addProduct(request);
 		
 		if (isS) {
-			return "redirect:myShop.do";				
+			if(who.equals("2")) {
+				return "redirect:myShop.do";								
 			}
-			model.addAttribute("msg", "권한오류입니다.");
-			return "error";
+		}
+		model.addAttribute("msg", "권한오류입니다.");
+		return "error";
 		
 	}
-	
-	
 	
 	
 	
@@ -863,13 +862,21 @@ public class HomeController {
 	@RequestMapping(value = "/search.do", method = RequestMethod.POST)
 	public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword) {
 		logger.info("검색", locale);
-		
-		System.out.println(category + local + keyword);
-		
+				
 		List<ProductDto> sList = yoService.search(category, local, keyword);
 		model.addAttribute("sList", sList);
 		System.out.println(sList);
+		
 		return "search";
 	}
 	
+	@RequestMapping(value = "/productList.do", method = RequestMethod.GET)
+	public String productList(Locale locale, Model model) {
+		logger.info("상품 페이지", locale);
+		
+		List<ProductDto> list = yoService.productList();
+		model.addAttribute("list", list);
+		
+		return "productList";
+	}
 }

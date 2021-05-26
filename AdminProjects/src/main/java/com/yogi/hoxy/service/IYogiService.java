@@ -73,7 +73,9 @@ public interface IYogiService {
 	
 	public boolean likeCancel(String id, String product_seq);
 	
-	public boolean addProduct(ProductDto dto);
+	public boolean addProduct(HttpServletRequest request);
 	
 	public List<ProductDto> search(String category, String local, String keyword);
+
+	public List<ProductDto> productList();
 }

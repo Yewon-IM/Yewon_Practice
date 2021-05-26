@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.yogi.hoxy.dtos.BookDto;
 import com.yogi.hoxy.dtos.MemberDto;
 import com.yogi.hoxy.dtos.MemberShoppingDto;
@@ -74,4 +76,6 @@ public interface IYogiDao {
 	public boolean addProduct(ProductDto dto);
 	
 	public List<ProductDto> search(String category, String local, String keyword);
+	
+	public List<ProductDto> productList();
 }

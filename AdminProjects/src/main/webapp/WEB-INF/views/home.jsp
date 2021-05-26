@@ -60,13 +60,13 @@
 <li class="nav-item">
 <a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
 <ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href="index.html">Home Default</a></li>
-<li class="nav-item active"><a href="index2.html">Home Version 2</a></li>
-<li class="nav-item"><a href="index3.html">Home Version 3</a></li>
+<li class="nav-item"><a href=".">Home Default</a></li>
+<li class="nav-item active"><a href=".">Home Version 2</a></li>
+<li class="nav-item"><a href=".">Home Version 3</a></li>
 </ul>
 </li>
  <li class="nav-item">
-<a href="category.html" aria-label="Toggle navigation">Categories</a>
+<a href="productList.do" aria-label="Toggle navigation">Categories</a>
 </li>
 <li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Listings</a>

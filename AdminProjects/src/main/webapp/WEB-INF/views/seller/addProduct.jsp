@@ -153,17 +153,8 @@
 <div class="dashboard-block mt-0 profile-settings-block">
 <h3 class="block-title">상품추가</h3>
 <div class="inner-block">
-<form class="profile-setting-form" method="post" action="addProductDo.do">
+<form class="profile-setting-form" method="post" action="addProductDo.do" enctype="multipart/form-data">
 <div class="row">
-<!-- <div class="col-lg-6 col-12"> -->
-<!-- <div class="form-group"> -->
-<!-- <label>상점</label> -->
-<!-- <select name="shopId"> -->
-<%-- 		<option value="강남구" ${dto.local == "강남구"? "selected" : "" }>강남구</option> --%>
-<%-- 		<option value="강동구" ${dto.local == "강동구"? "selected" : "" }>강동구</option> --%>
-<!-- </select>  -->
-<!-- </div> -->
-<!-- </div> -->
 <div class="col-lg-6 col-12">
 <div class="form-group upload-image">
 <label>상품 사진</label>
@@ -209,10 +200,11 @@
 <div class="col-lg-6 col-12">
 <div class="form-group">
 <label>내용</label>
-<textarea id="content" name="content" rows="1000" cols="1000" placeholder="내용"></textarea>
+<textarea name="content" rows="1000" cols="1000" placeholder="내용"></textarea>
 </div>
 </div>
 <input type="hidden" name="id" value="${id }" />
+<input type="hidden" name="shopId" value="${shopId }" />
 <div class="col-12">
 <div class="form-group button mb-0">
 <button type="submit" class="btn">상품 등록하기</button>

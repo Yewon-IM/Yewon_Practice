@@ -311,13 +311,81 @@ public class YogiService implements IYogiService {
 	}
 
 	@Override
-	public boolean addProduct(ProductDto dto) {
-		return yogiDao.addProduct(dto);
+	public boolean addProduct(HttpServletRequest request) {
+	
+		MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request;	
+		
+		MultipartFile multiFile = multi.getFile("img_Url");	
+		String img_Url = multiFile.getOriginalFilename();
+		System.out.println("상품이미지" + img_Url);
+		
+		if(img_Url == null || img_Url == "") {
+			
+			boolean isS = false;
+			
+			String shopId = multi.getParameter("shopId");
+			String id = multi.getParameter("id");
+			String productName = multi.getParameter("productName");
+			String content = multi.getParameter("content");
+			int price = Integer.parseInt(multi.getParameter("price"));
+			String stock = multi.getParameter("stock");
+			String category = multi.getParameter("category");
+
+			
+			try {
+				//파일정보를 DB에 저장하기
+				isS = yogiDao.addProduct(new ProductDto(0, shopId, id, productName, content, price, stock, img_Url, null, category, 0));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+				
+			return isS;
+		} else {
+			
+			String path = "C:/Users/HKEDU/git/Yewon_Practice/AdminProjects/src/main/webapp/upload/product";
+			
+			File f = new File(path+ "/" + img_Url);
+			
+			boolean isS = false;
+			
+			
+			String shopId = multi.getParameter("shopId");
+			String id = multi.getParameter("id");
+			String productName = multi.getParameter("productName");
+			String content = multi.getParameter("content");
+			int price = Integer.parseInt(multi.getParameter("price"));
+			String stock = multi.getParameter("stock");
+			String category = multi.getParameter("category");
+			
+			try {
+				multiFile.transferTo(f); //파일객체에 저장된 경로대로 업로드가 실행됨.
+				//파일정보를 DB에 저장하기
+				isS = yogiDao.addProduct(new ProductDto(0, shopId, id, productName, content, price, stock, img_Url, null, category, 0));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+			
+			return isS;
+		}
 	}
 
 	@Override
 	public List<ProductDto> search(String category, String local, String keyword) {
 		return yogiDao.search(category, local, keyword);
+	}
+
+	@Override
+	public List<ProductDto> productList() {
+		return yogiDao.productList();
 	}
 
 }

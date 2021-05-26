@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.yogi.hoxy.dtos.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -169,4 +171,9 @@ public class YogiDaoImp implements IYogiDao{
 		map.put("keyword", keyword);
 		return sqlSession.selectList(namespace + "search", map);
 	}
+	
+	public List<ProductDto> productList(){
+		return sqlSession.selectList(namespace + "productList");
+	}
+
 }

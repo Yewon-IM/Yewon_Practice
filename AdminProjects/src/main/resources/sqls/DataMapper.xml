@@ -251,7 +251,10 @@
 	<select id="search" parameterType="Map" resultMap="ProductDtoMap">
 		SELECT *
 		FROM PRODUCT p , SHOP s
-		WHERE p.SHOPID = s.SHOPID AND p.CATEGORY = #{category} 
+		WHERE p.SHOPID = s.SHOPID 
+		<if test="category != null">
+		AND p.CATEGORY = #{category} 		
+		</if>
 		<if test="local != null"> <!-- 다이나믹쿼리 -->
 		AND UPPER(LOCAL)LIKE '%' || #{local} || '%'
 		</if>
@@ -259,4 +262,12 @@
 		AND UPPER(PRODUCTNAME)LIKE '%' || #{keyword} || '%'
 		</if>
 	</select>
+	
+	
+	<select id="productList" resultMap="ProductDtoMap">
+		SELECT * 
+		FROM PRODUCT p , SHOP s
+		WHERE p.SHOPID = s.SHOPID
+	</select>
+	
 </mapper>
