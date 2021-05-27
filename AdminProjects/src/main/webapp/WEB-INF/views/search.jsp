@@ -15,70 +15,54 @@
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-function se(){
-	var keyword = $("#keyword").val();
-	if(keyword == ''){
-		alert("검색어를 입력하세요");
-		return;
-	}
- 	$.ajax({
- 		method:"post",
- 		url: "ch.do",
- 		data: {"keyword": keyword},
- 		dataType:"json",
- 		async:false,
- 		success:function(data){
- 			alert(data["list"][0]["product_seq"]);
- 			for(var i=0;i<data["list"].length;i++){
- 				$(".w").append(data["list"][i]["product_seq"]
-//  						'<div class="col-lg-4 col-md-6 col-12">' +
-//  						'<div class="single-item-grid">'+
-//  						'<div class="image">'+
-<%--  						'<a href="productDetail.do?product_Seq='+ data["list"][i]["product_seq"] + '"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>'+ --%>
-//  						'<i class=" cross-badge lni lni-bolt"></i>'+
-//  						'<span class="flat-badge sale">'+
-//  						'</span>'+
-//  						'</div>'+
-//  						'<div class="content">'+
-<%--  						'<a href="javascript:void(0)" class="tag"><%=dto.getCategory() %></a>'+ --%>
-//  						'<h3 class="title">'+
-<%--  						'<a href="item-details.html"><%=dto.getProductName() %></a>'+ --%>
-//  						'</h3>'+
-//  						'<p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">'+
-<%--  						'</i><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>'+ --%>
+// function se(){
+// 	var keyword = $("#keyword").val();
+// 	if(keyword == ''){
+// 		alert("검색어를 입력하세요");
+// 		return;
+// 	}
+//  	$.ajax({
+//  		method:"post",
+//  		url: "ch.do",
+//  		data: {"keyword": keyword},
+//  		dataType:"json",
+//  		async:false,
+//  		success:function(data){
+//  			alert(data["list"][0]["product_seq"]);
+//  			for(var i=0;i<data["list"].length;i++){
+//  				$(".w").append(
+//   						'<div class="col-lg-4 col-md-6 col-12">' +
+//   						'<div class="single-item-grid">'+
+//   						'<div class="image">'+
+//  						'<a href="productDetail.do?product_Seq='+ data["list"][i]["product_seq"] + '"><img src="upload/product/+'data[list][i]["img_Url"]'+" alt="productImg"></a>'+
+//   						'<i class=" cross-badge lni lni-bolt"></i>'+
+//   						'<span class="flat-badge sale">'+
+//   						'</span>'+
+//   						'</div>'+
+//   						'<div class="content">'+
+//  						'<a href="javascript:void(0)" class="tag">data["list"][i]["category"]</a>'+
+//   						'<h3 class="title">'+
+//  						'<a href="item-details.html">'data["list"][i]["productName"]'</a>'+
+//   						'</h3>'+
+//   						'<p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">'+
+//  						'</i>data["list"][i]["shopName"] / data["list"][i]["local"]</a></p>'+
+<%--   						<%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %> --%>
 //  						'<ul class="info">'+
-<%--  						'<li class="price"><%=dto.getPrice() %></li>'+ --%>
-<%--  						'<li class="like"><a href="javascript:void(0)"><%=dto.getLike()%>♥<i class="lni lni-heart"></i></a>'+ --%>
-//  						'</li>'+
-//  						'</ul>'+
-//  						'</div>'+
-//  						'</div>'+
-//  						'</div>'
- 				);
- 			}
- 		},
- 		error:function(){
- 			alert("그런건 없어요.");
- 		}
- 	});
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//  						'<li class="price">data["list"][i]["price"]</li>'+
+//  						'<li class="like"><a href="javascript:void(0)">data["list"][i]["like"]♥<i class="lni lni-heart"></i></a>'+
+//   						'</li>'+
+//   						'</ul>'+
+//   						'</div>'+
+//   						'</div>'+
+//   						'</div>'
+//  				);
+//  			}
+//  		},
+//  		error:function(){
+//  			alert("그런건 없어요.");
+//  		}
+//  	});
+// }
 </script>
 
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -206,21 +190,21 @@ function se(){
 
 <div class="single-widget search">
 <h3>상품 검색하기</h3>
-<form>
+<form method="post" action="search.do">
 <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요...">
-<button type="button" onClick="se()"><i class="lni lni-search-alt"></i></button>
+<button type="submit" ><i class="lni lni-search-alt"></i></button>
 </form>
 </div>
 
 
 <div class="single-widget">
-<h3>All Categories</h3>
+<h3>카테고리</h3>
 <ul class="list">
 <li>
-<a href="javascript:void(0)"><i class="lni lni-dinner"></i>과자</a>
+<a href="search.do?category=과자"><i class="lni lni-dinner"></i>과자</a>
 </li>
 <li>
-<a href="javascript:void(0)"><i class="lni lni-control-panel"></i>유아</a>
+<a href="search.do?category=유아"><i class="lni lni-control-panel"></i>유아</a>
 </li>
 <li>
 <a href="javascript:void(0)"><i class="lni lni-bullhorn"></i> Marketing <span>55</span></a>
@@ -326,7 +310,7 @@ int stock = Integer.parseInt(dto.getStock());
 }
 %>		
 
-어팬드 - 제이쿼리 마지막에 계속 추가해주는 
+<!-- 어팬드 - 제이쿼리 마지막에 계속 추가해주는  -->
 		
 
 

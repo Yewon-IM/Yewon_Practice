@@ -864,7 +864,7 @@ public class HomeController {
 	public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword) {
 		logger.info("검색", locale);
 		
-		if(category == null) {
+		if(category == null && keyword == null) {
 			List<ProductDto> list = yoService.productList();
 			model.addAttribute("list", list);
 			
@@ -884,18 +884,19 @@ public class HomeController {
 		model.addAttribute("list", list);
 		return "seller/myProductList";
 	}
-	
-	@ResponseBody	
-	@RequestMapping(value = "/ch.do", method = RequestMethod.POST)
-	public Map<String, List<ProductDto>> ch(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword) {
-		logger.info("검색", locale);
-		
-		List<ProductDto> list = yoService.search(category, local, keyword);
-		model.addAttribute("list", list);
-		Map<String, List<ProductDto>> map = new HashMap<String, List<ProductDto>>();
-		map.put("list", list);
-		
-		return map;
-	}
+
+	//ㅠㅠ 고통 search.jsp
+//	@ResponseBody	
+//	@RequestMapping(value = "/ch.do", method = RequestMethod.POST)
+//	public Map<String, List<ProductDto>> ch(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword) {
+//		logger.info("검색", locale);
+//		
+//		List<ProductDto> list = yoService.search(category, local, keyword);
+//		model.addAttribute("list", list);
+//		Map<String, List<ProductDto>> map = new HashMap<String, List<ProductDto>>();
+//		map.put("list", list);
+//		
+//		return map;
+//	}
 	
 }
