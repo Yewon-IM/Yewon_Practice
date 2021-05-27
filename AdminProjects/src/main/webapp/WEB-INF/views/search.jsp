@@ -1,6 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.yogi.hoxy.dtos.ProductDto"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -280,7 +281,7 @@ int stock = Integer.parseInt(dto.getStock());
 <div class="col-lg-4 col-md-6 col-12">
 <div class="single-item-grid">
 <div class="image">
-<a href="productDetail.do?product_Seq=<%=dto.getProduct_seq()%>"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>
+<a href="productDetail.do?product_seq=<%=dto.getProduct_seq()%>"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>
 <i class=" cross-badge lni lni-bolt"></i>
 <span class="flat-badge sale">
 <%if(stock == 0){
@@ -300,8 +301,10 @@ int stock = Integer.parseInt(dto.getStock());
 </i><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>
 <ul class="info">
 <li class="price"><%=dto.getPrice() %></li>
-<li class="like"><a href="javascript:void(0)"><%=dto.getLike()%>♥<i class="lni lni-heart"></i></a>
-</li>
+<c:if test="${who == null}">
+<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>"><%=dto.getLike()%>♥<i class="lni lni-heart"></i></a></li>
+</c:if>
+
 </ul>
 </div>
 </div>

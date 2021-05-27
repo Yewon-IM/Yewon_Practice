@@ -306,6 +306,11 @@ public class YogiService implements IYogiService {
 	}
 
 	@Override
+	public boolean like(MemberShoppingDto dto) {
+		return yogiDao.like(dto);
+	}
+	
+	@Override
 	public boolean likeCancel(String id, String product_seq) {
 		return yogiDao.likeCancel(id, product_seq);
 	}
@@ -397,6 +402,13 @@ public class YogiService implements IYogiService {
 	public boolean updateStock(ProductDto dto) {
 		return yogiDao.updateStock(dto);
 	}
+
+	@Override
+	public ProductDto productDetail(int product_seq) {
+		return yogiDao.productDetail(product_seq);
+	}
+
+
 
 }
 	

@@ -260,7 +260,7 @@
 	if(msList == null || msList.size() == 0){
 		%>
 		<span>찜한 상품이 없습니다.
-		<a href=""> 찜하러 가쉴? </a></span>
+		<a href="search.do"> 찜하러 가쉴? </a></span>
 		<%
 	}else {
 		for(MemberShoppingDto msdto : msList){

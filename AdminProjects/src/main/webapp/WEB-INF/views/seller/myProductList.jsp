@@ -1,6 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.yogi.hoxy.dtos.ProductDto"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,7 +33,7 @@ function updateStock(product_seq){
 </script>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>내 상점 상품리스트</title>
+<title>상점 상품리스트</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -119,7 +120,7 @@ function updateStock(product_seq){
 <div class="login-button">
 <ul>
 <li>
-<a href="login.do"><i class="lni lni-enter"></i>로그인</a>
+<p>${name }</p>
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
@@ -139,13 +140,13 @@ function updateStock(product_seq){
 <div class="row align-items-center">
 <div class="col-lg-6 col-md-6 col-12">
 <div class="breadcrumbs-content">
-<h1 class="page-title">내 상점 상품리스트</h1>
+<h1 class="page-title">상점 상품리스트</h1>
 </div>
 </div>
 <div class="col-lg-6 col-md-6 col-12">
 <ul class="breadcrumb-nav">
 <li><a href=".">Home</a></li>
-<li>내 상점 상품리스트</li>
+<li>상점 상품리스트</li>
 </ul>
 </div>
 </div>
@@ -164,10 +165,13 @@ function updateStock(product_seq){
 <div class="quote-icon">
 <a href="myProductList.do?shopId=${sdto.shopId}"></a>
 </div>
-<div class="author">
-<a href="myShopDetail.do?shopId=${sdto.shopId}&id=${sdto.id}"><img id="shopImg" src="upload/shop/${sdto.shopImg}" alt="#" height="150" width="150"/></a>
-<h4 class="name">
-</h4>
+<div class="single-block author">
+<h3>판매처</h3>
+<div class="content">
+<img src="upload/shop/${dto.shopDto.shopImg }" alt="#">
+<h4>${dto.shopDto.shopName }</h4>
+<span><fmt:formatDate pattern = "yyyy/MM/dd" value = "${dto.shopDto.openDate }"/></span>
+</div>
 </div>
 </div>
 
@@ -219,14 +223,7 @@ function updateStock(product_seq){
 <div class="category-grid-topbar">
 <div class="row align-items-center">
 <div class="col-lg-6 col-md-6 col-12">
-<h3 class="title">Showing 1-12 of 21 ads found</h3>
-</div>
-<div class="col-lg-6 col-md-6 col-12">
-<nav>
-<div class="nav nav-tabs" id="nav-tab" role="tablist">
-<p>버튼 두개 
-</div>
-</nav>
+<h3 class="title">상품 리스트</h3>
 </div>
 </div>
 </div>
@@ -256,7 +253,9 @@ if(list == null || list.size() == 0){
 <p class="location"><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></p>
 <ul class="info">
 <li class="price"><%=dto.getPrice() %>원 / 좋아요 <%=dto.getLike()%>개 </li>
+<c:if test="${who eq '2' }">
 <li class="like"><a onclick="updateStock(<%=dto.getProduct_seq()%>)" href="javascript:void(0)" >입고<i class="lni lni-heart"></i></a></li>
+</c:if>
 </ul>
 </div>
 </div>

@@ -103,6 +103,7 @@ public class HomeController {
 			session.setAttribute("del", dto.getDel());
 			session.setAttribute("profileImg", dto.getProfileImg());
 			session.setAttribute("power", dto.getPower());
+			session.setAttribute("tel", dto.getTel());
 			
 			if(dto.getPower().equals("2")) {
 				return "ban";
@@ -782,8 +783,25 @@ public class HomeController {
 	
 	
 	
-	
-	
+	@RequestMapping(value = "/like.do", method = RequestMethod.GET)
+	public String like(HttpServletRequest request, Locale locale, Model model, @RequestParam("product_seq") int product_seq) {
+		logger.info("찜 하기", locale);
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		
+		if(id == null) {
+			model.addAttribute("msg", "찜버튼은 로그인해야 돼요.");
+			model.addAttribute("url", "login.do");
+			return "alert";
+		} 
+		boolean isS = yoService.like(new MemberShoppingDto(0, id, product_seq));
+		System.out.println(isS);
+			if(isS) {	
+				return "redirect:search.do";
+			}
+				return "error";
+	}
 
 	
 	@RequestMapping(value = "/deleteLikeList.do", method = RequestMethod.GET)
@@ -864,6 +882,9 @@ public class HomeController {
 	public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword) {
 		logger.info("검색", locale);
 		
+		HttpSession session = request.getSession();
+		
+		
 		if(category == null && keyword == null) {
 			List<ProductDto> list = yoService.productList();
 			model.addAttribute("list", list);
@@ -877,27 +898,55 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/myProductList.do", method = RequestMethod.GET)
-	public String myProductList(HttpServletRequest request, Locale locale, Model model) {
+	public String myProductList(HttpServletRequest request, Locale locale, Model model, @RequestParam("shopId") String shopId) {
 		logger.info("상점 물품 리스트", locale);
 		
 		HttpSession session = request.getSession();
 		String who = (String) session.getAttribute("who");
 		String id = (String) session.getAttribute("id");
-		String shopId = (String) session.getAttribute("shopId");
 		
-		if(who.equals("2")) {
-			ShopDto sdto = yoService.myShopDetail(id, shopId);
-			model.addAttribute("sdto", sdto);
-			
-			List<ProductDto> list = yoService.myProductList(shopId);
-			model.addAttribute("list", list);
-			session.setAttribute("shopId", shopId);
-			return "seller/myProductList";			
-		}
-		model.addAttribute("msg", "권한 오류입니다.");
-		return "error";
+		ShopDto sdto = yoService.myShopDetail(id, shopId);
+		model.addAttribute("sdto", sdto);
+		
+		List<ProductDto> list = yoService.myProductList(shopId);
+		model.addAttribute("list", list);
+		
+		session.setAttribute("shopId", shopId);
+		model.addAttribute("who", who);
+		return "seller/myProductList";			
+		
+	}
+	
+	@RequestMapping(value = "/productDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String productDetail( Locale locale, Model model, int product_seq) {
+		logger.info("상점 물품 리스트", locale);
+		
+		ProductDto dto = yoService.productDetail(product_seq);
+		model.addAttribute("dto", dto);	
+		return "productDetail";
 	}
 
+	@RequestMapping(value = "/updateStock.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String updateStock(HttpServletRequest request, Locale locale, Model model, ProductDto dto) {
+		logger.info("재고 업데이트", locale);
+		
+		HttpSession session = request.getSession();
+		String who = (String) session.getAttribute("who");
+		String shopId = (String) session.getAttribute("shopId");
+		
+		
+		boolean isS = yoService.updateStock(dto);
+		
+		if(isS) {
+			ShopDto sdto = yoService.listSelShop(shopId);
+			model.addAttribute("sdto", sdto);
+			return "redirect:myProductList.do?shopId=" + shopId;		
+		}
+		model.addAttribute("msg", "재고수정 오류입니다.");
+		return "error";
+	}
+	
+	
 	//ㅠㅠ 고통 search.jsp
 //	@ResponseBody	
 //	@RequestMapping(value = "/ch.do", method = RequestMethod.POST)
@@ -911,17 +960,4 @@ public class HomeController {
 //		
 //		return map;
 //	}
-	
-	@RequestMapping(value = "/updateStock.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String updateStock(Locale locale, Model model, ProductDto dto) {
-		logger.info("재고 업데이트", locale);
-		
-		System.out.println(dto);
-		boolean isS = yoService.updateStock(dto);
-		if(isS) {
-			return "redirect:myProductList.do";		
-		}
-		model.addAttribute("msg", "재고수정 오류입니다.");
-		return "error";
-	}
 }

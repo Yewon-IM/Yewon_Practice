@@ -71,6 +71,8 @@ public interface IYogiDao {
 	
 	public List<MemberShoppingDto> likeList(String id);
 	
+	public boolean like(MemberShoppingDto dto);
+	
 	public boolean likeCancel(String id, String product_seq);
 	
 	public boolean addProduct(ProductDto dto);
@@ -82,4 +84,6 @@ public interface IYogiDao {
 	public List<ProductDto> myProductList(String shopId);
 	
 	public boolean updateStock(ProductDto dto);
+	
+	public ProductDto productDetail(int product_seq);
 }

@@ -208,6 +208,11 @@
 		WHERE PRODUCT_SEQ= #{product_seq} AND ID= #{id}
 	</update>
 	
+	<insert id="like" parameterType="MemberShoppingDto">
+		INSERT INTO MEMBERSHOPPING (SEQ, ID, "LIKE", PRODUCT_SEQ) 
+		VALUES(MS_SEQ.NEXTVAL, #{id}, '1', #{product_seq})
+	</insert>
+	
 	<insert id="addProduct" parameterType="ProductDto">
 		INSERT INTO PRODUCT (PRODUCT_SEQ, SHOPID, ID, PRODUCTNAME, CONTENT, PRICE, STOCK, IMG_URL, WRITEDATE, CATEGORY, "LIKE") 
 		VALUES(PRODUCT_SEQ.NEXTVAL, #{shopId}, #{id}, #{productName}, #{content}, #{price}, #{stock}, #{img_Url}, sysdate, #{category}, '0')
@@ -278,7 +283,15 @@
 	</select>
 	
 	<update id="updateStock" parameterType="ProductDto">
-		UPDATE PRODUCT SET STOCK= #{stock} 
+		UPDATE PRODUCT SET STOCK= STOCK + #{stock}  
 		WHERE PRODUCT_SEQ= #{product_seq}
 	</update>
+	
+	<select id="productDetail" parameterType="int" resultMap="ProductDtoMap">
+		SELECT * 
+		FROM PRODUCT p, SHOP s
+		WHERE p.SHOPID = s.SHOPID AND p.PRODUCT_SEQ = #{product_seq}
+	</select>
+	
+
 </mapper>

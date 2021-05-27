@@ -151,6 +151,11 @@ public class YogiDaoImp implements IYogiDao{
 		return sqlSession.selectList(namespace + "likeList", id);
 	}
 	
+	public boolean like(MemberShoppingDto dto) {
+		int count = sqlSession.insert(namespace + "like", dto);
+		return count > 0? true:false;
+	}
+	
 	public boolean likeCancel(String id, String product_seq) {
 		Map<String, String> map = new HashMap<>();
 		map.put("id", id);
@@ -183,5 +188,9 @@ public class YogiDaoImp implements IYogiDao{
 	public boolean updateStock(ProductDto dto) {
 		int count = sqlSession.update(namespace + "updateStock", dto);
 		return count > 0? true:false;
+	}
+	
+	public ProductDto productDetail(int product_seq) {
+		return sqlSession.selectOne(namespace + "productDetail", product_seq);
 	}
 }
