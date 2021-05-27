@@ -257,6 +257,9 @@
 		SELECT *
 		FROM PRODUCT p , SHOP s
 		WHERE p.SHOPID = s.SHOPID 
+		<if test="shopId != null">
+		AND p.shopId = #{shopId}
+		</if>
 		<if test="category != null">
 		AND p.CATEGORY = #{category} 		
 		</if>

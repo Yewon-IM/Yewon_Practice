@@ -169,8 +169,9 @@ public class YogiDaoImp implements IYogiDao{
 		return count > 0? true:false;
 	}
 	
-	public List<ProductDto> search(String category, String local, String keyword){
+	public List<ProductDto> search(String shopId, String category, String local, String keyword){
 		Map<String, String> map = new HashMap<>();
+		map.put("shopId", shopId);
 		map.put("category", category);
 		map.put("local", local);
 		map.put("keyword", keyword);

@@ -77,7 +77,7 @@ public interface IYogiService {
 	
 	public boolean addProduct(HttpServletRequest request);
 	
-	public List<ProductDto> search(String category, String local, String keyword);
+	public List<ProductDto> search(String shopId, String category, String local, String keyword);
 
 	public List<ProductDto> productList();
 	

@@ -165,12 +165,14 @@ function updateStock(product_seq){
 <div class="quote-icon">
 <a href="myProductList.do?shopId=${sdto.shopId}"></a>
 </div>
+<div class="item-details-sidebar">
 <div class="single-block author">
 <h3>판매처</h3>
 <div class="content">
-<img src="upload/shop/${dto.shopDto.shopImg }" alt="#">
-<h4>${dto.shopDto.shopName }</h4>
-<span><fmt:formatDate pattern = "yyyy/MM/dd" value = "${dto.shopDto.openDate }"/></span>
+<img src="upload/shop/${sdto.shopImg }" width="100" height="100" alt="#">
+<h4>${sdto.shopName }</h4>
+<span><fmt:formatDate pattern = "yyyy/MM/dd" value = "${sdto.openDate }"/></span>
+</div>
 </div>
 </div>
 </div>
@@ -180,6 +182,7 @@ function updateStock(product_seq){
 <div class="single-widget search">
 <h3>상품 검색하기</h3>
 <form method="post" action="search.do">
+<input type="hidden" name="shop" value="1" >
 <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요...">
 <button type="submit" ><i class="lni lni-search-alt"></i></button>
 </form>
@@ -190,10 +193,10 @@ function updateStock(product_seq){
 <h3>카테고리</h3>
 <ul class="list">
 <li>
-<a href=""><i class="lni lni-dinner"></i>과자</a>
+<a href="search.do?shop=1&category=과자&shopId=${sdto.shopId }"><i class="lni lni-dinner"></i>과자</a>
 </li>
 <li>
-<a href=""><i class="lni lni-control-panel"></i>유아</a>
+<a href="search.do?shop=1&category=유아&shopId=${sdto.shopId }"><i class="lni lni-control-panel"></i>유아</a>
 </li>
 <li>
 <a href="javascript:void(0)"><i class="lni lni-bullhorn"></i> Marketing <span>55</span></a>
@@ -224,6 +227,13 @@ function updateStock(product_seq){
 <div class="row align-items-center">
 <div class="col-lg-6 col-md-6 col-12">
 <h3 class="title">상품 리스트</h3>
+</div>
+<div class="col-lg-6 col-md-6 col-12">
+<nav>
+<div class="nav nav-tabs" id="nav-tab" role="tablist">
+<button value="상품추가" formaction="addProduct.do?${sdto.shopId }"><i class="lni lni-grid-alt"></i></button>
+</div>
+</nav>
 </div>
 </div>
 </div>

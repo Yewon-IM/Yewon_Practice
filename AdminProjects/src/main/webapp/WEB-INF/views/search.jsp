@@ -1,4 +1,5 @@
 <%@page import="java.util.List"%>
+<%@page import="com.yogi.hoxy.dtos.MemberShoppingDto"%>
 <%@page import="com.yogi.hoxy.dtos.ProductDto"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,6 +9,7 @@
 <html class="no-js" lang="zxx">
 <head>
 <% List<ProductDto> list = (List<ProductDto>) request.getAttribute("list"); %>
+<% List<MemberShoppingDto> msList = (List<MemberShoppingDto>) request.getAttribute("msList"); %>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>상품리스트</title>
@@ -283,13 +285,8 @@ int stock = Integer.parseInt(dto.getStock());
 <div class="image">
 <a href="productDetail.do?product_seq=<%=dto.getProduct_seq()%>"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>
 <i class=" cross-badge lni lni-bolt"></i>
-<span class="flat-badge sale">
-<%if(stock == 0){
-		%><input type="button" value="찜 하기" formaction="">
-		<%
-} else {
-	%>재고 : <%=stock %>	
-<% } %>
+<span class="flat-badge rent">
+재고 : <%=stock %>	
 </span>
 </div>
 <div class="content">
@@ -301,10 +298,14 @@ int stock = Integer.parseInt(dto.getStock());
 </i><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>
 <ul class="info">
 <li class="price"><%=dto.getPrice() %></li>
-<c:if test="${who == null}">
-<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>"><%=dto.getLike()%>♥<i class="lni lni-heart"></i></a></li>
-</c:if>
-
+<li class="like active" >
+<c:forEach var="product_seq" items="${msList}">
+<c:if test="${product_seq.product_seq } == <%=dto.getProduct_seq() %>">
+	${product_seq.product_seq }
+	<li class="like"><a href="deleteLikeList.do?product_seq=<%=dto.getProduct_seq()%>"><%=dto.getLike()%>찜됨</a></li>
+</c:if>	
+</c:forEach>
+<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>"><%=dto.getLike()%>♥</a></li>
 </ul>
 </div>
 </div>

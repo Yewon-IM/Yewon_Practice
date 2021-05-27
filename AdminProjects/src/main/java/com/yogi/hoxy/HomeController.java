@@ -879,22 +879,43 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/search.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword) {
+	public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword, String shop) {
 		logger.info("검색", locale);
 		
 		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		String shopId = (String) session.getAttribute("shopId");
 		
-		
+		if(shop != null) {
+			String who = (String) session.getAttribute("who");
+			
+			ShopDto sdto = yoService.listSelShop(shopId);
+			model.addAttribute("sdto", sdto);
+			
+			session.setAttribute("shopId", shopId);
+			model.addAttribute("who", who);
+			
+			List<ProductDto> list = yoService.search(shopId, category, local, keyword);
+			model.addAttribute("list", list);
+			
+			return "seller/myProductList";
+		}
 		if(category == null && keyword == null) {
 			List<ProductDto> list = yoService.productList();
 			model.addAttribute("list", list);
 			
+			if(id != null) {
+				List<MemberShoppingDto> msList = yoService.likeList(id);
+				model.addAttribute("msList", msList);	
+				System.out.println("1" +msList);
+			}
 			return "search";
-		} 
-		List<ProductDto> list = yoService.search(category, local, keyword);
-		model.addAttribute("list", list);
-		
-		return "search";
+		} else {
+			List<ProductDto> list = yoService.search(shopId, category, local, keyword);
+			model.addAttribute("list", list);
+			
+			return "search";						
+		}
 	}
 	
 	@RequestMapping(value = "/myProductList.do", method = RequestMethod.GET)
@@ -903,11 +924,10 @@ public class HomeController {
 		
 		HttpSession session = request.getSession();
 		String who = (String) session.getAttribute("who");
-		String id = (String) session.getAttribute("id");
 		
-		ShopDto sdto = yoService.myShopDetail(id, shopId);
+		ShopDto sdto = yoService.listSelShop(shopId);
 		model.addAttribute("sdto", sdto);
-		
+
 		List<ProductDto> list = yoService.myProductList(shopId);
 		model.addAttribute("list", list);
 		

@@ -384,8 +384,8 @@ public class YogiService implements IYogiService {
 	}
 
 	@Override
-	public List<ProductDto> search(String category, String local, String keyword) {
-		return yogiDao.search(category, local, keyword);
+	public List<ProductDto> search(String shopId, String category, String local, String keyword) {
+		return yogiDao.search(shopId, category, local, keyword);
 	}
 
 	@Override
