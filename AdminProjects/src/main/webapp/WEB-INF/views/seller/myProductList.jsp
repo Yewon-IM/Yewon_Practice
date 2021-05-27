@@ -1,20 +1,41 @@
-<%@page import="com.yogi.hoxy.dtos.ProductDto"%>
 <%@page import="java.util.List"%>
+<%@page import="com.yogi.hoxy.dtos.ProductDto"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
 <% List<ProductDto> list = (List<ProductDto>) request.getAttribute("list"); %>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+function updateStock(product_seq){
+	var stock = prompt("몇개 입고?", "숫자를 입력하세요.");
+	location.href="updateStock.do?stock="+ stock + "&product_seq=" + product_seq;
+
+	// 	$.ajax({
+//		method:"post",
+//		url: "updateStock.do",
+//		data: {"stock": stock},
+//		dataType:"text",
+//		async:false,
+//			success:function(val){
+//			alert("입고되었습니다.");
+		
+//				error:function(){
+//			alert("오류입니다.");
+//			}
+//	});
+//		}
+	
+}
+</script>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>상품리스트</title>
+<title>내 상점 상품리스트</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-
-
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css" />
@@ -118,13 +139,13 @@
 <div class="row align-items-center">
 <div class="col-lg-6 col-md-6 col-12">
 <div class="breadcrumbs-content">
-<h1 class="page-title">상품 페이지</h1>
+<h1 class="page-title">내 상점 상품리스트</h1>
 </div>
 </div>
 <div class="col-lg-6 col-md-6 col-12">
 <ul class="breadcrumb-nav">
 <li><a href=".">Home</a></li>
-<li>상품 페이지</li>
+<li>내 상점 상품리스트</li>
 </ul>
 </div>
 </div>
@@ -139,22 +160,36 @@
 <div class="category-sidebar">
 
 <div class="single-widget search">
+<div class="single-testimonial">
+<div class="quote-icon">
+<a href="myProductList.do?shopId=${sdto.shopId}"></a>
+</div>
+<div class="author">
+<a href="myShopDetail.do?shopId=${sdto.shopId}&id=${sdto.id}"><img id="shopImg" src="upload/shop/${sdto.shopImg}" alt="#" height="150" width="150"/></a>
+<h4 class="name">
+</h4>
+</div>
+</div>
+
+</div>
+
+<div class="single-widget search">
 <h3>상품 검색하기</h3>
-<form>
+<form method="post" action="search.do">
 <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요...">
-<button type="submit" onClick="se()"><i class="lni lni-search-alt"></i></button>
+<button type="submit" ><i class="lni lni-search-alt"></i></button>
 </form>
 </div>
 
 
 <div class="single-widget">
-<h3>All Categories</h3>
+<h3>카테고리</h3>
 <ul class="list">
 <li>
-<a href="javascript:void(0)"><i class="lni lni-dinner"></i>과자</a>
+<a href=""><i class="lni lni-dinner"></i>과자</a>
 </li>
 <li>
-<a href="javascript:void(0)"><i class="lni lni-control-panel"></i>유아</a>
+<a href=""><i class="lni lni-control-panel"></i>유아</a>
 </li>
 <li>
 <a href="javascript:void(0)"><i class="lni lni-bullhorn"></i> Marketing <span>55</span></a>
@@ -175,16 +210,6 @@
 </ul>
 </div>
 
-
-<div class="single-widget range">
-<h3>Price Range</h3>
-<input type="range" class="form-range" name="range" step="1" min="100" max="10000" value="10" onchange="rangePrimary.value=value">
-<div class="range-inner">
-<label>$</label>
-<input type="text" id="rangePrimary" placeholder="100" />
-</div>
-</div>
-
 </div>
 </div>
 <div class="col-lg-9 col-md-8 col-12">
@@ -199,69 +224,42 @@
 <div class="col-lg-6 col-md-6 col-12">
 <nav>
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-<button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab" data-bs-target="#nav-grid" type="button" role="tab" aria-controls="nav-grid" aria-selected="true"><i class="lni lni-grid-alt"></i></button>
-<button class="nav-link" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false"><i class="lni lni-list"></i></button>
+<p>버튼 두개 
 </div>
 </nav>
 </div>
 </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-<div class="tab-content" id="nav-tabContent">
-<div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
 <div class="row">
-
-
-
-
-
-
-
-
 
 <%
 if(list == null || list.size() == 0){
 	%><h1>관련상품이 없습니다.</h1>><%
 	} else {
 	for(ProductDto dto : list){
-int stock = Integer.parseInt(dto.getStock());
 %>
-<div class="col-lg-4 col-md-6 col-12">
+<div class="col-lg-12 col-md-12 col-12">
 <div class="single-item-grid">
+<div class="row align-items-center">
+<div class="col-lg-5 col-md-7 col-12">
 <div class="image">
-<a href="productDetail.do?product_Seq=<%=dto.getProduct_seq()%>"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>
+<a href="productDetail.do?product_seq=<%=dto.getProduct_seq()%>"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>
 <i class=" cross-badge lni lni-bolt"></i>
-<span class="flat-badge sale">
-<%if(stock == 0){
-		%><input type="button" value="찜 하기" formaction="">
-		<%
-} else {
-	%>재고 : <%=stock %>	
-<% } %>
-</span>
+<span class="flat-badge rent">재고 : <%=dto.getStock() %></span>
 </div>
+</div>
+<div class="col-lg-7 col-md-5 col-12">
 <div class="content">
-<a href="javascript:void(0)" class="tag"><%=dto.getCategory() %></a>
-<h3 class="title">
-<a href="item-details.html"><%=dto.getProductName() %></a>
-</h3>
-<p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-<!-- </i><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>  -->
+<p>카테고리 : <%=dto.getCategory() %></p>
+<h3 class="title"><p><%=dto.getProductName() %></p></h3>
+<p class="location"><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></p>
 <ul class="info">
-<li class="price"><%=dto.getPrice() %></li>
-<li class="like"><a href="javascript:void(0)"><%=dto.getLike()%>♥<i class="lni lni-heart"></i></a>
-</li>
+<li class="price"><%=dto.getPrice() %>원 / 좋아요 <%=dto.getLike()%>개 </li>
+<li class="like"><a onclick="updateStock(<%=dto.getProduct_seq()%>)" href="javascript:void(0)" >입고<i class="lni lni-heart"></i></a></li>
 </ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -270,28 +268,7 @@ int stock = Integer.parseInt(dto.getStock());
 %>		
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
-
-
-
-
 <div class="row">
 <div class="col-12">
 <div class="pagination left">
@@ -306,180 +283,7 @@ int stock = Integer.parseInt(dto.getStock());
 
 </div>
 </div>
-</div>
-<div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
-<div class="row">
-<div class="col-lg-12 col-md-12 col-12">
 
-<div class="single-item-grid">
-<div class="row align-items-center">
-<div class="col-lg-5 col-md-7 col-12">
-<div class="image">
-<a href="item-details.html"><img src="assets/images/items-tab/item-2.jpg" alt="#"></a>
-<i class=" cross-badge lni lni-bolt"></i>
-<span class="flat-badge sale">Sale</span>
-</div>
-</div>
-<div class="col-lg-7 col-md-5 col-12">
-<div class="content">
-<a href="javascript:void(0)" class="tag">Others</a>
-<h3 class="title">
- <a href="item-details.html">Travel Kit</a>
-</h3>
-<p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-</i>San Francisco</a></p>
-<ul class="info">
-<li class="price">$580.00</li>
-<li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-12 col-md-12 col-12">
-
-<div class="single-item-grid">
-<div class="row align-items-center">
-<div class="col-lg-5 col-md-7 col-12">
-<div class="image">
-<a href="item-details.html"><img src="assets/images/items-tab/item-3.jpg" alt="#"></a>
-<i class=" cross-badge lni lni-bolt"></i>
-<span class="flat-badge sale">Sale</span>
-</div>
-</div>
-<div class="col-lg-7 col-md-5 col-12">
-<div class="content">
-<a href="javascript:void(0)" class="tag">Electronic</a>
-<h3 class="title">
-<a href="item-details.html">Nikon DSLR Camera</a>
-</h3>
-<p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-</i>Alaska, USA</a></p>
-<ul class="info">
-<li class="price">$560.00</li>
-<li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-12 col-md-12 col-12">
-
-<div class="single-item-grid">
-<div class="row align-items-center">
-<div class="col-lg-5 col-md-7 col-12">
-<div class="image">
-<a href="item-details.html"><img src="assets/images/items-tab/item-1.jpg" alt="#"></a>
-<i class=" cross-badge lni lni-bolt"></i>
-<span class="flat-badge sale">Sale</span>
-</div>
-</div>
-<div class="col-lg-7 col-md-5 col-12">
-<div class="content">
-<a href="javascript:void(0)" class="tag">Mobile</a>
-<h3 class="title">
-<a href="item-details.html">Apple Iphone X</a>
-</h3>
-<p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-</i>Boston</a></p>
-<ul class="info">
-<li class="price">$890.00</li>
-<li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-
-
-
-<div class="col-lg-12 col-md-12 col-12">
-
-<div class="single-item-grid">
-<div class="row align-items-center">
-<div class="col-lg-5 col-md-7 col-12">
-<div class="image">
-<a href="item-details.html"><img src="assets/images/items-tab/item-4.jpg" alt="#"></a>
-<i class=" cross-badge lni lni-bolt"></i>
-<span class="flat-badge sale">Sale</span>
-</div>
-</div>
-<div class="col-lg-7 col-md-5 col-12">
-<div class="content">
-<a href="javascript:void(0)" class="tag">Furniture</a>
-<h3 class="title">
-<a href="item-details.html">Poster Paint</a>
-</h3>
-<p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-</i>Las Vegas</a></p>
-<ul class="info">
-<li class="price">$85.00</li>
-<li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-12 col-md-12 col-12">
-
-<div class="single-item-grid">
-<div class="row align-items-center">
-<div class="col-lg-5 col-md-7 col-12">
-<div class="image">
-<a href="item-details.html"><img src="assets/images/items-tab/item-6.jpg" alt="#"></a>
-<i class=" cross-badge lni lni-bolt"></i>
-<span class="flat-badge rent">Rent</span>
-</div>
-</div>
-<div class="col-lg-7 col-md-5 col-12">
-<div class="content">
-<a href="javascript:void(0)" class="tag">Books & Magazine</a>
-<h3 class="title">
-<a href="item-details.html">Story Book</a>
-</h3>
-<p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-</i>New York, USA</a></p>
-<ul class="info">
-<li class="price">$120.00</li>
-<li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-
-</div>
-<div class="row">
-<div class="col-12">
-
-<div class="pagination left">
-<ul class="pagination-list">
-<li class="active"><a href="javascript:void(0)">1</a></li>
-<li><a href="javascript:void(0)">2</a></li>
-<li><a href="javascript:void(0)">3</a></li>
-<li><a href="javascript:void(0)">4</a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
-</ul>
-</div>
-
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

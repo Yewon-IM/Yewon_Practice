@@ -877,12 +877,25 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/myProductList.do", method = RequestMethod.GET)
-	public String myProductList(HttpServletRequest request, Locale locale, Model model, @RequestParam("shopId") String shopId) {
+	public String myProductList(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("상점 물품 리스트", locale);
 		
-		List<ProductDto> list = yoService.myProductList(shopId);
-		model.addAttribute("list", list);
-		return "seller/myProductList";
+		HttpSession session = request.getSession();
+		String who = (String) session.getAttribute("who");
+		String id = (String) session.getAttribute("id");
+		String shopId = (String) session.getAttribute("shopId");
+		
+		if(who.equals("2")) {
+			ShopDto sdto = yoService.myShopDetail(id, shopId);
+			model.addAttribute("sdto", sdto);
+			
+			List<ProductDto> list = yoService.myProductList(shopId);
+			model.addAttribute("list", list);
+			session.setAttribute("shopId", shopId);
+			return "seller/myProductList";			
+		}
+		model.addAttribute("msg", "권한 오류입니다.");
+		return "error";
 	}
 
 	//ㅠㅠ 고통 search.jsp
@@ -899,4 +912,16 @@ public class HomeController {
 //		return map;
 //	}
 	
+	@RequestMapping(value = "/updateStock.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String updateStock(Locale locale, Model model, ProductDto dto) {
+		logger.info("재고 업데이트", locale);
+		
+		System.out.println(dto);
+		boolean isS = yoService.updateStock(dto);
+		if(isS) {
+			return "redirect:myProductList.do";		
+		}
+		model.addAttribute("msg", "재고수정 오류입니다.");
+		return "error";
+	}
 }

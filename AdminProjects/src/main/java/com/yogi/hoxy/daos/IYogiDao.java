@@ -80,4 +80,6 @@ public interface IYogiDao {
 	public List<ProductDto> productList();
 	
 	public List<ProductDto> myProductList(String shopId);
+	
+	public boolean updateStock(ProductDto dto);
 }

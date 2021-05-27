@@ -271,8 +271,14 @@
 	</select>
 	
 	
-	<select id="myProductList" parameterType="String" resultType="ProductDto">
-		SELECT * FROM PRODUCT WHERE SHOPID = #{shopId}
+	<select id="myProductList" parameterType="String" resultMap="ProductDtoMap">
+		SELECT * 
+		FROM PRODUCT p , SHOP s 
+		WHERE p.SHOPID = s.SHOPID AND p.SHOPID = #{shopId}
 	</select>
 	
+	<update id="updateStock" parameterType="ProductDto">
+		UPDATE PRODUCT SET STOCK= #{stock} 
+		WHERE PRODUCT_SEQ= #{product_seq}
+	</update>
 </mapper>

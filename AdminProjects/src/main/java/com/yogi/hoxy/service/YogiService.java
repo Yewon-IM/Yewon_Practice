@@ -393,5 +393,10 @@ public class YogiService implements IYogiService {
 		return yogiDao.myProductList(shopId);
 	}
 
+	@Override
+	public boolean updateStock(ProductDto dto) {
+		return yogiDao.updateStock(dto);
+	}
+
 }
 	

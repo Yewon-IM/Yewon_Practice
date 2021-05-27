@@ -179,4 +179,9 @@ public class YogiDaoImp implements IYogiDao{
 	public List<ProductDto> myProductList(String shopId){
 		return sqlSession.selectList(namespace + "myProductList", shopId);
 	}
+	
+	public boolean updateStock(ProductDto dto) {
+		int count = sqlSession.update(namespace + "updateStock", dto);
+		return count > 0? true:false;
+	}
 }
