@@ -71,6 +71,8 @@ public interface IYogiDao {
 	
 	public List<MemberShoppingDto> likeList(String id);
 	
+	public int maxLike(String id, String product_seq);
+	
 	public boolean like(MemberShoppingDto dto);
 	
 	public boolean likeCancel(String id, String product_seq);
@@ -85,5 +87,9 @@ public interface IYogiDao {
 	
 	public boolean updateStock(ProductDto dto);
 	
+	public boolean changeStock(ProductDto dto);
+	
 	public ProductDto productDetail(int product_seq);
+	
+	public List<Map<String, Integer>> peopleLike();
 }

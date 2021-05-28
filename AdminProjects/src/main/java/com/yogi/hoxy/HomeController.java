@@ -794,9 +794,9 @@ public class HomeController {
 			model.addAttribute("msg", "찜버튼은 로그인해야 돼요.");
 			model.addAttribute("url", "login.do");
 			return "alert";
-		} 
-		boolean isS = yoService.like(new MemberShoppingDto(0, id, product_seq));
-		System.out.println(isS);
+		}
+		boolean isS = yoService.like(new MemberShoppingDto(id, product_seq, 0));
+		System.out.println(id +isS);
 			if(isS) {	
 				return "redirect:search.do";
 			}
@@ -900,15 +900,19 @@ public class HomeController {
 			
 			return "seller/myProductList";
 		}
+		
 		if(category == null && keyword == null) {
 			List<ProductDto> list = yoService.productList();
 			model.addAttribute("list", list);
-			
+	
 			if(id != null) {
 				List<MemberShoppingDto> msList = yoService.likeList(id);
 				model.addAttribute("msList", msList);	
-				System.out.println("1" +msList);
+			System.out.println(msList + "주세요");
+				
 			}
+
+			
 			return "search";
 		} else {
 			List<ProductDto> list = yoService.search(shopId, category, local, keyword);
@@ -951,9 +955,7 @@ public class HomeController {
 		logger.info("재고 업데이트", locale);
 		
 		HttpSession session = request.getSession();
-		String who = (String) session.getAttribute("who");
 		String shopId = (String) session.getAttribute("shopId");
-		
 		
 		boolean isS = yoService.updateStock(dto);
 		
@@ -966,6 +968,23 @@ public class HomeController {
 		return "error";
 	}
 	
+	@RequestMapping(value = "/changeStock.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String changeStock(HttpServletRequest request, Locale locale, Model model, ProductDto dto) {
+		logger.info("재고 수정", locale);
+		
+		HttpSession session = request.getSession();
+		String shopId = (String) session.getAttribute("shopId");
+		
+		boolean isS = yoService.changeStock(dto);
+		
+		if(isS) {
+			ShopDto sdto = yoService.listSelShop(shopId);
+			model.addAttribute("sdto", sdto);
+			return "redirect:myProductList.do?shopId=" + shopId;		
+		}
+		model.addAttribute("msg", "재고수정 오류입니다.");
+		return "error";
+	}
 	
 	//ㅠㅠ 고통 search.jsp
 //	@ResponseBody	

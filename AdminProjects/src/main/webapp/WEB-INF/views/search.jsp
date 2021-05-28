@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="com.yogi.hoxy.dtos.MemberShoppingDto"%>
 <%@page import="com.yogi.hoxy.dtos.ProductDto"%>
@@ -10,6 +11,7 @@
 <head>
 <% List<ProductDto> list = (List<ProductDto>) request.getAttribute("list"); %>
 <% List<MemberShoppingDto> msList = (List<MemberShoppingDto>) request.getAttribute("msList"); %>
+<% List<Map<String, Integer>> pList = (List<Map<String, Integer>>) request.getAttribute("pList");%>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>상품리스트</title>
@@ -102,7 +104,7 @@
 <div class="col-lg-12">
 <div class="nav-inner">
 <nav class="navbar navbar-expand-lg">
-<a class="navbar-brand" href="index.html">
+<a class="navbar-brand" href=".">
 <img src="assets/images/logo/logo.svg" alt="Logo">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,7 +117,7 @@
 <li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
 <ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href="index.html">Home Default</a></li>
+<li class="nav-item"><a href=".">Home Default</a></li>
 <li class="nav-item"><a href="index2.html">Home Version 2</a></li>
 <li class="nav-item"><a href="index3.html">Home Version 3</a></li>
 </ul>
@@ -151,7 +153,10 @@
 <div class="login-button">
 <ul>
 <li>
+<c:if test="${name == null }">
 <a href="login.do"><i class="lni lni-enter"></i>로그인</a>
+</c:if>
+${name }
 </li>
 <li>
 <a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
@@ -229,15 +234,6 @@
 </div>
 
 
-<div class="single-widget range">
-<h3>Price Range</h3>
-<input type="range" class="form-range" name="range" step="1" min="100" max="10000" value="10" onchange="rangePrimary.value=value">
-<div class="range-inner">
-<label>$</label>
-<input type="text" id="rangePrimary" placeholder="100" />
-</div>
-</div>
-
 </div>
 </div>
 <div class="col-lg-9 col-md-8 col-12">
@@ -292,46 +288,30 @@ int stock = Integer.parseInt(dto.getStock());
 <div class="content">
 <a href="javascript:void(0)" class="tag"><%=dto.getCategory() %></a>
 <h3 class="title">
-<a href="item-details.html"><%=dto.getProductName() %></a>
+<a><%=dto.getProductName() %></a>
 </h3>
-<p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-</i><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>
+<p class="location"><a href="javascript:void(0)"><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>
 <ul class="info">
-<li class="price"><%=dto.getPrice() %></li>
-<li class="like active" >
-<c:forEach var="product_seq" items="${msList}">
-<c:if test="${product_seq.product_seq } == <%=dto.getProduct_seq() %>">
-	${product_seq.product_seq }
-	<li class="like"><a href="deleteLikeList.do?product_seq=<%=dto.getProduct_seq()%>"><%=dto.getLike()%>찜됨</a></li>
-</c:if>	
-</c:forEach>
-<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>"><%=dto.getLike()%>♥</a></li>
+<li class="price"><%=dto.getPrice() %>원</li>
+<% for(MemberShoppingDto msdto : msList){
+	if(msdto.getProductDto().getProduct_seq() == dto.getProduct_seq()){
+	%>	<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜 됨</a></li> <%
+	} else {
+		%>	<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜 됨</a></li> <%
+
+	}
+}%>
+
 </ul>
 </div>
 </div>
-</div>
-<%	}		
+</div>	
+<%
+	}
 }
-%>		
+%>
 
 <!-- 어팬드 - 제이쿼리 마지막에 계속 추가해주는  -->
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

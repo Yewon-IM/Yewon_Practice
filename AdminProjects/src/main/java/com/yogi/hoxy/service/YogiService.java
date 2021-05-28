@@ -3,6 +3,7 @@ package com.yogi.hoxy.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -408,7 +409,20 @@ public class YogiService implements IYogiService {
 		return yogiDao.productDetail(product_seq);
 	}
 
+	@Override
+	public List<Map<String, Integer>> peopleLike() {
+		return yogiDao.peopleLike();
+	}
 
+	@Override
+	public int maxLike(String id, String product_seq) {
+		return yogiDao.maxLike(id, product_seq);
+	}
+
+	@Override
+	public boolean changeStock(ProductDto dto) {
+		return yogiDao.changeStock(dto);
+	}
 
 }
 	

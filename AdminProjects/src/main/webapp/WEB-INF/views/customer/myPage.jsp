@@ -268,7 +268,7 @@
 <ul>
 <li>
 <div class="image">
-<a href="."><img src="assets/images/dashboard/recent-items/item1.jpg" alt="#"></a>
+<a href="productDetail.do?product_seq=<%=msdto.getProduct_seq()%>"><img src="upload/product/<%=msdto.getProductDto().getImg_Url() %>" alt="#"></a>
 </div>
 <span class="time">카테고리 : <%=msdto.getProductDto().getCategory() %></span>
 <span class="time">제품이름 : <%=msdto.getProductDto().getProductName() %></span>

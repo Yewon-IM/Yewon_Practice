@@ -73,6 +73,8 @@ public interface IYogiService {
 	
 	public boolean like(MemberShoppingDto dto);
 	
+	public int maxLike(String id, String product_seq);
+	
 	public boolean likeCancel(String id, String product_seq);
 	
 	public boolean addProduct(HttpServletRequest request);
@@ -85,5 +87,9 @@ public interface IYogiService {
 	
 	public boolean updateStock(ProductDto dto);
 	
+	public boolean changeStock(ProductDto dto);
+	
 	public ProductDto productDetail(int product_seq);
+	
+	public List<Map<String, Integer>> peopleLike();
 }

@@ -13,7 +13,12 @@
 function updateStock(product_seq){
 	var stock = prompt("몇개 입고?", "숫자를 입력하세요.");
 	location.href="updateStock.do?stock="+ stock + "&product_seq=" + product_seq;
+}
 
+function changeStock(product_seq){
+	var stock = prompt("재고 수정", "숫자를 입력하세요.");
+	location.href="changeStock.do?stock="+ stock + "&product_seq=" + product_seq;
+}
 	// 	$.ajax({
 //		method:"post",
 //		url: "updateStock.do",
@@ -29,7 +34,7 @@ function updateStock(product_seq){
 //	});
 //		}
 	
-}
+
 </script>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -228,13 +233,15 @@ function updateStock(product_seq){
 <div class="col-lg-6 col-md-6 col-12">
 <h3 class="title">상품 리스트</h3>
 </div>
+<c:if test="${who == '2' }">
 <div class="col-lg-6 col-md-6 col-12">
 <nav>
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-<button value="상품추가" formaction="addProduct.do?${sdto.shopId }"><i class="lni lni-grid-alt"></i></button>
+<a href="addProduct.do?shopId=${sdto.shopId }" >상품추가</a>
 </div>
 </nav>
 </div>
+</c:if>
 </div>
 </div>
 
@@ -262,9 +269,10 @@ if(list == null || list.size() == 0){
 <h3 class="title"><p><%=dto.getProductName() %></p></h3>
 <p class="location"><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></p>
 <ul class="info">
-<li class="price"><%=dto.getPrice() %>원 / 좋아요 <%=dto.getLike()%>개 </li>
+<li class="price"><%=dto.getPrice() %>원 </li>
 <c:if test="${who eq '2' }">
 <li class="like"><a onclick="updateStock(<%=dto.getProduct_seq()%>)" href="javascript:void(0)" >입고<i class="lni lni-heart"></i></a></li>
+<li class="like"><a onclick="changeStock(<%=dto.getProduct_seq()%>)" href="javascript:void(0)" >수정<i class="lni lni-heart"></i></a></li>
 </c:if>
 </ul>
 </div>
