@@ -293,14 +293,16 @@ int stock = Integer.parseInt(dto.getStock());
 <p class="location"><a href="javascript:void(0)"><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>
 <ul class="info">
 <li class="price"><%=dto.getPrice() %>원</li>
-<% for(MemberShoppingDto msdto : msList){
-	if(msdto.getProductDto().getProduct_seq() == dto.getProduct_seq()){
-	%>	<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜 됨</a></li> <%
-	} else {
+<% if(msList != null){
+	for(MemberShoppingDto msdto : msList){
+		if(msdto.getProductDto().getProduct_seq() == dto.getProduct_seq()){
 		%>	<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜 됨</a></li> <%
-
-	}
-}%>
+		} else {
+			%>	<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜</a></li> <%
+		}
+	}	
+}
+%>
 
 </ul>
 </div>
