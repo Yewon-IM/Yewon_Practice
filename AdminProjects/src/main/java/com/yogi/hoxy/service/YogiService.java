@@ -429,5 +429,10 @@ public class YogiService implements IYogiService {
 		return yogiDao.searchNotLike();
 	}
 
+	@Override
+	public List<ProductDto> price() {
+		return yogiDao.price();
+	}
+
 }
 	

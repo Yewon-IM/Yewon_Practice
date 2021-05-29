@@ -879,12 +879,19 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/search.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword, String shop) {
+	public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, String keyword, String shop, String order) {
 		logger.info("검색", locale);
 		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		String shopId = (String) session.getAttribute("shopId");
+		
+		if(order != null) {
+			List<ProductDto> list = yoService.price();
+			model.addAttribute("list", list);
+			
+			return "search";
+		}
 		
 		if(shop != null) {
 			String who = (String) session.getAttribute("who");
@@ -923,6 +930,7 @@ public class HomeController {
 			
 			return "search";						
 		}
+		
 	}
 	
 	@RequestMapping(value = "/myProductList.do", method = RequestMethod.GET)

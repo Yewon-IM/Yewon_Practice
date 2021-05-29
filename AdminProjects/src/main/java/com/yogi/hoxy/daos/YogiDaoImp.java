@@ -214,4 +214,8 @@ public class YogiDaoImp implements IYogiDao{
 	public List<ProductDto> searchNotLike(){
 		return sqlSession.selectList(namespace + "searchNotLike");
 	}	
+	
+	public List<ProductDto> price(){
+		return sqlSession.selectList(namespace + "price");
+	}
 }

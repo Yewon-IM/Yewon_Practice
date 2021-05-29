@@ -94,4 +94,8 @@ public interface IYogiService {
 	public ProductDto productDetail(int product_seq);
 	
 	public List<Map<String, Integer>> peopleLike();
+	
+	public List<ProductDto> price();
+	
+	
 }

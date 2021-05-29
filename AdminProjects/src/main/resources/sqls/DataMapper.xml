@@ -323,6 +323,13 @@
 		GROUP BY PRODUCT_SEQ
 	</select>
 	
+	<select id="price" resultMap="ProductDtoMap">
+		SELECT * 
+		FROM PRODUCT p , SHOP s 
+		WHERE p.SHOPID = s.SHOPID
+		ORDER BY PRICE
+	</select>
+	
 	
 	
 </mapper>

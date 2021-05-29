@@ -12,7 +12,6 @@
 <% List<ProductDto> list = (List<ProductDto>) request.getAttribute("list"); %>
 <% List<MemberShoppingDto> msList = (List<MemberShoppingDto>) request.getAttribute("msList"); %>
 <% List<ProductDto> msnList = (List<ProductDto>) request.getAttribute("msnList"); %>
-<% List<Map<String, Integer>> pList = (List<Map<String, Integer>>) request.getAttribute("pList");%>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>상품리스트</title>
@@ -245,6 +244,15 @@ ${name }
 <div class="row align-items-center">
 <div class="col-lg-6 col-md-6 col-12">
 <h3 class="title">상품리스트</h3>
+</div>
+<div class="col-lg-6 col-md-6 col-12">
+<nav>
+<div class="nav nav-tabs" id="nav-tab" role="tablist">
+<form>
+<p><a href="search.do?order=price">저렴순</a>&nbsp;&nbsp;&nbsp;</p>
+</form>
+</div>
+</nav>
 </div>
 </div>
 </div>
