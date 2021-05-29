@@ -71,9 +71,11 @@ public interface IYogiDao {
 	
 	public List<MemberShoppingDto> likeList(String id);
 	
-	public int maxLike(String id, String product_seq);
+	public boolean like(String id, String product_seq);
 	
-	public boolean like(MemberShoppingDto dto);
+	public List<MemberShoppingDto> searchLike(String id);
+	
+	public List<ProductDto> searchNotLike();
 	
 	public boolean likeCancel(String id, String product_seq);
 	

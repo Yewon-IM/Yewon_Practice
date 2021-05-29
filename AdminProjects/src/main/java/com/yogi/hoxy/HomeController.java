@@ -784,7 +784,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/like.do", method = RequestMethod.GET)
-	public String like(HttpServletRequest request, Locale locale, Model model, @RequestParam("product_seq") int product_seq) {
+	public String like(HttpServletRequest request, Locale locale, Model model, @RequestParam("product_seq") String product_seq) {
 		logger.info("찜 하기", locale);
 		
 		HttpSession session = request.getSession();
@@ -795,8 +795,8 @@ public class HomeController {
 			model.addAttribute("url", "login.do");
 			return "alert";
 		}
-		boolean isS = yoService.like(new MemberShoppingDto(id, product_seq, 0));
-		System.out.println(id +isS);
+		boolean isS = yoService.like(id,product_seq);
+		System.out.println(id + product_seq);
 			if(isS) {	
 				return "redirect:search.do";
 			}
@@ -906,10 +906,13 @@ public class HomeController {
 			model.addAttribute("list", list);
 	
 			if(id != null) {
-				List<MemberShoppingDto> msList = yoService.likeList(id);
+				List<MemberShoppingDto> msList = yoService.searchLike(id);
 				model.addAttribute("msList", msList);	
-			System.out.println(msList + "주세요");
+				System.out.println("msList : " +msList);
 				
+				List<ProductDto> msnList = yoService.searchNotLike();
+				model.addAttribute("msnList", msnList);	
+				System.out.println("msnList : " +msnList);
 			}
 
 			
@@ -946,7 +949,11 @@ public class HomeController {
 		logger.info("상점 물품 리스트", locale);
 		
 		ProductDto dto = yoService.productDetail(product_seq);
-		model.addAttribute("dto", dto);	
+		model.addAttribute("dto", dto);
+		
+		List<Map<String, Integer>> list = yoService.peopleLike();
+		model.addAttribute("list", list);
+		
 		return "productDetail";
 	}
 

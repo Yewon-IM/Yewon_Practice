@@ -71,10 +71,12 @@ public interface IYogiService {
 	
 	public List<MemberShoppingDto> likeList(String id);
 	
-	public boolean like(MemberShoppingDto dto);
+	public boolean like(String id, String product_seq);
 	
-	public int maxLike(String id, String product_seq);
+	public List<MemberShoppingDto> searchLike(String id);
 	
+	public List<ProductDto> searchNotLike();
+		
 	public boolean likeCancel(String id, String product_seq);
 	
 	public boolean addProduct(HttpServletRequest request);

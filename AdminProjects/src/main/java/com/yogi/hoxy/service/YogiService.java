@@ -307,8 +307,8 @@ public class YogiService implements IYogiService {
 	}
 
 	@Override
-	public boolean like(MemberShoppingDto dto) {
-		return yogiDao.like(dto);
+	public boolean like(String id, String product_seq) {
+		return yogiDao.like(id, product_seq);
 	}
 	
 	@Override
@@ -415,13 +415,18 @@ public class YogiService implements IYogiService {
 	}
 
 	@Override
-	public int maxLike(String id, String product_seq) {
-		return yogiDao.maxLike(id, product_seq);
+	public boolean changeStock(ProductDto dto) {
+		return yogiDao.changeStock(dto);
 	}
 
 	@Override
-	public boolean changeStock(ProductDto dto) {
-		return yogiDao.changeStock(dto);
+	public List<MemberShoppingDto> searchLike(String id) {
+		return yogiDao.searchLike(id);
+	}
+
+	@Override
+	public List<ProductDto> searchNotLike() {
+		return yogiDao.searchNotLike();
 	}
 
 }

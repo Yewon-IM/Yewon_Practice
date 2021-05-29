@@ -1,3 +1,6 @@
+<%@page import="com.yogi.hoxy.dtos.ProductDto"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
@@ -7,6 +10,8 @@
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>Ads Details - ClassiGrids Classified Ads and Listing Website Template</title>
+<% List<Map<String, Integer>> list = (List<Map<String, Integer>>) request.getAttribute("list"); %>
+<% ProductDto dto = (ProductDto) request.getAttribute("dto"); %>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -195,14 +200,14 @@ Sibebar</a></li>
 <div class="contact-info">
 <ul>
 <li>
-<a href="." class="mail"><i class="lni lni-envelope"></i></a>
+<% for(Map<String, Integer> count : list){
+	if(Integer.parseInt(String.valueOf(count.get("product_seq"))) == dto.getProduct_seq()){
+		%><a href="like.do?<%=dto.getProduct_seq() %>" class="mail"><%=count.get("count") %>♥</a><%	
+	} 
+}
+
+%>
 </li>
-</ul>
-</div>
-<div class="social-share">
-<h4>Share Ad</h4>
-<ul>
-<li><a href="javascript:void(0)" class="google"><i class="lni lni-google"></i></a></li>
 </ul>
 </div>
 </div>

@@ -203,20 +203,24 @@
 		ORDER BY p.WRITEDATE ASC
 	</select>
 	
+	<select id="searchLike" parameterType="String" resultType="MemberShoppingDto">
+		SELECT * 
+		FROM MEMBERSHOPPING
+		WHERE "LIKE" = '1' AND ID = #{id} 	
+	</select>
+	
+	<select id="searchNotLike" resultType="ProductDto">
+		SELECT PRODUCT_SEQ FROM PRODUCT
+	</select>
+	
 	<update id="likeCancel" parameterType="Map">
 		UPDATE MEMBERSHOPPING SET "LIKE"= '0' 
 		WHERE PRODUCT_SEQ= #{product_seq} AND ID= #{id}
 	</update>
 	
-	
-	<resultMap type="HashMap" id="LikeMap">
-		<id column="M" property="m"/>
-	</resultMap>
-
-	
-	<insert id="like" parameterType="MemberShoppingDto">
-		INSERT INTO MEMBERSHOPPING (ID, "LIKE", PRODUCT_SEQ, SEQ) 
-		VALUES(#{id}, 1, #{product_seq}, MS_SEQ.NEXTVAL)
+	<insert id="like" parameterType="Map">
+		INSERT INTO MEMBERSHOPPING (ID, "LIKE", PRODUCT_SEQ) 
+		VALUES(#{id}, '1', #{product_seq})
 	</insert>
 	
 	<insert id="addProduct" parameterType="ProductDto">

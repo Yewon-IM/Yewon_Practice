@@ -151,15 +151,11 @@ public class YogiDaoImp implements IYogiDao{
 		return sqlSession.selectList(namespace + "likeList", id);
 	}
 	
-	public int maxLike(String id, String product_seq) {
+	public boolean like(String id, String product_seq) {
 		Map<String, String> map = new HashMap<>();
 		map.put("id", id);
 		map.put("product_seq", product_seq);
-		return sqlSession.selectOne(namespace + "maxLike", map);
-	}
-	
-	public boolean like(MemberShoppingDto dto) {
-		int count = sqlSession.insert(namespace + "like", dto);
+		int count = sqlSession.insert(namespace + "like", map);
 		return count > 0? true:false;
 	}
 	
@@ -210,4 +206,12 @@ public class YogiDaoImp implements IYogiDao{
 	public List<Map<String, Integer>> peopleLike() {
 		return sqlSession.selectList(namespace + "peopleLike");  
 	}
+	
+	public List<MemberShoppingDto> searchLike(String id){
+		return sqlSession.selectList(namespace + "searchLike", id);
+	}
+	
+	public List<ProductDto> searchNotLike(){
+		return sqlSession.selectList(namespace + "searchNotLike");
+	}	
 }

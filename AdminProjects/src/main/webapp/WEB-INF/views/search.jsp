@@ -11,6 +11,7 @@
 <head>
 <% List<ProductDto> list = (List<ProductDto>) request.getAttribute("list"); %>
 <% List<MemberShoppingDto> msList = (List<MemberShoppingDto>) request.getAttribute("msList"); %>
+<% List<ProductDto> msnList = (List<ProductDto>) request.getAttribute("msnList"); %>
 <% List<Map<String, Integer>> pList = (List<Map<String, Integer>>) request.getAttribute("pList");%>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -243,15 +244,7 @@ ${name }
 <div class="category-grid-topbar">
 <div class="row align-items-center">
 <div class="col-lg-6 col-md-6 col-12">
-<h3 class="title">Showing 1-12 of 21 ads found</h3>
-</div>
-<div class="col-lg-6 col-md-6 col-12">
-<nav>
-<div class="nav nav-tabs" id="nav-tab" role="tablist">
-<button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab" data-bs-target="#nav-grid" type="button" role="tab" aria-controls="nav-grid" aria-selected="true"><i class="lni lni-grid-alt"></i></button>
-<button class="nav-link" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false"><i class="lni lni-list"></i></button>
-</div>
-</nav>
+<h3 class="title">상품리스트</h3>
 </div>
 </div>
 </div>
@@ -281,9 +274,13 @@ int stock = Integer.parseInt(dto.getStock());
 <div class="image">
 <a href="productDetail.do?product_seq=<%=dto.getProduct_seq()%>"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>
 <i class=" cross-badge lni lni-bolt"></i>
-<span class="flat-badge rent">
-재고 : <%=stock %>	
-</span>
+<% if(stock <= 1){
+	%><span class="flat-badge sale">재고 : <%=stock %></span> <%
+} else {
+	%><span class="flat-badge rent"> 재고 : <%=stock %></span>
+<%
+}
+%>	
 </div>
 <div class="content">
 <a href="javascript:void(0)" class="tag"><%=dto.getCategory() %></a>
@@ -293,17 +290,17 @@ int stock = Integer.parseInt(dto.getStock());
 <p class="location"><a href="javascript:void(0)"><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>
 <ul class="info">
 <li class="price"><%=dto.getPrice() %>원</li>
-<% if(msList != null){
+<% if(msList == null){
+	%><li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜고</a></li><%
+}else if(msList != null){
 	for(MemberShoppingDto msdto : msList){
-		if(msdto.getProductDto().getProduct_seq() == dto.getProduct_seq()){
-		%>	<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜 됨</a></li> <%
-		} else {
-			%>	<li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜</a></li> <%
-		}
-	}	
-}
+		if(msdto.getProduct_seq() == dto.getProduct_seq() ){
+		%>	<li class="like"><a href="deleteLikeList.do?product_seq=<%=dto.getProduct_seq()%>">찜X</a></li> <%
+		} 
+	}
+	%><li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜고</a></li><%
+}  
 %>
-
 </ul>
 </div>
 </div>
