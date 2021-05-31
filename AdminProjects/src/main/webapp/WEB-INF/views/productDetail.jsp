@@ -1,4 +1,4 @@
-<%@page import="com.yogi.hoxy.dtos.ProductDto"%>
+<%@page import="com.yogi.hoxy.dtos.*"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -200,12 +200,20 @@ Sibebar</a></li>
 <div class="contact-info">
 <ul>
 <li>
-<% for(Map<String, Integer> count : list){
-	if(Integer.parseInt(String.valueOf(count.get("product_seq"))) == dto.getProduct_seq()){
-		%><a href="like.do?<%=dto.getProduct_seq() %>" class="mail"><%=count.get("count") %>♥</a><%	
-	} 
-}
-
+<% boolean isS = false;
+   int likes = 0;
+for(Map<String, Integer> count : list){
+   if(Integer.parseInt(String.valueOf(count.get("product_seq"))) == dto.getProduct_seq()){
+      isS = true;
+      likes = Integer.parseInt(String.valueOf(count.get("count")));
+   }
+}   
+   
+   if(isS){
+      %><a href="javascript:void(0)" class="mail"><%=likes%>♥</a><%
+   } else {
+      %><a href="javascript:void(0)" class="mail">0♥</a><%
+   } 
 %>
 </li>
 </ul>

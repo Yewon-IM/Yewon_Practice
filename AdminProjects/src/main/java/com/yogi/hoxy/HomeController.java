@@ -916,10 +916,7 @@ public class HomeController {
 				List<MemberShoppingDto> msList = yoService.searchLike(id);
 				model.addAttribute("msList", msList);	
 				System.out.println("msList : " +msList);
-				
-				List<ProductDto> msnList = yoService.searchNotLike();
-				model.addAttribute("msnList", msnList);	
-				System.out.println("msnList : " +msnList);
+
 			}
 
 			
@@ -953,7 +950,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/productDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String productDetail( Locale locale, Model model, int product_seq) {
+	public String productDetail(Locale locale, Model model, int product_seq) {
 		logger.info("상점 물품 리스트", locale);
 		
 		ProductDto dto = yoService.productDetail(product_seq);
@@ -961,7 +958,7 @@ public class HomeController {
 		
 		List<Map<String, Integer>> list = yoService.peopleLike();
 		model.addAttribute("list", list);
-		
+
 		return "productDetail";
 	}
 

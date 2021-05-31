@@ -11,7 +11,6 @@
 <head>
 <% List<ProductDto> list = (List<ProductDto>) request.getAttribute("list"); %>
 <% List<MemberShoppingDto> msList = (List<MemberShoppingDto>) request.getAttribute("msList"); %>
-<% List<ProductDto> msnList = (List<ProductDto>) request.getAttribute("msnList"); %>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>상품리스트</title>
@@ -298,15 +297,20 @@ int stock = Integer.parseInt(dto.getStock());
 <p class="location"><a href="javascript:void(0)"><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>
 <ul class="info">
 <li class="price"><%=dto.getPrice() %>원</li>
-<% if(msList == null){
+<% if(msList.size() == 0){
 	%><li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜고</a></li><%
 }else if(msList != null){
+	boolean isS = false;
 	for(MemberShoppingDto msdto : msList){
-		if(msdto.getProduct_seq() == dto.getProduct_seq() ){
-		%>	<li class="like"><a href="deleteLikeList.do?product_seq=<%=dto.getProduct_seq()%>">찜X</a></li> <%
+		if(msdto.getProduct_seq() == dto.getProduct_seq()){
+			isS = true;	
 		} 
+	} 
+	if(isS){
+	%>	<li class="like"><a href="deleteLikeList.do?product_seq=<%=dto.getProduct_seq()%>">찜X</a></li> <%
+	} else {
+		%><li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜고</a></li><%	
 	}
-	%><li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜고</a></li><%
 }  
 %>
 </ul>
