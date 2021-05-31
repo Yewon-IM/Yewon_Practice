@@ -1,6 +1,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="com.yogi.hoxy.dtos.MemberShoppingDto"%>
+<%@page import="com.yogi.hoxy.utils.Utils" %>
 <%@page import="com.yogi.hoxy.dtos.ProductDto"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -197,7 +198,7 @@ ${name }
 
 <div class="single-widget search">
 <h3>상품 검색하기</h3>
-<form method="post" action="search.do">
+<form method="post" action="search.do">	
 <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요...">
 <button type="submit" ><i class="lni lni-search-alt"></i></button>
 </form>
@@ -296,8 +297,8 @@ int stock = Integer.parseInt(dto.getStock());
 </h3>
 <p class="location"><a href="javascript:void(0)"><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></a></p>
 <ul class="info">
-<li class="price"><%=dto.getPrice() %>원</li>
-<% if(msList.size() == 0){
+<li class="price"><%=Utils.comma(dto.getPrice())%>원</li>
+<% if(msList == null || msList.size() == 0){
 	%><li class="like"><a href="like.do?product_seq=<%=dto.getProduct_seq()%>">찜고</a></li><%
 }else if(msList != null){
 	boolean isS = false;

@@ -1,6 +1,7 @@
 <%@page import="com.yogi.hoxy.dtos.*"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
+<%@page import="com.yogi.hoxy.utils.Utils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
@@ -189,7 +190,7 @@ Sibebar</a></li>
 <div class="product-info">
 <h2 class="title">${dto.productName }</h2>
 <p class="location"><i class="lni lni-map-marker"></i><a href="javascript:void(0)">${dto.shopDto.local }</a></p>
-<h3 class="price">${dto.price }원</h3>
+<h3 class="price"><%=Utils.comma(dto.getPrice())%>원</h3>
 <div class="list-info">
 <ul>
 <li><span>매장: ${dto.shopDto.shopName }</span></li>
@@ -208,7 +209,6 @@ for(Map<String, Integer> count : list){
       likes = Integer.parseInt(String.valueOf(count.get("count")));
    }
 }   
-   
    if(isS){
       %><a href="javascript:void(0)" class="mail"><%=likes%>♥</a><%
    } else {

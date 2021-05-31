@@ -1,3 +1,4 @@
+<%@page import="com.yogi.hoxy.utils.Utils"%>
 <%@page import="java.util.List"%>
 <%@page import="com.yogi.hoxy.dtos.ProductDto"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -269,7 +270,7 @@ if(list == null || list.size() == 0){
 <h3 class="title"><p><%=dto.getProductName() %></p></h3>
 <p class="location"><%=dto.getShopDto().getShopName()%> / <%=dto.getShopDto().getLocal() %></p>
 <ul class="info">
-<li class="price"><%=dto.getPrice() %>원 </li>
+<li class="price"><%=Utils.comma(dto.getPrice())%>원 </li>
 <c:if test="${who eq '2' }">
 <li class="like"><a onclick="updateStock(<%=dto.getProduct_seq()%>)" href="javascript:void(0)" >입고<i class="lni lni-heart"></i></a></li>
 <li class="like"><a onclick="changeStock(<%=dto.getProduct_seq()%>)" href="javascript:void(0)" >수정<i class="lni lni-heart"></i></a></li>

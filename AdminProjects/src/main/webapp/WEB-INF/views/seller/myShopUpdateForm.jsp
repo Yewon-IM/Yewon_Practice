@@ -161,7 +161,7 @@
 <div class="col-lg-6 col-12">
 <div class="form-group">
 <label>상점 번호</label>
-<input name="shopTel" type="text" value="${sdto.shopTel }">
+<input name="shopTel" type="text" onkeyup="inputTelNumber(this);" maxlength="11" value="${sdto.shopTel }">
 </div>
 </div>
 <div class="col-lg-6 col-12">
