@@ -274,7 +274,7 @@
 		AND p.CATEGORY = #{category} 		
 		</if>
 		<if test="local != null"> <!-- 다이나믹쿼리 -->
-		AND UPPER(LOCAL) '%' || #{local} || '%'
+		AND UPPER(LOCAL) LIKE '%' || #{local} || '%'
 		</if>
 		<if test="keyword != null"> <!-- 다이나믹쿼리 -->
 		AND UPPER(PRODUCTNAME)LIKE '%' || #{keyword} || '%'

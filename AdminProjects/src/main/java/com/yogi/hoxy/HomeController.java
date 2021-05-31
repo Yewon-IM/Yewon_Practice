@@ -880,7 +880,7 @@ public class HomeController {
    
    @RequestMapping(value = "/search.do", method = { RequestMethod.GET, RequestMethod.POST })
    public String search(HttpServletRequest request, Locale locale, Model model, String category, String local, 
-		   String keyword, String shop, String order, String shopId) {
+         String keyword, String shop, String order, String shopId) {
       logger.info("검색", locale);
       
       HttpSession session = request.getSession();
@@ -896,7 +896,7 @@ public class HomeController {
          return "search";
       } else if(shop != null) {
 
-    	 String who = (String) session.getAttribute("who");
+        String who = (String) session.getAttribute("who");
          
          ShopDto sdto = yoService.listSelShop(shopId);
          model.addAttribute("sdto", sdto);
@@ -927,15 +927,17 @@ public class HomeController {
          return "search";
          
       } else if(category != null){
-    	 List<ProductDto> list = yoService.searchCategory(category);
-         model.addAttribute("list", list);
+    	  System.out.println(shopId+ category+ local+ keyword);
+    	  
+          List<ProductDto> list = yoService.search(shopId, category, local, keyword);
+          model.addAttribute("list", list);
          
          List<Map<String, String>> pList = yoService.countCategory();
          model.addAttribute("pList", pList);
          
          return "search";                  
-      }
-	return "error";
+      } 
+   return "error";
       
    }
    
