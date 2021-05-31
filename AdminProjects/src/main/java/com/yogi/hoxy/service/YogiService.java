@@ -434,5 +434,19 @@ public class YogiService implements IYogiService {
 		return yogiDao.price();
 	}
 
+	@Override
+	public List<Map<String, String>> countCategory() {
+		return yogiDao.countCategory();
+	}
+
+	@Override
+	public List<Map<String, String>> countCategoryInShop(String shopId) {
+		return yogiDao.countCategoryInShop(shopId);
+	}
+
+	@Override
+	public List<ProductDto> searchCategory(String category) {
+		return yogiDao.searchCategory(category);
+	}
 }
 	

@@ -188,12 +188,13 @@
 <div class="form-group">
 <label>카테고리</label>
 <select name="category">
-	<option value="과자">과자</option>
+	<option value="식품">식품</option>
 	<option value="유아">유아</option>
-	<option value=""></option>
-	<option value=""></option>
-	<option value=""></option>
-	<option value=""></option>
+	<option value="식음료">식음료</option>
+	<option value="전자기기">전자기기</option>
+	<option value="뷰티">뷰티</option>
+	<option value="의약품">의약품</option>
+	<option value="의류">의류</option>
 </select>
 </div>
 </div>

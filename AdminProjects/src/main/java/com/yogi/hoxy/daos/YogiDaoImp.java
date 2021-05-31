@@ -218,4 +218,16 @@ public class YogiDaoImp implements IYogiDao{
 	public List<ProductDto> price(){
 		return sqlSession.selectList(namespace + "price");
 	}
+	
+	public List<Map<String, String>> countCategory(){
+		return sqlSession.selectList(namespace + "countCategory");
+	}
+	
+	public List<Map<String, String>> countCategoryInShop(String shopId){
+		return sqlSession.selectList(namespace + "countCategoryInShop", shopId);
+	}
+	
+	public List<ProductDto> searchCategory(String category){
+		return sqlSession.selectList(namespace + "searchCategory", category); 
+	}
 }

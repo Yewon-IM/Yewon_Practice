@@ -173,9 +173,13 @@ Or Search For Property, Jobs And More.</p>
 <label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
 <select name="category" id="category" required>
 <option value="">카테고리</option>
-<option value="과자">과자</option>
+<option value="식품">식품</option>
 <option value="유아">유아</option>
-<option value="악세서리">악세서리</option>
+<option value="식음료">식음료</option>
+<option value="전자기기">전자기기</option>
+<option value="뷰티">뷰티</option>
+<option value="의약품">의약품</option>
+<option value="의류">의류</option>
 </select>
 </div>
 </div>
@@ -227,70 +231,63 @@ Or Search For Property, Jobs And More.</p>
 </div>
 <div class="row">
 <div class="col-lg-2 col-md-3 col-12">
-
 <a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
 <div class="icon">
-<img src="assets/images/categories/car.svg" alt="#">
+<img src="resources/image/" alt="#">
 </div>
-<h3>Vehicle</h3>
+<h3>식품</h3>
 <h5 class="total">35</h5>
 </a>
-
 </div>
-<div class="col-lg-2 col-md-3 col-12">
 
+<div class="col-lg-2 col-md-3 col-12">
 <a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".4s">
 <div class="icon">
-<img src="assets/images/categories/laptop.svg" alt="#">
+<img src="resources/image/child.png" alt="#">
 </div>
-<h3>Electronics</h3>
+<h3>유아</h3>
 <h5 class="total">22</h5>
 </a>
-
 </div>
+
 <div class="col-lg-2 col-md-3 col-12">
-
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".6s">
-<div class="icon">
-<img src="assets/images/categories/matrimony.svg" alt="#">
-</div>
-<h3>Matrimony</h3>
-<h5 class="total">55</h5>
-</a>
-
-</div>
-<div class="col-lg-2 col-md-3 col-12">
-
 <a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".8s">
 <div class="icon">
-<img src="assets/images/categories/furniture.svg" alt="#">
+<img src="resources/image/" alt="#">
 </div>
-<h3>Furnitures</h3>
+<h3>전자기기</h3>
 <h5 class="total">21</h5>
 </a>
-
 </div>
-<div class="col-lg-2 col-md-3 col-12">
 
+<div class="col-lg-2 col-md-3 col-12">
 <a href="category.html" class="single-cat wow fadeInUp" data-wow-delay="1s">
 <div class="icon">
-<img src="assets/images/categories/jobs.svg" alt="#">
+<img src="resources/image/makeup.png" alt="#">
 </div>
-<h3>Jobs</h3>
+<h3>뷰티</h3>
 <h5 class="total">44</h5>
 </a>
-
 </div>
-<div class="col-lg-2 col-md-3 col-12">
 
+<div class="col-lg-2 col-md-3 col-12">
 <a href="category.html" class="single-cat wow fadeInUp" data-wow-delay="1.2s">
 <div class="icon">
-<img src="assets/images/categories/real-estate.svg" alt="#">
+<img src="resources/image/drug.png" alt="#">
 </div>
-<h3>Real Estate</h3>
+<h3>의약품</h3>
 <h5 class="total">65</h5>
 </a>
+</div>
 
+<div class="col-lg-2 col-md-3 col-12">
+<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay="1.2s">
+<div class="icon">
+<img src="resources/image/" alt="#">
+</div>
+<h3>의류</h3>
+<h5 class="total">65</h5>
+</a>
 </div>
 </div>
 </div>

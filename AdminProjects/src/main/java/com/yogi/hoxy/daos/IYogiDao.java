@@ -96,4 +96,10 @@ public interface IYogiDao {
 	public List<Map<String, Integer>> peopleLike();
 	
 	public List<ProductDto> price();
+	
+	public List<Map<String, String>> countCategory();
+	
+	public List<Map<String, String>> countCategoryInShop(String shopId);
+	
+	public List<ProductDto> searchCategory(String category);
 }

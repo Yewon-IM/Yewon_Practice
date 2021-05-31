@@ -268,7 +268,7 @@
 		FROM PRODUCT p , SHOP s
 		WHERE p.SHOPID = s.SHOPID 
 		<if test="shopId != null">
-		AND p.shopId = #{shopId}
+		AND p.SHOPID = #{shopId}
 		</if>
 		<if test="category != null">
 		AND p.CATEGORY = #{category} 		
@@ -281,6 +281,11 @@
 		</if>
 	</select>
 	
+	<select id="searchCategory" resultMap="ProductDtoMap">
+		SELECT *
+		FROM PRODUCT p , SHOP s
+		WHERE p.SHOPID = s.SHOPID AND CATEGORY = #{category}
+	</select>
 	
 	<select id="productList" resultMap="ProductDtoMap">
 		SELECT * 
@@ -311,12 +316,12 @@
 		WHERE p.SHOPID = s.SHOPID AND p.PRODUCT_SEQ = #{product_seq}
 	</select>
 	
-	<resultMap type="HashMap" id="CountMap">
+	<resultMap type="HashMap" id="CountLike">
 		<id column="PRODUCT_SEQ" property="product_seq"/>
 		<id column="COUNT" property="count"/>
 	</resultMap>
 	
-	<select id="peopleLike" resultMap="CountMap">
+	<select id="peopleLike" resultMap="CountLike">
 		SELECT PRODUCT_SEQ , COUNT(PRODUCT_SEQ) as COUNT
 		FROM MEMBERSHOPPING m 
 		WHERE "LIKE" = '1' 
@@ -330,6 +335,21 @@
 		ORDER BY PRICE
 	</select>
 	
+	<resultMap type="HashMap" id="CountCategrory">
+		<id column="CATEGORY" property="category"/>
+		<id column="COUNT" property="count"/>
+	</resultMap>
 	
+	<select id="countCategory" resultMap="CountCategrory">
+		SELECT CATEGORY , COUNT(CATEGORY) AS COUNT
+		FROM PRODUCT p 
+		GROUP BY CATEGORY
+	</select>
 	
+	<select id="countCategoryInShop" parameterType="String" resultMap="CountCategrory">
+		SELECT CATEGORY , COUNT(CATEGORY) AS COUNT
+		FROM PRODUCT p 
+		WHERE SHOPID = #{shopId}
+		GROUP BY CATEGORY
+	</select>
 </mapper>

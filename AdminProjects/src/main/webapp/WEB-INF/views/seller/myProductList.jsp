@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="com.yogi.hoxy.utils.Utils"%>
 <%@page import="java.util.List"%>
 <%@page import="com.yogi.hoxy.dtos.ProductDto"%>
@@ -9,6 +10,7 @@
 <html class="no-js" lang="zxx">
 <head>
 <% List<ProductDto> list = (List<ProductDto>) request.getAttribute("list"); %>
+<% List<Map<String, String>> psList = (List<Map<String, String>>) request.getAttribute("psList"); %>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 function updateStock(product_seq){
@@ -199,26 +201,166 @@ function changeStock(product_seq){
 <h3>카테고리</h3>
 <ul class="list">
 <li>
-<a href="search.do?shop=1&category=과자&shopId=${sdto.shopId }"><i class="lni lni-dinner"></i>과자</a>
+<a href="search.do?shop=1&category=식품&shopId=${sdto.shopId }"><i class="lni lni-dinner"></i>식품
+<span>
+<%
+if(psList != null){
+boolean result = false;
+int cC1 = 0;
+for(Map<String, String> count : psList){
+	if(count.get("category").equals("식품")){
+		result = true;
+		cC1 = Integer.parseInt(String.valueOf(count.get("count")));
+	}
+}
+	if(result){
+		%><%=cC1 %><%
+	} 
+} else {
+	%>0<% 
+}
+%>
+</span>
+</a>
 </li>
 <li>
-<a href="search.do?shop=1&category=유아&shopId=${sdto.shopId }"><i class="lni lni-control-panel"></i>유아</a>
+<a href="search.do?shop=1&category=유아&shopId=${sdto.shopId }"><i class="lni lni-control-panel"></i>유아
+
+<%
+if(psList != null){
+boolean result = false;
+int cC1 = 0;
+for(Map<String, String> count : psList){
+	if(count.get("category").equals("유아")){
+		result = true;
+		cC1 = Integer.parseInt(String.valueOf(count.get("count")));
+	}
+}
+	if(result){
+		%><span><%=cC1 %></span><%
+	} 
+} else {
+	%><span>0</span><% 
+}
+%>
+
+</a>
 </li>
 <li>
-<a href="javascript:void(0)"><i class="lni lni-bullhorn"></i> Marketing <span>55</span></a>
+<a href="search.do?shop=1&category=식음료&shopId=${sdto.shopId }"><i class="lni lni-bullhorn"></i>식음료
+
+<%
+if(psList != null){
+boolean result = false;
+int cC1 = 0;
+for(Map<String, String> count : psList){
+	if(count.get("category").equals("식음료")){
+		result = true;
+		cC1 = Integer.parseInt(String.valueOf(count.get("count")));
+	}
+}
+	if(result){
+		%><span><%=cC1 %></span><%
+	} 
+} else {
+	%><span>0</span><% 
+}
+%>
+
+</a>
 </li>
 <li>
-<a href="javascript:void(0)"><i class="lni lni-home"></i> Real Estate<span>35</span></a>
+<a href="search.do?shop=1&category=전자기기&shopId=${sdto.shopId }"><i class="lni lni-home"></i>전자기기
+
+<%
+if(psList != null){
+boolean result = false;
+int cC1 = 0;
+for(Map<String, String> count : psList){
+	if(count.get("category").equals("전자기기")){
+		result = true;
+		cC1 = Integer.parseInt(String.valueOf(count.get("count")));
+	}
+}
+	if(result){
+		%><span><%=cC1 %></span><%
+	} 
+} else {
+	%><span>0</span><% 
+}
+%>
+
+</a>
 </li>
 <li>
-<a href="javascript:void(0)"><i class="lni lni-bolt"></i> Electronics <span>60</span></a>
+<a href="search.do?shop=1&category=뷰티&shopId=${sdto.shopId }"><i class="lni lni-bolt"></i>뷰티
+
+<%
+if(psList != null){
+boolean result = false;
+int cC1 = 0;
+for(Map<String, String> count : psList){
+	if(count.get("category").equals("뷰티")){
+		result = true;
+		cC1 = Integer.parseInt(String.valueOf(count.get("count")));
+	}
+}
+	if(result){
+		%><span><%=cC1 %></span><%
+	} 
+} else {
+	%><span>0</span><% 
+}
+%>
+
+</a>
 </li>
 <li>
-<a href="javascript:void(0)"><i class="lni lni-tshirt"></i> Dress & Clothing <span>55</span></a>
+<a href="search.do?shop=1&category=의약품&shopId=${sdto.shopId }"><i class="lni lni-tshirt"></i>의약품
+
+<%
+if(psList != null){
+boolean result = false;
+int cC1 = 0;
+for(Map<String, String> count : psList){
+	if(count.get("category").equals("의약품")){
+		result = true;
+		cC1 = Integer.parseInt(String.valueOf(count.get("count")));
+	}
+}
+	if(result){
+		%><span><%=cC1 %></span><%
+	} 
+} else {
+	%><span>0</span><% 
+}
+%>
+
+</a>
 </li>
 <li>
-<a href="javascript:void(0)"><i class="lni lni-diamond-alt"></i> Jewelry & Accessories
-<span>45</span></a>
+<a href="search.do?shop=1&category=의류&shopId=${sdto.shopId }"><i class="lni lni-diamond-alt"></i>의류
+
+<%
+if(psList != null){
+boolean result = false;
+int cC1 = 0;
+for(Map<String, String> count : psList){
+	if(count.get("category").equals("의류")){
+		result = true;
+		cC1 = Integer.parseInt(String.valueOf(count.get("count")));
+	}
+}
+	if(result){
+		%><span><%=cC1 %></span><%
+	} 
+} else {
+	%><span>0</span><% 
+}
+%>
+
+</a>
+</li>
 </li>
 </ul>
 </div>
