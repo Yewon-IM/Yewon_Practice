@@ -1,4 +1,3 @@
-<%@page import="com.yogi.hoxy.utils.Utils"%>
 <%@page import="java.util.List"%>
 <%@page import="com.yogi.hoxy.dtos.MemberShoppingDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,7 +10,7 @@
 <% List<MemberShoppingDto> msList = (List<MemberShoppingDto>) request.getAttribute("msList"); %>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>마이페이지</title>
+<title>YOGIHOXY - 오프라인 물건을 손쉽게 찾아보자</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -53,7 +52,7 @@
 <div class="nav-inner">
 <nav class="navbar navbar-expand-lg">
 <a class="navbar-brand" href=".">
-<img src="assets/images/logo/logo.svg" alt="Logo">
+<img src="upload/logo.jpg" alt="Logo">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="toggler-icon"></span>
@@ -63,33 +62,26 @@
 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 <ul id="nav" class="navbar-nav ms-auto">
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
-<ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href=".">Home Default</a></li>
-<li class="nav-item"><a href=".">Home Version 2</a></li>
-<li class="nav-item"><a href=".">Home Version 3</a></li>
-</ul>
+<a href="http://localhost:8888/hoxy/" aria-label="Toggle navigation">홈</a>
 </li>
 <li class="nav-item">
- <a href="category.html" aria-label="Toggle navigation">Categories</a>
+<a href="search.do" aria-label="Toggle navigation">카테고리</a>
 </li>
 <li class="nav-item">
-<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">마이페이지</a>
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">마이페이지</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
 <ul>
-<li class="active nav-item"><a href="myPage.do">마이페이지</a>
+<li class="nav-item"><a href="myPage.do">마이페이지</a>
 </li>
-<li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a>
+<li class="nav-item"><a href="myPageUpdateForm.do?">정보수정</a>
 </li>
-<li class="nav-item"><a href=".">가나다</a></li>
 <li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
 </div> 
 <div class="login-button">
 <ul>
@@ -97,7 +89,7 @@
 <p>${dto.name } 고객님</p>
 </li>
 <li>
-<a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
+<a href="logout.do"><i class="fas fa-sign-out-alt"></i>로그아웃</a>
 </li>
 </ul>
 </div>
@@ -141,65 +133,24 @@
 </div>
 <div class="dashboard-menu">
 <ul>
-<li><a class="active" href="dashboard.html"><i class="lni lni-dashboard"></i>마이페이지</a></li>
-<li><a href="myPageUpdateForm.do"><i class="lni lni-pencil-alt"></i>정보 수정</a></li>
-<li><a href="myPageDelete.do"><i class="lni lni-printer"></i> 회원탈퇴</a></li></ul>
+<li><a class="active" href="dashboard.html"><i class="far fa-file-alt"></i> 마이페이지</a></li>
+<li><a href="myPageUpdateForm.do"><i class="fas fa-cog"></i> 정보 수정</a></li>
+<li><a href="myPageDelete.do"><i class="far fa-angry"></i> 회원탈퇴</a></li></ul>
 <div class="button">
-<a class="btn" href="javascript:void(0)">Logout</a>
+<a class="btn" href="logout.do">Logout</a>
 </div>
 </div>
 </div>
 
 </div>
-<div class="col-lg-9 col-md-8 col-12">
+<div class="col-lg-9 col-md-8 col-121">
 <div class="main-content">
 
 <div class="details-lists">
-<div class="row">
-<div class="col-lg-4 col-md-4 col-12">
 
-<div class="single-list">
-<div class="list-icon">
-<a href="."><img src="resources/image/checked.png" alt="review"></a>
-</div>
-<h3>
-340
-<span>내가 쓴 후기글</span>
-</h3>
-</div>
-
-</div>
-<div class="col-lg-4 col-md-4 col-12">
-
-<div class="single-list two">
-<div class="list-icon">
-<a href="."><i class="lni lni-bolt"></i></a>
-</div>
-<h3>
-23
-<span>내가 쓴 답글</span>
-</h3>
-</div>
-
-</div>
-<div class="col-lg-4 col-md-4 col-12">
-
-<div class="single-list three">
-<div class="list-icon">
-<i class="lni lni-emoji-sad"></i>
-</div>
-<h3>
- 45
-<span>구매 완료한 상품</span>
-</h3>
-</div>
-
-</div>
-</div>
-</div>
 
 <div class="row">
-<div class="col-lg-6 col-md-12 col-12">
+<!-- <div class="col-lg-6 col-md-12 col-12">
 
 <div class="activity-log dashboard-block">
 <h3 class="block-title">내가 좋아하는 상점</h3>
@@ -247,21 +198,21 @@
 </ul>
 </div>
 
-</div>
+</div> -->
 
 
 
 
 
 
-<div class="col-lg-6 col-md-12 col-12">
+<div class="col-lg-12 col-md-12 col-12">
 <div class="recent-items dashboard-block">
 <h3 class="block-title">찜한 상품</h3>
 <%
 	if(msList == null || msList.size() == 0){
 		%>
 		<span>찜한 상품이 없습니다.
-		<a href="search.do"> 찜하러 가쉴? </a></span>
+		<a href=""> 찜하러 가쉴? </a></span>
 		<%
 	}else {
 		for(MemberShoppingDto msdto : msList){
@@ -273,7 +224,7 @@
 </div>
 <span class="time">카테고리 : <%=msdto.getProductDto().getCategory() %></span>
 <span class="time">제품이름 : <%=msdto.getProductDto().getProductName() %></span>
-<span class="time">가격 : <%=Utils.comma(msdto.getProductDto().getPrice()) %>원</span>
+<span class="time">가격 : <%=msdto.getProductDto().getPrice() %></span>
 <span class="time">재고 : <%=msdto.getProductDto().getStock() %></span>
 <span class="remove"><a href="deleteLikeList.do?product_seq=<%=msdto.getProduct_seq() %>"><img src="resources/image/delete.png"></a></span>
 </li>
@@ -303,109 +254,14 @@
 
 <footer class="footer">
 
-<div class="footer-top">
-<div class="container">
-<div class="row">
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer mobile-app">
-<h3>Mobile Apps</h3>
-<div class="app-button">
-<a href="javascript:void(0)" class="btn">
-<i class="lni lni-play-store"></i>
-<span class="text">
-<span class="small-text">Get It On</span>
-Google Play
-</span>
-</a>
-<a href="javascript:void(0)" class="btn">
-<i class="lni lni-apple"></i>
-<span class="text">
-<span class="small-text">Get It On</span>
-App Store
-</span>
-</a>
-</div>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-link">
-<h3>Locations</h3>
-<div class="row">
-<div class="col-lg-6 col-md-6 col-12">
-<ul>
-<li><a href="javascript:void(0)">Chicago</a></li>
-<li><a href="javascript:void(0)">New York City</a></li>
-<li><a href="javascript:void(0)">San Francisco</a></li>
-<li><a href="javascript:void(0)">Washington</a></li>
-<li><a href="javascript:void(0)">Boston</a></li>
-</ul>
-</div>
-<div class="col-lg-6 col-md-6 col-12">
-<ul>
-<li><a href="javascript:void(0)">Los Angeles</a></li>
-<li><a href="javascript:void(0)">Seattle</a></li>
-<li><a href="javascript:void(0)">Las Vegas</a></li>
-<li><a href="javascript:void(0)">San Diego</a></li>
-</ul>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-link">
-<h3>Quick Links</h3>
-<ul>
-<li><a href="javascript:void(0)">About Us</a></li>
-<li><a href="javascript:void(0)">How It's Works</a></li>
-<li><a href="javascript:void(0)">Login</a></li>
-<li><a href="javascript:void(0)">Signup</a></li>
-<li><a href="javascript:void(0)">Help & Support</a></li>
-</ul>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-contact">
-<h3>Contact</h3>
-<ul>
-<li>23 New Design Str, Lorem Upsum 10<br> Hudson Yards, USA</li>
-<li>Tel. +(123) 1800-567-8990 <br> Mail. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f4878184849b8680b497989587879d93869d9087da979b99">[email&#160;protected]</a></li>
-</ul>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-
 <div class="footer-bottom">
 <div class="container">
 <div class="inner">
 <div class="row">
 <div class="col-12">
 <div class="content">
-<ul class="footer-bottom-links">
-<li><a href="javascript:void(0)">Terms of use</a></li>
-<li><a href="javascript:void(0)"> Privacy Policy</a></li>
-<li><a href="javascript:void(0)">Advanced Search</a></li>
-<li><a href="javascript:void(0)">Site Map</a></li>
-<li><a href="javascript:void(0)">Information</a></li>
-</ul>
-<p class="copyright-text">Designed and Developed by <a href="https://graygrids.com/" rel="nofollow" target="_blank">GrayGrids</a>
+<p class="copyright-text">Designed and Developed by 1조
 </p>
-<ul class="footer-social">
-<li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
-</ul>
 </div>
 </div>
 </div>
@@ -417,7 +273,7 @@ App Store
 
 
 <a href="#" class="scroll-top btn-hover">
-<i class="lni lni-chevron-up"></i>
+<i class="fas fa-arrow-up"></i>
 </a>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -425,6 +281,12 @@ App Store
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/tiny-slider.js"></script>
 <script src="resources/js/glightbox.min.js"></script>
+<script src="resources/js/count-up.min.js"></script>
 <script src="resources/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.0.js"></script>
+<script src="resources/js/websocket.js"></script>
+<script src="resources/js/notify.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 </body>
 </html>

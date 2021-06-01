@@ -51,7 +51,7 @@
 <div class="nav-inner">
 <nav class="navbar navbar-expand-lg">
 <a class="navbar-brand" href=".">
-<img src="assets/images/logo/logo.svg" alt="Logo">
+<img src="upload/logo.jpg" alt="Logo">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="toggler-icon"></span>
@@ -61,46 +61,41 @@
 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 <ul id="nav" class="navbar-nav ms-auto">
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
-<ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href="index.html">Home Default</a></li>
-<li class="nav-item"><a href="index2.html">Home Version 2</a></li>
-<li class="nav-item"><a href="index3.html">Home Version 3</a></li>
-</ul>
+<a href="." aria-label="Toggle navigation">홈</a>
+</li>
+ <li class="nav-item">
+<a href="search.do" aria-label="Toggle navigation">카테고리</a>
 </li>
 <li class="nav-item">
- <a href="category.html" aria-label="Toggle navigation">Categories</a>
-</li>
-<li class="nav-item">
-<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">관리자페이지</a>
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">관리자페이지</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
 <ul>
 <li class="mega-menu-title">회원</li>
-<li class="nav-item"><a href="newMemberList.do">신규회원</a></li>
-<li class="nav-item"><a href="memberList.do">회원 리스트</a></li>
+<li class="nav-item"><a href="newMemberList.do">회원 승인</a></li>
+<li class=" active nav-item"><a href="memberList.do">회원 리스트</a></li>
 <li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 <li class="single-block">
 <ul>
 <li class="mega-menu-title">상점</li>
-<li class="nav-item"><a href="newShopList.do">상점 승인</a></li>
-<li class="nav-item"><a href="memberList.do">상점 리스트</a></li>
-<li class=" active nav-item"><a href="delShopList.do">상점 삭제</a></li>
+<li class="nav-item"><a href="newShopList.do">신규 상점</a></li>
+<li class="nav-item"><a href="shopList.do">상점 리스트</a></li>
+<li class="nav-item"><a href="delShopList.do">상점 삭제</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</div> 
+</div>  
 <div class="login-button">
 <ul>
 <li>
 <p>${name }</p>
 </li>
 <li>
-<a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>
+<a href="logout.do"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
 </li>
 </ul>
 </div>
@@ -242,91 +237,14 @@
 
 <footer class="footer">
 
-<div class="footer-top">
-<div class="container">
-<div class="row">
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer mobile-app">
-<h3>Mobile Apps</h3>
-<div class="app-button">
-<a href="javascript:void(0)" class="btn">
-<i class="lni lni-play-store"></i>
-<span class="text">
-<span class="small-text">Get It On</span>
-Google Play
-</span>
-</a>
-<a href="javascript:void(0)" class="btn">
-<i class="lni lni-apple"></i>
-<span class="text">
-<span class="small-text">Get It On</span>
-App Store
-</span>
-</a>
-</div>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-link">
-<h3>Locations</h3>
-<div class="row">
-<div class="col-lg-6 col-md-6 col-12">
-<ul>
-<li><a href="javascript:void(0)">Chicago</a></li>
-</ul>
-</div>
-<div class="col-lg-6 col-md-6 col-12">
-<ul>
-<li><a href="javascript:void(0)">Los Angeles</a></li>
-</ul>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-link">
-<h3>Quick Links</h3>
-<ul>
-<li><a href="javascript:void(0)">About Us</a></li>
-</ul>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
- <div class="single-footer f-contact">
-<h3>Contact</h3>
-<ul>
-<li>23 New Design Str, Lorem Upsum 10<br> Hudson Yards, USA</li>
-<li>Tel. +(123) 1800-567-8990 <br> Mail. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="493a3c3939263b3d092a25283a3a202e3b202d3a672a2624">[email&#160;protected]</a></li>
-</ul>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-
 <div class="footer-bottom">
 <div class="container">
 <div class="inner">
 <div class="row">
 <div class="col-12">
 <div class="content">
-<ul class="footer-bottom-links">
-<li><a href="javascript:void(0)">Terms of use</a></li>
-</ul>
-<p class="copyright-text">Designed and Developed by <a href="https://graygrids.com/" rel="nofollow" target="_blank">GrayGrids</a>
+<p class="copyright-text">Designed and Developed by 1조
 </p>
-<ul class="footer-social">
-<li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-</ul>
 </div>
 </div>
 </div>
@@ -336,10 +254,10 @@ App Store
 
 </footer>
 
-
 <a href="#" class="scroll-top btn-hover">
-<i class="lni lni-chevron-up"></i>
+<i class="fas fa-arrow-up"></i>
 </a>
+
 <a href=".">메인 홈페이지</a>
 <a href="memberList.do">회원 관리페이지</a>	
 
@@ -348,6 +266,7 @@ App Store
 <script src="resources/js/wow.min.js"></script>
 <script src="resources/js/tiny-slider.js"></script>
 <script src="resources/js/glightbox.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="resources/js/main.js"></script>
 </body>
 </html>

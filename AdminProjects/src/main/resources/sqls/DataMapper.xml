@@ -279,6 +279,7 @@
 		<if test="keyword != null"> <!-- 다이나믹쿼리 -->
 		AND UPPER(PRODUCTNAME)LIKE '%' || #{keyword} || '%'
 		</if>
+		ORDER BY WRITEDATE
 	</select>
 	
 	<select id="searchCategory" resultMap="ProductDtoMap">

@@ -15,12 +15,12 @@
 <script type="text/javascript">
 function updateStock(product_seq){
 	var stock = prompt("몇개 입고?", "숫자를 입력하세요.");
-	location.href="updateStock.do?stock="+ stock + "&product_seq=" + product_seq;
+	location.href="updateStock.do?shopId="+ ${sdto.shopId} +"&stock="+ stock + "&product_seq=" + product_seq;
 }
 
 function changeStock(product_seq){
 	var stock = prompt("재고 수정", "숫자를 입력하세요.");
-	location.href="changeStock.do?stock="+ stock + "&product_seq=" + product_seq;
+	location.href="changeStock.do?shopId="+ ${sdto.shopId} +"&stock="+ stock + "&product_seq=" + product_seq;
 }
 	// 	$.ajax({
 //		method:"post",
@@ -79,8 +79,8 @@ function changeStock(product_seq){
 <div class="col-lg-12">
 <div class="nav-inner">
 <nav class="navbar navbar-expand-lg">
-<a class="navbar-brand" href="index.html">
-<img src="assets/images/logo/logo.svg" alt="Logo">
+<a class="navbar-brand" href=".">
+<img src="upload/logo.jpg" alt="Logo">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="toggler-icon"></span>
@@ -90,39 +90,80 @@ function changeStock(product_seq){
 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 <ul id="nav" class="navbar-nav ms-auto">
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
-<ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href="index.html">Home Default</a></li>
-<li class="nav-item"><a href="index2.html">Home Version 2</a></li>
-<li class="nav-item"><a href="index3.html">Home Version 3</a></li>
-</ul>
+<a href="." aria-label="Toggle navigation">홈</a>
 </li>
 <li class="nav-item">
- <a href="category.html" class="active" aria-label="Toggle navigation">Categories</a>
+ <a href="search.do" class="active" aria-label="Toggle navigation">카테고리</a>
 </li>
+
+<c:if test="${who eq 0 }">
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Pages</a>
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">관리자페이지</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
 <li class="single-block">
 <ul>
-<li class="mega-menu-title">Essential Pages</li>
-<li class="nav-item"><a href="about-us.html">About Us</a></li>
-<li class="nav-item"><a href="item-details.html">Ads Details</a></li>
-<li class="nav-item"><a href="post-item.html">Ads Post</a></li>
-<li class="nav-item"><a href="pricing.html">Pricing Table</a></li>
-<li class="nav-item"><a href="registration.html">Sign Up</a></li>
-<li class="nav-item"><a href="login.html">Sign In</a></li>
-<li class="nav-item"><a href="contact.html">Contact Us</a></li>
-<li class="nav-item"><a href="faq.html">FAQ</a></li>
-<li class="nav-item"><a href="404.html">Error Page</a></li>
-<li class="nav-item"><a href="mail-success.html">Mail Success</a>
+<li class="mega-menu-title">회원</li>
+<li class="nav-item"><a href="newMemberList.do">회원 승인</a></li>
+<li class="nav-item"><a href="memberList.do">회원 리스트</a></li>
+<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
+</ul>
 </li>
-<li class="nav-item"><a href="coming-soon.html">Comming Soon</a>
-</li>
+<li class="single-block">
+<ul>
+<li class="mega-menu-title">상점</li>
+<li class="nav-item"><a href="newShopList.do">신규 상점</a></li>
+<li class="nav-item"><a href="shopList.do">상점 리스트</a></li>
+<li class="nav-item"><a href="delShopList.do">상점 삭제</a></li>
 </ul>
 </li>
 </ul>
 </li>
+</c:if>
+<c:if test="${who eq 1 }">
+<li class="nav-item">
+
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" 
+aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">마이페이지</a>
+
+<ul class="sub-menu mega-menu collapse" id="submenu-1-4">
+<li class="single-block">
+<ul>
+
+<li class="nav-item"><a href="myPage.do">마이페이지</a></li>
+<li class="nav-item"><a href="myPageUpdateForm.do?">정보수정</a></li>
+<li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</c:if>
+<c:if test="${who eq 2 }">
+<li class="nav-item">
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">마이페이지</a>
+<ul class="sub-menu mega-menu collapse" id="submenu-1-4">
+<li class="single-block">
+<ul>
+<li class="mega-menu-title">상점</li>
+<li class="nav-item"><a href="myShop.do">내 상점 보기</a></li>
+<li class="nav-item"><a href="myShopAddForm.do">상점 추가</a></li>
+</ul>
+</li>
+<li class="single-block">
+<ul>
+<li class="mega-menu-title">마이페이지</li>
+<li class="nav-item"><a href="myPage.do">마이페이지</a></li>
+<li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a></li>
+<li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</c:if>
+<c:if test="${who == null }">
+
+</c:if>
+
+
 </ul>
 </div> 
 <div class="login-button">
@@ -131,7 +172,7 @@ function changeStock(product_seq){
 <p>${name }</p>
 </li>
 <li>
-<a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
+<a href="logout.do"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>	
 </li>
 </ul>
 </div>
@@ -192,6 +233,7 @@ function changeStock(product_seq){
 <form method="post" action="search.do">
 <input type="hidden" name="shop" value="1" >
 <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요...">
+<input type="hidden" name="shopId" value="${sdto.shopId }">
 <button type="submit" ><i class="lni lni-search-alt"></i></button>
 </form>
 </div>
@@ -414,8 +456,8 @@ if(list == null || list.size() == 0){
 <ul class="info">
 <li class="price"><%=Utils.comma(dto.getPrice())%>원 </li>
 <c:if test="${who eq '2' }">
-<li class="like"><a onclick="updateStock(<%=dto.getProduct_seq()%>)" href="javascript:void(0)" >입고<i class="lni lni-heart"></i></a></li>
-<li class="like"><a onclick="changeStock(<%=dto.getProduct_seq()%>)" href="javascript:void(0)" >수정<i class="lni lni-heart"></i></a></li>
+<li class="like"><a onclick="updateStock(<%=dto.getProduct_seq()%>)">입고<i class="lni lni-heart"></i></a></li>
+<li class="like"><a onclick="changeStock(<%=dto.getProduct_seq()%>)">수정<i class="lni lni-heart"></i></a></li>
 </c:if>
 </ul>
 </div>
@@ -429,20 +471,6 @@ if(list == null || list.size() == 0){
 
 
 </div>
-<div class="row">
-<div class="col-12">
-<div class="pagination left">
-<ul class="pagination-list">
-<li class="active"><a href="javascript:void(0)">1</a></li>
-<li><a href="javascript:void(0)">2</a></li>
-<li><a href="javascript:void(0)">3</a></li>
-<li><a href="javascript:void(0)">4</a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
-</ul>
-</div>
-
-</div>
-</div>
 
 </div>
 </div>
@@ -455,110 +483,14 @@ if(list == null || list.size() == 0){
 
 
 <footer class="footer">
-
-<div class="footer-top">
-<div class="container">
-<div class="row">
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer mobile-app">
-<h3>Mobile Apps</h3>
-<div class="app-button">
-<a href="javascript:void(0)" class="btn">
-<i class="lni lni-play-store"></i>
-<span class="text">
-<span class="small-text">Get It On</span>
-Google Play
-</span>
-</a>
-<a href="javascript:void(0)" class="btn">
-<i class="lni lni-apple"></i>
-<span class="text">
-<span class="small-text">Get It On</span>
- App Store
-</span>
-</a>
-</div>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-link">
-<h3>Locations</h3>
-<div class="row">
-<div class="col-lg-6 col-md-6 col-12">
-<ul>
-<li><a href="javascript:void(0)">Chicago</a></li>
-<li><a href="javascript:void(0)">New York City</a></li>
-<li><a href="javascript:void(0)">San Francisco</a></li>
-<li><a href="javascript:void(0)">Washington</a></li>
-<li><a href="javascript:void(0)">Boston</a></li>
-</ul>
-</div>
-<div class="col-lg-6 col-md-6 col-12">
-<ul>
-<li><a href="javascript:void(0)">Los Angeles</a></li>
-<li><a href="javascript:void(0)">Seattle</a></li>
-<li><a href="javascript:void(0)">Las Vegas</a></li>
-<li><a href="javascript:void(0)">San Diego</a></li>
-</ul>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-link">
-<h3>Quick Links</h3>
-<ul>
-<li><a href="javascript:void(0)">About Us</a></li>
-<li><a href="javascript:void(0)">How It's Works</a></li>
-<li><a href="javascript:void(0)">Login</a></li>
-<li><a href="javascript:void(0)">Signup</a></li>
-<li><a href="javascript:void(0)">Help & Support</a></li>
-</ul>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-contact">
-<h3>Contact</h3>
-<ul>
-<li>23 New Design Str, Lorem Upsum 10<br> Hudson Yards, USA</li>
-<li>Tel. +(123) 1800-567-8990 <br> Mail. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1828481819e8385b1929d908282989683989582df929e9c">[email&#160;protected]</a></li>
-</ul>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-
 <div class="footer-bottom">
 <div class="container">
 <div class="inner">
 <div class="row">
 <div class="col-12">
 <div class="content">
-<ul class="footer-bottom-links">
-<li><a href="javascript:void(0)">Terms of use</a></li>
-<li><a href="javascript:void(0)"> Privacy Policy</a></li>
-<li><a href="javascript:void(0)">Advanced Search</a></li>
-<li><a href="javascript:void(0)">Site Map</a></li>
- <li><a href="javascript:void(0)">Information</a></li>
-</ul>
-<p class="copyright-text">Designed and Developed by <a href="https://graygrids.com/" rel="nofollow" target="_blank">GrayGrids</a>
+<p class="copyright-text">Designed and Developed by 1조
 </p>
-<ul class="footer-social">
-<li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
-</ul>
 </div>
 </div>
 </div>
@@ -570,7 +502,7 @@ Google Play
 
 
 <a href="#" class="scroll-top btn-hover">
-<i class="lni lni-chevron-up"></i>
+<i class="fas fa-arrow-up"></i>
 </a>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -579,5 +511,6 @@ Google Play
 <script src="resources/js/tiny-slider.js"></script>
 <script src="resources/js/glightbox.min.js"></script>
 <script src="resources/js/main.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </body>
 </html>

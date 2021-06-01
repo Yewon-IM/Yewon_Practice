@@ -1,5 +1,10 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.yogi.hoxy.dtos.ProductDto"%>
+<%@page import="java.util.List"%>
+<%@page import="com.yogi.hoxy.utils.Utils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="com.yogi.hoxy.dtos.MemberDto"%>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -7,6 +12,8 @@
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>판매자 메인 홈페이지</title>
+<% List<ProductDto> pList = (List<ProductDto>) request.getAttribute("pList"); %>
+<% List<Map<String, Integer>> list = (List<Map<String, Integer>>) request.getAttribute("list"); %>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -163,151 +170,74 @@ Or Search For Property, Jobs And More.</p>
 </section>
 
 
-<section class="categories style2">
+<section class="items-grid section custom-padding">
 <div class="container">
-<div class="cat-inner">
 <div class="row">
 <div class="col-12">
 <div class="section-title">
-<h2 class="wow fadeInUp" data-wow-delay=".4s">Explore by Category</h2>
- <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
-Ipsum available, but the majority have suffered alteration in some form.</p>
+<h2 class="wow fadeInUp" data-wow-delay=".4s">최신 상품</h2>
+<p class="wow fadeInUp" data-wow-delay=".6s"></p>
 </div>
 </div>
 </div>
+<div class="single-head">
 <div class="row">
-<div class="col-lg-2 col-md-3 col-12">
 
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
-<div class="icon">
-<img src="assets/images/categories/car.svg" alt="#">
-</div>
-<h3>Vehicle</h3>
-<h5 class="total">35</h5>
-</a>
 
-</div>
-<div class="col-lg-2 col-md-3 col-12">
+<%  for(ProductDto dto : pList){
+%>
 
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".4s">
-<div class="icon">
-<img src="assets/images/categories/laptop.svg" alt="#">
-</div>
-<h3>Electronics</h3>
-<h5 class="total">22</h5>
-</a>
 
+<div class="col-lg-4 col-md-6 col-12">
+<div class="single-grid wow fadeInUp" data-wow-delay=".2s">
+<div class="image">
+<a href="productDetail.do?product_seq=<%=dto.getProduct_seq()%>" class="thumbnail"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>
+<div class="author">
+<div class="author-image">
+<a href="myProductList.do?shopId=<%=dto.getShopDto().getShopId()%>"><img src="upload/shop/<%=dto.getShopDto().getShopImg() %>" alt="#">
+<span><%=dto.getShopDto().getShopName()%></span></a>
 </div>
-<div class="col-lg-2 col-md-3 col-12">
+<p class="sale"><%=dto.getShopDto().getLocal() %></p>
+</div>
+</div>
+<div class="content">
+<div class="top-content">
 
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".6s">
-<div class="icon">
-<img src="assets/images/categories/matrimony.svg" alt="#">
+<h3 class="title">
+<%=dto.getProductName() %>
+</h3>
+<ul class="info-list">
+<li><a href="search.do?category=<%=dto.getCategory()%>"><%=dto.getCategory() %></a> &nbsp&nbsp <fmt:formatDate pattern = "yyyy/MM/dd" value = "<%=dto.getWriteDate() %>"/></li>
+</ul>
 </div>
-<h3>Matrimony</h3>
-<h5 class="total">55</h5>
-</a>
+<div class="bottom-content">
+<p class="price"><span><%=Utils.comma(dto.getPrice()) %>원</span></p>
+<% boolean isS = false;
+   int likes = 0;
+for(Map<String, Integer> count : list){
+   if(Integer.parseInt(String.valueOf(count.get("product_seq"))) == dto.getProduct_seq()){
+      isS = true;
+      likes = Integer.parseInt(String.valueOf(count.get("count")));
+   }
+}   
+   if(isS){
+      %><a href="javascript:void(0)" class="like"><%=likes%>♥</a><%
+   } else {
+      %><a href="javascript:void(0)" class="like">0♥</a><%
+   } 
+%>
+</div>
+</div>
+</div>
+</div>
 
-</div>
-<div class="col-lg-2 col-md-3 col-12">
 
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".8s">
-<div class="icon">
-<img src="assets/images/categories/furniture.svg" alt="#">
-</div>
-<h3>Furnitures</h3>
-<h5 class="total">21</h5>
-</a>
+<%
+}%>
 
-</div>
-<div class="col-lg-2 col-md-3 col-12">
 
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay="1s">
-<div class="icon">
-<img src="assets/images/categories/jobs.svg" alt="#">
-</div>
-<h3>Jobs</h3>
-<h5 class="total">44</h5>
-</a>
 
-</div>
-<div class="col-lg-2 col-md-3 col-12">
 
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay="1.2s">
-<div class="icon">
-<img src="assets/images/categories/real-estate.svg" alt="#">
-</div>
-<h3>Real Estate</h3>
-<h5 class="total">65</h5>
-</a>
-
-</div>
-<div class="col-lg-2 col-md-3 col-12">
-
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
-<div class="icon">
-<img src="assets/images/categories/hospital.svg" alt="#">
-</div>
-<h3>Health & Beauty</h3>
-<h5 class="total">22</h5>
-</a>
-
-</div>
-<div class="col-lg-2 col-md-3 col-12">
-
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".4s">
-<div class="icon">
-<img src="assets/images/categories/tshirt.svg" alt="#">
-</div>
-<h3>Fashion</h3>
-<h5 class="total">25</h5>
-</a>
-
-</div>
-<div class="col-lg-2 col-md-3 col-12">
-
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".6s">
-<div class="icon">
-<img src="assets/images/categories/education.svg" alt="#">
-</div>
-<h3>Education</h3>
-<h5 class="total">42</h5>
-</a>
-
-</div>
-<div class="col-lg-2 col-md-3 col-12">
-
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay=".8s">
-<div class="icon">
-<img src="assets/images/categories/controller.svg" alt="#">
-</div>
-<h3>Gadgets</h3>
-<h5 class="total">32</h5>
-</a>
-
-</div>
-<div class="col-lg-2 col-md-3 col-12">
-
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay="1s">
-<div class="icon">
-<img src="assets/images/categories/travel.svg" alt="#">
-</div>
-<h3>Backpacks</h3>
-<h5 class="total">15</h5>
-</a>
-
-</div>
-<div class="col-lg-2 col-md-3 col-12">
-
-<a href="category.html" class="single-cat wow fadeInUp" data-wow-delay="1.2s">
-<div class="icon">
-<img src="assets/images/categories/watch.svg" alt="#">
-</div>
-<h3>Watches</h3>
-<h5 class="total">65</h5>
-</a>
-
-</div>
 </div>
 </div>
 </div>
@@ -1504,110 +1434,14 @@ id reiciendis ipsum. </p>
 </div>
 
 <footer class="footer">
-
-<div class="footer-top">
-<div class="container">
-<div class="row">
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer mobile-app">
-<h3>Mobile Apps</h3>
-<div class="app-button">
-<a href="javascript:void(0)" class="btn">
-<i class="lni lni-play-store"></i>
-<span class="text">
-<span class="small-text">Get It On</span>
-Google Play
-</span>
- </a>
-<a href="javascript:void(0)" class="btn">
-<i class="lni lni-apple"></i>
-<span class="text">
-<span class="small-text">Get It On</span>
-App Store
-</span>
-</a>
-</div>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-link">
-<h3>Locations</h3>
-<div class="row">
-<div class="col-lg-6 col-md-6 col-12">
-<ul>
-<li><a href="javascript:void(0)">Chicago</a></li>
-<li><a href="javascript:void(0)">New York City</a></li>
-<li><a href="javascript:void(0)">San Francisco</a></li>
-<li><a href="javascript:void(0)">Washington</a></li>
-<li><a href="javascript:void(0)">Boston</a></li>
-</ul>
-</div>
-<div class="col-lg-6 col-md-6 col-12">
-<ul>
-<li><a href="javascript:void(0)">Los Angeles</a></li>
-<li><a href="javascript:void(0)">Seattle</a></li>
-<li><a href="javascript:void(0)">Las Vegas</a></li>
-<li><a href="javascript:void(0)">San Diego</a></li>
-</ul>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-link">
-<h3>Quick Links</h3>
-<ul>
-<li><a href="javascript:void(0)">About Us</a></li>
-<li><a href="javascript:void(0)">How It's Works</a></li>
-<li><a href="javascript:void(0)">Login</a></li>
-<li><a href="javascript:void(0)">Signup</a></li>
-<li><a href="javascript:void(0)">Help & Support</a></li>
-</ul>
-</div>
-
-</div>
-<div class="col-lg-3 col-md-6 col-12">
-
-<div class="single-footer f-contact">
-<h3>Contact</h3>
-<ul>
-<li>23 New Design Str, Lorem Upsum 10<br> Hudson Yards, USA</li>
-<li>Tel. +(123) 1800-567-8990 <br> Mail. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dfacaaafafb0adab9fbcb3beacacb6b8adb6bbacf1bcb0b2">[email&#160;protected]</a></li>
-</ul>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-
 <div class="footer-bottom">
 <div class="container">
 <div class="inner">
 <div class="row">
 <div class="col-12">
 <div class="content">
-<ul class="footer-bottom-links">
-<li><a href="javascript:void(0)">Terms of use</a></li>
-<li><a href="javascript:void(0)"> Privacy Policy</a></li>
-<li><a href="javascript:void(0)">Advanced Search</a></li>
-<li><a href="javascript:void(0)">Site Map</a></li>
-<li><a href="javascript:void(0)">Information</a></li>
-</ul>
-<p class="copyright-text">Designed and Developed by <a href="https://graygrids.com/" rel="nofollow" target="_blank">GrayGrids</a>
+<p class="copyright-text">Designed and Developed by 1조
 </p>
-<ul class="footer-social">
-<li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
-</ul>
 </div>
 </div>
 </div>
@@ -1619,7 +1453,7 @@ App Store
 
 
 <a href="#" class="scroll-top btn-hover">
-<i class="lni lni-chevron-up"></i>
+<i class="fas fa-arrow-up"></i>
 </a>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -1629,6 +1463,7 @@ App Store
 <script src="resources/js/glightbox.min.js"></script>
 <script src="resources/js/count-up.min.js"></script>
 <script src="resources/js/main.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script type="text/javascript">
         //========= testimonial 
         tns({

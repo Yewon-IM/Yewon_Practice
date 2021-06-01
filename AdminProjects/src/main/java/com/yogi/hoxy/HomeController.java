@@ -56,6 +56,12 @@ public class HomeController {
       String who = (String) session.getAttribute("who");
       String del = (String) session.getAttribute("del");      
       
+      List<ProductDto> pList = yoService.search(null, null, null, null);
+      model.addAttribute("pList", pList);
+
+      List<Map<String, Integer>> list = yoService.peopleLike();
+      model.addAttribute("list", list);
+      
       if (who != null) {
          String name = (String) session.getAttribute("name");
          session.setAttribute("name", name);
@@ -105,6 +111,12 @@ public class HomeController {
          session.setAttribute("power", dto.getPower());
          session.setAttribute("tel", dto.getTel());
          
+         List<ProductDto> pList = yoService.search(null, null, null, null);
+         model.addAttribute("pList", pList);
+
+         List<Map<String, Integer>> list = yoService.peopleLike();
+         model.addAttribute("list", list);
+         
          if(dto.getPower().equals("2")) {
             return "ban";
          } else if(dto.getPower().equals("0")){
@@ -114,12 +126,16 @@ public class HomeController {
          } else if (dto.getWho().equals("0")) {
             return "admin/adminMain";
          } else if (dto.getDel().equals("0") && dto.getWho().equals("1")) {
+        	 
             return "customer/customerMain";
          } else if(dto.getDel().equals("1") && dto.getWho().equals("1")) {
+        	 
             return "customer/delCustomerMain";
          } else if (dto.getDel().equals("0") && dto.getWho().equals("2")) {
+        	 
             return "seller/sellerMain";
          } else if(dto.getDel().equals("1") && dto.getWho().equals("2")) {
+        	 
             return "seller/delSellerMain";
          }                
       }
@@ -846,8 +862,8 @@ public class HomeController {
       
       if(who.equals("2")) {
          if(sdto.getPower().equals("1")) {
-            return "seller/addProduct";            
-         }
+        	 return "seller/addProduct";            
+         } 
       }
       model.addAttribute("msg", "권한 오류입니다.");
       return "error";
@@ -885,6 +901,8 @@ public class HomeController {
       
       HttpSession session = request.getSession();
       String id = (String) session.getAttribute("id");
+      String who = (String) session.getAttribute("who");
+      model.addAttribute("who", who);
       
       if(order != null) {
          List<ProductDto> list = yoService.price();
@@ -895,14 +913,12 @@ public class HomeController {
          
          return "search";
       } else if(shop != null) {
-
-        String who = (String) session.getAttribute("who");
-         
+    	  
+         System.out.println(shopId);
          ShopDto sdto = yoService.listSelShop(shopId);
          model.addAttribute("sdto", sdto);
          
          session.setAttribute("shopId", shopId);
-         model.addAttribute("who", who);
          
          List<ProductDto> list = yoService.search(shopId, category, local, keyword);
          model.addAttribute("list", list);
@@ -926,18 +942,15 @@ public class HomeController {
          }
          return "search";
          
-      } else if(category != null){
-    	  System.out.println(shopId+ category+ local+ keyword);
-    	  
-          List<ProductDto> list = yoService.search(shopId, category, local, keyword);
-          model.addAttribute("list", list);
+      } else {    	  
+         List<ProductDto> list = yoService.search(shopId, category, local, keyword);
+         model.addAttribute("list", list);
          
          List<Map<String, String>> pList = yoService.countCategory();
          model.addAttribute("pList", pList);
          
          return "search";                  
       } 
-   return "error";
       
    }
    
@@ -948,7 +961,8 @@ public class HomeController {
       HttpSession session = request.getSession();
 
       String who = (String) session.getAttribute("who");
-
+      model.addAttribute("who", who);
+            
       ShopDto sdto = yoService.listSelShop(shopId);
       model.addAttribute("sdto", sdto);
 
@@ -958,15 +972,17 @@ public class HomeController {
       List<Map<String, String>> psList = yoService.countCategoryInShop(shopId);
       model.addAttribute("psList", psList);
       
-      model.addAttribute("who", who);
-      
       return "seller/myProductList";         
       
    }
    
    @RequestMapping(value = "/productDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
-   public String productDetail(Locale locale, Model model, int product_seq) {
+   public String productDetail(HttpServletRequest request, Locale locale, Model model, int product_seq) {
       logger.info("상점 물품 리스트", locale);
+      
+      HttpSession session = request.getSession();
+      String who = (String) session.getAttribute("who");
+      model.addAttribute("who", who);
       
       ProductDto dto = yoService.productDetail(product_seq);
       model.addAttribute("dto", dto);
@@ -978,14 +994,11 @@ public class HomeController {
    }
 
    @RequestMapping(value = "/updateStock.do", method = { RequestMethod.GET, RequestMethod.POST })
-   public String updateStock(HttpServletRequest request, Locale locale, Model model, ProductDto dto) {
+   public String updateStock(HttpServletRequest request, Locale locale, Model model, ProductDto dto, @RequestParam("shopId") String shopId) {
       logger.info("재고 업데이트", locale);
       
-      HttpSession session = request.getSession();
-      String shopId = (String) session.getAttribute("shopId");
-      
       boolean isS = yoService.updateStock(dto);
-      
+
       if(isS) {
          ShopDto sdto = yoService.listSelShop(shopId);
          model.addAttribute("sdto", sdto);
@@ -996,14 +1009,11 @@ public class HomeController {
    }
    
    @RequestMapping(value = "/changeStock.do", method = { RequestMethod.GET, RequestMethod.POST })
-   public String changeStock(HttpServletRequest request, Locale locale, Model model, ProductDto dto) {
+   public String changeStock(HttpServletRequest request, Locale locale, Model model, ProductDto dto, @RequestParam("shopId") String shopId) {
       logger.info("재고 수정", locale);
-      
-      HttpSession session = request.getSession();
-      String shopId = (String) session.getAttribute("shopId");
-      
+
       boolean isS = yoService.changeStock(dto);
-      
+
       if(isS) {
          ShopDto sdto = yoService.listSelShop(shopId);
          model.addAttribute("sdto", sdto);
