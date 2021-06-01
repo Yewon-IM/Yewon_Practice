@@ -63,15 +63,7 @@
 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 <ul id="nav" class="navbar-nav ms-auto">
 <li class="nav-item">
-<a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
-<ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href="index.html">Home Default</a></li>
-<li class="nav-item active"><a href="index2.html">Home Version 2</a></li>
-<li class="nav-item"><a href="index3.html">Home Version 3</a></li>
-</ul>
-</li>
- <li class="nav-item">
-<a href="category.html" aria-label="Toggle navigation">Categories</a>
+<a href="." aria-label="Toggle navigation">홈</a>
 </li>
 <li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">마이페이지</a>
@@ -92,7 +84,7 @@
 <p>${name }</p>
 </li>
 <li>
-<a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>
+<a href="logout.do"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
 </li>
 </ul>
 </div>
@@ -111,33 +103,36 @@
 <div class="hero-text wow fadeInLeft" data-wow-delay=".3s">
 
 <div class="section-heading">
-<h2>Welcome to ClassiGrids</h2>
-<p>Buy And Sell Everything From Used Cars To Mobile Phones And <br>Computers,
-Or Search For Property, Jobs And More.</p>
+<h2>Welcome to YOGIHOXY</h2>
+<p>오프라인에서만 구매할 수 있는 상품을 찾으시나요?<br>
+YOGIHOXY에서 간단하게 찾아보세요.</p>
 </div>
 
 </div>
 </div>
 <div class="col-lg-5 col-md-12 col-12">
-<form method="post" action="search.do">
 <div class="search-form style2 wow fadeInRight" data-wow-delay=".5s">
-<h3 class="heading-title">여서 검색혀</h3>
-<p class="sub-heding-text">골라</p>
+<h3 class="heading-title">빠른 검색</h3>
+<p class="sub-heding-text">여기서 빠르게 검색해보세요!</p>
 <div class="row">
 <div class="col-12">
 <div class="search-input">
-<label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
+<label for="category"><i class="far fa-question-circle"></i></label>
 <select name="category" id="category" required>
 <option value="">카테고리</option>
-<option value="과자">과자</option>
+<option value="식품">식품</option>
 <option value="유아">유아</option>
-<option value="악세서리">악세서리</option>
+<option value="식음료">식음료</option>
+<option value="전자기기">전자기기</option>
+<option value="뷰티">뷰티</option>
+<option value="의약품">의약품</option>
+<option value="의류">의류</option>
 </select>
 </div>
 </div>
 <div class="col-12">
 <div class="search-input">
-<label for="local"><i class="lni lni-map-marker theme-color"></i></label>
+<label for="local"><i class="fas fa-map-marked-alt"></i></label>
 <select name="local" id="local" required>
 <option value="구" >지역</option>
 <option value="강남구">강남구</option>
@@ -152,18 +147,17 @@ Or Search For Property, Jobs And More.</p>
 </div>
 <div class="col-12 ">
 <div class="search-input">
-<label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-<input type="text" name="keyword" id="keyword" placeholder="Product keyword">
+<label for="keyword"><i class="fas fa-language"></i></label>
+<input type="text" name="keyword" id="keyword" placeholder="상품명을 입력하세요">
 </div>
 </div>
 <div class="col-12">
 <div class="search-btn button">
-<button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
+<button class="btn"><i class="fas fa-search"></i> 검색</button>
 </div>
 </div>
 </div>
 </div>
-</form>
 </div>
 </div>
 </div>
@@ -191,10 +185,10 @@ Or Search For Property, Jobs And More.</p>
 <div class="col-lg-4 col-md-6 col-12">
 <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
 <div class="image">
-<a href="productDetail.do?product_seq=<%=dto.getProduct_seq()%>" class="thumbnail"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>
+<a class="thumbnail"><img src="upload/product/<%=dto.getImg_Url() %>" alt="productImg"></a>
 <div class="author">
 <div class="author-image">
-<a href="myProductList.do?shopId=<%=dto.getShopDto().getShopId()%>"><img src="upload/shop/<%=dto.getShopDto().getShopImg() %>" alt="#">
+<img src="upload/shop/<%=dto.getShopDto().getShopImg() %>" alt="#">
 <span><%=dto.getShopDto().getShopName()%></span></a>
 </div>
 <p class="sale"><%=dto.getShopDto().getLocal() %></p>
@@ -207,7 +201,7 @@ Or Search For Property, Jobs And More.</p>
 <%=dto.getProductName() %>
 </h3>
 <ul class="info-list">
-<li><a href="search.do?category=<%=dto.getCategory()%>"><%=dto.getCategory() %></a> &nbsp&nbsp <fmt:formatDate pattern = "yyyy/MM/dd" value = "<%=dto.getWriteDate() %>"/></li>
+<li><%=dto.getCategory() %> &nbsp&nbsp <fmt:formatDate pattern = "yyyy/MM/dd" value = "<%=dto.getWriteDate() %>"/></li>
 </ul>
 </div>
 <div class="bottom-content">

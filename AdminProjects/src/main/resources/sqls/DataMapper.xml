@@ -279,7 +279,7 @@
 		<if test="keyword != null"> <!-- 다이나믹쿼리 -->
 		AND UPPER(PRODUCTNAME)LIKE '%' || #{keyword} || '%'
 		</if>
-		ORDER BY WRITEDATE
+		ORDER BY WRITEDATE DESC
 	</select>
 	
 	<select id="searchCategory" resultMap="ProductDtoMap">
@@ -333,7 +333,7 @@
 		SELECT * 
 		FROM PRODUCT p , SHOP s 
 		WHERE p.SHOPID = s.SHOPID
-		ORDER BY PRICE
+		ORDER BY PRICE 
 	</select>
 	
 	<resultMap type="HashMap" id="CountCategrory">

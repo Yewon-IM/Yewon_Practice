@@ -234,7 +234,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <input type="hidden" name="shop" value="1" >
 <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요...">
 <input type="hidden" name="shopId" value="${sdto.shopId }">
-<button type="submit" ><i class="lni lni-search-alt"></i></button>
+<button type="submit" ><i class="fas fa-search"></i></button>
 </form>
 </div>
 
@@ -243,7 +243,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <h3>카테고리</h3>
 <ul class="list">
 <li>
-<a href="search.do?shop=1&category=식품&shopId=${sdto.shopId }"><i class="lni lni-dinner"></i>식품
+<a href="search.do?shop=1&category=식품&shopId=${sdto.shopId }"><i class="fas fa-utensils"></i> 식품
 <span>
 <%
 if(psList != null){
@@ -257,17 +257,17 @@ for(Map<String, String> count : psList){
 }
 	if(result){
 		%><%=cC1 %><%
-	} 
-} else {
-	%>0<% 
+	} else {
+		%>0<%
+	}
 }
 %>
 </span>
 </a>
 </li>
 <li>
-<a href="search.do?shop=1&category=유아&shopId=${sdto.shopId }"><i class="lni lni-control-panel"></i>유아
-
+<a href="search.do?shop=1&category=유아&shopId=${sdto.shopId }"><i class="fas fa-child"></i> 유아
+<span>
 <%
 if(psList != null){
 boolean result = false;
@@ -279,18 +279,18 @@ for(Map<String, String> count : psList){
 	}
 }
 	if(result){
-		%><span><%=cC1 %></span><%
-	} 
-} else {
-	%><span>0</span><% 
-}
+		%><%=cC1 %><%
+	} else {
+		%>0<%
+	}
+} 
 %>
-
+</span>
 </a>
 </li>
 <li>
-<a href="search.do?shop=1&category=식음료&shopId=${sdto.shopId }"><i class="lni lni-bullhorn"></i>식음료
-
+<a href="search.do?shop=1&category=식음료&shopId=${sdto.shopId }"><i class="fas fa-wine-glass-alt"></i> 식음료
+<span>
 <%
 if(psList != null){
 boolean result = false;
@@ -303,17 +303,17 @@ for(Map<String, String> count : psList){
 }
 	if(result){
 		%><span><%=cC1 %></span><%
-	} 
-} else {
-	%><span>0</span><% 
+	} else {
+		%>0<%
+	}
 }
 %>
-
+</span>
 </a>
 </li>
 <li>
-<a href="search.do?shop=1&category=전자기기&shopId=${sdto.shopId }"><i class="lni lni-home"></i>전자기기
-
+<a href="search.do?shop=1&category=전자기기&shopId=${sdto.shopId }"><i class="fas fa-plug"></i> 전자기기
+<span>
 <%
 if(psList != null){
 boolean result = false;
@@ -326,17 +326,17 @@ for(Map<String, String> count : psList){
 }
 	if(result){
 		%><span><%=cC1 %></span><%
-	} 
-} else {
-	%><span>0</span><% 
+	} else {
+		%>0<%
+	}
 }
 %>
-
+</span>
 </a>
 </li>
 <li>
-<a href="search.do?shop=1&category=뷰티&shopId=${sdto.shopId }"><i class="lni lni-bolt"></i>뷰티
-
+<a href="search.do?shop=1&category=뷰티&shopId=${sdto.shopId }"><i class="fas fa-spray-can"></i> 뷰티
+<span>
 <%
 if(psList != null){
 boolean result = false;
@@ -349,17 +349,17 @@ for(Map<String, String> count : psList){
 }
 	if(result){
 		%><span><%=cC1 %></span><%
-	} 
-} else {
-	%><span>0</span><% 
-}
+	} else {
+		%>0<% 
+	}
+} 
 %>
-
+</span>
 </a>
 </li>
 <li>
-<a href="search.do?shop=1&category=의약품&shopId=${sdto.shopId }"><i class="lni lni-tshirt"></i>의약품
-
+<a href="search.do?shop=1&category=의약품&shopId=${sdto.shopId }"><i class="fas fa-capsules"></i> 의약품
+<span>
 <%
 if(psList != null){
 boolean result = false;
@@ -372,17 +372,18 @@ for(Map<String, String> count : psList){
 }
 	if(result){
 		%><span><%=cC1 %></span><%
-	} 
-} else {
-	%><span>0</span><% 
+	} else {
+		%>0<%
+	}
+
 }
 %>
-
+</span>
 </a>
 </li>
 <li>
-<a href="search.do?shop=1&category=의류&shopId=${sdto.shopId }"><i class="lni lni-diamond-alt"></i>의류
-
+<a href="search.do?shop=1&category=의류&shopId=${sdto.shopId }"><i class="fas fa-tshirt"></i> 의류
+<span>
 <%
 if(psList != null){
 boolean result = false;
@@ -395,12 +396,12 @@ for(Map<String, String> count : psList){
 }
 	if(result){
 		%><span><%=cC1 %></span><%
-	} 
-} else {
-	%><span>0</span><% 
+	} else {
+		%>0<%
+	}
 }
 %>
-
+</span>
 </a>
 </li>
 </li>

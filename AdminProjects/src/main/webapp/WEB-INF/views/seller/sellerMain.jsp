@@ -83,7 +83,6 @@
 <li class="single-block">
 <ul>
 <li class="mega-menu-title">마이페이지</li>
-<li class="nav-item"><a href="myPage.do">마이페이지</a></li>
 <li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a></li>
 <li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a></li>
 </ul>

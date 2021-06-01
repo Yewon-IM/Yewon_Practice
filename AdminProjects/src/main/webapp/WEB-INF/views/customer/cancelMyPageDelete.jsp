@@ -62,9 +62,6 @@
 <li class="nav-item">
 <a href="." aria-label="Toggle navigation">홈</a>
 </li>
- <li class="nav-item">
-<a href="search.do" aria-label="Toggle navigation">카테고리</a>
-</li>
 <li class="nav-item">
 <a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">마이페이지</a>
 <ul class="sub-menu mega-menu collapse" id="submenu-1-4">
@@ -84,7 +81,7 @@
 <p>${name } 탈퇴고객님</p>
 </li>
 <li>
-<a href="logout.do"><i class="lni lni-enter"></i> 로그아웃</a>
+<a href="logout.do"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
 </li>
 </ul>
 </div>
@@ -128,11 +125,8 @@
 </div>
 <div class="dashboard-menu">
 <ul>
-<li><a class="active" href="myPageDelete.do"><i class="lni lni-printer"></i> 회원탈퇴</a></li>
+<li><a class="active" href="myPageDelete.do"><i class="far fa-angry"></i> 회원탈퇴</a></li>
 </ul>
-<div class="button">
-<a class="btn" href="logout.do">Logout</a>
-</div>
 </div>
 </div>
 

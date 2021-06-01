@@ -65,18 +65,12 @@
 <li class="mega-menu-title">상점</li>
 <li class=" active nav-item"><a href="myShop.do">내 상점 보기</a></li>
 <li class="nav-item"><a href="myShopAddForm.do">상점 추가</a></li>
-<li class="nav-item"><a href=".">재고요청</a></li>
-<li class="nav-item"><a href=".">상점 달력</a></li>
 </ul>
 </li>
 <li class="single-block">
 <ul>
 <li class="mega-menu-title">마이페이지</li>
-<li class="nav-item"><a href="myPage.do">마이페이지</a>
-</li>
-<li class="nav-item"><a href=".">문의하기</a>
-</li>
-<li class="nav-item"><a href=".">가나다</a></li>
+<li class="nav-item"><a href="myPageUpdateForm.do">정보수정</a></li>
 <li class="nav-item"><a href="myPageDelete.do">회원탈퇴</a>
 </li>
 </ul>

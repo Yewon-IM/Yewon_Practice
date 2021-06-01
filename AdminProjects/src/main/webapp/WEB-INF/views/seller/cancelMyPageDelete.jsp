@@ -53,7 +53,7 @@
 <div class="nav-inner">
 <nav class="navbar navbar-expand-lg">
 <a class="navbar-brand" href=".">
-<img src="assets/images/logo/logo.svg" alt="Logo">
+<img src="upload/logo.jpg" alt="Logo">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="toggler-icon"></span>
@@ -63,15 +63,7 @@
 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 <ul id="nav" class="navbar-nav ms-auto">
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
-<ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href=".">Home Default</a></li>
-<li class="nav-item"><a href=".">Home Version 2</a></li>
-<li class="nav-item"><a href=".">Home Version 3</a></li>
-</ul>
-</li>
-<li class="nav-item">
- <a href="category.html" aria-label="Toggle navigation">Categories</a>
+<a href="." aria-label="Toggle navigation">홈</a>
 </li>
 <li class="nav-item">
 <a class=" active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">마이페이지</a>
@@ -92,7 +84,7 @@
 <p>${name }</p>
 </li>
 <li>
-<a href="logout.do"><i class="lni lni-user"></i>로그아웃</a>
+<a href="logout.do"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
 </li>
 </ul>
 </div>
@@ -135,11 +127,8 @@
 </div>
 <div class="dashboard-menu">
 <ul>
-<li><a class="active" href="myPageDelete.do"><i class="lni lni-printer"></i> 회원탈퇴</a></li>
+<li><a class="active" href="myPageDelete.do"><i class="far fa-angry"></i> 회원탈퇴</a></li>
 </ul>
-<div class="button">
-<a class="btn" href="logout.do">Logout</a>
-</div>
 </div>
 </div>
 </div>
@@ -203,15 +192,6 @@
 </div>
 </div>
 </div>
-</div>
-<div class="pagination left">
-<ul class="pagination-list">
-<li class="active"><a href="javascript:void(0)">1</a></li>
-<li><a href="javascript:void(0)">2</a></li>
-<li><a href="javascript:void(0)">3</a></li>
-<li><a href="javascript:void(0)">4</a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
-</ul>
 </div>
 </section>
 

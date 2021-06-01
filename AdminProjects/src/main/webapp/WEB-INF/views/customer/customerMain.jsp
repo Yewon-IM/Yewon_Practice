@@ -127,7 +127,7 @@ YOGIHOXY에서 간단하게 찾아보세요.</p>
 <div class="row">
 <div class="col-12">
 <div class="search-input">
-<label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
+<label for="category"><i class="far fa-question-circle"></i></label>
 <select name="category" id="category" required>
 <option value="">카테고리</option>
 <option value="식품">식품</option>
@@ -142,7 +142,7 @@ YOGIHOXY에서 간단하게 찾아보세요.</p>
 </div>
 <div class="col-12">
 <div class="search-input">
-<label for="local"><i class="lni lni-map-marker theme-color"></i></label>
+<label for="local"><i class="fas fa-map-marked-alt"></i></label>
 <select name="local" id="local" required>
 <option value="구" >지역</option>
 <option value="강남구">강남구</option>
@@ -157,13 +157,13 @@ YOGIHOXY에서 간단하게 찾아보세요.</p>
 </div>
 <div class="col-12 ">
 <div class="search-input">
-<label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-<input type="text" name="keyword" id="keyword" placeholder="상품명을 입력하세요.">
+<label for="keyword"><i class="fas fa-language"></i></label>
+<input type="text" name="keyword" id="keyword" placeholder="상품명을 입력하세요">
 </div>
 </div>
 <div class="col-12">
 <div class="search-btn button">
-<button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
+<button class="btn"><i class="fas fa-search"></i> 검색</button>
 </div>
 </div>
 </div>
@@ -173,6 +173,7 @@ YOGIHOXY에서 간단하게 찾아보세요.</p>
 </div>
 </div>
 </section>
+
 
 
 <section class="items-grid section custom-padding">

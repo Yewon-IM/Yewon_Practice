@@ -137,13 +137,13 @@
 </div>
 <div class="dashboard-menu">
 <ul>
-<li><a class="active" href="newMemberList.do"><i class="lni lni-circle-plus"></i>신규회원</a></li>
-<li><a href="memberList.do"><i class="lni lni-bookmark"></i>회원리스트</a></li>
-<li><a href="delMemberList.do"><i class="lni lni-envelope"></i>탈퇴회원</a></li>
-<li><a href="newShopList.do"><i class="lni lni-pencil-alt"></i>신규상점</a></li>
-<li><a href="shopList.do"><i class="lni lni-bolt-alt"></i>상점 리스트</a></li>
-<li><a href="delShopList.do"><i class="lni lni-heart"></i>삭제요청한 상점</a></li>
-<li><a href="error"><i class="lni lni-trash"></i>퇴사</a></li>
+<li><a class="active" href="newMemberList.do"><i class="fas fa-user-plus"></i> 신규회원</a></li>
+<li><a href="memberList.do"><i class="far fa-id-card"></i> 회원리스트</a></li>
+<li><a href="delMemberList.do"><i class="fas fa-user-minus"></i> 탈퇴회원</a></li>
+<li><a href="newShopList.do"><i class="fas fa-store"></i> 신규상점</a></li>
+<li><a href="shopList.do"><i class="fas fa-shopping-cart"></i> 상점 리스트</a></li>
+<li><a href="delShopList.do"><i class="fas fa-store-slash"></i> 삭제요청한 상점</a></li>
+<li><a href="error"><i class="far fa-laugh-squint"></i> 퇴사</a></li>
 </ul>
 <div class="button">
 <a class="btn" href="logout.do">Logout</a>
