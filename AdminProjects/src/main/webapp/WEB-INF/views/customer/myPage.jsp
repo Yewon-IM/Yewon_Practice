@@ -1,3 +1,4 @@
+<%@page import="com.yogi.hoxy.utils.Utils"%>
 <%@page import="java.util.List"%>
 <%@page import="com.yogi.hoxy.dtos.MemberShoppingDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -272,7 +273,7 @@
 </div>
 <span class="time">카테고리 : <%=msdto.getProductDto().getCategory() %></span>
 <span class="time">제품이름 : <%=msdto.getProductDto().getProductName() %></span>
-<span class="time">가격 : <%=msdto.getProductDto().getPrice() %></span>
+<span class="time">가격 : <%=Utils.comma(msdto.getProductDto().getPrice()) %>원</span>
 <span class="time">재고 : <%=msdto.getProductDto().getStock() %></span>
 <span class="remove"><a href="deleteLikeList.do?product_seq=<%=msdto.getProduct_seq() %>"><img src="resources/image/delete.png"></a></span>
 </li>

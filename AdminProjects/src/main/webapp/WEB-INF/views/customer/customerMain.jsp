@@ -146,9 +146,13 @@ Or Search For Property, Jobs And More.</p>
 <label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
 <select name="category" id="category" required>
 <option value="">카테고리</option>
-<option value="과자">과자</option>
+<option value="식품">식품</option>
 <option value="유아">유아</option>
-<option value="악세서리">악세서리</option>
+<option value="식음료">식음료</option>
+<option value="전자기기">전자기기</option>
+<option value="뷰티">뷰티</option>
+<option value="의약품">의약품</option>
+<option value="의류">의류</option>
 </select>
 </div>
 </div>

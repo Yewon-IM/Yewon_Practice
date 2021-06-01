@@ -210,7 +210,7 @@ ${name }
 <h3>카테고리</h3>
 <ul class="list">
 <li>
-<a href="search.do?category=식품&shopId="><i class="lni lni-dinner"></i>식품
+<a href="search.do?category=식품"><i class="lni lni-dinner"></i>식품
 <span>
 <%
 boolean result = false;
@@ -231,7 +231,7 @@ for(Map<String, String> count : pList){
 </a>
 </li>
 <li>
-<a href="search.do?category=유아&shopId="><i class="lni lni-control-panel"></i>유아
+<a href="search.do?category=유아"><i class="lni lni-control-panel"></i>유아
 <span>
 <%
 int cC2 = 0;
@@ -251,7 +251,7 @@ for(Map<String, String> count : pList){
 </a>
 </li>
 <li>
-<a href="search.do?category=식음료&shopId="><i class="lni lni-bullhorn"></i>식음료
+<a href="search.do?category=식음료"><i class="lni lni-bullhorn"></i>식음료
 <span>
 <%
 int cC3 = 0;
@@ -271,7 +271,7 @@ for(Map<String, String> count : pList){
 </a>
 </li>
 <li>
-<a href="search.do?category=전자기기&shopId="><i class="lni lni-home"></i>전자기기
+<a href="search.do?category=전자기기"><i class="lni lni-home"></i>전자기기
 <span>
 <%
 int cC4 = 0;
@@ -291,7 +291,7 @@ for(Map<String, String> count : pList){
 </a>
 </li>
 <li>
-<a href="search.do?category=뷰티&shopId="><i class="lni lni-bolt"></i>뷰티
+<a href="search.do?category=뷰티"><i class="lni lni-bolt"></i>뷰티
 <span>
 <%
 int cC5 = 0;
@@ -311,7 +311,7 @@ for(Map<String, String> count : pList){
 </a>
 </li>
 <li>
-<a href="search.do?category=의약품&shopId="><i class="lni lni-tshirt"></i>의약품
+<a href="search.do?category=의약품"><i class="lni lni-tshirt"></i>의약품
 <span>
 <%
 int cC6 = 0;
@@ -331,7 +331,7 @@ for(Map<String, String> count : pList){
 </a>
 </li>
 <li>
-<a href="search.do?category=의류&shopId="><i class="lni lni-diamond-alt"></i>의류
+<a href="search.do?category=의류"><i class="lni lni-diamond-alt"></i>의류
 <span>
 <%
 int cC7 = 0;
