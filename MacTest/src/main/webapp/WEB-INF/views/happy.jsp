@@ -15,6 +15,7 @@
 		<td>아이디</td>
 		<td>이름</td>
 	</tr>
+	<tr>
 	<%if(list.size() == 0 || list == null){
 		out.println("리스트가 비어있습니다.");
 	} else {
