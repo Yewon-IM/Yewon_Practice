@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.yogi.hoxy">
+	
+	<select id="adminList" resultType="MemberDto">
+		SELECT *
+		FROM MEMBER
+		WHERE POWER = '0'
+	</select>
+	
+	<select id="loginInfo" parameterType="String" resultType="String">
+		SELECT WHO
+		FROM MEMBER
+		WHERE ID = #{id} 
+	</select>
+	
+	<select id="listShop" resultType="ShopDto">
+		SELECT *
+		FROM SHOP 
+		WHERE POWER = '0'
+	</select>
+	
+	<delete id="listDel" parameterType="String">
+		DELETE FROM MEMBER WHERE ID = #{id}
+	</delete>
+	
+	<update id="listUp" parameterType="MemberDto">
+		UPDATE MEMBER SET POWER='1' WHERE ID=#{id}
+	</update>
+	
+	<select id="listSel" parameterType="String" resultType="MemberDto">
+		SELECT *
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="listSelShop" parameterType="String" resultType="ShopDto">
+		SELECT * 
+		FROM SHOP 
+		WHERE SHOPID = #{shopId}
+	</select>
+	
+	<update id="listUpShop" parameterType="ShopDto">
+		UPDATE SHOP SET POWER = '1' 
+		WHERE SHOPID = #{shopId} 
+	</update>
+	
+	<delete id="shopDel" parameterType="String">
+		DELETE FROM SHOP WHERE SHOPID = #{shopId}
+	</delete>
+	 
+	<select id="shopList" resultType="ShopDto">
+		SELECT * FROM SHOP WHERE POWER >= '1' AND DEL = '0'	
+	</select>
+	
+	<select id="memberList" resultType="MemberDto">
+		SELECT *
+		FROM MEMBER
+		WHERE POWER != '0'
+	</select>
+	
+	<update id="memUpdate" parameterType="MemberDto">
+		UPDATE "MEMBER" 
+		SET PWD= #{pwd}, NAME= #{name}, EMAIL= #{email}, TEL= #{tel}, LOCAL= #{local}, OADD= #{oAdd}, "ADD"= #{add}, DETAILADD= #{detailAdd}, WHO= #{who}, POWER= #{power}, DEL= #{del}
+		<if test="profileImg != null"> <!-- 다이나믹쿼리 -->
+			, PROFILEIMG= #{profileImg}
+		</if>
+		WHERE ID = #{id}		
+	</update>
+	
+	
+	<update id="memUpdate1real" parameterType="MemberDto">
+		UPDATE "MEMBER" 
+		SET PWD= #{pwd}, NAME= #{name}, EMAIL= #{email}, TEL= #{tel}, LOCAL= #{local}, OADD= #{oAdd}, "ADD"= #{add}, DETAILADD= #{detailAdd}, WHO= #{who}, POWER= #{power} , DEL= #{del}
+		WHERE ID = #{id}		
+	</update>
+	
+	<insert id="shopAdd" parameterType="ShopDto">
+		INSERT INTO SHOP 
+		(SHOPID, ID, SHOPNAME, SHOPODD, SHOPADD, SHOPDETAILADD, SHOPTEL, LOCAL, BUSINESSNUM, OPENDATE, POWER, DEL, SHOPIMG) 
+		VALUES(SHOP_SHOPID.NEXTVAL, #{id}, #{shopName}, #{shopOdd}, #{shopAdd}, #{shopDetailAdd}, #{shopTel}, #{local}, #{businessNum}, SYSDATE, '0', '0', #{shopImg})
+	</insert>
+	
+	<select id="login" parameterType="Map" resultType="String">
+		SELECT DECODE(COUNT(*),1,'true','false') AS RESULT 
+		FROM MEMBER
+		WHERE ID = #{id} AND PWD = #{pwd}
+	</select>
+
+	<update id="shopUpdate" parameterType="ShopDto">
+		UPDATE SHOP SET SHOPNAME= #{shopName}, SHOPODD= #{shopOdd}, SHOPADD= #{shopAdd}, 
+		SHOPDETAILADD= #{shopDetailAdd}, SHOPTEL= #{shopTel}, LOCAL= #{local}, BUSINESSNUM= #{businessNum}, 
+		POWER= #{power} , DEL= #{del}
+		<if test="shopImg != null">
+		, SHOPIMG= #{shopImg}		
+		</if>
+		WHERE SHOPID= #{shopId}
+	</update>
+
+	<delete id="shopDelete" parameterType="String">
+		DELETE FROM SHOP WHERE SHOPID= #{shopId}
+	</delete>
+
+
+
+
+	
+	<select id="myShop" parameterType="String" resultType="ShopDto">
+		SELECT * 
+		FROM SHOP
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="myShopDetail" parameterType="Map" resultType="ShopDto">
+		SELECT * 
+		FROM SHOP  
+		WHERE ID = #{id} AND SHOPID = #{shopId}
+	</select>
+	
+	<update id="myShopUpdate" parameterType="ShopDto">
+		UPDATE SHOP SET SHOPNAME= #{shopName}, SHOPODD= #{shopOdd}, SHOPADD= #{shopAdd}, 
+		SHOPDETAILADD= #{shopDetailAdd}, SHOPTEL= #{shopTel}, LOCAL= #{local}, BUSINESSNUM= #{businessNum}
+		<if test="shopImg != null">
+		, SHOPIMG= #{shopImg}		
+		</if>
+		WHERE SHOPID= #{shopId}
+	</update>
+	
+	<update id="myShopDelete" parameterType="String">
+		UPDATE SHOP SET DEL = '1' WHERE SHOPID= #{shopId}
+	</update>
+	
+	<update id="myShopCan" parameterType="String">
+		UPDATE SHOP SET DEL = '0' WHERE SHOPID= #{shopId}
+	</update>
+	
+	
+	
+	
+	
+	<update id="myPageDel" parameterType="String">
+		UPDATE MEMBER SET DEL = '1'
+		WHERE ID = #{id}
+	</update>
+
+	<update id="myPageCan" parameterType="String">
+		UPDATE MEMBER SET DEL = '0'
+		WHERE ID = #{id}
+	</update>
+	
+	<select id="delList" resultType="MemberDto">
+		SELECT * FROM MEMBER WHERE DEL = '1'
+	</select>
+	
+	<select id="delShopList" resultType="ShopDto">
+		SELECT * FROM SHOP WHERE DEL ='1'
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<resultMap type="com.yogi.hoxy.dtos.ProductDto" id="ProductDto">
+		<result property="product_seq" column="product_seq" />
+		<result property="shopId" column="shopId" />
+		<result property="id" column="id" />
+		<result property="productName" column="productName" />
+		<result property="content" column="content" />
+		<result property="price" column="price" />
+		<result property="stock" column="stock" />
+		<result property="img_Url" column="img_Url" />
+		<result property="writeDate" column="writeDate" />
+		<result property="category" column="category" />
+		<result property="like" column="like" />
+	</resultMap>
+	
+	<resultMap type="com.yogi.hoxy.dtos.MemberShoppingDto" id="MemberShoppingDtoMap">
+		<result property="id" column="id"/>
+		<result property="like" column="like"/>
+		<result property="product_seq" column="product_seq"/>
+		<collection property="productDto" resultMap="ProductDto"/>
+	</resultMap>
+	
+	<select id="likeList" parameterType="String" resultMap="MemberShoppingDtoMap">
+		SELECT m.PRODUCT_SEQ , p.SHOPID , p.PRODUCTNAME , p.PRICE , p.STOCK , p.IMG_URL , p.CATEGORY
+		FROM MEMBERSHOPPING m JOIN PRODUCT p ON m.PRODUCT_SEQ = p.PRODUCT_SEQ 
+		WHERE m.ID= #{id} AND m."LIKE" = '1'
+		ORDER BY p.WRITEDATE ASC
+	</select>
+	
+	<select id="searchLike" parameterType="String" resultType="MemberShoppingDto">
+		SELECT * 
+		FROM MEMBERSHOPPING
+		WHERE "LIKE" = '1' AND ID = #{id} 	
+	</select>
+	
+	<select id="searchNotLike" resultType="ProductDto">
+		SELECT PRODUCT_SEQ FROM PRODUCT
+	</select>
+	
+	<update id="likeCancel" parameterType="Map">
+		UPDATE MEMBERSHOPPING SET "LIKE"= '0' 
+		WHERE PRODUCT_SEQ= #{product_seq} AND ID= #{id}
+	</update>
+	
+	<insert id="like" parameterType="Map">
+		INSERT INTO MEMBERSHOPPING (ID, "LIKE", PRODUCT_SEQ) 
+		VALUES(#{id}, '1', #{product_seq})
+	</insert>
+	
+	<insert id="addProduct" parameterType="ProductDto">
+		INSERT INTO PRODUCT (PRODUCT_SEQ, SHOPID, ID, PRODUCTNAME, CONTENT, PRICE, STOCK, IMG_URL, WRITEDATE, CATEGORY, "LIKE") 
+		VALUES(PRODUCT_SEQ.NEXTVAL, #{shopId}, #{id}, #{productName}, #{content}, #{price}, #{stock}, #{img_Url}, sysdate, #{category}, '0')
+	</insert>
+	
+<!-- 		SELECT p.PRODUCT_SEQ , p.PRODUCTNAME , p.CONTENT , p.PRICE , p.STOCK , p.IMG_URL , p.CATEGORY , p."LIKE" , s.SHOPNAME , s."LOCAL"  -->
+	
+	
+	
+	<resultMap type="com.yogi.hoxy.dtos.ProductDto" id="ProductDtoMap">
+		<id property="product_seq" column="product_seq"/>
+		<result property="product_seq" column="product_seq" />
+		<result property="shopId" column="shopId" />
+		<result property="id" column="id" />
+		<result property="productName" column="productName" />
+		<result property="content" column="content" />
+		<result property="price" column="price" />
+		<result property="stock" column="stock" />
+		<result property="img_Url" column="img_Url" />
+		<result property="writeDate" column="writeDate" />
+		<result property="category" column="category" />
+		<result property="like" column="like" />
+		<collection property="shopDto" resultMap="ShopDto" />
+	</resultMap>
+	
+	<resultMap type="com.yogi.hoxy.dtos.ShopDto" id="ShopDto">
+		<result property="id" column="id" />
+		<result property="shopId" column="shopId" />
+		<result property="shopName" column="shopName" />
+		<result property="shopOdd" column="shopOdd" />
+		<result property="shopDetailAdd" column="shopDetailAdd" />
+		<result property="shopTel" column="shopTel" />
+		<result property="local" column="local" />
+		<result property="businessNum" column="businessNum" />
+		<result property="openDate" column="openDate" />
+		<result property="power" column="power" />
+		<result property="del" column="del" />
+		<result property="shopImg" column="shopImg" />
+	</resultMap>
+	
+	<select id="search" parameterType="Map" resultMap="ProductDtoMap">
+		SELECT *
+		FROM PRODUCT p , SHOP s
+		WHERE p.SHOPID = s.SHOPID 
+		<if test="shopId != null">
+		AND p.SHOPID = #{shopId}
+		</if>
+		<if test="category != null">
+		AND p.CATEGORY = #{category} 		
+		</if>
+		<if test="local != null"> <!-- 다이나믹쿼리 -->
+		AND UPPER(LOCAL) LIKE '%' || #{local} || '%'
+		</if>
+		<if test="keyword != null"> <!-- 다이나믹쿼리 -->
+		AND UPPER(PRODUCTNAME)LIKE '%' || #{keyword} || '%'
+		</if>
+		ORDER BY WRITEDATE DESC
+	</select>
+	
+	<select id="searchCategory" resultMap="ProductDtoMap">
+		SELECT *
+		FROM PRODUCT p , SHOP s
+		WHERE p.SHOPID = s.SHOPID AND CATEGORY = #{category}
+	</select>
+	
+	<select id="productList" resultMap="ProductDtoMap">
+		SELECT * 
+		FROM PRODUCT p , SHOP s
+		WHERE p.SHOPID = s.SHOPID
+	</select>
+	
+	
+	<select id="myProductList" parameterType="String" resultMap="ProductDtoMap">
+		SELECT * 
+		FROM PRODUCT p , SHOP s 
+		WHERE p.SHOPID = s.SHOPID AND p.SHOPID = #{shopId}
+	</select>
+	
+	<update id="updateStock" parameterType="ProductDto">
+		UPDATE PRODUCT SET STOCK= STOCK + #{stock}  
+		WHERE PRODUCT_SEQ= #{product_seq}
+	</update>
+
+	<update id="changeStock" parameterType="ProductDto">
+		UPDATE PRODUCT SET STOCK= #{stock}  
+		WHERE PRODUCT_SEQ= #{product_seq}
+	</update>
+	
+	<select id="productDetail" parameterType="int" resultMap="ProductDtoMap">
+		SELECT * 
+		FROM PRODUCT p, SHOP s
+		WHERE p.SHOPID = s.SHOPID AND p.PRODUCT_SEQ = #{product_seq}
+	</select>
+	
+	<resultMap type="HashMap" id="CountLike">
+		<id column="PRODUCT_SEQ" property="product_seq"/>
+		<id column="COUNT" property="count"/>
+	</resultMap>
+	
+	<select id="peopleLike" resultMap="CountLike">
+		SELECT PRODUCT_SEQ , COUNT(PRODUCT_SEQ) as COUNT
+		FROM MEMBERSHOPPING m 
+		WHERE "LIKE" = '1' 
+		GROUP BY PRODUCT_SEQ
+	</select>
+	
+	<select id="price" resultMap="ProductDtoMap">
+		SELECT * 
+		FROM PRODUCT p , SHOP s 
+		WHERE p.SHOPID = s.SHOPID
+		ORDER BY PRICE 
+	</select>
+	
+	<resultMap type="HashMap" id="CountCategrory">
+		<id column="CATEGORY" property="category"/>
+		<id column="COUNT" property="count"/>
+	</resultMap>
+	
+	<select id="countCategory" resultMap="CountCategrory">
+		SELECT CATEGORY , COUNT(CATEGORY) AS COUNT
+		FROM PRODUCT p 
+		GROUP BY CATEGORY
+	</select>
+	
+	<select id="countCategoryInShop" parameterType="String" resultMap="CountCategrory">
+		SELECT CATEGORY , COUNT(CATEGORY) AS COUNT
+		FROM PRODUCT p 
+		WHERE SHOPID = #{shopId}
+		GROUP BY CATEGORY
+	</select>
+</mapper>
