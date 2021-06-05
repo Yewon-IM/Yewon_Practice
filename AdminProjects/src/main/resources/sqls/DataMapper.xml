@@ -292,6 +292,7 @@
 		SELECT * 
 		FROM PRODUCT p , SHOP s
 		WHERE p.SHOPID = s.SHOPID
+		ORDER BY PRICE
 	</select>
 	
 	
@@ -333,7 +334,7 @@
 		SELECT * 
 		FROM PRODUCT p , SHOP s 
 		WHERE p.SHOPID = s.SHOPID
-		ORDER BY PRICE 
+		ORDER BY 1PRICE 
 	</select>
 	
 	<resultMap type="HashMap" id="CountCategrory">
