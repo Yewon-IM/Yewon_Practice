@@ -80,6 +80,7 @@ public class HomeController {
             return "seller/delSellerMain";
          } else {
             return "error";
+
          }
       } else {
          return "home";         
