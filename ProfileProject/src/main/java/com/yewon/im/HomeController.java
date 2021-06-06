@@ -2,6 +2,7 @@ package com.yewon.im;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yewon.im.dtos.ProfileDto;
 import com.yewon.im.service.IProfileService;
 
 /**
@@ -39,6 +41,16 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}
+	
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+	public String main(Locale locale, Model model) {
+		logger.info("메인화면.", locale);
+		
+		List<ProfileDto> list = profileService.memberList();
+		model.addAttribute("list", list);
+		System.out.println(list);
+		return "main";
 	}
 	
 }

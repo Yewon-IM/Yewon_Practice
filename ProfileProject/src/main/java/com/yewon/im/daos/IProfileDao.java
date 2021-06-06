@@ -1,5 +1,10 @@
 package com.yewon.im.daos;
 
-public interface IProfileDao {
+import java.util.List;
 
+import com.yewon.im.dtos.ProfileDto;
+
+public interface IProfileDao {
+	
+	public List<ProfileDto> memberList();
 }

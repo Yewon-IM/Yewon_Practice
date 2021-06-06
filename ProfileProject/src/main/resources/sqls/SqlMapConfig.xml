@@ -4,7 +4,8 @@
 <!-- 	DB 접속정보 파일 설정 -->
 	
 <!-- 	변수설정 -->
-	<typeAliases>		
+	<typeAliases>
+		<typeAlias type="com.yewon.im.dtos.ProfileDto" alias="ProfileDto"/>
 	</typeAliases>
 	
 <!-- 	DB접속 정보 셋팅 -->

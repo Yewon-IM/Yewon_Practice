@@ -3,5 +3,8 @@
 	
 <mapper namespace="com.yewon.im">
 	
+	<select id="memberList" resultType="ProfileDto">
+		SELECT * FROM PROFILE
+	</select>
 
 </mapper>

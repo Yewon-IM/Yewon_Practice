@@ -12,6 +12,6 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href="">하이</a>
+<a href="main.do">메인</a>
 </body>
 </html>
