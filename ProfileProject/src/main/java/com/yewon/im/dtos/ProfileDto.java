@@ -8,8 +8,11 @@ public class ProfileDto {
 	private String name;
 	private String pwd;
 	private int age;
+	private String tel;
+	private String email;	
 	private String local;
 	private String job;
+	private String introduce;
 	private Date birthday;
 	private int like;
 	private String gender;
@@ -21,15 +24,18 @@ public class ProfileDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProfileDto(int seq, String name, String pwd, int age, String local, String job, Date birthday, int like,
-			String gender, String hobby, int who) {
+	public ProfileDto(int seq, String name, String pwd, int age, String tel, String email, String local, String job,
+			String introduce, Date birthday, int like, String gender, String hobby, int who) {
 		super();
 		this.seq = seq;
 		this.name = name;
 		this.pwd = pwd;
 		this.age = age;
+		this.tel = tel;
+		this.email = email;
 		this.local = local;
 		this.job = job;
+		this.introduce = introduce;
 		this.birthday = birthday;
 		this.like = like;
 		this.gender = gender;
@@ -69,6 +75,22 @@ public class ProfileDto {
 		this.age = age;
 	}
 
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getLocal() {
 		return local;
 	}
@@ -83,6 +105,14 @@ public class ProfileDto {
 
 	public void setJob(String job) {
 		this.job = job;
+	}
+
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
 	}
 
 	public Date getBirthday() {
@@ -127,9 +157,9 @@ public class ProfileDto {
 
 	@Override
 	public String toString() {
-		return "ProfileDto [seq=" + seq + ", name=" + name + ", pwd=" + pwd + ", age=" + age + ", local=" + local
-				+ ", job=" + job + ", birthday=" + birthday + ", like=" + like + ", gender=" + gender + ", hobby="
-				+ hobby + ", who=" + who + "]";
+		return "ProfileDto [seq=" + seq + ", name=" + name + ", pwd=" + pwd + ", age=" + age + ", tel=" + tel
+				+ ", email=" + email + ", local=" + local + ", job=" + job + ", introduce=" + introduce + ", birthday="
+				+ birthday + ", like=" + like + ", gender=" + gender + ", hobby=" + hobby + ", who=" + who + "]";
 	}
-	
+
 }

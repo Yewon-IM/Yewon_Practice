@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yewon.im.dtos.ProfileDto;
 import com.yewon.im.service.IProfileService;
@@ -49,8 +50,17 @@ public class HomeController {
 		
 		List<ProfileDto> list = profileService.memberList();
 		model.addAttribute("list", list);
-		System.out.println(list);
+
 		return "main";
 	}
 	
+	@RequestMapping(value = "/memberHome.do", method = RequestMethod.GET)
+	public String memberHome(Locale locale, Model model, @RequestParam("seq") int seq) {
+		logger.info("홈화면입니다.", locale);
+		
+		ProfileDto dto = (ProfileDto) profileService.memberHome(seq);
+		model.addAttribute("dto", dto);
+		System.out.println(dto);
+		return "memberHome";
+	}
 }

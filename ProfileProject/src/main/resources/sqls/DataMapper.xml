@@ -6,5 +6,8 @@
 	<select id="memberList" resultType="ProfileDto">
 		SELECT * FROM PROFILE
 	</select>
-
+	
+	<select id="memberHome" parameterType="int" resultType="ProfileDto">
+		SELECT * FROM PROFILE WHERE SEQ = #{seq}
+	</select>
 </mapper>

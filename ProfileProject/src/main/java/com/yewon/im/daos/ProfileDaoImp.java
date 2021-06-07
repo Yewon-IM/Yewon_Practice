@@ -20,4 +20,7 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "memberList");
 	}
 	
+	public ProfileDto memberHome(int seq){
+		return sqlSession.selectOne(namespace + "memberHome", seq);
+	}
 }

@@ -18,5 +18,10 @@ public class ProfileService implements IProfileService{
 	public List<ProfileDto> memberList() {
 		return profileSerive.memberList();
 	}
+
+	@Override
+	public ProfileDto memberHome(int seq) {
+		return profileSerive.memberHome(seq);
+	}
 	
 }

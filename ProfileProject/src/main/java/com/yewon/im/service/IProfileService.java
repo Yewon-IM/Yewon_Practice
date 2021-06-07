@@ -7,4 +7,6 @@ import com.yewon.im.dtos.ProfileDto;
 public interface IProfileService {
 
 	public List<ProfileDto> memberList();
+	
+	public ProfileDto memberHome(int seq);
 }
