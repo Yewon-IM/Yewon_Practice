@@ -47,15 +47,10 @@
 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 <ul id="nav" class="navbar-nav ms-auto">
 <li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Home</a>
-<ul class="sub-menu collapse" id="submenu-1-1">
-<li class="nav-item"><a href="index.html">Home Default</a></li>
-<li class="nav-item active"><a href="index2.html">Home Version 2</a></li>
-<li class="nav-item"><a href="index3.html">Home Version 3</a></li>
-</ul>
+<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">홈</a>
 </li>
  <li class="nav-item">
-<a href="category.html" aria-label="Toggle navigation">Categories</a>
+<a href="search.do" aria-label="Toggle navigation">카테고리</a>
 </li>
 <li class="nav-item">
 <a class="active dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">내 상점</a>
@@ -75,14 +70,6 @@
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="nav-item">
-<a class=" dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">회원관리</a>
-<ul class="sub-menu collapse" id="submenu-1-5">
-<li class="nav-item"><a href="newMemberList.do">회원 승인</a></li>
-<li class="nav-item"><a href="memberList.do">회원리스트</a></li>
-<li class="nav-item"><a href="delMemberList.do">탈퇴 회원</a></li>
 </ul>
 </li>
 </ul>
