@@ -5,6 +5,7 @@ import java.util.Date;
 public class ProfileDto {
 	
 	private int seq;
+	private String profileImg;
 	private String name;
 	private String pwd;
 	private int age;
@@ -24,10 +25,11 @@ public class ProfileDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProfileDto(int seq, String name, String pwd, int age, String tel, String email, String local, String job,
-			String introduce, Date birthday, int like, String gender, String hobby, int who) {
+	public ProfileDto(int seq, String profileImg, String name, String pwd, int age, String tel, String email,
+			String local, String job, String introduce, Date birthday, int like, String gender, String hobby, int who) {
 		super();
 		this.seq = seq;
+		this.profileImg = profileImg;
 		this.name = name;
 		this.pwd = pwd;
 		this.age = age;
@@ -49,6 +51,14 @@ public class ProfileDto {
 
 	public void setSeq(int seq) {
 		this.seq = seq;
+	}
+
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
 	}
 
 	public String getName() {
@@ -157,9 +167,10 @@ public class ProfileDto {
 
 	@Override
 	public String toString() {
-		return "ProfileDto [seq=" + seq + ", name=" + name + ", pwd=" + pwd + ", age=" + age + ", tel=" + tel
-				+ ", email=" + email + ", local=" + local + ", job=" + job + ", introduce=" + introduce + ", birthday="
-				+ birthday + ", like=" + like + ", gender=" + gender + ", hobby=" + hobby + ", who=" + who + "]";
+		return "ProfileDto [seq=" + seq + ", profileImg=" + profileImg + ", name=" + name + ", pwd=" + pwd + ", age="
+				+ age + ", tel=" + tel + ", email=" + email + ", local=" + local + ", job=" + job + ", introduce="
+				+ introduce + ", birthday=" + birthday + ", like=" + like + ", gender=" + gender + ", hobby=" + hobby
+				+ ", who=" + who + "]";
 	}
 
 }

@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
     <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>profile with contact information - Bootdey.com</title>
+    <title>개인 홈페이지</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -237,25 +239,23 @@
                         <h4 class="card-title">User Profile</h4>
                     </div>
                     <div class="card-body user-profile-card mb-3">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="user-profile-image rounded-circle" alt="" />
+ 						<c:if test="${dto.profileImg == null }">
+ 							<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="user-profile-image rounded-circle" alt="" />  
+ 						</c:if>
+ 						<c:if test="${dto.profileImg != null }">
+ 							<img src="resources/profileImg/${dto.profileImg }" class="user-profile-image rounded-circle" alt="" />  
+ 						</c:if>
                         <h4 class="text-center h6 mt-2"></h4>
                         <p class="text-center small">${dto.name }</p>
-                        <button class="btn btn-theme btn-sm">${dto.age }</button>
+                        <button class="btn btn-theme btn-sm"><fmt:formatDate value="${dto.birthday }"/></button>
                         <button class="btn btn-theme btn-sm">Message</button>
                     </div>
                     <hr />
                     <div class="card-heading clearfix mt-3">
-                        <h4 class="card-title">User Profile</h4>
+                        <h4 class="card-title">취미</h4>
                     </div>
                     <div class="card-body mb-3">
-                        <a href="#" class="label label-success mb-2">HTML</a>
-                        <a href="#" class="label label-success mb-2">CSS</a>
-                        <a href="#" class="label label-success mb-2">Sass</a>
-                        <a href="#" class="label label-success mb-2">Bootstrap</a>
-                        <a href="#" class="label label-success mb-2">Javascript</a>
-                        <a href="#" class="label label-success mb-2">Photoshop</a>
-                        <a href="#" class="label label-success">UI</a>
-                        <a href="#" class="label label-success">UX</a>
+                        <a href="#" class="label label-success mb-2">${dto.hobby }</a>
                     </div>
                     <hr />
                     <div class="card-heading clearfix mt-3">
@@ -273,15 +273,15 @@
                             <table class="table table-borderless mb-0 text-muted">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Email:</th>
-                                        <td></td>
+                                        <th scope="row">email</th>
+                                        <td>${dto.email }</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Phone:</th>
-                                        <td></td>
+                                        <th scope="row">phone</th>
+                                        <td>${dto.tel }</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Address:</th>
+                                        <th scope="row">local</th>
                                         <td>${dto.local }</td>
                                     </tr>
                                 </tbody>

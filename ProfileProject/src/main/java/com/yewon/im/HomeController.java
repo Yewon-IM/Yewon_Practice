@@ -60,7 +60,7 @@ public class HomeController {
 		
 		ProfileDto dto = (ProfileDto) profileService.memberHome(seq);
 		model.addAttribute("dto", dto);
-		System.out.println(dto);
+		
 		return "memberHome";
 	}
 }

@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
     <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>light user grid - Bootdey.com</title>
+    <title>메인화면</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -459,9 +459,10 @@ background:#F5F5F5;
                 <div class="job-shortby ml-sm-auto d-flex align-items-center">
                     <form class="form-inline">
                         <div class="form-group mb-0">
-                            <label class="justify-content-start mr-2">정렬순 :</label>
+                            <label class="justify-content-start mr-2">정렬 :</label>
                             <div class="short-by">
                                 <select class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                    <option value="">----</option>
                                     <option value="old">나이 많은순</option>
                                     <option value="young">나이 적은순</option>
                                     <option value="birthday">생일순</option>
@@ -482,7 +483,12 @@ background:#F5F5F5;
 					 %><div class="col-sm-6 col-lg-4 mb-4">
 	                    <div class="candidate-list candidate-grid">
 	                        <div class="candidate-list-image">
-	                            <a href="memberHome.do?seq=<%=dto.getSeq() %>"><img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
+	                        <%if(dto.getProfileImg() == null){
+	                            %><a href="memberHome.do?seq=<%=dto.getSeq() %>"><img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a><%
+	                          } else {
+		                        %><a href="memberHome.do?seq=<%=dto.getSeq() %>"><img class="img-fluid" src="resources/profileImg/<%=dto.getProfileImg() %>" alt=""></a><%
+	                          }
+	                        %>
 	                        </div>
 	                        <div class="candidate-list-details">
 	                            <div class="candidate-list-info">
@@ -498,7 +504,7 @@ background:#F5F5F5;
 	                            </div>
 	                            <div class="candidate-list-favourite-time">
 	                                <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-	                                <span class="candidate-list-time order-1"><i class="far fa-clock pr-1"></i><%=dto.getBirthday() %></span>
+	                                <span class="candidate-list-time order-1"><i class="far fa-clock pr-1"></i><fmt:formatDate pattern="yyyy-MM-dd" value="<%=dto.getBirthday() %>"/></span>
 	                            </div>
 	                        </div>
 	                    </div>
