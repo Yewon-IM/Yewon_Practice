@@ -1,3 +1,5 @@
+<%@page import="com.yewon.im.dtos.BoardDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -5,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<% List<BoardDto> list = (List<BoardDto>) request.getAttribute("list"); %>
     <meta charset="utf-8">
     <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
     <!--  All snippets are MIT license http://bootdey.com/license -->
@@ -294,80 +297,87 @@
                 <div class="card card-white grid-margin">
                     <div class="card-body">
                         <div class="post">
-                            <textarea class="form-control" placeholder="Post" rows="4"></textarea>
-                            <div class="post-options">
-                                <a href="#"><i class="fa fa-camera"></i></a>
-                                <a href="#"><i class="fas fa-video"></i></a>
-                                <a href="#"><i class="fa fa-music"></i></a>
-                                <button class="btn btn-outline-primary float-right">Post</button>
-                            </div>
+                        	<form method="post" action="writeBoard.do"> 
+	                        <textarea id="content" class="form-control" placeholder="글을 작성하세요" rows="4"></textarea>
+	                            <div class="post-options">
+	                                <a href="#"><i class="fa fa-camera"></i></a>
+	                                <a href="#"><i class="fas fa-video"></i></a>
+	                                <a href="#"><i class="fa fa-music"></i></a>
+	                                <input type="hidden" id="member_seq" value="${dto.seq }"/>
+	                                <input type="hidden" id="board_img" value="" />
+	                                <input type="button" value="글쓰기" class="btn btn-outline-primary float-right">
+	                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="profile-timeline">
                     <ul class="list-unstyled">
                         <li class="timeline-item">
-                            <div class="card card-white grid-margin">
+                            <c:if test="${list == null }">
+                            	<p>글이 없습니다.</p>
+                            </c:if>
+                            <c:if test="${list != null }">
+                            	<c:forEach var="b" items="${list }">
+                            	
+                            		<div class="card card-white grid-margin">
                                 <div class="card-body">
                                     <div class="timeline-item-header">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                                        <p>Vikash smith <span>posted a status</span></p>
-                                        <small>3 hours ago</small>
+                                        <img src="resources/profileImg/${dto.profileImg }" alt="" />
+                                        <p>${dto.name }</p>
+                                        <small><fmt:formatDate value="${b.writeDate }" pattern="yyyy-MM-dd hh:mm"/></small>
                                     </div>
                                     <div class="timeline-item-post">
-                                        <p>Elavita veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+										<p>${b.content }</p>
                                         <div class="timeline-options">
-                                            <a href="#"><i class="fa fa-thumbs-up"></i> Like (15)</a>
+                                            <a href="#"><i class="fa fa-thumbs-up"></i> Like (${b.like })</a>
                                             <a href="#"><i class="fa fa-comment"></i> Comment (4)</a>
-                                            <a href="#"><i class="fa fa-share"></i> Share (6)</a>
                                         </div>
                                         <div class="timeline-comment">
                                             <div class="timeline-comment-header">
                                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
                                                 <p>Jamara Karle <small>1 hour ago</small></p>
                                             </div>
-                                            <p class="timeline-comment-text">Xullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                            <p class="timeline-comment-text">강연 똥멍청이</p>
                                         </div>
-                                        <div class="timeline-comment">
-                                            <div class="timeline-comment-header">
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                                                <p>Lois Anderson <small>3 hours ago</small></p>
-                                            </div>
-                                            <p class="timeline-comment-text">Coluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-                                        </div>
-                                        <textarea class="form-control" placeholder="Replay"></textarea>
+                                        <textarea class="form-control" placeholder="답글"></textarea>
                                     </div>
                                 </div>
                             </div>
+                            
+                            	</c:forEach>                         	                           	                            	
+                            </c:if>                            
                         </li>
-                        <li class="timeline-item">
-                            <div class="card card-white grid-margin">
-                                <div class="card-body">
-                                    <div class="timeline-item-header">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                                        <p>Veema Walkeror <span>uploaded a photo</span></p>
-                                        <small>7 hours ago</small>
-                                    </div>
-                                    <div class="timeline-item-post">
-                                        <p>totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-                                        <img src="img/post-img01.jpg" alt="" />
-                                        <div class="timeline-options">
-                                            <a href="#"><i class="fa fa-thumbs-up"></i> Like (22)</a>
-                                            <a href="#"><i class="fa fa-comment"></i> Comment (7)</a>
-                                            <a href="#"><i class="fa fa-share"></i> Share (9)</a>
-                                        </div>
-                                        <div class="timeline-comment">
-                                            <div class="timeline-comment-header">
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                                                <p>Memila moriya <small>1 hour ago</small></p>
-                                            </div>
-                                            <p class="timeline-comment-text">Explicabo Nemo enim ipsam voluptatem quia voluptas.</p>
-                                        </div>
-                                        <textarea class="form-control" placeholder="Replay"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        
+<!--                         <li class="timeline-item"> -->
+<!--                             <div class="card card-white grid-margin"> -->
+<!--                                 <div class="card-body"> -->
+<!--                                     <div class="timeline-item-header"> -->
+<!--                                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" /> -->
+<!--                                         <p>Veema Walkeror <span>uploaded a photo</span></p> -->
+<!--                                         <small>7 hours ago</small> -->
+<!--                                     </div> -->
+<!--                                     <div class="timeline-item-post"> -->
+<!--                                         <p>totam rem aperiam, eaque ipsa quae ab illo inventore</p> -->
+<!--                                         <img src="img/post-img01.jpg" alt="" /> -->
+<!--                                         <div class="timeline-options"> -->
+<!--                                             <a href="#"><i class="fa fa-thumbs-up"></i> Like (22)</a> -->
+<!--                                             <a href="#"><i class="fa fa-comment"></i> Comment (7)</a> -->
+<!--                                             <a href="#"><i class="fa fa-share"></i> Share (9)</a> -->
+<!--                                         </div> -->
+<!--                                         <div class="timeline-comment"> -->
+<!--                                             <div class="timeline-comment-header"> -->
+<!--                                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" /> -->
+<!--                                                 <p>Memila moriya <small>1 hour ago</small></p> -->
+<!--                                             </div> -->
+<!--                                             <p class="timeline-comment-text">Explicabo Nemo enim ipsam voluptatem quia voluptas.</p> -->
+<!--                                         </div> -->
+<!--                                         <textarea class="form-control" placeholder="Replay"></textarea> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </li> -->
+                        
                     </ul>
                 </div>
             </div>

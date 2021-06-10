@@ -6,6 +6,7 @@
 <!-- 	변수설정 -->
 	<typeAliases>
 		<typeAlias type="com.yewon.im.dtos.ProfileDto" alias="ProfileDto"/>
+		<typeAlias type="com.yewon.im.dtos.BoardDto" alias="BoardDto"/>		
 	</typeAliases>
 	
 <!-- 	DB접속 정보 셋팅 -->

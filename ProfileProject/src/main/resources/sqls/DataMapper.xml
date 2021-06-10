@@ -10,4 +10,13 @@
 	<select id="memberHome" parameterType="int" resultType="ProfileDto">
 		SELECT * FROM PROFILE WHERE SEQ = #{seq}
 	</select>
+	
+	<select id="memberBoard" parameterType="int" resultType="BoardDto">
+		SELECT * FROM BOARD WHERE MEMBER_SEQ= #{member_seq}
+	</select>
+	
+	<insert id="writeBoard" parameterType="BoardDto">
+		INSERT INTO BOARD (content, member_seq, writeDate, `like`, board_img) 
+		VALUES(#{content}, #{member_seq}, current_timestamp, 0, #{oard_img})
+	</insert>
 </mapper>

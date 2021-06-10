@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yewon.im.dtos.BoardDto;
 import com.yewon.im.dtos.ProfileDto;
 import com.yewon.im.service.IProfileService;
 
@@ -61,6 +62,24 @@ public class HomeController {
 		ProfileDto dto = (ProfileDto) profileService.memberHome(seq);
 		model.addAttribute("dto", dto);
 		
+		List<BoardDto> list = profileService.memberBoard(seq);
+		model.addAttribute("list", list);
+		System.out.println(list);
+		
 		return "memberHome";
+	}
+	
+	@RequestMapping(value = "/writeBoard.do", method = {RequestMethod.POST, RequestMethod.GET})
+	public String writeBoard(Locale locale, Model model, BoardDto dto) {
+		logger.info("글쓰기", locale);
+		
+		boolean isS = profileService.writeBoard(new BoardDto(dto.getContent(), dto.getMember_seq(), dto.getBoard_img()));
+		
+		if(isS) {
+			return "redirect:memberHome.do";
+		} else {
+			model.addAttribute("msg", "글 작성 오류입니다.");
+			return "error";
+		}
 	}
 }
