@@ -30,7 +30,7 @@ public class ProfileDaoImp implements IProfileDao{
 	}
 	
 	public boolean writeBoard(BoardDto dto) {
-		int count = sqlSession.insert(namespace + "writeDate", dto);
+		int count = sqlSession.insert(namespace + "writeBoard", dto);
 		return count > 0 ? true:false;
 	}
 }

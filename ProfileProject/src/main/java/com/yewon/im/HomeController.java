@@ -61,10 +61,9 @@ public class HomeController {
 		
 		ProfileDto dto = (ProfileDto) profileService.memberHome(seq);
 		model.addAttribute("dto", dto);
-		
+
 		List<BoardDto> list = profileService.memberBoard(seq);
 		model.addAttribute("list", list);
-		System.out.println(list);
 		
 		return "memberHome";
 	}
@@ -73,10 +72,11 @@ public class HomeController {
 	public String writeBoard(Locale locale, Model model, BoardDto dto) {
 		logger.info("글쓰기", locale);
 		
-		boolean isS = profileService.writeBoard(new BoardDto(dto.getContent(), dto.getMember_seq(), dto.getBoard_img()));
+		System.out.println(dto.getContent() + dto.getMember_seq());
+		boolean isS = profileService.writeBoard(new BoardDto(dto.getContent(), dto.getMember_seq()));
 		
 		if(isS) {
-			return "redirect:memberHome.do";
+			return "redirect:memberHome.do?seq="+dto.getMember_seq();
 		} else {
 			model.addAttribute("msg", "글 작성 오류입니다.");
 			return "error";

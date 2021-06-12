@@ -239,7 +239,7 @@
             <div class="col-lg-5 col-xl-3">
                 <div class="card card-white grid-margin">
                     <div class="card-heading clearfix">
-                        <h4 class="card-title">User Profile</h4>
+                        <h4 class="card-title">프로필</h4>
                     </div>
                     <div class="card-body user-profile-card mb-3">
  						<c:if test="${dto.profileImg == null }">
@@ -298,14 +298,14 @@
                     <div class="card-body">
                         <div class="post">
                         	<form method="post" action="writeBoard.do"> 
-	                        <textarea id="content" class="form-control" placeholder="글을 작성하세요" rows="4"></textarea>
+	                        <textarea name="content" class="form-control" placeholder="글을 작성하세요" rows="4"></textarea>
 	                            <div class="post-options">
 	                                <a href="#"><i class="fa fa-camera"></i></a>
 	                                <a href="#"><i class="fas fa-video"></i></a>
 	                                <a href="#"><i class="fa fa-music"></i></a>
-	                                <input type="hidden" id="member_seq" value="${dto.seq }"/>
-	                                <input type="hidden" id="board_img" value="" />
-	                                <input type="button" value="글쓰기" class="btn btn-outline-primary float-right">
+	                                <input type="hidden" name="member_seq" value="${dto.seq }"/>
+	                                <!-- <input type="hidden" id="board_img" value="" />  -->
+	                                <input type="submit" value="글쓰기" class="btn btn-outline-primary float-right">
 	                            </div>
                             </form>
                         </div>
@@ -324,7 +324,7 @@
                                 <div class="card-body">
                                     <div class="timeline-item-header">
                                         <img src="resources/profileImg/${dto.profileImg }" alt="" />
-                                        <p>${dto.name }</p>
+                                        <p>${dto.name }</p><input type="button" value="삭제하기">
                                         <small><fmt:formatDate value="${b.writeDate }" pattern="yyyy-MM-dd hh:mm"/></small>
                                     </div>
                                     <div class="timeline-item-post">
@@ -384,21 +384,13 @@
             <div class="col-lg-12 col-xl-3">
                 <div class="card card-white grid-margin">
                     <div class="card-heading clearfix">
-                        <h4 class="card-title">Suggestions</h4>
+                        <h4 class="card-title">퀵창</h4>
                     </div>
                     <div class="card-body">
                         <div class="team">
                             <div class="team-member">
                                 <div class="online on"></div>
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                            </div>
-                            <div class="team-member">
-                                <div class="online on"></div>
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                            </div>
-                            <div class="team-member">
-                                <div class="online off"></div>
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                <a href="main.do"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" /></a>
                             </div>
                         </div>
                     </div>

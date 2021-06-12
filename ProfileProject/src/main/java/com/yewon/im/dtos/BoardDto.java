@@ -26,11 +26,10 @@ public class BoardDto {
 		this.board_img = board_img;
 	}
 	
-	public BoardDto(String content, int member_seq, String board_img) {
+	public BoardDto(String content, int member_seq) {
 		super();
 		this.content = content;
 		this.member_seq = member_seq;
-		this.board_img = board_img;
 	}
 	
 	
