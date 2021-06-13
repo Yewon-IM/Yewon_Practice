@@ -333,13 +333,19 @@
                                             <a href="#"><i class="fa fa-thumbs-up"></i> Like (${b.like })</a>
                                             <a href="#"><i class="fa fa-comment"></i> Comment (4)</a>
                                         </div>
-                                        <div class="timeline-comment">
+                                        
+                                        <c:if test="">
+                                        	
+                                        	<div class="timeline-comment">
                                             <div class="timeline-comment-header">
                                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
                                                 <p>Jamara Karle <small>1 hour ago</small></p>
                                             </div>
                                             <p class="timeline-comment-text">강연 똥멍청이</p>
-                                        </div>
+                                        	</div>
+                                        
+                                        </c:if>
+                                        
                                         <textarea class="form-control" placeholder="답글"></textarea>
                                     </div>
                                 </div>
