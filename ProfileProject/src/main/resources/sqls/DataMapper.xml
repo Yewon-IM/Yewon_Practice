@@ -19,4 +19,12 @@
 		INSERT INTO BOARD (content, member_seq, writeDate, `like`) 
 		VALUES(#{content}, #{member_seq}, current_timestamp, 0)
 	</insert>
+	
+	<select id="comment" parameterType="Map" resultType="CommentDto">
+		SELECT c.board_seq, c.comment_seq, c.content, c.`like`, c.member_seq, c.writeDate 
+		from STUDY.Board b , STUDY.comment c 
+		where b.board_seq = c.board_seq and b.board_seq IN <foreach collection="board_seqs" item="board_seq" open="(" close=")" separator=",">
+																#{board_seq}
+															</foreach>
+	</select>
 </mapper>

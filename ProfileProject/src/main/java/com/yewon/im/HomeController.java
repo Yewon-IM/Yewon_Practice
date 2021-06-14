@@ -1,9 +1,11 @@
 package com.yewon.im;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yewon.im.dtos.BoardDto;
+import com.yewon.im.dtos.CommentDto;
 import com.yewon.im.dtos.ProfileDto;
 import com.yewon.im.service.IProfileService;
 
@@ -64,6 +67,20 @@ public class HomeController {
 
 		List<BoardDto> list = profileService.memberBoard(seq);
 		model.addAttribute("list", list);
+		
+		ArrayList<Integer> board_seqs = new ArrayList<Integer>();
+		
+		for(int i = 0; i<list.size(); i++) {
+			int num = list.get(i).getBoard_seq();
+			
+			board_seqs.add(num);
+		}
+		System.out.println(board_seqs);
+		
+		List<CommentDto> cList = profileService.comment(board_seqs);
+		model.addAttribute("cList", cList);
+		
+		System.out.println(cList);
 		
 		return "memberHome";
 	}
