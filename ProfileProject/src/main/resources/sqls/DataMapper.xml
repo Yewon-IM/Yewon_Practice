@@ -7,6 +7,16 @@
 		SELECT * FROM PROFILE
 	</select>
 	
+	<select id="memberListFunction" parameterType="Map" resultType="ProfileDto">
+		SELECT * FROM PROFILE  
+		<if test="local != null">
+		WHERE LOCAL = #{local}
+		</if>
+		<if test="keyword != null">
+		WHERE UPPER(NAME)LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+	
 	<select id="memberHome" parameterType="int" resultType="ProfileDto">
 		SELECT * FROM PROFILE WHERE SEQ = #{seq}
 	</select>

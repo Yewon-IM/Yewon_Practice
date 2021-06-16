@@ -25,6 +25,13 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "memberList");
 	}
 	
+	public List<ProfileDto> memberListFunction(String local, String keyword){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("local", local);
+		map.put("keyword", keyword);
+		return sqlSession.selectList(namespace + "memberListFunction", map);
+	}
+	
 	public ProfileDto memberHome(int seq){
 		return sqlSession.selectOne(namespace + "memberHome", seq);
 	}
@@ -39,7 +46,7 @@ public class ProfileDaoImp implements IProfileDao{
 	}
 	
 	public List<CommentDto> comment(ArrayList<Integer> board_seqs){
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, ArrayList<Integer>> map = new HashMap<String, ArrayList<Integer>>();
 		map.put("board_seqs", board_seqs);
 		return sqlSession.selectList(namespace + "comment", map);
 	}

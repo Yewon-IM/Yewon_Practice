@@ -12,6 +12,9 @@
     <title>메인화면</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript">
+    	
+    </script>
     <style type="text/css">
     	body{margin-top:20px;
 background:#F5F5F5;
@@ -399,12 +402,12 @@ background:#F5F5F5;
             <div class="sidebar">
                 <div class="widget border-0">
                     <div class="search">
-                        <input class="form-control" type="text" placeholder="Search Keywords">
+                        <input class="form-control" type="text" placeholder="이름을 검색하세요">
                     </div>
                 </div>
                 <div class="widget border-0">
                     <div class="locations">
-                        <input class="form-control" type="text" placeholder="All Locations">
+                        <input class="form-control" type="text" placeholder="지역을 검색하세요">
                     </div>
                 </div>
                 
@@ -435,8 +438,10 @@ background:#F5F5F5;
                     <div class="collapse show" id="local">
                         <div class="widget-content">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="강서구">
-                                <label class="custom-control-label" for="gender1">강서구</label>
+                                <input type="checkbox" class="custom-control-input" id="강서구" onclick="location.href='main.do?local=강서구'">
+                                <label class="custom-control-label" for="강서구">강서구</label><br>
+                                <input type="checkbox" class="custom-control-input" id="화성시" onclick="location.href='main.do?local=화성시'">
+                                <label class="custom-control-label" for="화성시">화성시</label>
                             </div>
                         </div>
                     </div>
@@ -486,7 +491,7 @@ background:#F5F5F5;
 	                        <%if(dto.getProfileImg() == null){
 	                            %><a href="memberHome.do?seq=<%=dto.getSeq() %>"><img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a><%
 	                          } else {
-		                        %><a href="memberHome.do?seq=<%=dto.getSeq() %>"><img class="img-fluid" src="resources/profileImg/<%=dto.getProfileImg() %>" alt=""></a><%
+		                        %><a href="memberHome.do?seq=<%=dto.getSeq() %>"><img class="img-fluid" src="1resources/profileImg/<%=dto.getProfileImg() %>" alt=""></a><%
 	                          }
 	                        %>
 	                        </div>

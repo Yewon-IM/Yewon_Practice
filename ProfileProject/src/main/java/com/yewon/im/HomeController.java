@@ -49,12 +49,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public String main(Locale locale, Model model) {
+	public String main(Locale locale, Model model, String local, String keyword) {
 		logger.info("메인화면.", locale);
 		
-		List<ProfileDto> list = profileService.memberList();
-		model.addAttribute("list", list);
-
+		if(local == null && keyword == null) {
+			List<ProfileDto> list = profileService.memberList();
+			model.addAttribute("list", list);
+			System.out.println("아아아123132");
+		} else if(local != null){
+			List<ProfileDto> list = profileService.memberListFunction(local, keyword);
+			model.addAttribute("list", list);
+			System.out.println("아아아");
+		} else if(keyword != null) {
+			
+		}
+		
+		
 		return "main";
 	}
 	

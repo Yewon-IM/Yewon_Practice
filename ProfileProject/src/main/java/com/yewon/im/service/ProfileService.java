@@ -21,6 +21,11 @@ public class ProfileService implements IProfileService{
 	public List<ProfileDto> memberList() {
 		return profileService.memberList();
 	}
+	
+	@Override
+	public List<ProfileDto> memberListFunction(String local, String keyword) {
+		return profileService.memberListFunction(local, keyword);
+	}
 
 	@Override
 	public ProfileDto memberHome(int seq) {
@@ -41,5 +46,7 @@ public class ProfileService implements IProfileService{
 	public List<CommentDto> comment(ArrayList<Integer> board_seqs) {
 		return profileService.comment(board_seqs);
 	}
+
+
 	
 }

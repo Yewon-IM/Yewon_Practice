@@ -315,7 +315,7 @@
                     <ul class="list-unstyled">
                         <li class="timeline-item">
                             <c:if test="${list == null }">
-                            	<p>글이 없습니다.</p>
+                            	
                             </c:if>
                             <c:if test="${list != null }">
                             	<c:forEach var="b" items="${list }">
@@ -334,18 +334,24 @@
                                             <a href="#"><i class="fa fa-comment"></i> Comment (4)</a>
                                         </div>
                                         
-                                        <c:if test="">
-                                        	
-                                        	<div class="timeline-comment">
-                                            <div class="timeline-comment-header">
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                                                <p>Jamara Karle <small>1 hour ago</small></p>
-                                            </div>
-                                            <p class="timeline-comment-text">강연 똥멍청이</p>
-                                        	</div>
+                                        <c:forEach var="c" items="${cList }">
                                         
+                                        <c:if test="${cList == null }">
                                         </c:if>
                                         
+                                        <c:if test="${cList != null && c.board_seq == b.board_seq}">
+                                        	
+                                        		<div class="timeline-comment">
+                                            <div class="timeline-comment-header">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                                <p>Jamara Karle <small>${c.writeDate }</small></p>
+                                            </div>
+                                            <p class="timeline-comment-text">${c.content }</p>
+                                        	</div>
+                                        	
+                                        		
+                                        </c:if>
+                                        </c:forEach>
                                         <textarea class="form-control" placeholder="답글"></textarea>
                                     </div>
                                 </div>
