@@ -341,18 +341,28 @@
                                         
                                         <c:if test="${cList != null && c.board_seq == b.board_seq}">
                                         	
-                                        		<div class="timeline-comment">
+                                        	<div class="timeline-comment">
                                             <div class="timeline-comment-header">
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                                                <p>Jamara Karle <small>${c.writeDate }</small></p>
+                                                <img src="resources/profileImg/${c.profileDto.profileImg }" alt="" />
+                                                <p>${c.profileDto.name } <small><fmt:formatDate value="${c.writeDate }" pattern="yyyy-MM-dd hh:mm"/></small></p>
                                             </div>
                                             <p class="timeline-comment-text">${c.content }</p>
+                                            
                                         	</div>
                                         	
                                         		
                                         </c:if>
                                         </c:forEach>
-                                        <textarea class="form-control" placeholder="답글"></textarea>
+                             	<form method="post" action="">
+                                <textarea class="form-control" placeholder="답글을 작성하세요"></textarea>
+                                <div class="post-options">
+	                                <a href="#"><i class="fa fa-camera"></i></a>
+	                                <a href="#"><i class="fas fa-video"></i></a>
+	                                <a href="#"><i class="fa fa-music"></i></a>
+	                                <input type="hidden" name="member_seq" value=""/>
+	                                <input type="submit" value="답글쓰기" class="btn btn-outline-primary float-right">
+	                            </div>
+	                            </form>
                                     </div>
                                 </div>
                             </div>

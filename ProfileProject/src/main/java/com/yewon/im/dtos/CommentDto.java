@@ -10,13 +10,15 @@ public class CommentDto {
 	private int member_seq;
 	private Date writeDate;
 	private int like;
+	private ProfileDto profileDto;
 	
 	public CommentDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CommentDto(int comment_seq, int board_seq, String content, int member_seq, Date writeDate, int like) {
+	public CommentDto(int comment_seq, int board_seq, String content, int member_seq, Date writeDate, int like,
+			ProfileDto profileDto) {
 		super();
 		this.comment_seq = comment_seq;
 		this.board_seq = board_seq;
@@ -24,6 +26,7 @@ public class CommentDto {
 		this.member_seq = member_seq;
 		this.writeDate = writeDate;
 		this.like = like;
+		this.profileDto = profileDto;
 	}
 
 	public int getComment_seq() {
@@ -74,12 +77,19 @@ public class CommentDto {
 		this.like = like;
 	}
 
+	public ProfileDto getProfileDto() {
+		return profileDto;
+	}
+
+	public void setProfileDto(ProfileDto profileDto) {
+		this.profileDto = profileDto;
+	}
+
 	@Override
 	public String toString() {
 		return "CommentDto [comment_seq=" + comment_seq + ", board_seq=" + board_seq + ", content=" + content
-				+ ", member_seq=" + member_seq + ", writeDate=" + writeDate + ", like=" + like + "]";
+				+ ", member_seq=" + member_seq + ", writeDate=" + writeDate + ", like=" + like + ", profileDto="
+				+ profileDto + "]";
 	}
-	
-	
-	
+
 }
