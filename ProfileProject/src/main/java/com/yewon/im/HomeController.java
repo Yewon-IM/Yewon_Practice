@@ -85,12 +85,15 @@ public class HomeController {
 			
 			board_seqs.add(num);
 		}
-		System.out.println(board_seqs);
-		
-		List<CommentDto> cList = profileService.comment(board_seqs);
-		model.addAttribute("cList", cList);
-		
-		System.out.println(cList);
+		System.out.println("댓글번호" + board_seqs);
+		if(board_seqs == null || board_seqs.size() ==0) {
+			return "memberHome";
+		} else {
+			List<CommentDto> cList = profileService.comment(board_seqs);
+			model.addAttribute("cList", cList);
+			
+			System.out.println(cList);
+		}
 		
 		return "memberHome";
 	}

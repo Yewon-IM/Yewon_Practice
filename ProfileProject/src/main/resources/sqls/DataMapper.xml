@@ -47,9 +47,9 @@
 	
 	<select id="comment" parameterType="Map" resultMap="CommentMap">
 		SELECT p.name, p.profileImg,c.board_seq, c.comment_seq, c.content, c.`like`, c.member_seq, c.writeDate 
-		from STUDY.Board b , STUDY.comment c , STUDY.profile p
+		from Board b , comment c , profile p
 		where b.board_seq = c.board_seq = p.seq and b.board_seq IN <foreach collection="board_seqs" item="board_seq" open="(" close=")" separator=",">
-																#{board_seq}
-															</foreach>
+																		#{board_seq}
+																	</foreach>
 	</select>
 </mapper>
