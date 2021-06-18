@@ -52,4 +52,15 @@
 																		#{board_seq}
 																	</foreach>
 	</select>
+	
+	<resultMap type="HashMap" id="countComment">
+		<result property="board_seq" column="board_seq"/>
+		<result property="countComment" column="countComment"/>
+	</resultMap>
+	
+	<select id="countComment" resultMap="countComment">
+		SELECT board_seq ,COUNT(board_seq) as countComment
+		FROM Comment
+		GROUP BY board_seq 
+	</select>
 </mapper>

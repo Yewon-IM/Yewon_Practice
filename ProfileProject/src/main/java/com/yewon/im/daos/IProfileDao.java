@@ -22,4 +22,6 @@ public interface IProfileDao {
 	public boolean writeBoard(BoardDto dto);
 	
 	public List<CommentDto> comment(ArrayList<Integer> board_seqs);
+	
+	public List<Map<String, Integer>> countComment();
 }

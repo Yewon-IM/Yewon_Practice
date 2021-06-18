@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -331,11 +332,27 @@
 										<p>${b.content }</p>
                                         <div class="timeline-options">
                                             <a href="#"><i class="fa fa-thumbs-up"></i> Like (${b.like })</a>
-                                            <a href="#"><i class="fa fa-comment"></i> Comment (4)</a>
+                                            <a href="#"><i class="fa fa-comment"></i> 댓글 (
+                                             											<c:set var="isS" value="false"/>
+                                             											<c:set var="comments" value="0"/>
+                                            											
+                                            											<c:forEach var="c" items="${countList }">
+                                            												<c:if test="${c.board_seq == b.board_seq }">
+                                            													<c:set var="isS" value="true"/>
+                                            													<c:set var="comments" value="${c.countComment}"/>
+                                            												</c:if>
+                                            											</c:forEach>
+                                            												<c:if test="${isS == 'true'}">
+                                            													${comments }
+                                            												</c:if>
+                                            												<c:if test="${isS == 'false' }">
+                                            													0zz
+                                            												</c:if>
+                                            											  )</a>
                                         </div>
                                         
-                                        <c:forEach var="c" items="${cList }">
-                                        
+                                        <c:forEach var="c" items="${cList }">  
+									                                        
                                         <c:if test="${cList == null }">
                                         </c:if>
                                         

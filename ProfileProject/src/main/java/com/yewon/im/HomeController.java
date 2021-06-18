@@ -77,6 +77,11 @@ public class HomeController {
 
 		List<BoardDto> list = profileService.memberBoard(seq);
 		model.addAttribute("list", list);
+		System.out.println(list);
+		
+		List<Map<String, Integer>> countList = profileService.countComment();
+		model.addAttribute("countList", countList);
+		System.out.println("countList" +countList);
 		
 		ArrayList<Integer> board_seqs = new ArrayList<Integer>();
 		
@@ -85,14 +90,14 @@ public class HomeController {
 			
 			board_seqs.add(num);
 		}
-		System.out.println("댓글번호" + board_seqs);
+		//System.out.println("댓글번호" + board_seqs);
 		if(board_seqs == null || board_seqs.size() ==0) {
 			return "memberHome";
 		} else {
 			List<CommentDto> cList = profileService.comment(board_seqs);
 			model.addAttribute("cList", cList);
 			
-			System.out.println(cList);
+			//System.out.println(cList);
 		}
 		
 		return "memberHome";

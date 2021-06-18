@@ -50,4 +50,8 @@ public class ProfileDaoImp implements IProfileDao{
 		map.put("board_seqs", board_seqs);
 		return sqlSession.selectList(namespace + "comment", map);
 	}
+	
+	public List<Map<String, Integer>> countComment(){
+		return sqlSession.selectList(namespace + "countComment");
+	}
 }

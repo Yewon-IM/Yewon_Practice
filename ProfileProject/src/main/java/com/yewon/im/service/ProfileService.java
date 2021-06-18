@@ -2,6 +2,7 @@ package com.yewon.im.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,11 @@ public class ProfileService implements IProfileService{
 	@Override
 	public List<CommentDto> comment(ArrayList<Integer> board_seqs) {
 		return profileService.comment(board_seqs);
+	}
+
+	@Override
+	public List<Map<String, Integer>> countComment() {
+		return profileService.countComment();
 	}
 
 
