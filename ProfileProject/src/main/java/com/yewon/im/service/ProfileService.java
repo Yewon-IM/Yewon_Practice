@@ -53,6 +53,11 @@ public class ProfileService implements IProfileService{
 		return profileService.countComment();
 	}
 
+	@Override
+	public boolean writeComment(CommentDto dto) {
+		return profileService.writeComment(dto);
+	}
+
 
 	
 }

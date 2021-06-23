@@ -28,6 +28,13 @@ public class CommentDto {
 		this.like = like;
 		this.profileDto = profileDto;
 	}
+	
+	public CommentDto(int board_seq, String content, int member_seq) {
+		super();
+		this.board_seq = board_seq;
+		this.content = content;
+		this.member_seq = member_seq;
+	}
 
 	public int getComment_seq() {
 		return comment_seq;

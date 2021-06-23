@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,11 +58,11 @@ public class HomeController {
 		if(local == null && keyword == null) {
 			List<ProfileDto> list = profileService.memberList();
 			model.addAttribute("list", list);
-			System.out.println("아아아123132");
+		
 		} else if(local != null){
 			List<ProfileDto> list = profileService.memberListFunction(local, keyword);
 			model.addAttribute("list", list);
-			System.out.println("아아아");
+		
 		} else if(keyword != null) {
 			
 		}
@@ -77,11 +80,11 @@ public class HomeController {
 
 		List<BoardDto> list = profileService.memberBoard(seq);
 		model.addAttribute("list", list);
-		System.out.println(list);
+		//System.out.println(list);
 		
 		List<Map<String, Integer>> countList = profileService.countComment();
 		model.addAttribute("countList", countList);
-		System.out.println("countList" +countList);
+		//System.out.println("countList" +countList);
 		
 		ArrayList<Integer> board_seqs = new ArrayList<Integer>();
 		
@@ -104,14 +107,33 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/writeBoard.do", method = {RequestMethod.POST, RequestMethod.GET})
-	public String writeBoard(Locale locale, Model model, BoardDto dto) {
+	public String writeBoard(HttpServletRequest request, Locale locale, Model model, BoardDto dto) {
 		logger.info("글쓰기", locale);
 		
-		System.out.println(dto.getContent() + dto.getMember_seq());
+		//System.out.println(dto.getContent() + dto.getMember_seq());
 		boolean isS = profileService.writeBoard(new BoardDto(dto.getContent(), dto.getMember_seq()));
 		
 		if(isS) {
+			HttpSession session = request.getSession();
+			session.setAttribute("member_seq", dto.getMember_seq());
 			return "redirect:memberHome.do?seq="+dto.getMember_seq();
+		} else {
+			model.addAttribute("msg", "글 작성 오류입니다.");
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value = "/writeComment.do", method = {RequestMethod.POST, RequestMethod.GET})
+	public String writeComment(HttpServletRequest request, Locale locale, Model model, CommentDto dto) {
+		logger.info("댓글쓰기", locale);
+		
+		//System.out.println(dto);
+		boolean isS = profileService.writeComment(new CommentDto(dto.getBoard_seq(), dto.getContent(), dto.getMember_seq()));
+		//System.out.println(isS);
+		if(isS) {
+			HttpSession session = request.getSession();
+			int member_seq = (int) session.getAttribute("member_seq");
+			return "redirect:memberHome.do?seq=" + member_seq;
 		} else {
 			model.addAttribute("msg", "글 작성 오류입니다.");
 			return "error";

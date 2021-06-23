@@ -63,4 +63,10 @@
 		FROM Comment
 		GROUP BY board_seq 
 	</select>
+	
+	<insert id="writeComment" parameterType="CommentDto">
+		INSERT INTO Yewon.Comment
+		(board_seq, content, member_seq, writeDate)
+		VALUES(#{board_seq}, #{content}, #{member_seq}, NOW())
+	</insert>
 </mapper>

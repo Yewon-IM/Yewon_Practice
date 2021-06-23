@@ -54,4 +54,9 @@ public class ProfileDaoImp implements IProfileDao{
 	public List<Map<String, Integer>> countComment(){
 		return sqlSession.selectList(namespace + "countComment");
 	}
+	
+	public boolean writeComment(CommentDto dto) {
+		int count = sqlSession.insert(namespace + "writeComment", dto);
+		return count > 0? true:false;
+	}
 }

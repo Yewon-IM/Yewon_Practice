@@ -324,15 +324,21 @@
                             		<div class="card card-white grid-margin">
                                 <div class="card-body">
                                     <div class="timeline-item-header">
-                                        <img src="resources/profileImg/${dto.profileImg }" alt="" />
-                                        <p>${dto.name }</p><input type="button" value="삭제하기">
+                                    <c:if test="${dto.profileImg == null }">
+                                    	<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                    </c:if>
+                                    <c:if test="">
+                                    	<img src="resources/profileImg/${dto.profileImg }" alt="" />
+                                    </c:if>
                                         <small><fmt:formatDate value="${b.writeDate }" pattern="yyyy-MM-dd hh:mm"/></small>
+                                  
                                     </div>
                                     <div class="timeline-item-post">
 										<p>${b.content }</p>
                                         <div class="timeline-options">
                                             <a href="#"><i class="fa fa-thumbs-up"></i> Like (${b.like })</a>
-                                            <a href="#"><i class="fa fa-comment"></i> 댓글 (
+                                            
+                                            <a href="javascript:showComment();"><i class="fa fa-comment"></i> 댓글 (
                                              											<c:set var="isS" value="false"/>
                                              											<c:set var="comments" value="0"/>
                                             											
@@ -346,37 +352,36 @@
                                             													${comments }
                                             												</c:if>
                                             												<c:if test="${isS == 'false' }">
-                                            													0zz
+                                            													0
                                             												</c:if>
                                             											  )</a>
                                         </div>
+                                      
+                                        <div id="comment" style="display: none;" class="timeline-comment">
                                         
                                         <c:forEach var="c" items="${cList }">  
-									                                        
-                                        <c:if test="${cList == null }">
-                                        </c:if>
-                                        
                                         <c:if test="${cList != null && c.board_seq == b.board_seq}">
                                         	
-                                        	<div class="timeline-comment">
+                                        	
                                             <div class="timeline-comment-header">
-                                                <img src="resources/profileImg/${c.profileDto.profileImg }" alt="" />
+                                                <img src="resources/profileImg/${dto.profileImg }" alt="" />
                                                 <p>${c.profileDto.name } <small><fmt:formatDate value="${c.writeDate }" pattern="yyyy-MM-dd hh:mm"/></small></p>
                                             </div>
                                             <p class="timeline-comment-text">${c.content }</p>
                                             
-                                        	</div>
-                                        	
-                                        		
                                         </c:if>
                                         </c:forEach>
-                             	<form method="post" action="">
-                                <textarea class="form-control" placeholder="답글을 작성하세요"></textarea>
+                                        
+                                        </div>
+                                        
+                             	<form method="post" action="writeComment.do">
+                                <textarea name="content" class="form-control" placeholder="답글을 작성하세요"></textarea>
                                 <div class="post-options">
 	                                <a href="#"><i class="fa fa-camera"></i></a>
 	                                <a href="#"><i class="fas fa-video"></i></a>
 	                                <a href="#"><i class="fa fa-music"></i></a>
-	                                <input type="hidden" name="member_seq" value=""/>
+	                                <input type="hidden" name="board_seq" value="${b.board_seq }" />
+	                                <input type="hidden" name="member_seq" value=1 />
 	                                <input type="submit" value="답글쓰기" class="btn btn-outline-primary float-right">
 	                            </div>
 	                            </form>
@@ -456,7 +461,14 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	
+	function showComment(){
+		var con = document.getElementById("comment");
+		if(con.style.display == 'none'){
+			con.style.display = 'block';
+		} else if(con.style.display == 'block'){
+			con.style.display = 'none';
+		}
+	}
 </script>
 </body>
 </html>
