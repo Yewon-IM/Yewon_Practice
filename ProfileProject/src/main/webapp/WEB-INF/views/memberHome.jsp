@@ -338,7 +338,7 @@
                                         <div class="timeline-options">
                                             <a href="#"><i class="fa fa-thumbs-up"></i> Like (${b.like })</a>
                                             
-                                            <a href="javascript:showComment();"><i class="fa fa-comment"></i> 댓글 (
+                                            <a href="javascript:showComment(${b.board_seq });"><i class="fa fa-comment"></i> 댓글 (
                                              											<c:set var="isS" value="false"/>
                                              											<c:set var="comments" value="0"/>
                                             											
@@ -356,10 +356,12 @@
                                             												</c:if>
                                             											  )</a>
                                         </div>
-                                      
-                                        <div id="comment" style="display: none;" class="timeline-comment">
+                                        
+                                        
+                                        <div id="comment${b.board_seq }" style="display: none;" class="timeline-comment">
                                         
                                         <c:forEach var="c" items="${cList }">  
+                                        
                                         <c:if test="${cList != null && c.board_seq == b.board_seq}">
                                         	
                                         	
@@ -461,8 +463,8 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	function showComment(){
-		var con = document.getElementById("comment");
+	function showComment(num){
+		var con = document.getElementById('comment'+num);
 		if(con.style.display == 'none'){
 			con.style.display = 'block';
 		} else if(con.style.display == 'block'){
