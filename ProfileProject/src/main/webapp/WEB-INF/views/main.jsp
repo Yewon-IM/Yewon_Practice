@@ -419,12 +419,12 @@ background:#F5F5F5;
                     <div class="collapse show" id="gender">
                         <div class="widget-content">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="gender1">
-                                <label class="custom-control-label" for="gender1">남자</label>
+                                <input type="checkbox" class="custom-control-input" id="남자">
+                                <label class="custom-control-label" for="남자">남자</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="gender2">
-                                <label class="custom-control-label" for="gender2">여자</label>
+                                <input type="checkbox" class="custom-control-input" id="여자">
+                                <label class="custom-control-label" for="여자">여자</label>
                             </div>
                         </div>
                     </div>
@@ -435,16 +435,25 @@ background:#F5F5F5;
                         <h6>Local</h6>
                         <a class="ml-auto" data-toggle="collapse" href="#local" role="button" aria-expanded="false" aria-controls="local"><i class="fas fa-chevron-down"></i></a>
                     </div>
+                    <form action="main.do?local=" method="get">
                     <div class="collapse show" id="local">
                         <div class="widget-content">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="강서구" onclick="location.href='main.do?local=강서구'">
-                                <label class="custom-control-label" for="강서구">강서구</label><br>
-                                <input type="checkbox" class="custom-control-input" id="화성시" onclick="location.href='main.do?local=화성시'">
-                                <label class="custom-control-label" for="화성시">화성시</label>
+                                <input type="checkbox" class="custom-control-input" id="강서구" name="local" value="강서구">
+                                <label class="custom-control-label" for="강서구">강서구</label>
+                           	</div>
+                           	<div id="localBox" class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="화성시" name="local" value="화성시">
+                                <label class="custom-control-label" for="화성시">화성시</label>                                
+                            </div>
+                            <div id="localBox" class="custom-control custom-checkbox">
+                            	<input type="checkbox" class="custom-control-input" id="강동구" name="local" value="강동구">
+                            	<label class="custom-control-label" for="강동구">강동구</label>
                             </div>
                         </div>
                     </div>
+                    <input type="submit" value="검색하기">
+                    </form>
                 </div>
                 
                 <div class="widget border-0">
@@ -540,7 +549,10 @@ background:#F5F5F5;
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	
+	function SearchLocal(local){
+		document.getElementById('local'+local);
+		
+	}
 </script>
 </body>
 </html>
