@@ -1,6 +1,7 @@
 package com.yewon.im.daos;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +26,14 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "memberList");
 	}
 	
-	public List<ProfileDto> memberListFunction(String local, String keyword){
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("local", local);
-		map.put("keyword", keyword);
+	public List<ProfileDto> memberListFunction(String[] local, String[] keyword){
+		Map<String, String[]> map = new HashMap<>();
+		map.put("locals", local);
+		//map.put("keyword", keyword);
+		String real = Arrays.deepToString(local);
+		System.out.println("DaoImp입니딩 : " + real);
+		
+		//tring locals = '\"' + local + '\"';
 		return sqlSession.selectList(namespace + "memberListFunction", map);
 	}
 	

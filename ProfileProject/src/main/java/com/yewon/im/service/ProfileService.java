@@ -24,7 +24,7 @@ public class ProfileService implements IProfileService{
 	}
 	
 	@Override
-	public List<ProfileDto> memberListFunction(String local, String keyword) {
+	public List<ProfileDto> memberListFunction(String[] local, String[] keyword) {
 		return profileService.memberListFunction(local, keyword);
 	}
 

@@ -2,6 +2,7 @@ package com.yewon.im;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -52,25 +53,23 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public String main(Locale locale, Model model, String local, String keyword) {
+	public String main(HttpServletRequest request ,Locale locale, Model model, String[] local, String all, String[] keyword) {
 		logger.info("메인화면.", locale);
 		
-		if(local == null && keyword == null) {
+		if(all != null) {
+			return "redirect:main.do";
+		
+		} else if(local == null && keyword == null) {
 			List<ProfileDto> list = profileService.memberList();
 			model.addAttribute("list", list);
 		
 		} else if(local != null){
-			
-			ArrayList<Integer> locals = new ArrayList<Integer>();
-			
+			System.out.println(local);
 			List<ProfileDto> list = profileService.memberListFunction(local, keyword);
 			model.addAttribute("list", list);
-			System.out.println("local=" + locals);
 			
-		} else if(keyword != null) {
-			
+			System.out.println(list);
 		}
-		
 		
 		return "main";
 	}

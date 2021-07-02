@@ -410,7 +410,7 @@ background:#F5F5F5;
                         <input class="form-control" type="text" placeholder="지역을 검색하세요">
                     </div>
                 </div>
-                
+                <form action="main.do" method="get">
                 <div class="widget">
                     <div class="widget-title widget-collapse">
                         <h6>Gender</h6>
@@ -419,11 +419,11 @@ background:#F5F5F5;
                     <div class="collapse show" id="gender">
                         <div class="widget-content">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="남자">
-                                <label class="custom-control-label" for="남자">남자</label>
+                                <input type="checkbox" class="custom-control-input" id="남자" name="gender" value="남자">
+                                <label class="custom-control-label" for="남자" >남자</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="여자">
+                                <input type="checkbox" class="custom-control-input" id="여자" name="gender" value="여자">
                                 <label class="custom-control-label" for="여자">여자</label>
                             </div>
                         </div>
@@ -435,26 +435,30 @@ background:#F5F5F5;
                         <h6>Local</h6>
                         <a class="ml-auto" data-toggle="collapse" href="#local" role="button" aria-expanded="false" aria-controls="local"><i class="fas fa-chevron-down"></i></a>
                     </div>
-                    <form action="main.do?local=" method="get">
+                    
                     <div class="collapse show" id="local">
                         <div class="widget-content">
+                        	<div class="custom-control custom-checkbox">
+                        		<input type="checkbox" class="custom-control-input" id="전체" name="all" value="all" onclick="ChkAll(this.checked)">
+                        		<label class="custom-control-label" for="전체">전체</label>
+                        	</div>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="강서구" name="local" value="강서구">
                                 <label class="custom-control-label" for="강서구">강서구</label>
                            	</div>
-                           	<div id="localBox" class="custom-control custom-checkbox">
+                           	<div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="화성시" name="local" value="화성시">
                                 <label class="custom-control-label" for="화성시">화성시</label>                                
                             </div>
-                            <div id="localBox" class="custom-control custom-checkbox">
+                            <div class="custom-control custom-checkbox">
                             	<input type="checkbox" class="custom-control-input" id="강동구" name="local" value="강동구">
                             	<label class="custom-control-label" for="강동구">강동구</label>
                             </div>
                         </div>
                     </div>
                     <input type="submit" value="검색하기">
-                    </form>
                 </div>
+                </form>
                 
                 <div class="widget border-0">
                     <div class="widget-add">
@@ -549,9 +553,23 @@ background:#F5F5F5;
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	function SearchLocal(local){
-		document.getElementById('local'+local);
-		
+function ChkAll(val){
+	var chks=document.getElementsByName("local");//[chk,chk,chk...]
+		for(var i=0;i<chks.length;i++){
+			chks[i].checked=val;
+		}
+	}
+	
+var chks=document.getElementsByName("local");//[chk,chk,chk...]
+	for(var i =0;i<chks.length;i++){
+		chks[i].onclick=function(){ //체크박스에서 클릭이벤트가 발생하면 함수를 실행해라
+			var checkedObjs=document.querySelectorAll("input[name=local]:checked");
+			if(checkedObjs.length==chks.length){
+				document.getElementsById("전체")[0].checked=true;//체크해줌
+			}else{
+				document.getElementsById("전체")[0].checked=false;//체크해줌
+			}
+		}
 	}
 </script>
 </body>

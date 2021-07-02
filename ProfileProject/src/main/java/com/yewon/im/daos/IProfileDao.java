@@ -13,7 +13,7 @@ public interface IProfileDao {
 	
 	public List<ProfileDto> memberList();
 	
-	public List<ProfileDto> memberListFunction(String local, String keyword);
+	public List<ProfileDto> memberListFunction(String[] local, String[] keyword);
 	
 	public ProfileDto memberHome(int seq);
 	

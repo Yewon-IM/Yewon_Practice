@@ -13,7 +13,7 @@ public interface IProfileService {
 
 	public List<ProfileDto> memberList();
 	
-	public List<ProfileDto> memberListFunction(String local, String keyword);
+	public List<ProfileDto> memberListFunction(String[] local, String[] keyword);
 	
 	public ProfileDto memberHome(int seq);
 	
@@ -25,5 +25,5 @@ public interface IProfileService {
 	
 	public List<Map<String, Integer>> countComment();
 	
-	public boolean writeComment(CommentDto dto);
+	public boolean writeComment(CommentDto dto); 
 }
