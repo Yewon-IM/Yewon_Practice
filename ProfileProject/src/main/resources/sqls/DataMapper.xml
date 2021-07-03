@@ -7,15 +7,32 @@
 		SELECT * FROM PROFILE
 	</select>
 	
-	<select id="memberListFunction" parameterType="Map" resultType="ProfileDto">
-		SELECT * FROM PROFILE  
-		<if test="locals != null">
-		WHERE LOCAL IN <foreach collection="locals" item="local" open="(" close=")" separator=','>
-							#{local}
-						</foreach>
-		</if>
-		<if test="keyword != null">
+		<!-- <if test="keyword != null">
 		WHERE UPPER(NAME)LIKE '%' || #{keyword} || '%'
+		</if> -->
+	<select id="local" resultType="HashMap">
+		SELECT DISTINCT (p.`LOCAL`) 
+		from Profile p
+	</select>
+	
+	
+	<select id="memberListFunction" parameterType="Map" resultType="ProfileDto">
+		SELECT * FROM PROFILE 
+		WHERE 
+		<if test="locals != null">
+			LOCAL IN <foreach collection="locals" item="local" open="(" close=")" separator=','>
+							#{local}
+					</foreach>
+		</if>
+		<if test="gender != null and locals == null">
+			GENDER IN <foreach collection="gender" item="gender" open="(" close=")" separator=",">
+								#{gender}
+							</foreach>
+		</if>
+		<if test="gender != null and locals != null">
+			AND GENDER IN <foreach collection="gender" item="gender" open="(" close=")" separator=",">
+								#{gender}
+							</foreach>
 		</if>
 	</select>
 	
@@ -71,4 +88,5 @@
 		(board_seq, content, member_seq, writeDate)
 		VALUES(#{board_seq}, #{content}, #{member_seq}, NOW())
 	</insert>
+	
 </mapper>

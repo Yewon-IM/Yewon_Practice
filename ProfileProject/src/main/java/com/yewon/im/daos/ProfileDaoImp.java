@@ -26,14 +26,15 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "memberList");
 	}
 	
-	public List<ProfileDto> memberListFunction(String[] local, String[] keyword){
+	public List<Map<String, String>> local(){
+		return sqlSession.selectList(namespace + "local");
+	}
+	
+	public List<ProfileDto> memberListFunction(String[] local, String[] keyword, String[] gender){
 		Map<String, String[]> map = new HashMap<>();
 		map.put("locals", local);
-		//map.put("keyword", keyword);
-		String real = Arrays.deepToString(local);
-		System.out.println("DaoImp입니딩 : " + real);
-		
-		//tring locals = '\"' + local + '\"';
+		map.put("keyword", keyword);
+		map.put("gender", gender);
 		return sqlSession.selectList(namespace + "memberListFunction", map);
 	}
 	

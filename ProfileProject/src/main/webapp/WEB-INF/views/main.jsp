@@ -1,6 +1,7 @@
 <%@page import="com.yewon.im.dtos.ProfileDto"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -402,15 +403,10 @@ background:#F5F5F5;
             <div class="sidebar">
                 <div class="widget border-0">
                     <div class="search">
-                        <input class="form-control" type="text" placeholder="이름을 검색하세요">
+                        <input class="form-control" type="text" placeholder="검색어를 입력하세요">
                     </div>
                 </div>
-                <div class="widget border-0">
-                    <div class="locations">
-                        <input class="form-control" type="text" placeholder="지역을 검색하세요">
-                    </div>
-                </div>
-                <form action="main.do" method="get">
+                <form name="search" action="main.do" method="get" onsubmit="return emptybox()">
                 <div class="widget">
                     <div class="widget-title widget-collapse">
                         <h6>Gender</h6>
@@ -418,6 +414,10 @@ background:#F5F5F5;
                     </div>
                     <div class="collapse show" id="gender">
                         <div class="widget-content">
+                        	<!-- <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="전체" name="allG" value="all" onclick="AllGender(this.checked)">
+                                <label class="custom-control-label" for="전체" >전체</label>
+                            </div> -->
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="남자" name="gender" value="남자">
                                 <label class="custom-control-label" for="남자" >남자</label>
@@ -439,25 +439,43 @@ background:#F5F5F5;
                     <div class="collapse show" id="local">
                         <div class="widget-content">
                         	<div class="custom-control custom-checkbox">
-                        		<input type="checkbox" class="custom-control-input" id="전체" name="all" value="all" onclick="ChkAll(this.checked)">
+                        		<input type="checkbox" class="custom-control-input" id="전체" name="allL" value="all" onclick="AllLocal(this.checked)">
                         		<label class="custom-control-label" for="전체">전체</label>
                         	</div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="강서구" name="local" value="강서구">
-                                <label class="custom-control-label" for="강서구">강서구</label>
+                        	
+                        	<c:forEach var="l" items="${localList }" >
+                        		<div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="${l.LOCAL}" name="local" value="${l.LOCAL}">
+                                <label class="custom-control-label" for="${l.LOCAL}">${l.LOCAL}</label>
                            	</div>
-                           	<div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="화성시" name="local" value="화성시">
-                                <label class="custom-control-label" for="화성시">화성시</label>                                
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                            	<input type="checkbox" class="custom-control-input" id="강동구" name="local" value="강동구">
-                            	<label class="custom-control-label" for="강동구">강동구</label>
-                            </div>
+                        	</c:forEach>
                         </div>
                     </div>
-                    <input type="submit" value="검색하기">
                 </div>
+                
+                <div class="widget">
+                    <div class="widget-title widget-collapse">
+                        <h6>OrderBy</h6>
+                        <a class="ml-auto" data-toggle="collapse" href="#gender" role="button" aria-expanded="false" aria-controls="gender"><i class="fas fa-chevron-down"></i></a>
+                    </div>
+                    <div class="collapse show" id="orderB">
+                        <div class="widget-content">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="젊은순" name="orderBy" value="young">
+                                <label class="custom-control-label" for="젊은순">젊은순</label>
+                           	</div>
+                           	<div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="늙은순" name="orderBy" value="old">
+                                <label class="custom-control-label" for="늙은순">늙은순</label>
+                           	</div>
+                           	<div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="인기순" name="orderBy" value="like">
+                                <label class="custom-control-label" for="인기순">인기순</label>
+                           	</div>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="검색하기">
                 </form>
                 
                 <div class="widget border-0">
@@ -479,11 +497,11 @@ background:#F5F5F5;
                         <div class="form-group mb-0">
                             <label class="justify-content-start mr-2">정렬 :</label>
                             <div class="short-by">
-                                <select class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <select onchange="location.href=(this.value)" class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                     <option value="">----</option>
-                                    <option value="old">나이 많은순</option>
-                                    <option value="young">나이 적은순</option>
-                                    <option value="birthday">생일순</option>
+                                    <option value="main.do?orderBy=old">나이 많은순</option>
+                                    <option value="main.do?orderBy=young">나이 적은순</option>
+                                    <option value="main.do?orderBy=star">인기순</option>
                                 </select>
                             </div>
                         </div>
@@ -553,24 +571,61 @@ background:#F5F5F5;
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-function ChkAll(val){
+function AllGender(check){
+	var genders = document.getElementsByName("gender");
+		for (var i = 0; i < genders.length; i++) {
+			genders[i].checked=check;
+		}
+}
+
+function AllLocal(val){
 	var chks=document.getElementsByName("local");//[chk,chk,chk...]
 		for(var i=0;i<chks.length;i++){
-			chks[i].checked=val;
+			chks[i].checked=val;   
 		}
 	}
 	
-var chks=document.getElementsByName("local");//[chk,chk,chk...]
-	for(var i =0;i<chks.length;i++){
-		chks[i].onclick=function(){ //체크박스에서 클릭이벤트가 발생하면 함수를 실행해라
-			var checkedObjs=document.querySelectorAll("input[name=local]:checked");
-			if(checkedObjs.length==chks.length){
-				document.getElementsById("전체")[0].checked=true;//체크해줌
-			}else{
-				document.getElementsById("전체")[0].checked=false;//체크해줌
-			}
+ var chks=document.getElementsByName("local");//[chk,chk,chk...]
+ 	for(var i =0;i<chks.length;i++){
+ 		chks[i].onclick=function(){ //체크박스에서 클릭이벤트가 발생하면 함수를 실행해라
+ 			var checkedObjs = document.querySelectorAll("input[name=local]:checked");
+ 			if(checkedObjs.length == chks.length){
+ 				document.getElementsById("전체")[0].checked=true;//체크해줌
+ 			}else{
+ 				document.getElementsById("전체")[0].checked=false;//체크해줌
+ 			}
+ 		}
+ 	}
+ 
+function emptybox(){
+	var locals = document.getElementsByName("local");
+	var genders = document.getElementsByName("gender");
+	var orderBy = document.getElementsByName("orderBy");
+	var checked = 0;
+	
+	for(i=0; i<locals.length; i++){
+		if(locals[i].checked == true){
+			checked++;
 		}
 	}
+	
+	for(i=0; i<genders.length; i++){
+		if(genders[i].checked == true){
+			checked++;
+		}
+	}
+	
+	for(i=0; i<orderBy.length; i++){
+		if(orderBy[i].checked == true){
+			checked++;
+		}
+	}
+	
+	if(checked == 0){
+		alert('검색 조건을 선택하세요.');
+		return false;
+	} 
+}
 </script>
 </body>
 </html>

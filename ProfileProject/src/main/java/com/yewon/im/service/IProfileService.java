@@ -13,7 +13,9 @@ public interface IProfileService {
 
 	public List<ProfileDto> memberList();
 	
-	public List<ProfileDto> memberListFunction(String[] local, String[] keyword);
+	public List<Map<String, String>> local();
+	
+	public List<ProfileDto> memberListFunction(String[] local, String[] keyword, String[] gender);
 	
 	public ProfileDto memberHome(int seq);
 	

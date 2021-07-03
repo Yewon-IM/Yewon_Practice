@@ -53,23 +53,26 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public String main(HttpServletRequest request ,Locale locale, Model model, String[] local, String all, String[] keyword) {
+	public String main(HttpServletRequest request ,Locale locale, Model model, String[] local, String all, String[] gender, String[] keyword,
+			 String orderBy) {
 		logger.info("메인화면.", locale);
+		
+		List<Map<String, String>> localList = profileService.local(); 
+		model.addAttribute("localList", localList);
+		System.out.println(localList);
 		
 		if(all != null) {
 			return "redirect:main.do";
 		
-		} else if(local == null && keyword == null) {
+		} else if(local == null && keyword == null && orderBy == null) {
 			List<ProfileDto> list = profileService.memberList();
 			model.addAttribute("list", list);
 		
-		} else if(local != null){
-			System.out.println(local);
-			List<ProfileDto> list = profileService.memberListFunction(local, keyword);
+		} else if(local != null || gender != null){
+			List<ProfileDto> list = profileService.memberListFunction(local, keyword, gender);
 			model.addAttribute("list", list);
 			
-			System.out.println(list);
-		}
+		} 
 		
 		return "main";
 	}
@@ -87,7 +90,7 @@ public class HomeController {
 		
 		List<Map<String, Integer>> countList = profileService.countComment();
 		model.addAttribute("countList", countList);
-		//System.out.println("countList" +countList);
+		System.out.println("countList" +countList);
 		
 		ArrayList<Integer> board_seqs = new ArrayList<Integer>();
 		
