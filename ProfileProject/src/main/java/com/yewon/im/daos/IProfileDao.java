@@ -17,6 +17,8 @@ public interface IProfileDao {
 	
 	public List<ProfileDto> memberListFunction(String[] local, String[] keyword, String[] gender);
 	
+	public List<ProfileDto> orderBy(String orderBy);
+	
 	public ProfileDto memberHome(int seq);
 	
 	public List<BoardDto> memberBoard(int member_seq);

@@ -407,30 +407,8 @@ background:#F5F5F5;
                     </div>
                 </div>
                 <form name="search" action="main.do" method="get" onsubmit="return emptybox()">
-                <div class="widget">
-                    <div class="widget-title widget-collapse">
-                        <h6>Gender</h6>
-                        <a class="ml-auto" data-toggle="collapse" href="#gender" role="button" aria-expanded="false" aria-controls="gender"><i class="fas fa-chevron-down"></i></a>
-                    </div>
-                    <div class="collapse show" id="gender">
-                        <div class="widget-content">
-                        	<!-- <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="전체" name="allG" value="all" onclick="AllGender(this.checked)">
-                                <label class="custom-control-label" for="전체" >전체</label>
-                            </div> -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="남자" name="gender" value="남자">
-                                <label class="custom-control-label" for="남자" >남자</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="여자" name="gender" value="여자">
-                                <label class="custom-control-label" for="여자">여자</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 
-                 <div class="widget">
+                <div class="widget">
                     <div class="widget-title widget-collapse">
                         <h6>Local</h6>
                         <a class="ml-auto" data-toggle="collapse" href="#local" role="button" aria-expanded="false" aria-controls="local"><i class="fas fa-chevron-down"></i></a>
@@ -455,17 +433,40 @@ background:#F5F5F5;
                 
                 <div class="widget">
                     <div class="widget-title widget-collapse">
+                        <h6>Gender</h6>
+                        <a class="ml-auto" data-toggle="collapse" href="#gender" role="button" aria-expanded="false" aria-controls="gender"><i class="fas fa-chevron-down"></i></a>
+                    </div>
+                    <div class="collapse show" id="gender">
+                        <div class="widget-content">
+                        	<!-- <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="전체" name="allG" value="all" onclick="AllGender(this.checked)">
+                                <label class="custom-control-label" for="전체" >전체</label>
+                            </div> -->
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="남자" name="gender" value="남자">
+                                <label class="custom-control-label" for="남자" >남자</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="여자" name="gender" value="여자">
+                                <label class="custom-control-label" for="여자">여자</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-title widget-collapse">
                         <h6>OrderBy</h6>
                         <a class="ml-auto" data-toggle="collapse" href="#gender" role="button" aria-expanded="false" aria-controls="gender"><i class="fas fa-chevron-down"></i></a>
                     </div>
-                    <div class="collapse show" id="orderB">
+                    <div class="collapse show" id="orderBy">
                         <div class="widget-content">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="젊은순" name="orderBy" value="young">
+                                <input type="radio" class="custom-control-input" id="젊은순" name="orderBy" value="young">
                                 <label class="custom-control-label" for="젊은순">젊은순</label>
                            	</div>
                            	<div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="늙은순" name="orderBy" value="old">
+                                <input type="radio" class="custom-control-input" id="늙은순" name="orderBy" value="old">
                                 <label class="custom-control-label" for="늙은순">늙은순</label>
                            	</div>
                            	<div class="custom-control custom-checkbox">
@@ -600,7 +601,6 @@ function AllLocal(val){
 function emptybox(){
 	var locals = document.getElementsByName("local");
 	var genders = document.getElementsByName("gender");
-	var orderBy = document.getElementsByName("orderBy");
 	var checked = 0;
 	
 	for(i=0; i<locals.length; i++){

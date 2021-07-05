@@ -34,8 +34,12 @@ public class ProfileDaoImp implements IProfileDao{
 		Map<String, String[]> map = new HashMap<>();
 		map.put("locals", local);
 		map.put("keyword", keyword);
-		map.put("gender", gender);
+		map.put("genders", gender);
 		return sqlSession.selectList(namespace + "memberListFunction", map);
+	}
+	
+	public List<ProfileDto> orderBy(String orderBy){
+		return sqlSession.selectList(namespace + "orderBy", orderBy);
 	}
 	
 	public ProfileDto memberHome(int seq){

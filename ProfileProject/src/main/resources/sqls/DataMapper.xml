@@ -18,24 +18,37 @@
 	
 	<select id="memberListFunction" parameterType="Map" resultType="ProfileDto">
 		SELECT * FROM PROFILE 
-		WHERE 
-		<if test="locals != null">
+		WHERE
+		<if test="genders != null and locals != null">
+			LOCAL IN <foreach collection="locals" item="local" open="(" close=")" separator=','>
+							#{local}
+					</foreach>
+			AND GENDER IN <foreach collection="genders" item="gender" open="(" close=")" separator=",">
+								#{gender}
+							</foreach>
+		</if> 
+		<if test="genders == null and locals != null">
 			LOCAL IN <foreach collection="locals" item="local" open="(" close=")" separator=','>
 							#{local}
 					</foreach>
 		</if>
-		<if test="gender != null and locals == null">
-			GENDER IN <foreach collection="gender" item="gender" open="(" close=")" separator=",">
-								#{gender}
-							</foreach>
-		</if>
-		<if test="gender != null and locals != null">
-			AND GENDER IN <foreach collection="gender" item="gender" open="(" close=")" separator=",">
+		<if test="locals == null and genders != null ">
+			GENDER IN <foreach collection="genders" item="gender" open="(" close=")" separator=",">
 								#{gender}
 							</foreach>
 		</if>
 	</select>
-	
+
+	<select id="orderBy" resultType="ProfileDto">
+		SELECT * FROM PROFILE ORDER BY 
+		<if test="orderBy == 'young'">
+		AGE
+		</if>
+		<if test="orderBy == 'old'">
+		AGE DESC
+		</if>
+	</select>
+
 	<select id="memberHome" parameterType="int" resultType="ProfileDto">
 		SELECT * FROM PROFILE WHERE SEQ = #{seq}
 	</select>

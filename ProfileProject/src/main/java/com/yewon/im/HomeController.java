@@ -59,19 +59,15 @@ public class HomeController {
 		
 		List<Map<String, String>> localList = profileService.local(); 
 		model.addAttribute("localList", localList);
-		System.out.println(localList);
+		//System.out.println(localList);
 		
-		if(all != null) {
-			return "redirect:main.do";
-		
-		} else if(local == null && keyword == null && orderBy == null) {
+		if(local == null && keyword == null && orderBy == null && gender == null) {
 			List<ProfileDto> list = profileService.memberList();
 			model.addAttribute("list", list);
 		
-		} else if(local != null || gender != null){
+		} else if(local != null || gender != null ){
 			List<ProfileDto> list = profileService.memberListFunction(local, keyword, gender);
-			model.addAttribute("list", list);
-			
+			model.addAttribute("list", list);			
 		} 
 		
 		return "main";

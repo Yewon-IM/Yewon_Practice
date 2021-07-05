@@ -34,6 +34,11 @@ public class ProfileService implements IProfileService{
 	}
 	
 	@Override
+	public List<ProfileDto> orderBy(String orderBy) {
+		return profileService.orderBy(orderBy);
+	}
+	
+	@Override
 	public ProfileDto memberHome(int seq) {
 		return profileService.memberHome(seq);
 	}
@@ -62,11 +67,4 @@ public class ProfileService implements IProfileService{
 	public boolean writeComment(CommentDto dto) {
 		return profileService.writeComment(dto);
 	}
-
-	
-
-
-
-
-	
 }
