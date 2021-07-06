@@ -9,7 +9,7 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
-	
+    
 	<!-- Application Loggers -->
 	<logger name="com.yewon.im">
 		<level value="info" />
@@ -31,11 +31,5 @@
 	<logger name="org.springframework.web">
 		<level value="info" />
 	</logger>
-
-	<!-- Root Logger -->
-	<root>
-		<priority value="warn" />
-		<appender-ref ref="console" />
-	</root>
 	
 </log4j:configuration>

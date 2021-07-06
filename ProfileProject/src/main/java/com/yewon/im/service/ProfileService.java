@@ -29,8 +29,13 @@ public class ProfileService implements IProfileService{
 	}
 	
 	@Override
-	public List<ProfileDto> memberListFunction(String[] local, String[] keyword, String[] gender) {
-		return profileService.memberListFunction(local, keyword, gender);
+	public List<ProfileDto> memberListFunction(String[] local, String[] gender, String[] orderBy) {
+		return profileService.memberListFunction(local, gender, orderBy);
+	}
+	
+	@Override
+	public List<ProfileDto> keyword(String keyword) {
+		return profileService.keyword(keyword);
 	}
 	
 	@Override
@@ -67,4 +72,5 @@ public class ProfileService implements IProfileService{
 	public boolean writeComment(CommentDto dto) {
 		return profileService.writeComment(dto);
 	}
+
 }

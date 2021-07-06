@@ -52,9 +52,9 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public String main(HttpServletRequest request ,Locale locale, Model model, String[] local, String all, String[] gender, String[] keyword,
-			 String orderBy) {
+	@RequestMapping(value = "/main.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String main(HttpServletRequest request ,Locale locale, Model model, String[] local, String all, String[] gender, String keyword,
+			 String[]orderBy) {
 		logger.info("메인화면.", locale);
 		
 		List<Map<String, String>> localList = profileService.local(); 
@@ -65,9 +65,21 @@ public class HomeController {
 			List<ProfileDto> list = profileService.memberList();
 			model.addAttribute("list", list);
 		
+		} else if(keyword != null) {
+			System.out.println("keyword : " + keyword);
+			List<ProfileDto> list = profileService.keyword(keyword);
+			model.addAttribute("list", list);
+		
 		} else if(local != null || gender != null ){
-			List<ProfileDto> list = profileService.memberListFunction(local, keyword, gender);
-			model.addAttribute("list", list);			
+			//System.out.println("orderBy : " + Arrays.toString(local));
+			List<ProfileDto> list = profileService.memberListFunction(local, gender, orderBy);
+			model.addAttribute("list", list);
+			
+			model.addAttribute("local", Arrays.toString(local));
+			model.addAttribute("gender", Arrays.toString(gender));
+			model.addAttribute("orderBy", Arrays.toString(orderBy));
+			//System.out.println(orderBy);
+		
 		} 
 		
 		return "main";

@@ -403,7 +403,9 @@ background:#F5F5F5;
             <div class="sidebar">
                 <div class="widget border-0">
                     <div class="search">
-                        <input class="form-control" type="text" placeholder="검색어를 입력하세요">
+                        <form action="main.do" method="post">
+                        	<input class="form-control" onkeyup="enterkey()" type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요">
+                    	</form>
                     </div>
                 </div>
                 <form name="search" action="main.do" method="get" onsubmit="return emptybox()">
@@ -488,7 +490,13 @@ background:#F5F5F5;
         <div class="col-lg-9">
             <div class="row mb-4">
                 <div class="col-12">
-                    <h6 class="mb-0">Showing 1-10 of <span class="text-primary">28 Candidates</span></h6>
+                    <h6 class="mb-0">검색조건 : 
+                   						<c:if test="${local != 'null' }">지역 ${local }</c:if>
+                   						<c:if test="${gender != 'null' }">성별 ${gender }</c:if>
+                   						<c:if test="${orderBy != 'null' }">정렬순 ${orderBy }</c:if>
+                   						<c:if test="${keyword != 'null' }">키워드 ${keyword }</c:if>
+                    </h6>
+                   <!--  <span class="text-primary">28 Candidates</span> -->
                 </div>
             </div>
             <div class="job-filter mb-4 d-sm-flex align-items-center">
@@ -625,6 +633,11 @@ function emptybox(){
 		alert('검색 조건을 선택하세요.');
 		return false;
 	} 
+}
+
+function enterkey(keyword){
+	if(window.event.keyCode == 13){
+	}
 }
 </script>
 </body>

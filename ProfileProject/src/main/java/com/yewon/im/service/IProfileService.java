@@ -15,7 +15,9 @@ public interface IProfileService {
 	
 	public List<Map<String, String>> local();
 	
-	public List<ProfileDto> memberListFunction(String[] local, String[] keyword, String[] gender);
+	public List<ProfileDto> memberListFunction(String[] local, String[] gender, String[] orderBy);
+	
+	public List<ProfileDto> keyword(String keyword);
 	
 	public List<ProfileDto> orderBy(String orderBy);
 	
