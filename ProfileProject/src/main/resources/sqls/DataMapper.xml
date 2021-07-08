@@ -47,10 +47,10 @@
 	
 	<select id="orderBy" resultType="ProfileDto">
 		SELECT * FROM PROFILE ORDER BY 
-		<if test="orderBy == 'young'">
+		<if test='orderBy == "young"'>
 		AGE
 		</if>
-		<if test="orderBy == 'old'">
+		<if test='orderBy == "old"'>
 		AGE DESC
 		</if>
 	</select>
@@ -108,5 +108,11 @@
 		(board_seq, content, member_seq, writeDate)
 		VALUES(#{board_seq}, #{content}, #{member_seq}, NOW())
 	</insert>
+	
+	<update id="likeup" parameterType="int">
+		UPDATE Yewon.Board
+		SET `like`= `like` + 1
+		WHERE board_seq= #{board_seq}
+	</update>
 	
 </mapper>

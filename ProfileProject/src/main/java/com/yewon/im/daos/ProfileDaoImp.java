@@ -30,11 +30,10 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "local");
 	}
 	
-	public List<ProfileDto> memberListFunction(String[] local, String[] gender, String[] orderBy){
+	public List<ProfileDto> memberListFunction(String[] local, String[] gender){
 		Map<String, String[]> map = new HashMap<>();
 		map.put("locals", local);
 		map.put("genders", gender);
-		map.put("orderBys", orderBy);
 		//System.out.println(orderBy);
 		//System.out.println("locals : " + Arrays.toString(local) + "  //genders : " + Arrays.toString(gender) + "  //orderBys : " + Arrays.toString(orderBy) + "si :" + orderBy.getClass().getName());
 		return sqlSession.selectList(namespace + "memberListFunction", map);
@@ -44,7 +43,6 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "keyword", keyword);
 	}
 	
-	//unuse
 	public List<ProfileDto> orderBy(String orderBy){
 		return sqlSession.selectList(namespace + "orderBy", orderBy);
 	}
@@ -74,6 +72,11 @@ public class ProfileDaoImp implements IProfileDao{
 	
 	public boolean writeComment(CommentDto dto) {
 		int count = sqlSession.insert(namespace + "writeComment", dto);
+		return count > 0? true:false;
+	}
+	
+	public boolean likeup(int board_seq){
+		int count = sqlSession.update(namespace + "likeup", board_seq);
 		return count > 0? true:false;
 	}
 }

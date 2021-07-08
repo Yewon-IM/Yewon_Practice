@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -393,6 +394,7 @@ background:#F5F5F5;
     </style>
 </head>
 <body>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 <% 
 	List<ProfileDto> pList = (List<ProfileDto>) request.getAttribute("list"); 
@@ -425,7 +427,7 @@ background:#F5F5F5;
                         	
                         	<c:forEach var="l" items="${localList }" >
                         		<div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="${l.LOCAL}" name="local" value="${l.LOCAL}">
+                                <input type="checkbox" class="custom-control-input" id="${l.LOCAL}" name="local" value="${l.LOCAL}" <c:if test="${fn:contains(local, l.LOCAL) }"></c:if> >
                                 <label class="custom-control-label" for="${l.LOCAL}">${l.LOCAL}</label>
                            	</div>
                         	</c:forEach>
@@ -445,21 +447,21 @@ background:#F5F5F5;
                                 <label class="custom-control-label" for="전체" >전체</label>
                             </div> -->
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="남자" name="gender" value="남자">
+                                <input type="checkbox" class="custom-control-input" id="남자" name="gender" value="남자" <c:if test='${gender == "[남자]" || gender == "[남자, 여자]" }'>checked</c:if>>
                                 <label class="custom-control-label" for="남자" >남자</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="여자" name="gender" value="여자">
+                                <input type="checkbox" class="custom-control-input" id="여자" name="gender" value="여자" <c:if test='${gender == "[여자]" || gender == "[남자, 여자]" }'>checked</c:if>>
                                 <label class="custom-control-label" for="여자">여자</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="widget">
+                <!-- <div class="widget">
                     <div class="widget-title widget-collapse">
                         <h6>OrderBy</h6>
-                        <a class="ml-auto" data-toggle="collapse" href="#gender" role="button" aria-expanded="false" aria-controls="gender"><i class="fas fa-chevron-down"></i></a>
+                        <a class="ml-auto" data-toggle="collapse" href="#orderBy" role="button" aria-expanded="false" aria-controls="orderBy"><i class="fas fa-chevron-down"></i></a>
                     </div>
                     <div class="collapse show" id="orderBy">
                         <div class="widget-content">
@@ -477,7 +479,8 @@ background:#F5F5F5;
                            	</div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                
                 <input type="submit" value="검색하기">
                 </form>
                 
@@ -490,11 +493,8 @@ background:#F5F5F5;
         <div class="col-lg-9">
             <div class="row mb-4">
                 <div class="col-12">
-                    <h6 class="mb-0">검색조건 : 
-                   						<c:if test="${local != 'null' }">지역 ${local }</c:if>
-                   						<c:if test="${gender != 'null' }">성별 ${gender }</c:if>
-                   						<c:if test="${orderBy != 'null' }">정렬순 ${orderBy }</c:if>
-                   						<c:if test="${keyword != 'null' }">키워드 ${keyword }</c:if>
+                    <h6 class="mb-0">
+                   			냐냐
                     </h6>
                    <!--  <span class="text-primary">28 Candidates</span> -->
                 </div>
@@ -508,8 +508,8 @@ background:#F5F5F5;
                             <div class="short-by">
                                 <select onchange="location.href=(this.value)" class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                     <option value="">----</option>
-                                    <option value="main.do?orderBy=old">나이 많은순</option>
-                                    <option value="main.do?orderBy=young">나이 적은순</option>
+                                    <option value="main.do?orderBy=old" ${orderBy == "old" ? "selected" : "" }>나이 많은순</option>
+                                    <option value="main.do?orderBy=young" ${orderBy == "young" ? "selected" : "" }>나이 적은순</option>
                                     <option value="main.do?orderBy=star">인기순</option>
                                 </select>
                             </div>
@@ -531,7 +531,7 @@ background:#F5F5F5;
 	                        <%if(dto.getProfileImg() == null){
 	                            %><a href="memberHome.do?seq=<%=dto.getSeq() %>"><img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a><%
 	                          } else {
-		                        %><a href="memberHome.do?seq=<%=dto.getSeq() %>"><img class="img-fluid" src="1resources/profileImg/<%=dto.getProfileImg() %>" alt=""></a><%
+		                        %><a href="memberHome.do?seq=<%=dto.getSeq() %>"><img class="img-fluid" src="resources/profileImg/<%=dto.getProfileImg() %>" alt=""></a><%
 	                          }
 	                        %>
 	                        </div>

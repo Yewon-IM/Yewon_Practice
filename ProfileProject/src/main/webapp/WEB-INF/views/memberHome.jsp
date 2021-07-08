@@ -336,7 +336,7 @@
                                     <div class="timeline-item-post">
 										<p>${b.content }</p>
                                         <div class="timeline-options">
-                                            <a href="#"><i class="fa fa-thumbs-up"></i> Like (${b.like })</a>
+                                            <a onclick="likeup(${b.board_seq},${dto.seq })"><i class="fa fa-thumbs-up"></i> Like (${b.like })</a>
                                             
                                             <a href="javascript:showComment(${b.board_seq });"><i class="fa fa-comment"></i> 댓글 (
                                              											<c:set var="isS" value="false"/>
@@ -438,6 +438,9 @@
                                 <div class="online on"></div>
                                 <a href="main.do"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" /></a>
                             </div>
+                            <div class="team-member">
+                            <a href="toDoList.do?member_seq=${dto.seq }"><img src="resources/img/to-do-list.png" alt="" /></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -470,6 +473,10 @@
 		} else if(con.style.display == 'block'){
 			con.style.display = 'none';
 		}
+	}
+	
+	function likeup(board_seq, seq){
+		location.href="likeup.do?board_seq="+board_seq+'&member_seq='+seq;
 	}
 </script>
 </body>

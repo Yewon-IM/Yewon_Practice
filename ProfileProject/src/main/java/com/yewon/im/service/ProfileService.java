@@ -29,8 +29,8 @@ public class ProfileService implements IProfileService{
 	}
 	
 	@Override
-	public List<ProfileDto> memberListFunction(String[] local, String[] gender, String[] orderBy) {
-		return profileService.memberListFunction(local, gender, orderBy);
+	public List<ProfileDto> memberListFunction(String[] local, String[] gender) {
+		return profileService.memberListFunction(local, gender);
 	}
 	
 	@Override
@@ -71,6 +71,11 @@ public class ProfileService implements IProfileService{
 	@Override
 	public boolean writeComment(CommentDto dto) {
 		return profileService.writeComment(dto);
+	}
+
+	@Override
+	public boolean likeup(int board_seq) {
+		return profileService.likeup(board_seq);
 	}
 
 }

@@ -15,7 +15,7 @@ public interface IProfileService {
 	
 	public List<Map<String, String>> local();
 	
-	public List<ProfileDto> memberListFunction(String[] local, String[] gender, String[] orderBy);
+	public List<ProfileDto> memberListFunction(String[] local, String[] gender);
 	
 	public List<ProfileDto> keyword(String keyword);
 	
@@ -32,4 +32,6 @@ public interface IProfileService {
 	public List<Map<String, Integer>> countComment();
 	
 	public boolean writeComment(CommentDto dto); 
+	
+	public boolean likeup(int board_seq);
 }

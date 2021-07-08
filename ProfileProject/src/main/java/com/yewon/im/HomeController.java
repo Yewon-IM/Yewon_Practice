@@ -54,12 +54,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/main.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String main(HttpServletRequest request ,Locale locale, Model model, String[] local, String all, String[] gender, String keyword,
-			 String[]orderBy) {
+			 String orderBy) {
 		logger.info("메인화면.", locale);
 		
 		List<Map<String, String>> localList = profileService.local(); 
 		model.addAttribute("localList", localList);
-		//System.out.println(localList);
 		
 		if(local == null && keyword == null && orderBy == null && gender == null) {
 			List<ProfileDto> list = profileService.memberList();
@@ -70,17 +69,23 @@ public class HomeController {
 			List<ProfileDto> list = profileService.keyword(keyword);
 			model.addAttribute("list", list);
 		
+			model.addAttribute("keyword", keyword);
+			
 		} else if(local != null || gender != null ){
 			//System.out.println("orderBy : " + Arrays.toString(local));
-			List<ProfileDto> list = profileService.memberListFunction(local, gender, orderBy);
+			List<ProfileDto> list = profileService.memberListFunction(local, gender);
 			model.addAttribute("list", list);
 			
-			model.addAttribute("local", Arrays.toString(local));
+ 			model.addAttribute("local", Arrays.toString(local));
 			model.addAttribute("gender", Arrays.toString(gender));
-			model.addAttribute("orderBy", Arrays.toString(orderBy));
+			System.out.println(Arrays.toString(local));
+			
+		} else if(orderBy != null && local == null && gender == null) {
 			//System.out.println(orderBy);
-		
-		} 
+			List<ProfileDto> list = profileService.orderBy(orderBy);
+			model.addAttribute("list", list);
+			model.addAttribute("orderBy", orderBy);
+		}
 		
 		return "main";
 	}
@@ -98,7 +103,7 @@ public class HomeController {
 		
 		List<Map<String, Integer>> countList = profileService.countComment();
 		model.addAttribute("countList", countList);
-		System.out.println("countList" +countList);
+		//System.out.println("countList" +countList);
 		
 		ArrayList<Integer> board_seqs = new ArrayList<Integer>();
 		
@@ -154,4 +159,33 @@ public class HomeController {
 			return "error";
 		}
 	}
+	
+	@RequestMapping(value = "/likeup.do", method = RequestMethod.GET)
+	public String likeup(HttpServletRequest request, Locale locale, Model model, int board_seq, int member_seq) {
+		logger.info("좋아요 눌렀다.", locale);
+		
+		//System.out.println("member_seq : "+member_seq);
+		boolean result = profileService.likeup(board_seq);
+		if(result) {
+			return "redirect:memberHome.do?seq=" + member_seq;
+		} else {
+			model.addAttribute("msg", "좋아요 오류입니다.");
+			return "error";
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/toDoList.do", method = RequestMethod.GET)
+	public String toDoList(HttpServletRequest request, Locale locale, Model model, int member_seq) {
+		logger.info("to do List", locale);
+			
+			return "toDoList";
+		}	
 }
