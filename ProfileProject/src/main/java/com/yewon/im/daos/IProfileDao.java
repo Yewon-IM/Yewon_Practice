@@ -13,6 +13,8 @@ public interface IProfileDao {
 	
 	public List<ProfileDto> memberList();
 	
+	public int pageCount();
+	
 	public List<Map<String, String>> local();
 	
 	public List<ProfileDto> memberListFunction(String[] local, String[] gender);

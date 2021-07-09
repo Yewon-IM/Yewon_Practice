@@ -4,7 +4,12 @@
 <mapper namespace="com.yewon.im">
 	
 	<select id="memberList" resultType="ProfileDto">
-		SELECT * FROM PROFILE
+		SELECT * FROM PROFILE ORDER BY seq LIMIT 0,6
+	</select>
+	
+	<!-- 페이징 갯수 구하기 -->
+	<select id="pageCount" resultType="int">
+		SELECT CEIL(COUNT(seq)/6) from Profile
 	</select>
 	
 		<!-- <if test="keyword != null">

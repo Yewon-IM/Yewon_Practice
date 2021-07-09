@@ -427,7 +427,7 @@ background:#F5F5F5;
                         	
                         	<c:forEach var="l" items="${localList }" >
                         		<div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="${l.LOCAL}" name="local" value="${l.LOCAL}" <c:if test="${fn:contains(local, l.LOCAL) }"></c:if> >
+                                <input type="checkbox" class="custom-control-input" id="${l.LOCAL}" name="local" value="${l.LOCAL}" <c:if test="${fn:contains(local, l.LOCAL) }">checked</c:if> >
                                 <label class="custom-control-label" for="${l.LOCAL}">${l.LOCAL}</label>
                            	</div>
                         	</c:forEach>
@@ -565,11 +565,11 @@ background:#F5F5F5;
                 <div class="col-12 text-center mt-4 mt-sm-5">
                     <ul class="pagination justify-content-center mb-0">
                         <li class="page-item disabled"> <span class="page-link">Prev</span> </li>
-                        <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">25</a></li>
+                        <c:forEach var="i" begin="1" end="${pageCount }" >
+                        	<li class="page-item"><a class="page-link" href="main.do?numberth=${i }"><c:out value="${i }" /></a></li>                        	
+                        </c:forEach>
+                       <!--  <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li> -->
                         <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
                     </ul>
                 </div>

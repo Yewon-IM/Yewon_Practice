@@ -24,6 +24,11 @@ public class ProfileService implements IProfileService{
 	}
 	
 	@Override
+	public int pageCount() {
+		return profileService.pageCount();
+	}
+	
+	@Override
 	public List<Map<String, String>> local() {
 		return profileService.local();
 	}

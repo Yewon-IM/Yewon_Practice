@@ -26,6 +26,10 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "memberList");
 	}
 	
+	public int pageCount() {
+		return sqlSession.selectOne(namespace + "pageCount");
+	}
+	
 	public List<Map<String, String>> local(){
 		return sqlSession.selectList(namespace + "local");
 	}

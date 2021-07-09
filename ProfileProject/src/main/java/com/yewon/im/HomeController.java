@@ -60,6 +60,10 @@ public class HomeController {
 		List<Map<String, String>> localList = profileService.local(); 
 		model.addAttribute("localList", localList);
 		
+		int pageCounts = profileService.pageCount();
+		model.addAttribute("pageCount", pageCounts);
+		//System.out.println(pageCounts);
+		
 		if(local == null && keyword == null && orderBy == null && gender == null) {
 			List<ProfileDto> list = profileService.memberList();
 			model.addAttribute("list", list);
@@ -85,7 +89,8 @@ public class HomeController {
 			List<ProfileDto> list = profileService.orderBy(orderBy);
 			model.addAttribute("list", list);
 			model.addAttribute("orderBy", orderBy);
-		}
+		
+		} 
 		
 		return "main";
 	}
