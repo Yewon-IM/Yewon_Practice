@@ -24,6 +24,11 @@ public class ProfileService implements IProfileService{
 	}
 	
 	@Override
+	public List<ProfileDto> numberthMemberList(Integer numberth) {
+		return profileService.numberthMemberList(numberth);
+	}
+	
+	@Override
 	public int pageCount() {
 		return profileService.pageCount();
 	}

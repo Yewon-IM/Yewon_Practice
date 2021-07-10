@@ -13,6 +13,8 @@ public interface IProfileService {
 
 	public List<ProfileDto> memberList();
 	
+	public List<ProfileDto> numberthMemberList(Integer numberth);
+	
 	public int pageCount();
 	
 	public List<Map<String, String>> local();

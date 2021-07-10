@@ -26,6 +26,10 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "memberList");
 	}
 	
+	public List<ProfileDto> numberthMemberList(Integer numberth){
+		return sqlSession.selectList(namespace + "numberthMemberList", numberth);
+	}
+	
 	public int pageCount() {
 		return sqlSession.selectOne(namespace + "pageCount");
 	}

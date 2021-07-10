@@ -54,7 +54,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/main.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String main(HttpServletRequest request ,Locale locale, Model model, String[] local, String all, String[] gender, String keyword,
-			 String orderBy) {
+			 String orderBy, Integer numberth) {
 		logger.info("메인화면.", locale);
 		
 		List<Map<String, String>> localList = profileService.local(); 
@@ -62,9 +62,15 @@ public class HomeController {
 		
 		int pageCounts = profileService.pageCount();
 		model.addAttribute("pageCount", pageCounts);
-		//System.out.println(pageCounts);
+		System.out.println("pageCounts : " + pageCounts);
+		System.out.println("numberth : " + numberth);
+		if(numberth != null) {
+			List<ProfileDto> list = profileService.numberthMemberList(numberth);
+			model.addAttribute("list", list);
+			
+			return "main";
 		
-		if(local == null && keyword == null && orderBy == null && gender == null) {
+		} else if(local == null && keyword == null && orderBy == null && gender == null) {
 			List<ProfileDto> list = profileService.memberList();
 			model.addAttribute("list", list);
 		

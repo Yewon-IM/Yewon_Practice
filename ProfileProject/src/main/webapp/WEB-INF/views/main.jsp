@@ -566,7 +566,13 @@ background:#F5F5F5;
                     <ul class="pagination justify-content-center mb-0">
                         <li class="page-item disabled"> <span class="page-link">Prev</span> </li>
                         <c:forEach var="i" begin="1" end="${pageCount }" >
-                        	<li class="page-item"><a class="page-link" href="main.do?numberth=${i }"><c:out value="${i }" /></a></li>                        	
+                        <c:if test="${i == 1 }">
+                        	<c:set var="j" value="0" />
+                        </c:if>
+                        <c:if test="${i != 1 }">
+                        	<c:set var="j" value="${(i-1) * 3 }" />
+                        </c:if>
+                        	<li class="page-item"><a class="page-link" href="main.do?numberth=${j }"><c:out value="${i }" /></a></li>                        	
                         </c:forEach>
                        <!--  <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li> -->
