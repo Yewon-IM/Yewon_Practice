@@ -53,52 +53,44 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/main.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String main(HttpServletRequest request ,Locale locale, Model model, String[] local, String all, String[] gender, String keyword,
-			 String orderBy, Integer numberth) {
-		logger.info("메인화면.", locale);
+	public String main(Locale locale, Model model, String[] local, String[] gender, String[] keyword, String[] orderBy
+			,String[] numberth) {
+		logger.info("메인화면입니다.", locale);
 		
 		List<Map<String, String>> localList = profileService.local(); 
 		model.addAttribute("localList", localList);
 		
-		int pageCounts = profileService.pageCount();
-		model.addAttribute("pageCount", pageCounts);
-		System.out.println("pageCounts : " + pageCounts);
-		System.out.println("numberth : " + numberth);
-		if(numberth != null) {
-			List<ProfileDto> list = profileService.numberthMemberList(numberth);
-			model.addAttribute("list", list);
+		if(local == null && gender == null && keyword == null && orderBy == null && numberth == null) {
 			
-			return "main";
-		
-		} else if(local == null && keyword == null && orderBy == null && gender == null) {
 			List<ProfileDto> list = profileService.memberList();
 			model.addAttribute("list", list);
+	
+			int pageCounts = profileService.pageCount();
+			model.addAttribute("pageCount", pageCounts);
 		
-		} else if(keyword != null) {
+			return "main";
+		} else {
+			
+			System.out.println("local : " + Arrays.toString(local));
+			System.out.println("gender : " + Arrays.toString(gender));
 			System.out.println("keyword : " + keyword);
-			List<ProfileDto> list = profileService.keyword(keyword);
+			System.out.println("orderBy : " + orderBy);
+			System.out.println("numberth : " + numberth);
+			
+			List<ProfileDto> list = profileService.main(local, gender, keyword, orderBy, numberth);
 			model.addAttribute("list", list);
-		
+			
+			model.addAttribute("local", local);
+			model.addAttribute("gender", gender);
 			model.addAttribute("keyword", keyword);
-			
-		} else if(local != null || gender != null ){
-			//System.out.println("orderBy : " + Arrays.toString(local));
-			List<ProfileDto> list = profileService.memberListFunction(local, gender);
-			model.addAttribute("list", list);
-			
- 			model.addAttribute("local", Arrays.toString(local));
-			model.addAttribute("gender", Arrays.toString(gender));
-			System.out.println(Arrays.toString(local));
-			
-		} else if(orderBy != null && local == null && gender == null) {
-			//System.out.println(orderBy);
-			List<ProfileDto> list = profileService.orderBy(orderBy);
-			model.addAttribute("list", list);
 			model.addAttribute("orderBy", orderBy);
-		
-		} 
-		
-		return "main";
+			
+			int pageCounts = profileService.pageCount();
+			model.addAttribute("pageCount", pageCounts);
+			
+			return "main";
+		}
+
 	}
 	
 	@RequestMapping(value = "/memberHome.do", method = RequestMethod.GET)

@@ -44,6 +44,12 @@ public class ProfileService implements IProfileService{
 	}
 	
 	@Override
+	public List<ProfileDto> main(String[] local, String[] gender, String[] keyword, String[] orderBy,
+			String[] numberth) {
+		return profileService.main(local, gender, keyword, orderBy, numberth);
+	}
+	
+	@Override
 	public List<ProfileDto> keyword(String keyword) {
 		return profileService.keyword(keyword);
 	}

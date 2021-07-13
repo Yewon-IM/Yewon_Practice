@@ -1,6 +1,7 @@
 package com.yewon.im.daos;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,8 @@ public interface IProfileDao {
 	public List<Map<String, String>> local();
 	
 	public List<ProfileDto> memberListFunction(String[] local, String[] gender);
+	
+	public List<ProfileDto> main(String[] local, String[] gender, String[] keyword, String[] orderBy, String[] numberth);
 	
 	public List<ProfileDto> keyword(String keyword);
 	

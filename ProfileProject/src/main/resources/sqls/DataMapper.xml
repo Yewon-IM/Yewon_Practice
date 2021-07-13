@@ -49,6 +49,39 @@
 		</where>
 	</select>
 	
+	<select id="main" parameterType="Map" resultType="ProfileDto">
+		SELECT * FROM PROFILE
+		<where>
+			<if test="local != null">
+				LOCAL IN <foreach collection="locals" item="local" open="(" close=")" separator=','>
+								#{local}
+						</foreach>
+			</if>
+			<if test="gender != null">
+				GENDER IN <foreach collection="genders" item="gender" open="(" close=")" separator=",">
+									#{gender}
+						  </foreach>
+			</if>
+			<if test="keyword != null">
+				KEYWORD IN 
+			</if>
+			<if test="orderBy != null">
+				ORDER BY <if test='orderBy == "[young]"'>
+							AGE
+						</if>
+						<if test='orderBy == "[old]"'>
+							AGE DESC
+						</if>
+						<if test="numberth != null">
+							LIMIT ${numberth},3
+						</if>
+			</if>
+			<if test="orderBy == null and numberth != null">
+				ORDER BY SEQ LIMIT ${numberth},3
+			</if>
+		</where>
+	</select>
+	
 	<select id="keyword" parameterType="String" resultType="ProfileDto">
 		SELECT * from Profile p 
 		WHERE NAME LIKE '%${keyword}%' or AGE LIKE '%${keyword}%' or TEL LIKE '%${keyword}%' or EMAIL LIKE '%${keyword}%' or JOB LIKE '%${keyword}%' or HOBBY LIKE '%${keyword}%'

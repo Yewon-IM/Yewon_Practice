@@ -47,6 +47,23 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "memberListFunction", map);
 	}
 	
+	public List<ProfileDto> main(String[] local, String[] gender, String[] keyword, String[] orderBy, String[] numberth){
+		Map<String, String[]> map = new HashMap<>();
+		map.put("zlocals", local);
+		map.put("zgenders", gender);
+		map.put("zkeyword", keyword);
+		map.put("zorderBy", orderBy);
+		map.put("znumberth", numberth);
+		
+		System.out.println("local : " + Arrays.toString(local));
+		System.out.println("gender : " + Arrays.toString(gender));
+		System.out.println("keyword : " + Arrays.toString(keyword));
+		System.out.println("orderBy : " + Arrays.toString(orderBy));
+		System.out.println("numberth : " + Arrays.toString(numberth));
+		
+		return sqlSession.selectList(namespace + "main", map);
+	}
+	
 	public List<ProfileDto> keyword(String keyword){
 		return sqlSession.selectList(namespace + "keyword", keyword);
 	}
