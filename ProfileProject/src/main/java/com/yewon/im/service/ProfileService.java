@@ -29,8 +29,8 @@ public class ProfileService implements IProfileService{
 	}
 	
 	@Override
-	public int pageCount() {
-		return profileService.pageCount();
+	public int pageCount(int seqs) {
+		return profileService.pageCount(seqs);
 	}
 	
 	@Override
@@ -44,8 +44,8 @@ public class ProfileService implements IProfileService{
 	}
 	
 	@Override
-	public List<ProfileDto> main(String[] local, String[] gender, String[] keyword, String[] orderBy,
-			String[] numberth) {
+	public List<ProfileDto> main(String[] local, String[] gender, String keyword, String orderBy,
+			String numberth) {
 		return profileService.main(local, gender, keyword, orderBy, numberth);
 	}
 	

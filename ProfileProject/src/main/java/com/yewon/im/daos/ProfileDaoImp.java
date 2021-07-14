@@ -30,8 +30,8 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "numberthMemberList", numberth);
 	}
 	
-	public int pageCount() {
-		return sqlSession.selectOne(namespace + "pageCount");
+	public int pageCount(int seqs) {
+		return sqlSession.selectOne(namespace + "pageCount", seqs);
 	}
 	
 	public List<Map<String, String>> local(){
@@ -47,19 +47,19 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "memberListFunction", map);
 	}
 	
-	public List<ProfileDto> main(String[] local, String[] gender, String[] keyword, String[] orderBy, String[] numberth){
-		Map<String, String[]> map = new HashMap<>();
-		map.put("zlocals", local);
-		map.put("zgenders", gender);
-		map.put("zkeyword", keyword);
-		map.put("zorderBy", orderBy);
-		map.put("znumberth", numberth);
+	public List<ProfileDto> main(String[] local, String[] gender, String keyword, String orderBy, String numberth){
+		Map<String, Object> map = new HashMap<>();
+		map.put("locals", local);
+		map.put("genders", gender);
+		map.put("keyword", keyword);
+		map.put("orderBy", orderBy);
+		map.put("numberth", numberth);
 		
-		System.out.println("local : " + Arrays.toString(local));
-		System.out.println("gender : " + Arrays.toString(gender));
-		System.out.println("keyword : " + Arrays.toString(keyword));
-		System.out.println("orderBy : " + Arrays.toString(orderBy));
-		System.out.println("numberth : " + Arrays.toString(numberth));
+		System.out.println("dlocal : " + local);
+		System.out.println("dgender : " + gender);
+		System.out.println("dkeyword : " + keyword);
+		System.out.println("dorderBy : " + orderBy);
+		System.out.println("dnumberth : " + numberth);
 		
 		return sqlSession.selectList(namespace + "main", map);
 	}

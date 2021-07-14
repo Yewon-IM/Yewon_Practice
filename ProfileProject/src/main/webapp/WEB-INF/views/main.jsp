@@ -572,7 +572,9 @@ background:#F5F5F5;
                         <c:if test="${i != 1 }">
                         	<c:set var="j" value="${(i-1) * 3 }" />
                         </c:if>
-                        	<li class="page-item"><a class="page-link" href="main.do?numberth=${j }"><c:out value="${i }" /></a></li>                        	
+                        	<li class="page-item">
+                        		<a class="page-link" href="main.do?numberth=${j }"><c:out value="${i }" /></a>
+                        	</li>                        	
                         </c:forEach>
                        <!--  <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li> -->

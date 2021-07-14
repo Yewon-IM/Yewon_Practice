@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yewon.im.Util.Util;
 import com.yewon.im.dtos.BoardDto;
 import com.yewon.im.dtos.CommentDto;
 import com.yewon.im.dtos.ProfileDto;
@@ -53,24 +54,35 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/main.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String main(Locale locale, Model model, String[] local, String[] gender, String[] keyword, String[] orderBy
-			,String[] numberth) {
+	public String main(Locale locale, Model model, String[] local, String[] gender, String keyword, String orderBy
+			,String numberth) {
 		logger.info("메인화면입니다.", locale);
 		
 		List<Map<String, String>> localList = profileService.local(); 
 		model.addAttribute("localList", localList);
 		
 		if(local == null && gender == null && keyword == null && orderBy == null && numberth == null) {
-			
+			System.out.println("요기 인가?");
 			List<ProfileDto> list = profileService.memberList();
 			model.addAttribute("list", list);
-	
-			int pageCounts = profileService.pageCount();
-			model.addAttribute("pageCount", pageCounts);
-		
-			return "main";
-		} else {
 			
+			int pageCounts = profileService.pageCount(list.size());
+			model.addAttribute("pageCount", pageCounts);
+			System.out.println(pageCounts);
+			
+			return "main";
+			
+		} else if(numberth != null){
+			List<ProfileDto> list = profileService.main(local, gender, keyword, orderBy, numberth);
+			model.addAttribute("list", list);
+			
+			int pageCounts = profileService.pageCount(list.size());
+			model.addAttribute("pageCount", pageCounts);
+			
+			return "main";
+			
+		} else {
+
 			System.out.println("local : " + Arrays.toString(local));
 			System.out.println("gender : " + Arrays.toString(gender));
 			System.out.println("keyword : " + keyword);
@@ -78,19 +90,24 @@ public class HomeController {
 			System.out.println("numberth : " + numberth);
 			
 			List<ProfileDto> list = profileService.main(local, gender, keyword, orderBy, numberth);
-			model.addAttribute("list", list);
+			int pageCounts = profileService.pageCount(list.size());
+			model.addAttribute("pageCount", pageCounts);
+			System.out.println(pageCounts);
 			
-			model.addAttribute("local", local);
+			model.addAttribute("list", list);
+			model.addAttribute("local", Arrays.toString(local));
 			model.addAttribute("gender", gender);
 			model.addAttribute("keyword", keyword);
 			model.addAttribute("orderBy", orderBy);
 			
-			int pageCounts = profileService.pageCount();
-			model.addAttribute("pageCount", pageCounts);
+			//float pageCounts = Util.division(list.size(),3);
+			//model.addAttribute("pageCount", pageCounts);
+			//System.out.println(pageCounts);
+				
+			System.out.println("요깁니다@");
 			
 			return "main";
 		}
-
 	}
 	
 	@RequestMapping(value = "/memberHome.do", method = RequestMethod.GET)
