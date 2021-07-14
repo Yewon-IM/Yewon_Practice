@@ -9,4 +9,8 @@ public class Util {
 		System.out.println("result : " + result);
 		return result;
 	}
+	
+	public static int pages() {
+		
+	}
 }
