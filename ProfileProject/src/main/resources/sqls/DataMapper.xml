@@ -11,11 +11,6 @@
 		SELECT * FROM PROFILE ORDER BY seq LIMIT ${numberth},3
 	</select>
 	
-	<!-- 페이징 갯수 구하기 -->
-	<select id="pageCount" parameterType="int" resultType="int">
-		SELECT CEIL(COUNT(${seqs})/3) from Profile
-	</select>
-	
 		<!-- <if test="keyword != null">
 		WHERE UPPER(NAME)LIKE '%' || #{keyword} || '%'
 		</if> -->
@@ -51,11 +46,7 @@
 	
 	<select id="main" parameterType="Map" resultType="ProfileDto">
 		SELECT * FROM PROFILE
-		<if test="numberth != null and locals == null and genders == null and keyword == null and orderBy == null">
-			ORDER BY SEQ LIMIT ${numberth},3
-		</if>
-		<if test="locals != null or genders != null or keyword != null or orderBy != null">
-		
+		<if test="locals != null or genders != null or keyword != null or orderBy != null">	
 		<where>
 			<if test="locals != null">
 				LOCAL IN <foreach collection="locals" item="local" open="(" close=")" separator=','>
@@ -77,15 +68,6 @@
 						<if test='orderBy == "old"'>
 							AGE DESC
 						</if>
-						<if test="numberth == null">
-							LIMIT 0,3
-						</if>
-						<if test="numberth != null">
-							LIMIT ${numberth},3
-						</if>
-			</if>
-			<if test="orderBy == null and numberth != null">
-				ORDER BY SEQ LIMIT ${numberth},3
 			</if>
 		</where>
 		</if>

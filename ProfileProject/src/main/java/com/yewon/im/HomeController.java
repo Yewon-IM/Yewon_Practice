@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,49 +55,46 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/main.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String main(Locale locale, Model model, String[] local, String[] gender, String keyword, String orderBy
-			,String numberth) {
-		logger.info("메인화면입니다.", locale);
+	public String main(HttpServletRequest request, Locale locale, Model model, String[] local, String[] gender, String keyword, String orderBy
+			,Integer numberth) {
+		logger.info("메인화면입니다.", local);
+		
+		HttpSession session = request.getSession();
 		
 		List<Map<String, String>> localList = profileService.local(); 
 		model.addAttribute("localList", localList);
 		
-		if(local == null && gender == null && keyword == null && orderBy == null && numberth == null) {
-			System.out.println("요기 인가?");
-			List<ProfileDto> list = profileService.memberList();
-			model.addAttribute("list", list);
+		if(numberth != null){
+			List<ProfileDto> list = profileService.main(local, gender, keyword, orderBy);
+			int pageCounts = Util.pages(list.size());
 			
-			int pageCounts = profileService.pageCount(list.size());
-			model.addAttribute("pageCount", pageCounts);
-			System.out.println(pageCounts);
-			
-			return "main";
-			
-		} else if(numberth != null){
-			List<ProfileDto> list = profileService.main(local, gender, keyword, orderBy, numberth);
-			model.addAttribute("list", list);
-			
-			int pageCounts = profileService.pageCount(list.size());
 			model.addAttribute("pageCount", pageCounts);
 			
+			list = list.subList(numberth,Util.subList(numberth,list.size()));
+			model.addAttribute("list", list);
+			System.out.println("요기갔다");
 			return "main";
 			
 		} else {
 
-			System.out.println("local : " + Arrays.toString(local));
-			System.out.println("gender : " + Arrays.toString(gender));
-			System.out.println("keyword : " + keyword);
-			System.out.println("orderBy : " + orderBy);
-			System.out.println("numberth : " + numberth);
-			
-			List<ProfileDto> list = profileService.main(local, gender, keyword, orderBy, numberth);
-			int pageCounts = profileService.pageCount(list.size());
+//			System.out.println("local : " + Arrays.toString(local));
+//			System.out.println("gender : " + Arrays.toString(gender));
+//			System.out.println("keyword : " + keyword);
+//			System.out.println("orderBy : " + orderBy);
+//			System.out.println("numberth : " + numberth);
+//			
+			List<ProfileDto> list = profileService.main(local, gender, keyword, orderBy);
+			int pageCounts = Util.pages(list.size());
 			model.addAttribute("pageCount", pageCounts);
-			System.out.println(pageCounts);
+			//System.out.println(pageCounts);
+			
+			list = list.subList(0, 3);
+			
+			session.setAttribute("searchLocal", local);
 			
 			model.addAttribute("list", list);
 			model.addAttribute("local", Arrays.toString(local));
-			model.addAttribute("gender", gender);
+			model.addAttribute("gender", Arrays.toString(gender));
 			model.addAttribute("keyword", keyword);
 			model.addAttribute("orderBy", orderBy);
 			
@@ -109,6 +107,17 @@ public class HomeController {
 			return "main";
 		}
 	}
+	
+	@RequestMapping(value = "/mainSearchNumber.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String mainSearchNumber(HttpServletRequest request, Locale locale, Model model, String[] local, String[] gender, String keyword, String orderBy
+			,Integer numberth) {
+		logger.info("메인화면입니다.", local);
+		
+		return "";
+
+	}
+	
+	
 	
 	@RequestMapping(value = "/memberHome.do", method = RequestMethod.GET)
 	public String memberHome(Locale locale, Model model, @RequestParam("seq") int seq) {

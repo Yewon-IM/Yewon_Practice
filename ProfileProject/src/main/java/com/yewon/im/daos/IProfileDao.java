@@ -16,13 +16,11 @@ public interface IProfileDao {
 	
 	public List<ProfileDto> numberthMemberList(Integer numberth);
 	
-	public int pageCount(int seqs);
-	
 	public List<Map<String, String>> local();
 	
 	public List<ProfileDto> memberListFunction(String[] local, String[] gender);
 	
-	public List<ProfileDto> main(String[] local, String[] gender, String keyword, String orderBy, String numberth);
+	public List<ProfileDto> main(String[] local, String[] gender, String keyword, String orderBy);
 	
 	public List<ProfileDto> keyword(String keyword);
 	

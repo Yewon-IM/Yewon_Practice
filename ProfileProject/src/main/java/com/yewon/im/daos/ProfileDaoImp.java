@@ -30,10 +30,6 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "numberthMemberList", numberth);
 	}
 	
-	public int pageCount(int seqs) {
-		return sqlSession.selectOne(namespace + "pageCount", seqs);
-	}
-	
 	public List<Map<String, String>> local(){
 		return sqlSession.selectList(namespace + "local");
 	}
@@ -47,19 +43,17 @@ public class ProfileDaoImp implements IProfileDao{
 		return sqlSession.selectList(namespace + "memberListFunction", map);
 	}
 	
-	public List<ProfileDto> main(String[] local, String[] gender, String keyword, String orderBy, String numberth){
+	public List<ProfileDto> main(String[] local, String[] gender, String keyword, String orderBy){
 		Map<String, Object> map = new HashMap<>();
 		map.put("locals", local);
 		map.put("genders", gender);
 		map.put("keyword", keyword);
 		map.put("orderBy", orderBy);
-		map.put("numberth", numberth);
 		
 		System.out.println("dlocal : " + local);
 		System.out.println("dgender : " + gender);
 		System.out.println("dkeyword : " + keyword);
 		System.out.println("dorderBy : " + orderBy);
-		System.out.println("dnumberth : " + numberth);
 		
 		return sqlSession.selectList(namespace + "main", map);
 	}
